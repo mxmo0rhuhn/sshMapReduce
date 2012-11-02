@@ -1,4 +1,10 @@
+# Alles was so generiert ist wollen wir nicht!
 *.class
+target/**
+
+.settings/**
+.classpath
+.project
 
 # Package Files #
 *.jar
