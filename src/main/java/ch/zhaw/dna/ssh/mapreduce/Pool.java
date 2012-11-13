@@ -24,6 +24,10 @@ public class Pool {
 		this.amountWorker = amountWorker;
 	}
 
+	/**
+	 * Gibt Anzahl Worker zurück
+	 * @return amountWorker
+	 */
 	public int getPoolSize() {
 		return amountWorker;
 	}
