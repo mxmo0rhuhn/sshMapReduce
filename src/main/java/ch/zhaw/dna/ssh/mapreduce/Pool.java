@@ -7,29 +7,29 @@ package ch.zhaw.dna.ssh.mapreduce;
  */
 public class Pool {
 
-	private final int amountWorker;
+	private final int capacity;
 
 	/**
 	 * Setzt Pool Groesse = Anz Worker durch Uebergabewert fest
 	 * 
 	 * @throws IllegalArgumentException
 	 *             Wenn Wert kleiner 1
-	 * @param amountWorker
+	 * @param capacity
 	 *            Groesse von Pool
 	 */
-	public Pool(int amountWorker) {
-		if (amountWorker < 1) {
+	public Pool(int capacity) {
+		if (capacity < 1) {
 			throw new IllegalArgumentException("Falsche Eingabe, muss groesser 1 sein");
 		}
-		this.amountWorker = amountWorker;
+		this.capacity = capacity;
 	}
 
 	/**
-	 * Gibt Anzahl Worker zurück
+	 * Gibt Totale Anzahl Worker zurück
 	 * @return amountWorker
 	 */
-	public int getPoolSize() {
-		return amountWorker;
+	public int getCapacity() {
+		return capacity;
 	}
 
 }

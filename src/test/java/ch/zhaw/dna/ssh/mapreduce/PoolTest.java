@@ -15,7 +15,7 @@ public class PoolTest {
 	@Test
 	public void testNumerOfPoolWorkers() {
 		Pool pool = new Pool(5);
-		assertEquals("Pruefen ob korrekte Anz Worker im Pool erstellt wurden: ", 5, pool.getPoolSize());
+		assertEquals("Pruefen ob korrekte Anz Worker im Pool erstellt wurden: ", 5, pool.getCapacity());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
