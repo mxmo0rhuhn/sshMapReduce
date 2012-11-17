@@ -1,4 +1,4 @@
-package ch.zhaw.dna.ssh.mapreduce;
+package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
 /**
  * Pool kontrolliert Anzahl der Worker und liefert diese an Master

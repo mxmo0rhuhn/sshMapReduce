@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerFactory;
+
 public class PoolTest {
 
 	private static WorkerFactory factoryMock;
