@@ -8,7 +8,7 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework;
  */
 public final class InputSplitterFactory {
 	
-	public static InputSplitter create() {
+	public static InputSplitter create(String input) {
 		return null;
 	}
 
