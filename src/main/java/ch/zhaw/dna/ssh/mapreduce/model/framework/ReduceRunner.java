@@ -8,6 +8,4 @@ public interface ReduceRunner extends WorkerTask {
 	
 	void emit(String result);
 
-	boolean isCompleted();
-
 } 

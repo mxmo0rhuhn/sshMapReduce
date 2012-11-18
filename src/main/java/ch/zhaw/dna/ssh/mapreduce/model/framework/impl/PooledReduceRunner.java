@@ -34,12 +34,6 @@ public class PooledReduceRunner implements ReduceRunner {
 	}
 
 	@Override
-	public boolean isCompleted() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void doWork() {
 		// TODO Auto-generated method stub
 		
