@@ -16,6 +16,12 @@ public class MapReduceTaskTest {
 			}
 		};
 		ReduceTask reduceTask = new ReduceTask() {
+
+			@Override
+			public void reduce(ReduceRunner reduceRunner, String[] input) {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		MapReduceTask mrTask = new MapReduceTask(mapTask, reduceTask);
 		mrTask.compute("asdf");
