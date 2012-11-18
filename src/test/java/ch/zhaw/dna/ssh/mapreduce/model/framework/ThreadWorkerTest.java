@@ -22,6 +22,9 @@ public class ThreadWorkerTest {
 		this.context = new JUnit4Mockery();
 	}
 
+	/**
+	 * make sure a threadWorker executes its work and goes back into the pool
+	 */
 	@Test
 	public void shouldGoBackToPool() {
 		final Pool p = this.context.mock(Pool.class);
