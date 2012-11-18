@@ -7,7 +7,7 @@ public interface ReduceRunnerFactory {
 
 	void assignReduceTask(ReduceTask reduceTask);
 	
-	ReduceRunner create();
+	ReduceRunner create(String forKey);
 
 	void setGlobalResultStructure(ConcurrentMap<String, List<String>> globalResultStructure); 
 

@@ -16,7 +16,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
  * 
  * @author Max
  */
-public class PooledMapRunner implements WorkerTask, MapRunner {
+public class PooledMapRunner implements MapRunner {
 
 	// Der Zustand in dem sich der Worker befindet
 	private State currentState;
