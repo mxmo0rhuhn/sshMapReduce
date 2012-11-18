@@ -1,5 +1,9 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Dies ist ein neuer MapReduce Task. Er ist für seine Worker der Master.
  * 
@@ -20,11 +24,14 @@ public class MapReduceTask {
 		this.reduceTask = reduceTask;
 	}
 
-	public void compute(String input) {
+	public Map<String, List<String>> compute(String input) {
 		MapRunner mapRunenr = new MapRunner();
 		mapRunenr.assignMaster(this.mapTask);
 		mapRunenr.runMapTask(input.split(" "), this.p);
-		ReduceRunner reduceRunner = new ReduceRunner();
+		Map<String, List<String>> results = new HashMap<String, List<String>>();
+		ReduceRunner reduceRunner = new ReduceRunner(results);
+		reduceRunner.reduce(mapRunenr.getIntermediate());
+		return results;
 	}
 
 }
