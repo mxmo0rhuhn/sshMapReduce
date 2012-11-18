@@ -15,6 +15,8 @@ public class MapReduceTask {
 
 	ReduceTask reduceTask;
 
+	MapRunnerFactory myFactory;
+	
 	Pool p = new Pool(); // TODO Scope
 	
 	
@@ -22,11 +24,13 @@ public class MapReduceTask {
 	public MapReduceTask(MapTask mapTask, ReduceTask reduceTask) {
 		this.mapTask = mapTask;
 		this.reduceTask = reduceTask;
+		myFactory = new PooledMapRunnerFactory();
+		myFactory.assignMapTask(mapTask);
+		
 	}
 
 	public Map<String, List<String>> compute(String input) {
-		MapRunner mapRunenr = new MapRunner();
-		mapRunenr.assignMaster(this.mapTask);
+		MapRunner mapRunenr = myFactory.getMapRunner();
 		mapRunenr.runMapTask(input.split(" "), this.p);
 		Map<String, List<String>> results = new HashMap<String, List<String>>();
 		ReduceRunner reduceRunner = null;
