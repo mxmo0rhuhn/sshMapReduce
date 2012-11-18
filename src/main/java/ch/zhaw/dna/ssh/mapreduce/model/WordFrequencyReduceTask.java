@@ -6,7 +6,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 
 public class WordFrequencyReduceTask implements ReduceTask {
 	
-	public void reduce(ReduceRunner reduceRunner, String input) {
+	public void reduce(ReduceRunner reduceRunner, MapRunner list) {
 		//Iterate over all entries with the same key and add the values
 		long value = 0;
 		
