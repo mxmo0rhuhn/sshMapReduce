@@ -1,6 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.InputSplitter;
+import java.util.Iterator;
 
 /**
  * Splittet ein langer String in 100 Zeichen lange Stuecke, die dann via Iterator zur Verfuegung stehen.
@@ -8,7 +8,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.InputSplitter;
  * @author Reto
  * 
  */
-public class HundredWordsInputSplitter implements InputSplitter {
+public class HundredWordsInputSplitter implements Iterator<String> {
 
 	/**
 	 * Position im input, wo als naechstes gelesen werden kann.

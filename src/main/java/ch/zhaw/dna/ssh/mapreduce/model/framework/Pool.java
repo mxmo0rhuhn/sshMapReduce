@@ -23,7 +23,7 @@ public interface Pool {
 
 	/**
 	 * Methode mit der sich ein Worker nach seiner Arbeit zurückmelden kann.
-	 * @param finishedWorker
+	 * @param finishedWorker der Worker der sich zurückmeldet
 	 */
 	void workerIsFinished(Worker finishedWorker);
 
