@@ -1,11 +1,13 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
-import java.util.Map;
+import java.util.List;
 
 public interface ReduceRunner {
 
-	void reduce(Map<String, String> intermediate);
+	void reduce(List<MapRunner> mapRunners);
 	
 	void emit(String result);
 
-}
+	boolean isCompleted();
+
+} 

@@ -60,6 +60,12 @@ public interface MapRunner {
 	 * 
 	 * @return
 	 */
-	List<String> getKeySnapshot();
+	List<String> getKeysSnapshot();
+	
+	/**
+	 * Gibt true zurueck, sobald dieser MapRunner fertig ist.
+	 * @return
+	 */
+	boolean isCompleted();
 
 }

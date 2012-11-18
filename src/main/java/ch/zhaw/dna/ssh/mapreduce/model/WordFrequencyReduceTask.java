@@ -23,6 +23,7 @@ public class WordFrequencyReduceTask implements ReduceTask {
 //	}
 
 	@Override
+<<<<<<< HEAD
 	public void reduce(ReduceRunner reduceRunner, String key,
 			Iterator<String> values) {
 		long value = 0;
@@ -31,6 +32,10 @@ public class WordFrequencyReduceTask implements ReduceTask {
 			value += Long.toString(v);
 		}
 		
+=======
+	public void reduce(ReduceRunner reduceRunner, String key, Iterator<String> values) {
+		// TODO Auto-generated method stub
+>>>>>>> 13eb4ca90208e385db071fcd0cac9f381e1b108e
 		
 	}
 	
