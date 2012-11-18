@@ -129,8 +129,8 @@ public class HundredWordsInputSplitterTest {
 	
 	
 	private static String createStringWith(int numberOfWords) {
-		StringBuilder sb = new StringBuilder(99 * 6);
-		for (int i = 0; i < 99; i ++) {
+		StringBuilder sb = new StringBuilder(numberOfWords * 6);
+		for (int i = 0; i < numberOfWords; i ++) {
 			if (sb.length() != 0) {
 				sb.append(' ');
 			}
