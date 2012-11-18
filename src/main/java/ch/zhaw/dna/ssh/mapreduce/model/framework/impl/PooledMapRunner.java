@@ -1,4 +1,4 @@
-package ch.zhaw.dna.ssh.mapreduce.model.framework;
+package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,6 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
 
 /**
  * Eine Implementation des MapRunners mit einem WorkerPool.
