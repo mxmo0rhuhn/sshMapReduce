@@ -3,7 +3,7 @@
  */
 package ch.zhaw.dna.ssh.mapreduce.controller;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 import ch.zhaw.dna.ssh.mapreduce.model.WordFrequencyMapTask;
@@ -21,7 +21,7 @@ public class ProjectLauncher {
 
 	public static void main(String[] args) {
 		MapReduceTask myTask = new MapReduceTask(new WordFrequencyMapTask(), new WordFrequencyReduceTask());
-		Map<String, List<String>> mapReduceResult = myTask.compute(new HundredWordsInputSplitter(test));
+		Map<String, Collection<String>> mapReduceResult = myTask.compute(new HundredWordsInputSplitter(test));
 
 		for (String currentKey : mapReduceResult.keySet()) {
 			int sum = 0;
