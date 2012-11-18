@@ -38,7 +38,7 @@ public interface MapRunner {
 	 * @param toDo
 	 *            der Input der bearbeitet werden soll.
 	 */
-	void runMapTask(String[] toDo);
+	void runMapTask(String input);
 
 	/**
 	 * Bestimmt die Anzahl an Zwischenergebnissen die zwischen jedem reduce Task gewartet wird.

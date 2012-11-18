@@ -11,5 +11,5 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework;
  */
 public interface MapTask extends Task {
 	
-	public void map(MapRunner mapRunner, String[] todo);
+	public void map(MapRunner mapRunner, String toDo);
 }
