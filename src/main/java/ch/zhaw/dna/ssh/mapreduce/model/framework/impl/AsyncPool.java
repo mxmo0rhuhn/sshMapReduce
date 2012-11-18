@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
@@ -40,7 +42,8 @@ public final class AsyncPool implements Runnable, Pool {
 	 */
 	@Override
 	public void init() {
-		new Thread(this).start();
+		Executor executor = Executors.newSingleThreadExecutor();
+		executor.execute(this);
 	}
 
 	/**
