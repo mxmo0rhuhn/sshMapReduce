@@ -1,5 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
+import java.util.Iterator;
 import java.util.List;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
@@ -22,7 +23,7 @@ public class WordFrequencyReduceTask implements ReduceTask {
 //	}
 
 	@Override
-	public void reduce(ReduceRunner reduceRunner, List<MapRunner> mapRunners) {
+	public void reduce(ReduceRunner reduceRunner, String key, Iterator<String> values) {
 		// TODO Auto-generated method stub
 		
 	}
