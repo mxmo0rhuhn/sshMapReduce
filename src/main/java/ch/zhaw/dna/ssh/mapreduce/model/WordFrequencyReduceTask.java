@@ -13,11 +13,12 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
  */
 public class WordFrequencyReduceTask implements ReduceTask {
 
+	/** {@inheritDoc} */
 	@Override
 	public void reduce(ReduceRunner reduceRunner, String key, Iterator<String> values) {
 
 		System.out.println("I am a ReduceTask and I ran for " + key);
-		
+
 		Long value = 0L;
 
 		while (values.hasNext()) {

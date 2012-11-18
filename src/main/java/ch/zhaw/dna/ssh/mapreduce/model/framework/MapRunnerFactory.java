@@ -17,18 +17,18 @@ public interface MapRunnerFactory {
 	 * @param task
 	 *            die Task für die Runner erstellt werden sollen.
 	 */
-	public void assignMapTask(MapTask task);
+	void assignMapTask(MapTask task);
 
 	/**
 	 * Optional ist es möglich combine Tasks zu definieren, die periodisch von den erstellten MapRunnern ausgeführt werden.
 	 * @param task eine CombineTask die regelmässig ausgführt wird.
 	 * 
 	 */
-	public void assignCombineTask(CombinerTask task);
+	void assignCombineTask(CombinerTask task);
 
 	/**
 	 * Gibt einen neuen MapRunner zurück der bereit für Arbeit ist.
 	 * @return ein MapRunner mit den der Factory zugewiesenen Tasks
 	 */
-	public MapRunner getMapRunner();
+	MapRunner getMapRunner();
 }

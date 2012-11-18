@@ -9,11 +9,10 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework;
 public interface Worker {
 
 	/**
-	 * Lässt den Worker seine derzeitige Aufgabe bearbeiten. Nach dem Ausführen der Aufgabe muss sich der Worker bei
-	 * seinem Pool melden.
+	 * Lässt den Worker seine derzeitige Aufgabe bearbeiten. Nach dem Ausführen der Aufgabe muss sich der Worker bei seinem Pool melden.
 	 * 
 	 * @param task
 	 *            den WorkerTask, der ausgefuert werden soll
 	 */
-	public void execute(WorkerTask task);
+	void execute(WorkerTask task);
 }

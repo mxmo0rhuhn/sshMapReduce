@@ -38,11 +38,12 @@ public class PooledMapRunner implements MapRunner {
 	// Die derzeit zu bearbeitenden Daten
 	private String toDo;
 
+	/** {@inheritDoc} */
 	@Override
 	public void emitIntermediateMapResult(String key, String value) {
 		synchronized (this) {
 
-			if(this.results.containsKey(key)) {
+			if (this.results.containsKey(key)) {
 				List<String> curList = this.results.get(key);
 				curList.add(value);
 				results.put(key, curList);
@@ -57,7 +58,7 @@ public class PooledMapRunner implements MapRunner {
 
 			if (this.combinerTask != null) {
 				if (this.newResults >= this.maxWaitResults) {
-					for(String currentKey : results.keySet()) {
+					for (String currentKey : results.keySet()) {
 						ArrayList<String> resultList = new ArrayList<String>();
 						resultList.add(this.combinerTask.combine(results.get(currentKey).iterator()));
 						this.results.put(currentKey, resultList);
@@ -67,6 +68,7 @@ public class PooledMapRunner implements MapRunner {
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public List<String> getIntermediate(String key) {
 
@@ -81,6 +83,7 @@ public class PooledMapRunner implements MapRunner {
 		return null;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void runMapTask(String input) {
 		this.currentState = State.INPROGRESS;
@@ -88,40 +91,47 @@ public class PooledMapRunner implements MapRunner {
 		PoolHelper.getPool().enqueueWork(this);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int getMaxWaitResults() {
 		return this.maxWaitResults;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setMaxWaitResults(int maxWaitResults) {
 		this.maxWaitResults = maxWaitResults;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public State getCurrentState() {
 		return this.currentState;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void doWork() {
 		this.mapTask.map(this, toDo);
 		this.currentState = State.COMPLETED;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public List<String> getKeysSnapshot() {
 		return new ArrayList<String>(results.keySet());
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setMapTask(MapTask task) {
 		this.mapTask = task;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setCombineTask(CombinerTask task) {
 		this.combinerTask = task;
-		
+
 	}
 }

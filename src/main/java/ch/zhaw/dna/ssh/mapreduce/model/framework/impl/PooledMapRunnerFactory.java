@@ -10,16 +10,19 @@ public class PooledMapRunnerFactory implements MapRunnerFactory {
 	private CombinerTask combinerTask;
 	private MapTask mapTask;
 
+	/** {@inheritDoc} */
 	@Override
 	public void assignMapTask(MapTask task) {
 		this.mapTask = task;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void assignCombineTask(CombinerTask task) {
 		this.combinerTask = task;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public MapRunner getMapRunner() {
 		MapRunner newMapRunner = new PooledMapRunner();

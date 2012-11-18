@@ -11,21 +11,24 @@ public class PooledReduceRunnerFactory implements ReduceRunnerFactory {
 
 	private MapReduceTask master;
 
+	/** {@inheritDoc} */
 	@Override
 	public void assignReduceTask(ReduceTask reduceTask) {
 		this.reduceTask = reduceTask;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public ReduceRunner create(String forKey) {
 		ReduceRunner myReduceRunner = new PooledReduceRunner();
 		myReduceRunner.setKey(forKey);
 		myReduceRunner.setReduceTask(this.reduceTask);
 		myReduceRunner.setMaster(this.master);
-		
+
 		return myReduceRunner;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setMaster(MapReduceTask master) {
 		this.master = master;

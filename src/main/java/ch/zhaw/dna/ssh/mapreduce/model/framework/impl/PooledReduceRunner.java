@@ -20,6 +20,7 @@ public class PooledReduceRunner implements ReduceRunner {
 
 	private volatile State curState = State.IDLE;
 
+	/** {@inheritDoc} */
 	@Override
 	public void runReduceTask(List<MapRunner> mapRunners) {
 		this.curState = State.INPROGRESS;
@@ -27,11 +28,13 @@ public class PooledReduceRunner implements ReduceRunner {
 		PoolHelper.getPool().enqueueWork(this);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void emit(String result) {
 		this.master.globalResultStructureAppend(key, result);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void doWork() {
 		for (MapRunner mapRunner : mapRunners) {
@@ -39,21 +42,25 @@ public class PooledReduceRunner implements ReduceRunner {
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public State getCurrentState() {
 		return this.curState;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setReduceTask(ReduceTask task) {
 		this.reduceTask = task;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setKey(String key) {
 		this.key = key;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setMaster(MapReduceTask master) {
 		this.master = master;

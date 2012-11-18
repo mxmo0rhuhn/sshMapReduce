@@ -24,6 +24,5 @@ public interface ReduceTask extends Task {
 	 * @param values
 	 *            die Werte die verdichtet werden sollen
 	 */
-	public void reduce(ReduceRunner reduceRunner, String key, Iterator<String> values);
-
+	void reduce(ReduceRunner reduceRunner, String key, Iterator<String> values);
 }

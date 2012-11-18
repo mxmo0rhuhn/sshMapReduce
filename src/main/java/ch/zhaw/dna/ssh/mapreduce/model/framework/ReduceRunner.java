@@ -46,5 +46,4 @@ public interface ReduceRunner extends WorkerTask {
 	 *            das Ergebnis das übergeben werden soll
 	 */
 	void emit(String result);
-
 }
