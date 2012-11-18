@@ -1,9 +1,9 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
-import java.util.List;
+import java.util.Iterator;
 
 public interface ReduceTask extends Task {
 	
-	public void reduce(ReduceRunner reduceRunner, List<MapRunner> mapRunners);
+	public void reduce(String key, Iterator<String> values);
 
 }
