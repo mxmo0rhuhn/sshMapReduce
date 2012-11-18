@@ -16,7 +16,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledReduceRunnerFactory;
 /**
  * Dies ist ein neuer MapReduce Task. Er ist für seine Worker der Master.
  * 
- * @author Max
+ * @author Max, Reto, Desiree
  */
 public final class MapReduceTask {
 
@@ -25,7 +25,15 @@ public final class MapReduceTask {
 	private final ReduceRunnerFactory reduceRunnerFactory;
 
 	private final ConcurrentMap<String, List<String>> globalResultStructure;
-	
+
+	/**
+	 * Erstellt einen neuen MapReduceTask mit den übergebenen map und reduce task.
+	 * 
+	 * @param mapTask
+	 *            der Map-Task
+	 * @param reduceTask
+	 *            der Reduce-Task
+	 */
 	public MapReduceTask(MapTask mapTask, ReduceTask reduceTask) {
 		this.mapRunnerFactory = new PooledMapRunnerFactory();
 		this.reduceRunnerFactory = new PooledReduceRunnerFactory();
@@ -36,6 +44,16 @@ public final class MapReduceTask {
 		this.reduceRunnerFactory.setGlobalResultStructure(this.globalResultStructure);
 	}
 
+	/**
+	 * Wendet auf alle Elemente vom übergebenen Iterator (via next) den Map- und Reduce-Task an. Die Methode blockiert,
+	 * bis alle Aufgaben erledigt sind. Es wird über den Iterator iteriert und für jeden Aufruf von
+	 * {@link Iterator#next()} ein Map-Task abgesetzt (asynchron). Aus diesem Grund könnten im Iterator die Werte auf
+	 * lazy generiert werden.
+	 * 
+	 * @param inputs
+	 *            der ganze input als Iterator
+	 * @return das Resultat von dem ganzen MapReduceTask
+	 */
 	public Map<String, List<String>> compute(Iterator<String> inputs) {
 		List<MapRunner> mapRunners = new LinkedList<MapRunner>();
 		while (inputs.hasNext()) {
