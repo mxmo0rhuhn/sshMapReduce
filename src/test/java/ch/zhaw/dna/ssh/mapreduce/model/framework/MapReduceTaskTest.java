@@ -1,10 +1,10 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
-import org.junit.Test;
+import org.junit.Ignore;
 
 public class MapReduceTaskTest {
 
-	@Test
+	@Ignore
 	public void testIntergration() {
 		// tested, ob von A-Z alle Resultate propagiert werden
 		MapTask mapTask = new MapTask() {
