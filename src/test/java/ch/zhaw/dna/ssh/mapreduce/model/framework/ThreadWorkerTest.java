@@ -1,31 +1,47 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.integration.junit4.JMock;
+import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.lib.concurrent.DeterministicExecutor;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.ThreadWorker;
 
+@RunWith(JMock.class)
 public class ThreadWorkerTest {
-	
+
+	private Mockery context;
+
+	@Before
+	public void initMockery() {
+		this.context = new JUnit4Mockery();
+	}
+
+	/**
+	 * make sure a threadWorker executes its work and goes back into the pool
+	 */
 	@Test
-	public void test() {
-		WorkerTask task = new WorkerTask() {
-			
-			private State currentState = State.IDLE;
+	public void shouldGoBackToPool() {
+		final Pool p = this.context.mock(Pool.class);
+		final WorkerTask task = this.context.mock(WorkerTask.class);
+		final DeterministicExecutor executor = new DeterministicExecutor();
+		final ThreadWorker worker = new ThreadWorker(p, executor);
+		final Sequence seq = context.sequence("poolseq");
 
-			@Override
-			public void doWork() {
-				this.currentState = State.COMPLETED;
+		this.context.checking(new Expectations() {
+			{
+				one(task).doWork();
+				inSequence(seq);
+				one(p).workerIsFinished(with(same(worker)));
 			}
-
-			@Override
-			public State getCurrentState() {
-				return this.currentState;
-			}
-			
-		};
-		ThreadWorker worker = new ThreadWorker();
+		});
 		worker.execute(task);
-		
+		executor.runUntilIdle();
 	}
 
 }
