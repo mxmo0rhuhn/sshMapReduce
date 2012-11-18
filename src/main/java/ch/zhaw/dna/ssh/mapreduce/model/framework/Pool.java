@@ -1,66 +1,90 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+
 /**
- * Pool kontrolliert Anzahl der Worker und liefert diese an Master
+ * Ein Pool verwaltet Worker für Aufgaben die ausgeführt werden müssen. Dazu ist es möglich dem Pool Aufgaben und Worker zu übergeben.
  * 
- * @author Desiree Sacher
+ * @author Max, Desiree Sacher
  * 
  */
-public class Pool {
+public class Pool implements Runnable {
 
-	private final Worker[] workerList;
-	private int pos = 0;
+	// Liste mit allen Workern
+	private Map<Worker> workingWorker;
+
+	// Liste mit allen Workern, die Arbeit übernehmen können.
+	private List<Worker> emptyWorkerList;
+
+	// Liste mit aller Arbeit, die von Workern übernommen werden kann.
+	private Queue<WorkerTask> toDoList;
 
 	/**
-	 * Setzt Pool Groesse = Anz Worker durch Uebergabewert fest
-	 * 
-	 * @throws IllegalArgumentException
-	 *             Wenn Wert kleiner 1
-	 * @param capacity
-	 *            Groesse von Pool
-	 * @param factory
-	 *            Neue Worker werden durch Factory Pattern erstellt
+	 * Erstellt einen neuen Pool der gern Aufgaben und Worker entgegen nimmt.
 	 */
-	public Pool(int capacity, WorkerFactory factory) {
-		if (capacity < 1) {
-			throw new IllegalArgumentException("Falsche Eingabe, muss groesser 1 sein");
-		}
-		workerList = new Worker[capacity];
-		for (int i = 0; i < workerList.length; i++) {
-			workerList[i] = factory.createWorker();
-		}
+	public Pool() {
+		emptyWorkerList = new ArrayList<Worker>();
+		toDoList = new LinkedList<WorkerTask>();
+
+		new Thread(this).run();
 	}
 
 	/**
-	 * Gibt Totale Anzahl Worker zurueck
+	 * Gibt die Anzahle der Worker zurück die für diesen Pool arbeiten (können)
 	 * 
 	 * @return amountWorker
 	 */
-	public int getCapacity() {
-		return workerList.length;
+	public int getCurrentPoolSize() {
+		return emptyWorkerList.size();
 	}
 
 	/**
-	 * Gibt Anzahl Verfuegbare Workers zurueck
-	 * @return Anz Verfuegbare Workers
+	 * Gibt die anzahl Verfuegbarer Worker zurueck
+	 * 
+	 * @return die Anzahl an freien Worker
 	 */
 	public int getFreeWorkers() {
-		return workerList.length - pos;
+		return emptyWorkerList.size();
 	}
 
-	/**
-	 * Weist Worker zu und entfernt diesen aus verfuegbare Workers
-	 * @return Worker wenn noch verfuegbar, sonst null
-	 */
-	public Worker pop() {
-		if (getFreeWorkers() < 1) {
-			return null;
-		} else {
-			Worker w = workerList[pos];
-			workerList[pos] = null;
-			pos++;
-			return w;
+	@Override
+	public void run() {
+		try {
+			while (true) {
+				while (toDoList.size() > 0) {
+
+					if (emptyWorkerList.size() > 0) {
+						Worker nextWorker = emptyWorkerList.get(0);
+
+						// Die Task am Kopf der Queue ausführen
+						nextWorker.assignNextTask(toDoList.poll());
+
+						// Der Worker wird asynchron die Aufgabe ausführen
+						nextWorker.work();
+					} else {
+						// Es sind Aufgaben zu erfüllen! schnell schauen ob wieder freie worker vorhanden sind.
+						Thread.sleep(200);
+					}
+				}
+				// Jede halbe Sekunde wird versucht Tasks abzuarbeiten
+				Thread.sleep(500);
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Methode mit der sich ein Worker nach seiner Arbeit zurückmelden kann.
+	 * @param finishedWorker
+	 */
+	public void workerIsFinished(Worker finishedWorker){
+		emptyWorkerList.add(finishedWorker);
+	}
+	
 }

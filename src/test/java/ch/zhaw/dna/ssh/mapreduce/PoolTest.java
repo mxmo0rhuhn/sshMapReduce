@@ -21,7 +21,7 @@ public class PoolTest {
 	@Test
 	public void testNumerOfPoolWorkers() {
 		Pool pool = new Pool(5, factoryMock);
-		assertEquals("Pruefen ob korrekte Anz Worker im Pool erstellt wurden: ", 5, pool.getCapacity());
+		assertEquals("Pruefen ob korrekte Anz Worker im Pool erstellt wurden: ", 5, pool.getCurrentPoolSize());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
