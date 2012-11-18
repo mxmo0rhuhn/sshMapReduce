@@ -81,7 +81,7 @@ public class Pool implements Runnable {
 	
 	/**
 	 * Methode mit der sich ein Worker nach seiner Arbeit zurückmelden kann.
-	 * @param finishedWorker
+	 * @param finishedWorker der Worker der sich zurückmeldet
 	 */
 	public void workerIsFinished(Worker finishedWorker){
 		workingWorker.remove(finishedWorker);

@@ -22,13 +22,11 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledReduceRunnerFactory;
 public final class MapReduceTask {
 
 	private final MapRunnerFactory mapRunnerFactory;
-
 	private final ReduceRunnerFactory reduceRunnerFactory;
-
 	private final ConcurrentMap<String, Collection<String>> globalResultStructure;
 
 	/**
-	 * Erstellt einen neuen MapReduceTask mit den übergebenen map und reduce task.
+	 * Erstellt einen neuen MapReduceTask mit den übergebenen map und reduce tasks.
 	 * 
 	 * @param mapTask
 	 *            der Map-Task
@@ -52,7 +50,7 @@ public final class MapReduceTask {
 	 * lazy generiert werden.
 	 * 
 	 * @param inputs
-	 *            der ganze input als Iterator
+	 *            der gesamte input als Iterator
 	 * @return das Resultat von dem ganzen MapReduceTask
 	 */
 	public Map<String, Collection<String>> compute(Iterator<String> inputs) {
@@ -87,7 +85,7 @@ public final class MapReduceTask {
 	}
 
 	/**
-	 * Iteriert ueber alle workers und prueft, ob alle fertig sind.
+	 * Iteriert ueber alle worker und prueft, ob sie fertig sind.
 	 * 
 	 * @param workers
 	 * @return true, wenn alle fertig sind, sonst false.
