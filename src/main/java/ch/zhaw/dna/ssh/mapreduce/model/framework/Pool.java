@@ -86,5 +86,13 @@ public class Pool implements Runnable {
 	public void workerIsFinished(Worker finishedWorker){
 		emptyWorkerList.add(finishedWorker);
 	}
+
+	/***
+	 * Reiht eien neuen WorkerTask in die Aufgabenliste des Pools ein
+	 * @param mapRunner eine Aufgabe für den Worker
+	 */
+	public void enqueueWork(WorkerTask task) {
+		toDoList.offer(task);
+	}
 	
 }

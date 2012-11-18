@@ -120,10 +120,12 @@ public class MapRunner implements WorkerTask {
 	 * 
 	 * @param toDo
 	 *            der Input der bearbeitet werden soll.
+	 * @param pool der Pool in dem die Aufgabe ausgeführt werden soll.
 	 */
-	public void runMapTask(String[] toDo) {
+	public void runMapTask(String[] toDo, Pool pool) {
 		this.currentState = State.INPROGRESS;
 		this.toDo = toDo;
+		pool.enqueueWork(this);
 	}
 
 	/**
