@@ -50,7 +50,7 @@ public final class MapReduceTask {
 				for (String key : mapRunner.getKeysSnapshot()) {
 					if (!reduceRunners.containsKey(key)) {
 						ReduceRunner reduceRunner = this.reduceRunnerFactory.create(key);
-						reduceRunner.reduce(mapRunners);
+						reduceRunner.runReduceTask(mapRunners);
 						reduceRunners.put(key, reduceRunner);
 					}
 				}

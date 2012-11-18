@@ -4,16 +4,21 @@ import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 
 public class PooledReduceRunner implements ReduceRunner {
-	
+
 	private final String key;
-	
+
 	private final ReduceTask reduceTask;
-	
+
 	private final ConcurrentMap<String, List<String>> globalResultStructure;
+
+	private final List<MapRunner> mapRunners;
+
+	private volatile State curState = State.IDLE;
 
 	public PooledReduceRunner(String key, ReduceTask reduceTask,
 			ConcurrentMap<String, List<String>> globalResultStructure) {
@@ -23,8 +28,10 @@ public class PooledReduceRunner implements ReduceRunner {
 	}
 
 	@Override
-	public void reduce(List<MapRunner> mapRunners) {
-		
+	public void runReduceTask(List<MapRunner> mapRunners) {
+		this.curState = State.INPROGRESS;
+		this.mapRunners = mapRunners;
+		PoolHelper.getPool().enqueueWork(this);
 	}
 
 	@Override
@@ -34,21 +41,15 @@ public class PooledReduceRunner implements ReduceRunner {
 	}
 
 	@Override
-	public boolean isCompleted() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void doWork() {
-		// TODO Auto-generated method stub
-		
+		for (MapRunner mapRunner : mapRunners) {
+			this.reduceTask.reduce(this, this.key, mapRunner.getIntermediate(this.key).iterator());
+		}
 	}
 
 	@Override
 	public State getCurrentState() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.curState;
 	}
 
 }

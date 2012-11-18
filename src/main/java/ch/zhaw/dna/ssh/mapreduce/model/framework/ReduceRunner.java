@@ -4,10 +4,8 @@ import java.util.List;
 
 public interface ReduceRunner extends WorkerTask {
 
-	void reduce(List<MapRunner> mapRunners);
+	void runReduceTask(List<MapRunner> mapRunners);
 	
 	void emit(String result);
-
-	boolean isCompleted();
 
 } 
