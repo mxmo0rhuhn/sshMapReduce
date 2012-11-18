@@ -25,12 +25,12 @@ public class HundredWordsInputSplitter implements InputSplitter {
 		}
 		int start = this.pos;
 		int words = 0;
-		while (words <= 100 && ++this.pos < this.input.length()) {
+		while (words < 100 && ++this.pos < this.input.length()) {
 			if (this.input.charAt(this.pos) == ' ') {
 				words++;
 			}
 		}
-		return this.input.substring(start, this.pos);
+		return this.input.substring(start, this.pos++); // consume last trailing space
 	}
 
 	@Override
