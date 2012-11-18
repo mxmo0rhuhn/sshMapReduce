@@ -1,7 +1,15 @@
-package ch.zhaw.dna.ssh.mapreduce.model.framework;
+package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
 
 /**
  * Eine Implementation des MapRunners mit einem WorkerPool.
@@ -92,7 +100,7 @@ public class PooledMapRunner implements WorkerTask, MapRunner {
 	}
 
 	@Override
-	public void runMapTask(String[] toDo) {
+	public void runMapTask(String[] toDo, Pool pool) {
 		this.currentState = State.INPROGRESS;
 		this.toDo = toDo;
 		PoolHelper.getPool().enqueueWork(this);
