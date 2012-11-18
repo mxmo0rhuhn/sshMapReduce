@@ -18,7 +18,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 public class PooledMapRunner implements MapRunner {
 
 	// Der Zustand in dem sich der Worker befindet
-	private State currentState;
+	private volatile State currentState;
 
 	// Ergebnisse von auf dem Worker ausgeführten MAP Tasks
 	private Map<String, List<String>> results;
@@ -105,7 +105,7 @@ public class PooledMapRunner implements MapRunner {
 			List<String> returnResults;
 			synchronized (this) {
 				returnResults = this.results.get(key);
-				this.results.clear();
+				this.results.remove(key);
 			}
 			return returnResults;
 		}
@@ -144,10 +144,5 @@ public class PooledMapRunner implements MapRunner {
 	public List<String> getKeysSnapshot() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public boolean isCompleted() {
-		return this.currentState == State.COMPLETED;
 	}
 }

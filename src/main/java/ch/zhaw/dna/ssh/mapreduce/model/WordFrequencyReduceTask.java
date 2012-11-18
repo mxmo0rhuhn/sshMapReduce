@@ -1,7 +1,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
 import java.util.Iterator;
-
+	
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 

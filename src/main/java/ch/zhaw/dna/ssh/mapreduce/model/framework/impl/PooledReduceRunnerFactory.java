@@ -1,8 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
-import java.util.List;
-import java.util.concurrent.ConcurrentMap;
-
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapReduceTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunnerFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
@@ -11,7 +9,7 @@ public class PooledReduceRunnerFactory implements ReduceRunnerFactory {
 	
 	private ReduceTask reduceTask;
 	
-	private ConcurrentMap<String, List<String>> globalResultStructure;
+	private MapReduceTask master;
 	
 	@Override
 	public void assignReduceTask(ReduceTask reduceTask) {
@@ -20,12 +18,12 @@ public class PooledReduceRunnerFactory implements ReduceRunnerFactory {
 
 	@Override
 	public ReduceRunner create(String forKey) {
-		return new PooledReduceRunner(forKey, this.reduceTask, this.globalResultStructure);
+		return new PooledReduceRunner(forKey, this.reduceTask, this.master);
 	}
 
 	@Override
-	public void setGlobalResultStructure(ConcurrentMap<String, List<String>> globalResultStructure) {
-		this.globalResultStructure = globalResultStructure;
+	public void setMaster (MapReduceTask master) {
+		this.master = master;
 	}
 
 }
