@@ -30,7 +30,7 @@ public class WordFrequencyMapTask implements MapTask {
 					String splitted = text[i].substring(beginIndex, endIndex);
 					text[i] = text[i].substring(endIndex, textLength);
 					beginIndex = endIndex;
-					endIndex = text[i].length();
+					endIndex = text[i].indexOf(" ");
 					text[i] = text[i].trim();
 					mapRunner.emitIntermediateMapResult(splitted, "1");
 				}
