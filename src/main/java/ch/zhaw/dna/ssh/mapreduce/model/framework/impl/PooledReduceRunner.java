@@ -35,11 +35,7 @@ public class PooledReduceRunner implements ReduceRunner {
 
 	@Override
 	public void emit(String result) {
-		if (this.master.globalResultStructureContainsKey(key)) {
-			this.master.globalResultStructureAddToKey(key, result);
-		} else {
-			this.master.globalResultStructureAddKeyValue(key, result);
-		}
+		this.master.globalResultStructureAppend(key, result);
 	}
 
 	@Override
