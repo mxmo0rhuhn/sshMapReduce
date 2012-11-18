@@ -13,7 +13,7 @@ import java.util.List;
  * @author Max
  * 
  */
-public interface MapRunner {
+public interface MapRunner extends WorkerTask {
 
 	/**
 	 * Möglichkeit Ein Zwischenergebnis aus einem MAP task zu schreiben.

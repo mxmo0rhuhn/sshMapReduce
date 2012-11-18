@@ -19,9 +19,8 @@ public class PooledReduceRunnerFactory implements ReduceRunnerFactory {
 	}
 
 	@Override
-	public ReduceRunner create() {
-		// TODO Auto-generated method stub
-		return null;
+	public ReduceRunner create(String forKey) {
+		return new PooledReduceRunner(forKey, this.reduceTask, this.globalResultStructure);
 	}
 
 	@Override
