@@ -22,11 +22,12 @@ public class PooledMapRunnerFactory implements MapRunnerFactory {
 
 	@Override
 	public MapRunner getMapRunner() {
+		MapRunner newMapRunner = new PooledMapRunner();
+		newMapRunner.setMapTask(mapTask);
 		if (combinerTask != null) {
-			return new PooledMapRunner(mapTask, combinerTask);
-		} else {
-			return new PooledMapRunner(mapTask);
+			newMapRunner.setCombineTask(combinerTask);
 		}
+		return newMapRunner;
 	}
 
 }

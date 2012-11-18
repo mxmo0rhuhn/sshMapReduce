@@ -10,21 +10,15 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 
 public class PooledReduceRunner implements ReduceRunner {
 
-	private final String key;
+	private String key;
 
-	private final ReduceTask reduceTask;
+	private ReduceTask reduceTask;
 
-	private final MapReduceTask master;
+	private MapReduceTask master;
 
 	private List<MapRunner> mapRunners;
 
 	private volatile State curState = State.IDLE;
-
-	public PooledReduceRunner(String key, ReduceTask reduceTask, MapReduceTask master) {
-		this.key = key;
-		this.reduceTask = reduceTask;
-		this.master = master;
-	}
 
 	@Override
 	public void runReduceTask(List<MapRunner> mapRunners) {
@@ -48,6 +42,21 @@ public class PooledReduceRunner implements ReduceRunner {
 	@Override
 	public State getCurrentState() {
 		return this.curState;
+	}
+
+	@Override
+	public void setReduceTask(ReduceTask task) {
+		this.reduceTask = task;
+	}
+
+	@Override
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	@Override
+	public void setMaster(MapReduceTask master) {
+		this.master = master;
 	}
 
 }

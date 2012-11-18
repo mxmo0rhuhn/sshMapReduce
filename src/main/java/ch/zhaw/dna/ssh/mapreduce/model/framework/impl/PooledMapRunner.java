@@ -18,13 +18,13 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 public class PooledMapRunner implements MapRunner {
 
 	// Der Zustand in dem sich der Worker befindet
-	private volatile State currentState;
+	private volatile State currentState = State.IDLE;
 
 	// Ergebnisse von auf dem Worker ausgeführten MAP Tasks
-	private Map<String, List<String>> results;
+	private Map<String, List<String>> results = new HashMap<String, List<String>>();
 
 	// Aufgabe, die der Task derzeit ausführt
-	private final MapTask task;
+	private MapTask mapTask;
 
 	// Das Limit für die Anzahl an neuen Zwischenergebnissen die gewartet werden soll, bis der Combiner ausgeführt wird.
 	private int maxWaitResults;
@@ -33,41 +33,10 @@ public class PooledMapRunner implements MapRunner {
 	private int newResults;
 
 	// Falls vorhanden ein Combiner für die Zwischenergebnisse
-	private final CombinerTask combiner;
+	private CombinerTask combinerTask;
 
 	// Die derzeit zu bearbeitenden Daten
 	private String toDo;
-
-	/**
-	 * Weisst dem Worker einen Master implizit über eine aufgabe zu. Während der Worker für einen Master arbeitet besitzt er eine
-	 * Outputstruktur für MAP Zwischenresultate.
-	 * 
-	 * @param task
-	 *            die Aufgabe die für den derzeitigen master bearbeitet wird
-	 */
-	public PooledMapRunner(MapTask task) {
-		this.task = task;
-		this.combiner = null;
-		this.results = new HashMap<String, List<String>>();
-		currentState = State.IDLE;
-	}
-
-	/**
-	 * Weisst dem Worker einen Master implizit über eine aufgabe zu. Während der Worker für einen Master arbeitet besitzt er eine
-	 * Outputstruktur für MAP Zwischenresultate. Diese Outputstruktur wird regelmässig durch einen combiner Task verdichtet.
-	 * 
-	 * @param task
-	 *            die Aufgabe die für den derzeitigen master bearbeitet wird
-	 * @param combiner
-	 *            die Aufgabe um Zwischenergebnisse zu verdichten
-	 */
-	public PooledMapRunner(MapTask task, CombinerTask combiner) {
-		this.task = task;
-		this.combiner = combiner;
-		this.maxWaitResults = 500;
-		this.results = new HashMap<String, List<String>>();
-		currentState = State.IDLE;
-	}
 
 	@Override
 	public void emitIntermediateMapResult(String key, String value) {
@@ -86,11 +55,11 @@ public class PooledMapRunner implements MapRunner {
 
 			this.newResults++;
 
-			if (this.combiner != null) {
+			if (this.combinerTask != null) {
 				if (this.newResults >= this.maxWaitResults) {
 					for(String currentKey : results.keySet()) {
 						ArrayList<String> resultList = new ArrayList<String>();
-						resultList.add(this.combiner.combine(results.get(currentKey).iterator()));
+						resultList.add(this.combinerTask.combine(results.get(currentKey).iterator()));
 						this.results.put(currentKey, resultList);
 					}
 				}
@@ -136,13 +105,23 @@ public class PooledMapRunner implements MapRunner {
 
 	@Override
 	public void doWork() {
-		this.task.map(this, toDo);
+		this.mapTask.map(this, toDo);
 		this.currentState = State.COMPLETED;
 	}
 
 	@Override
 	public List<String> getKeysSnapshot() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<String>(results.keySet());
+	}
+
+	@Override
+	public void setMapTask(MapTask task) {
+		this.mapTask = task;
+	}
+
+	@Override
+	public void setCombineTask(CombinerTask task) {
+		this.combinerTask = task;
+		
 	}
 }

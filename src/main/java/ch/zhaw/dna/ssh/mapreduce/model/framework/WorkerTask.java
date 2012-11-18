@@ -20,7 +20,7 @@ public interface WorkerTask {
 	
 	/***
 	 * Gibt den Zustand der Aufgabe die erfüllt werden soll zurück.
-	 * @return
+	 * @return der Zustand
 	 */
 	public State getCurrentState();
 }

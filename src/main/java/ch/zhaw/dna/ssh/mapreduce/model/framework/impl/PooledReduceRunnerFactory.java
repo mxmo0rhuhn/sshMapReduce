@@ -6,11 +6,11 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunnerFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 
 public class PooledReduceRunnerFactory implements ReduceRunnerFactory {
-	
+
 	private ReduceTask reduceTask;
-	
+
 	private MapReduceTask master;
-	
+
 	@Override
 	public void assignReduceTask(ReduceTask reduceTask) {
 		this.reduceTask = reduceTask;
@@ -18,11 +18,16 @@ public class PooledReduceRunnerFactory implements ReduceRunnerFactory {
 
 	@Override
 	public ReduceRunner create(String forKey) {
-		return new PooledReduceRunner(forKey, this.reduceTask, this.master);
+		ReduceRunner myReduceRunner = new PooledReduceRunner();
+		myReduceRunner.setKey(forKey);
+		myReduceRunner.setReduceTask(this.reduceTask);
+		myReduceRunner.setMaster(this.master);
+		
+		return myReduceRunner;
 	}
 
 	@Override
-	public void setMaster (MapReduceTask master) {
+	public void setMaster(MapReduceTask master) {
 		this.master = master;
 	}
 
