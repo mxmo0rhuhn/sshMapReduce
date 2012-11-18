@@ -14,14 +14,11 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledMapRunnerFactory;
  */
 public final class MapReduceTask {
 
-	private final MapTask mapTask;
-
 	private final ReduceTask reduceTask;
 
 	private final MapRunnerFactory mapRunnerFactory;
 	
 	public MapReduceTask(MapTask mapTask, ReduceTask reduceTask) {
-		this.mapTask = mapTask;
 		this.reduceTask = reduceTask;
 		this.mapRunnerFactory = new PooledMapRunnerFactory();
 		this.mapRunnerFactory.assignMapTask(mapTask);
@@ -38,9 +35,11 @@ public final class MapReduceTask {
 		
 		
 		
+		
+		
 		Map<String, List<String>> results = new HashMap<String, List<String>>();
-		ReduceRunner reduceRunner = this.reduceRunnerFactory.createReduceRunner();
-		reduceRunner.reduce(.getIntermediate());
+//		ReduceRunner reduceRunner = this.reduceRunnerFactory.createReduceRunner();
+//		reduceRunner.reduce(.getIntermediate());
 		return results;
 	}
 

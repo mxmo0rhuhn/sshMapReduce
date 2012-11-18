@@ -24,8 +24,13 @@ public class HundredWordsInputSplitter implements InputSplitter {
 			return null;
 		}
 		int start = this.pos;
-		this.pos = Math.min(pos + 100, this.input.length());
-		return input.substring(start, pos);
+		int words = 0;
+		while (words <= 100 && ++this.pos < this.input.length()) {
+			if (this.input.charAt(this.pos) == ' ') {
+				words++;
+			}
+		}
+		return this.input.substring(start, this.pos);
 	}
 
 	@Override
