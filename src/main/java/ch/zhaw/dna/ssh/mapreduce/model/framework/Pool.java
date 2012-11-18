@@ -30,7 +30,7 @@ public class Pool implements Runnable {
 		emptyWorkerList = new ArrayList<Worker>();
 		toDoList = new LinkedList<WorkerTask>();
 
-		new Thread(this).run();
+		new Thread(this).start();
 	}
 
 	/**
