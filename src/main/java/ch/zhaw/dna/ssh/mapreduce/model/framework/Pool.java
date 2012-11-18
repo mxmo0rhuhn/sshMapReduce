@@ -3,7 +3,6 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 
 /**
@@ -15,7 +14,7 @@ import java.util.Queue;
 public class Pool implements Runnable {
 
 	// Liste mit allen Workern
-	private Map<Worker> workingWorker;
+	private List<Worker> workingWorker;
 
 	// Liste mit allen Workern, die Arbeit übernehmen können.
 	private List<Worker> emptyWorkerList;
@@ -39,7 +38,7 @@ public class Pool implements Runnable {
 	 * @return amountWorker
 	 */
 	public int getCurrentPoolSize() {
-		return emptyWorkerList.size();
+		return emptyWorkerList.size() + workingWorker.size();
 	}
 
 	/**

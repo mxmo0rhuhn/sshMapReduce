@@ -1,6 +1,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Die Middleware für einen MAP Task auf einem Worker. Eine MAP Task benötigt einen 
@@ -15,7 +16,7 @@ public class MapRunner implements WorkerTask {
 	private State currentState;
 
 	// Ergebnisse von auf dem Worker ausgeführten MAP Tasks
-	private HashMap<String, String> results;
+	private Map<String, String> results;
 
 	// Aufgabe, die der Task derzeit ausführt
 	private MapTask task;
@@ -102,7 +103,7 @@ public class MapRunner implements WorkerTask {
 	 * 
 	 * @return Die Bisherigen Zwischenergebnisse oder null wenn derzeit keine Zwischenergebnisse vorliegen.
 	 */
-	public HashMap<String, String> getIntermediate() {
+	public Map<String, String> getIntermediate() {
 
 		if (results.size() > 0) {
 			HashMap<String, String> returnResults;
