@@ -17,10 +17,6 @@ public class MapReduceTask {
 
 	MapRunnerFactory myFactory;
 	
-	Pool p = new Pool(); // TODO Scope
-	
-	
-
 	public MapReduceTask(MapTask mapTask, ReduceTask reduceTask) {
 		this.mapTask = mapTask;
 		this.reduceTask = reduceTask;
@@ -31,7 +27,7 @@ public class MapReduceTask {
 
 	public Map<String, List<String>> compute(String input) {
 		MapRunner mapRunenr = myFactory.getMapRunner();
-		mapRunenr.runMapTask(input.split(" "), this.p);
+		mapRunenr.runMapTask(input.split(" "));
 		Map<String, List<String>> results = new HashMap<String, List<String>>();
 		ReduceRunner reduceRunner = null;
 		reduceRunner.reduce(mapRunenr.getIntermediate());

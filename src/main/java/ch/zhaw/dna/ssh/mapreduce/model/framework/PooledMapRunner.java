@@ -92,7 +92,7 @@ public class PooledMapRunner implements WorkerTask, MapRunner {
 	}
 
 	@Override
-	public void runMapTask(String[] toDo, Pool pool) {
+	public void runMapTask(String[] toDo) {
 		this.currentState = State.INPROGRESS;
 		this.toDo = toDo;
 		PoolHelper.getPool().enqueueWork(this);

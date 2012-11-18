@@ -23,24 +23,22 @@ public interface MapRunner {
 	 * @param value
 	 *            Value des Zwischenergebnisses.
 	 */
-	public void emitIntermediateMapResult(String key, String value);
+	void emitIntermediateMapResult(String key, String value);
 
 	/**
 	 * Gibt einem Master die derzeitigen Zwischenergebnisse der ausgeführten MAP Tasks zurück und löscht sie.
 	 * 
 	 * @return Die Bisherigen Zwischenergebnisse oder null wenn derzeit keine Zwischenergebnisse vorliegen.
 	 */
-	public Map<String, String> getIntermediate();
+	Map<String, String> getIntermediate();
 
 	/**
 	 * Führt die derzeit zugewiesene MAP Aufgabe mit dem gegebenen Input aus.
 	 * 
 	 * @param toDo
 	 *            der Input der bearbeitet werden soll.
-	 * @param pool
-	 *            der Pool in dem die Aufgabe ausgeführt werden soll.
 	 */
-	public void runMapTask(String[] toDo, Pool pool);
+	void runMapTask(String[] toDo);
 
 	/**
 	 * Bestimmt die Anzahl an Zwischenergebnissen die zwischen jedem reduce Task gewartet wird.
@@ -48,13 +46,13 @@ public interface MapRunner {
 	 * @param maxWaitResults
 	 *            die neue Anzahl an gewarteten Zwischenergebnissen.
 	 */
-	public void setMaxWaitResults(int maxWaitResults);
+	void setMaxWaitResults(int maxWaitResults);
 
 	/**
 	 * Gibt die Anzahl an Zwischenergebnissen die zwischen jedem reduce Task gewartet wird zurück.
 	 * 
 	 * @return die Anzahl abgewarteter Zwischenergebnisse.
 	 */
-	public int getMaxWaitResults();
+	int getMaxWaitResults();
 
 }
