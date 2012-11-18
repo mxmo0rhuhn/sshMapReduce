@@ -1,5 +1,8 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
+
 public class WordFrequencyMapTask implements MapTask{
 
 	@Override
@@ -15,7 +18,7 @@ public class WordFrequencyMapTask implements MapTask{
 		}
 		
 		
-		Pool.registerMap(text[]);
+		//Pool.registerMap(text[]);
 		
 	}
 
