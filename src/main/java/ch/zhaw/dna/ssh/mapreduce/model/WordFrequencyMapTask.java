@@ -13,6 +13,7 @@ public class WordFrequencyMapTask implements MapTask {
 
 	@Override
 	public void map(MapRunner mapRunner, String input) {
+		System.out.println("I am a Map Task and I ran for " + input);
 		String text = input;
 
 		// Trim whitespaces
