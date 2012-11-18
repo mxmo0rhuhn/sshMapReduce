@@ -12,7 +12,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledMapRunnerFactory;
  * 
  * @author Max
  */
-public class MapReduceTask {
+public final class MapReduceTask {
 
 	private final MapTask mapTask;
 
@@ -33,7 +33,7 @@ public class MapReduceTask {
 		while (inputSplitter.hasNext()) {
 			MapRunner mapRunner = mapRunnerFactory.getMapRunner();
 			mapRunners.add(mapRunner);
-			mapRunner.runMapTask(inputSplitter.next().split(" "));
+			mapRunner.runMapTask(inputSplitter.next());
 		}
 		
 		
