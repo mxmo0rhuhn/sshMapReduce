@@ -10,39 +10,36 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
 public class WordFrequencyMapTask implements MapTask {
 
 	@Override
-	public void map(MapRunner mapRunner, String[] todo) {
-		String[] text = todo;
-		int n = todo.length;
+	public void map(MapRunner mapRunner, String input) {
+		String text = input;
 
-		for (int i = 0; i < n;) {
 
 			// Trim whitespaces
-			text[i] = text[i].trim();
-			if (text[i].contains(" ")) {
+			text = text.trim();
+			if (text.contains(" ")) {
 				// white space index = wsi
-				int endIndex = text[i].indexOf(" ");
+				int endIndex = text.indexOf(" ");
 				int beginIndex = 0;
 				int textLength;
 				
 				// Solange Whitespaces vorhanden, wird gesplittet
-				while (text[i].contains(" ")) {
-					textLength = text[i].length();
-					String splitted = text[i].substring(beginIndex, endIndex);
-					text[i] = text[i].substring(endIndex, textLength);
+				while (text.contains(" ")) {
+					textLength = text.length();
+					String splitted = text.substring(beginIndex, endIndex);
+					text = text.substring(endIndex, textLength);
 					beginIndex = endIndex;
-					endIndex = text[i].indexOf(" ");
-					text[i] = text[i].trim();
+					endIndex = text.indexOf(" ");
+					text = text.trim();
 					mapRunner.emitIntermediateMapResult(splitted, "1");
 				}
 				// nach letztem Split noch letztes Wort hinzufuegen
-				mapRunner.emitIntermediateMapResult(text[i], "1");
+				mapRunner.emitIntermediateMapResult(text, "1");
 
 			} else {
 				// es hatte keine whitespaces, deswegen nur emiten
-				mapRunner.emitIntermediateMapResult(text[i], "1");
+				mapRunner.emitIntermediateMapResult(text, "1");
 			}
-			i++;
-		}
+
 
 	}
 
