@@ -14,22 +14,23 @@ import java.util.Queue;
 public class Pool implements Runnable {
 
 	// Liste mit allen Workern
-	private List<Worker> workingWorker;
+	private final List<Worker> workingWorker;
 
 	// Liste mit allen Workern, die Arbeit übernehmen können.
-	private List<Worker> emptyWorkerList;
+	private final List<Worker> emptyWorkerList;
 
 	// Liste mit aller Arbeit, die von Workern übernommen werden kann.
-	private Queue<WorkerTask> toDoList;
+	private final Queue<WorkerTask> toDoList;
 
 	/**
 	 * Erstellt einen neuen Pool der gern Aufgaben und Worker entgegen nimmt.
 	 */
 	public Pool() {
+		workingWorker = new ArrayList<Worker>();
 		emptyWorkerList = new ArrayList<Worker>();
 		toDoList = new LinkedList<WorkerTask>();
 
-		new Thread(this).run();
+		new Thread(this).start();
 	}
 
 	/**
@@ -59,11 +60,11 @@ public class Pool implements Runnable {
 					if (emptyWorkerList.size() > 0) {
 						Worker nextWorker = emptyWorkerList.get(0);
 
-						// Die Task am Kopf der Queue ausführen
-						nextWorker.assignNextTask(toDoList.poll());
-
-						// Der Worker wird asynchron die Aufgabe ausführen
-						nextWorker.work();
+						// Die Task am Kopf der Queue asynchron ausführen
+						nextWorker.execute(toDoList.poll());
+						
+						emptyWorkerList.remove(nextWorker);
+						workingWorker.add(nextWorker);
 					} else {
 						// Es sind Aufgaben zu erfüllen! schnell schauen ob wieder freie worker vorhanden sind.
 						Thread.sleep(200);
@@ -83,10 +84,11 @@ public class Pool implements Runnable {
 	 * @param finishedWorker
 	 */
 	public void workerIsFinished(Worker finishedWorker){
+		workingWorker.remove(finishedWorker);
 		emptyWorkerList.add(finishedWorker);
 	}
 
-	/***
+	/**
 	 * Reiht eien neuen WorkerTask in die Aufgabenliste des Pools ein
 	 * @param mapRunner eine Aufgabe für den Worker
 	 */
@@ -94,4 +96,11 @@ public class Pool implements Runnable {
 		toDoList.offer(task);
 	}
 	
+	/**
+	 * Stellt dem Pool einen Worker zur Verfügung
+	 * @param newWorker der Worker der zur Verfügung gestellt werden soll.
+	 */
+	public void donateWorker(Worker newWorker){
+		emptyWorkerList.add(newWorker);
+	}
 }
