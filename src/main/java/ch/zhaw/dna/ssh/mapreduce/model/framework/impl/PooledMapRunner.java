@@ -1,28 +1,28 @@
-package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
+package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
 
 /**
  * Eine Implementation des MapRunners mit einem WorkerPool.
  * 
  * @author Max
  */
-public class PooledMapRunner implements WorkerTask, MapRunner {
+public class PooledMapRunner implements MapRunner {
 
 	// Der Zustand in dem sich der Worker befindet
 	private State currentState;
 
 	// Ergebnisse von auf dem Worker ausgeführten MAP Tasks
-	private Map<String, String> results;
+	private Map<String, List<String>> results;
 
 	// Aufgabe, die der Task derzeit ausführt
 	private final MapTask task;
@@ -37,7 +37,7 @@ public class PooledMapRunner implements WorkerTask, MapRunner {
 	private final CombinerTask combiner;
 
 	// Die derzeit zu bearbeitenden Daten
-	private String[] toDo;
+	private String toDo;
 
 	/**
 	 * Weisst dem Worker einen Master implizit über eine aufgabe zu. Während der Worker für einen Master arbeitet besitzt er eine
@@ -49,7 +49,7 @@ public class PooledMapRunner implements WorkerTask, MapRunner {
 	public PooledMapRunner(MapTask task) {
 		this.task = task;
 		this.combiner = null;
-		this.results = new HashMap<String, String>();
+		this.results = new HashMap<String, List<String>>();
 		currentState = State.IDLE;
 	}
 
@@ -66,32 +66,46 @@ public class PooledMapRunner implements WorkerTask, MapRunner {
 		this.task = task;
 		this.combiner = combiner;
 		this.maxWaitResults = 500;
-		this.results = new HashMap<String, String>();
+		this.results = new HashMap<String, List<String>>();
 		currentState = State.IDLE;
 	}
 
 	@Override
 	public void emitIntermediateMapResult(String key, String value) {
 		synchronized (this) {
-			this.results.put(key, value);
+
+			if(this.results.containsKey(key)) {
+				List<String> curList = this.results.get(key);
+				curList.add(value);
+				results.put(key, curList);
+
+			} else {
+				ArrayList<String> resultList = new ArrayList<String>();
+				resultList.add(value);
+				this.results.put(key, resultList);
+			}
+
 			this.newResults++;
 
 			if (this.combiner != null) {
 				if (this.newResults >= this.maxWaitResults) {
-					this.results = this.combiner.combine(results);
-					this.newResults = 0;
+					for(String currentKey : results.keySet()) {
+						ArrayList<String> resultList = new ArrayList<String>();
+						resultList.add(this.combiner.combine(results.get(currentKey).iterator()));
+						this.results.put(currentKey, resultList);
+					}
 				}
 			}
 		}
 	}
 
 	@Override
-	public Map<String, String> getIntermediate() {
+	public List<String> getIntermediate(String key) {
 
 		if (results.size() > 0) {
-			Map<String, String> returnResults;
+			List<String> returnResults;
 			synchronized (this) {
-				returnResults = this.results;
+				returnResults = this.results.get(key);
 				this.results.clear();
 			}
 			return returnResults;
@@ -100,9 +114,9 @@ public class PooledMapRunner implements WorkerTask, MapRunner {
 	}
 
 	@Override
-	public void runMapTask(String[] toDo, Pool pool) {
+	public void runMapTask(String input) {
 		this.currentState = State.INPROGRESS;
-		this.toDo = toDo;
+		this.toDo = input;
 		PoolHelper.getPool().enqueueWork(this);
 	}
 
@@ -115,7 +129,7 @@ public class PooledMapRunner implements WorkerTask, MapRunner {
 	public void setMaxWaitResults(int maxWaitResults) {
 		this.maxWaitResults = maxWaitResults;
 	}
-	
+
 	@Override
 	public State getCurrentState() {
 		return this.currentState;
@@ -125,5 +139,16 @@ public class PooledMapRunner implements WorkerTask, MapRunner {
 	public void doWork() {
 		this.task.map(this, toDo);
 		this.currentState = State.COMPLETED;
+	}
+
+	@Override
+	public List<String> getKeysSnapshot() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isCompleted() {
+		return this.currentState == State.COMPLETED;
 	}
 }
