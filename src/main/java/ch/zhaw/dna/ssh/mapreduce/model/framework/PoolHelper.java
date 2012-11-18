@@ -1,5 +1,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.AsyncPool;
+
 /**
  * Stellt ein Singleton vom Pool zur Verfuegung.
  * 
@@ -23,6 +25,17 @@ public class PoolHelper {
 	 * 
 	 */
 	private static final class SingletonHolder {
-		private static final Pool pool = new Pool();
+		private static final Pool pool = createPool();
+
+		/**
+		 * Erstellt einen Pool und initialisiert ihn. Das darf nur einmal ausgefuert werden!
+		 * 
+		 * @return einen Pool
+		 */
+		private static Pool createPool() {
+			AsyncPool pool = new AsyncPool();
+			pool.init();
+			return pool;
+		}
 	}
 }
