@@ -7,4 +7,6 @@ public interface ReduceRunner {
 	void reduce(Map<String, String> intermediate);
 	
 	String getWord();
+	
+	Map<String, String> getResultStructure();
 }
