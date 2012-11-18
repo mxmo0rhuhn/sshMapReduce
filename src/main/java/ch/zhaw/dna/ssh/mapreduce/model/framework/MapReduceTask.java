@@ -29,7 +29,7 @@ public class MapReduceTask {
 		mapRunenr.assignMaster(this.mapTask);
 		mapRunenr.runMapTask(input.split(" "), this.p);
 		Map<String, List<String>> results = new HashMap<String, List<String>>();
-		ReduceRunner reduceRunner = new ReduceRunner(results);
+		ReduceRunner reduceRunner = null;
 		reduceRunner.reduce(mapRunenr.getIntermediate());
 		return results;
 	}
