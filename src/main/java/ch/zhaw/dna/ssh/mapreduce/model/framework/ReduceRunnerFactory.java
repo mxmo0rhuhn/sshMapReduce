@@ -1,14 +1,11 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
-import java.util.List;
-import java.util.concurrent.ConcurrentMap;
 
 public interface ReduceRunnerFactory {
 
 	void assignReduceTask(ReduceTask reduceTask);
 	
-	ReduceRunner create();
+	ReduceRunner create(String forKey);
 
-	void setGlobalResultStructure(ConcurrentMap<String, List<String>> globalResultStructure); 
-
+	void setMaster(MapReduceTask master); 
 }

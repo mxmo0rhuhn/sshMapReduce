@@ -3,7 +3,7 @@
  */
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
-import java.util.Map;
+import java.util.Iterator;
 
 /**
  * Bietet die Möglichkeit Zwischenergebnisse in einem Map Task zu aggregieren.
@@ -13,6 +13,6 @@ import java.util.Map;
  */
 public interface CombinerTask extends Task {
 
-	Map<String, String> combine(Map<String, String> results);
+	String combine(Iterator<String> toCombine);
 
 }

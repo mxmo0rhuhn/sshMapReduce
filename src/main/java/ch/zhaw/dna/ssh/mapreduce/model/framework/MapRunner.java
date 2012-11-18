@@ -13,7 +13,7 @@ import java.util.List;
  * @author Max
  * 
  */
-public interface MapRunner {
+public interface MapRunner extends WorkerTask {
 
 	/**
 	 * Möglichkeit Ein Zwischenergebnis aus einem MAP task zu schreiben.
@@ -61,11 +61,4 @@ public interface MapRunner {
 	 * @return
 	 */
 	List<String> getKeysSnapshot();
-	
-	/**
-	 * Gibt true zurueck, sobald dieser MapRunner fertig ist.
-	 * @return
-	 */
-	boolean isCompleted();
-
 }

@@ -1,13 +1,16 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledMapRunnerFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledReduceRunnerFactory;
 
@@ -23,7 +26,7 @@ public final class MapReduceTask {
 	private final ReduceRunnerFactory reduceRunnerFactory;
 
 	private final ConcurrentMap<String, List<String>> globalResultStructure;
-
+	
 	public MapReduceTask(MapTask mapTask, ReduceTask reduceTask) {
 		this.mapRunnerFactory = new PooledMapRunnerFactory();
 		this.reduceRunnerFactory = new PooledReduceRunnerFactory();
@@ -31,31 +34,30 @@ public final class MapReduceTask {
 
 		this.mapRunnerFactory.assignMapTask(mapTask);
 		this.reduceRunnerFactory.assignReduceTask(reduceTask);
-		this.reduceRunnerFactory.setGlobalResultStructure(this.globalResultStructure);
+		this.reduceRunnerFactory.setMaster(this);
 	}
 
-	public Map<String, List<String>> compute(String input) {
-		InputSplitter inputSplitter = InputSplitterFactory.create(input);
+	public Map<String, List<String>> compute(Iterator<String> inputs) {
 		List<MapRunner> mapRunners = new LinkedList<MapRunner>();
-		while (inputSplitter.hasNext()) {
+		while (inputs.hasNext()) {
 			MapRunner mapRunner = mapRunnerFactory.getMapRunner();
 			mapRunners.add(mapRunner);
-			mapRunner.runMapTask(inputSplitter.next());
+			mapRunner.runMapTask(inputs.next());
 		}
 
 		Map<String, ReduceRunner> reduceRunners = new HashMap<String, ReduceRunner>();
-		while (!allMapRunnersCompleted(mapRunners)) {
+		while (!allWorkerTasksCompleted(mapRunners)) {
 			for (MapRunner mapRunner : mapRunners) {
 				for (String key : mapRunner.getKeysSnapshot()) {
 					if (!reduceRunners.containsKey(key)) {
-						ReduceRunner reduceRunner = this.reduceRunnerFactory.create();
-						reduceRunner.reduce(mapRunners);
+						ReduceRunner reduceRunner = this.reduceRunnerFactory.create(key);
+						reduceRunner.runReduceTask(mapRunners);
 						reduceRunners.put(key, reduceRunner);
 					}
 				}
 			}
 		}
-		while (!allReduceRunnersCompleted(reduceRunners)) {
+		while (!allWorkerTasksCompleted(reduceRunners.values())) {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
@@ -67,33 +69,42 @@ public final class MapReduceTask {
 	}
 
 	/**
-	 * Iteriert ueber alle MapRunner und prueft, ob alle fertig sind.
+	 * Iteriert ueber alle workers und prueft, ob alle fertig sind.
 	 * 
-	 * @param mapRunners
+	 * @param workers
 	 * @return true, wenn alle fertig sind, sonst false.
 	 */
-	private boolean allMapRunnersCompleted(List<MapRunner> mapRunners) {
-		for (MapRunner mapRunner : mapRunners) {
-			if (!mapRunner.isCompleted()) {
+	private boolean allWorkerTasksCompleted(Collection<? extends WorkerTask> workers) {
+		for (WorkerTask worker : workers) {
+			if (worker.getCurrentState() != State.COMPLETED) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	/**
-	 * Iteriert ueber alle MapRunner und prueft, ob alle fertig sind.
-	 * 
-	 * @param mapRunners
-	 * @return true, wenn alle fertig sind, sonst false.
-	 */
-	private boolean allReduceRunnersCompleted(Map<String, ReduceRunner> reduceRunners) {
-		for (Entry<String, ReduceRunner> entry : reduceRunners.entrySet()) {
-			if (!entry.getValue().isCompleted()) {
-				return false;
-			}
-		}
-		return true;
+	public boolean globalResultStructureContainsKey(String key) {
+		return globalResultStructure.containsKey(key);
 	}
 
+	public void globalResultStructureAddToKey(String key, String value) {
+		List<String> curList = this.globalResultStructure.get(key);
+		curList.add(value);
+		globalResultStructure.put(key, curList);
+	}
+
+	public void globalResultStructureAddKeyValue(String key, String value) {
+		ArrayList<String> newValueList = new ArrayList<String>();
+		newValueList.add(value);
+		this.globalResultStructure.put(key, newValueList);
+	}
+
+	public void globalResultStructureAppend(String key, String result) {
+		if (this.globalResultStructureContainsKey(key)) {
+			this.globalResultStructureAddToKey(key, result);
+		} else {
+			this.globalResultStructureAddKeyValue(key, result);
+		}
+		
+	}
 }
