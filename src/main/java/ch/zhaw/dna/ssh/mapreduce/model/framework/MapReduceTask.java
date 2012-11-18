@@ -1,5 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,7 +34,7 @@ public final class MapReduceTask {
 
 		this.mapRunnerFactory.assignMapTask(mapTask);
 		this.reduceRunnerFactory.assignReduceTask(reduceTask);
-		this.reduceRunnerFactory.setGlobalResultStructure(this.globalResultStructure);
+		this.reduceRunnerFactory.setMaster(this);
 	}
 
 	public Map<String, List<String>> compute(Iterator<String> inputs) {
@@ -80,5 +81,30 @@ public final class MapReduceTask {
 			}
 		}
 		return true;
+	}
+
+	public boolean globalResultStructureContainsKey(String key) {
+		return globalResultStructure.containsKey(key);
+	}
+
+	public void globalResultStructureAddToKey(String key, String value) {
+		List<String> curList = this.globalResultStructure.get(key);
+		curList.add(value);
+		globalResultStructure.put(key, curList);
+	}
+
+	public void globalResultStructureAddKeyValue(String key, String value) {
+		ArrayList<String> newValueList = new ArrayList<String>();
+		newValueList.add(value);
+		this.globalResultStructure.put(key, newValueList);
+	}
+
+	public void globalResultStructureAppend(String key, String result) {
+		if (this.globalResultStructureContainsKey(key)) {
+			this.globalResultStructureAddToKey(key, result);
+		} else {
+			this.globalResultStructureAddKeyValue(key, result);
+		}
+		
 	}
 }
