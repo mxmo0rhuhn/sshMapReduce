@@ -2,6 +2,8 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
 import org.junit.Test;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.ThreadWorker;
+
 public class ThreadWorkerTest {
 	
 	@Test
@@ -21,6 +23,8 @@ public class ThreadWorkerTest {
 			}
 			
 		};
+		ThreadWorker worker = new ThreadWorker();
+		worker.execute(task);
 		
 	}
 
