@@ -5,6 +5,4 @@ import java.util.Map;
 public interface ReduceRunner {
 
 	void reduce(Map<String, String> intermediate);
-	void e
-
 }

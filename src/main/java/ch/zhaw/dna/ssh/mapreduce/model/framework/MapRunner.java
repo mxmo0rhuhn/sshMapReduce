@@ -3,7 +3,7 @@
  */
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * Die Middleware für einen MAP Task auf einem Worker. Eine MAP Task benötigt einen Ein das Framework für MAP für Aufgaben. Ein Worker kann
@@ -30,7 +30,7 @@ public interface MapRunner {
 	 * 
 	 * @return Die Bisherigen Zwischenergebnisse oder null wenn derzeit keine Zwischenergebnisse vorliegen.
 	 */
-	Map<String, String> getIntermediate();
+	List<String> getIntermediate(String key);
 
 	/**
 	 * Führt die derzeit zugewiesene MAP Aufgabe mit dem gegebenen Input aus.
