@@ -3,17 +3,13 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework;
 import java.util.HashMap;
 
 /**
+ * Die Middleware für einen MAP Task auf einem Worker. Eine MAP Task benötigt einen 
  * Ein das Framework für MAP für Aufgaben. Ein Worker kann entweder einen MAP oder einen REDUCE Task ausführen. Es stellt einen MAP-Speicher
  * für Zwischenresultate zur Verfügung in welches Daten geschrieben werden können.
  * 
  * @author Max
  */
-public class MapRunner implements Worker {
-
-	// Alle möglichen Zustände in denen sich Worker befinden kann
-	public enum State {
-		IDLE, INPROGRESS, COMPLETED
-	}
+public class MapRunner implements WorkerTask {
 
 	// Der Zustand in dem sich der Worker befindet
 	private State currentState;
@@ -34,6 +30,7 @@ public class MapRunner implements Worker {
 	private CombinerTask combiner;
 
 	// Die derzeit zu bearbeitenden Daten, falls welche vorhanden sind
+	private String[] toDo;
 
 	/**
 	 * Weisst dem Worker einen Master implizit über eine aufgabe zu. Während der Worker für einen Master arbeitet besitzt er eine
@@ -126,17 +123,7 @@ public class MapRunner implements Worker {
 	 */
 	public void runMapTask(String[] toDo) {
 		this.currentState = State.INPROGRESS;
-		this.task.map(this, toDo);
-		this.currentState = State.COMPLETED;
-	}
-
-	/**
-	 * Gibt den derzeitigen Zustand des MapRunners zurück.
-	 * 
-	 * @return der Zustand des MapRunners
-	 */
-	public State getCurrentState() {
-		return this.currentState;
+		this.toDo = toDo;
 	}
 
 	/**
@@ -157,5 +144,15 @@ public class MapRunner implements Worker {
 	public void setMaxWaitResults(int maxWaitResults) {
 		this.maxWaitResults = maxWaitResults;
 	}
+	
+	@Override
+	public State getCurrentState() {
+		return this.currentState;
+	}
 
+	@Override
+	public void doWork() {
+		this.task.map(this, toDo);
+		this.currentState = State.COMPLETED;
+	}
 }
