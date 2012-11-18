@@ -6,9 +6,9 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework;
 import java.util.List;
 
 /**
- * Die Middleware für einen MAP Task auf einem Worker. Eine MAP Task benötigt einen Ein das Framework für MAP für Aufgaben. Ein Worker kann
- * entweder einen MAP oder einen REDUCE Task ausführen. Es stellt einen MAP-Speicher für Zwischenresultate zur Verfügung in welches Daten
- * geschrieben werden können.
+ * Die Middleware für einen MAP Task auf einem Worker. Eine MAP Task benötigt einen Ein das Framework für MAP für
+ * Aufgaben. Ein Worker kann entweder einen MAP oder einen REDUCE Task ausführen. Es stellt einen MAP-Speicher für
+ * Zwischenresultate zur Verfügung in welches Daten geschrieben werden können.
  * 
  * @author Max
  * 
@@ -54,5 +54,12 @@ public interface MapRunner {
 	 * @return die Anzahl abgewarteter Zwischenergebnisse.
 	 */
 	int getMaxWaitResults();
+
+	/**
+	 * Gibt eine Liste von allen Keys, die beim intermediate result von diesem MapRunner existieren zurueck.
+	 * 
+	 * @return
+	 */
+	List<String> getKeySnapshot();
 
 }
