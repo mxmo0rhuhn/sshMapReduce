@@ -145,9 +145,4 @@ public class PooledMapRunner implements MapRunner {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public boolean isCompleted() {
-		return this.currentState == State.COMPLETED;
-	}
 }

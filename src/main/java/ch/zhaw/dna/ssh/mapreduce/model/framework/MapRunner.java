@@ -61,11 +61,4 @@ public interface MapRunner extends WorkerTask {
 	 * @return
 	 */
 	List<String> getKeysSnapshot();
-	
-	/**
-	 * Gibt true zurueck, sobald dieser MapRunner fertig ist.
-	 * @return
-	 */
-	boolean isCompleted();
-
 }
