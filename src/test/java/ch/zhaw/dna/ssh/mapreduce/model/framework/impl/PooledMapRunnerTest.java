@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
 
 @RunWith(JMock.class)
 public class PooledMapRunnerTest {
@@ -149,5 +150,17 @@ public class PooledMapRunnerTest {
 		mapRunner.emitIntermediateMapResult("hell", "1");
 		mapRunner.emitIntermediateMapResult("hell0", "1");
 	}
+	
+	@Test
+	public void shouldBeIdleAtStart() {
+		PooledMapRunner mapRunner = new PooledMapRunner();
+		assertEquals(State.IDLE, mapRunner.getCurrentState());
+	}
+	
+//	@Test
+//	shouldBeRunning
+//	
+//	@Test
+//	shouldBeCompleted
 
 }
