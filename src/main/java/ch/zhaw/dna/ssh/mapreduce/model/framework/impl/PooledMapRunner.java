@@ -1,9 +1,9 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
@@ -21,7 +21,7 @@ public class PooledMapRunner implements MapRunner {
 	private volatile State currentState = State.IDLE;
 
 	// Ergebnisse von auf dem Worker ausgeführten MAP Tasks
-	private Map<String, List<String>> results = new HashMap<String, List<String>>();
+	private ConcurrentMap<String, List<String>> results = new ConcurrentHashMap<String, List<String>>();
 
 	// Aufgabe, die der Task derzeit ausführt
 	private MapTask mapTask;
