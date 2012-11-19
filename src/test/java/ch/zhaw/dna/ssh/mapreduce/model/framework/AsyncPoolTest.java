@@ -55,7 +55,7 @@ public class AsyncPoolTest {
 	}
 
 	@Test
-	public void shouldExecuteWork() {
+	public void shouldExecuteWork() throws InterruptedException {
 		final WorkerTask task = this.context.mock(WorkerTask.class);
 		DeterministicExecutor exec = new DeterministicExecutor();
 		AsyncPool p = new AsyncPool();
@@ -70,6 +70,7 @@ public class AsyncPoolTest {
 		});
 
 		p.enqueueWork(task);
+		Thread.sleep(200);
 		exec.runUntilIdle();
 	}
 
