@@ -1,8 +1,10 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
 
@@ -33,6 +35,13 @@ public class ThreadWorker implements Worker {
 	public ThreadWorker(Pool pool, Executor executor) {
 		this.pool = pool;
 		this.executor = executor;
+	}
+	
+	/**
+	 * Erstellt einen neuen ThreadWorker mit dem Standard-Pool und einem neuen Executor Single-Threaded Executor
+	 */
+	public ThreadWorker() {
+		this(PoolHelper.getPool(), Executors.newSingleThreadExecutor());
 	}
 
 	/**
