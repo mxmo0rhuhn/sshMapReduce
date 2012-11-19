@@ -14,7 +14,7 @@ public class WordFrequencyMapTask implements MapTask {
 	/** {@inheritDoc} */
 	@Override
 	public void map(MapRunner mapRunner, String input) {
-		System.out.println("I am a Map Task and I ran for " + input);
+		System.out.println("I am a Map Task and I run for " + input);
 		for (String s : input.trim().split(" ")) {
 			mapRunner.emitIntermediateMapResult(s, "1");
 		}
