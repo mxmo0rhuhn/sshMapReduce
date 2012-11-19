@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
 
 @RunWith(JMock.class)
@@ -99,6 +100,7 @@ public class PooledMapRunnerTest {
 	public void shouldInvokeMapTask() throws InterruptedException {
 		final PooledMapRunner mapRunner = new PooledMapRunner();
 		final MapTask mapTask = this.context.mock(MapTask.class);
+		mapRunner.setMapTask(mapTask);
 		final String input = "hello world";
 		DeterministicExecutor exec = new DeterministicExecutor();
 		ThreadWorker tw = new ThreadWorker(PoolHelper.getPool(), exec);
@@ -108,10 +110,22 @@ public class PooledMapRunnerTest {
 			one(mapTask).map(with(same(mapRunner)), with(equal(input)));
 		}});
 		
-		mapRunner.setMapTask(mapTask);
 		mapRunner.runMapTask(input);
-		Thread.sleep(200);
+		awaitFinish(mapRunner, 10000);
 		exec.runUntilIdle();
+	}
+	
+	private static void awaitFinish(WorkerTask worker, long timeout) {
+		long start = System.currentTimeMillis();
+		while (worker.getCurrentState() != State.COMPLETED && start + timeout > System.currentTimeMillis()) {
+			Thread.yield();
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				Thread.interrupted();
+				break;
+			}
+		}
 	}
 	
 	@Test
