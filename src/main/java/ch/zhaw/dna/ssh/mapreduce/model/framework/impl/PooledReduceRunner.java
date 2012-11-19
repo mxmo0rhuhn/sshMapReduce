@@ -37,8 +37,11 @@ public class PooledReduceRunner implements ReduceRunner {
 	/** {@inheritDoc} */
 	@Override
 	public void doWork() {
-		for (MapRunner mapRunner : mapRunners) {
-			this.reduceTask.reduce(this, this.key, mapRunner.getIntermediate(this.key).iterator());
+		for (MapRunner mapRunner : this.mapRunners) {
+			List<String> intermediate = mapRunner.getIntermediate(this.key);
+			if (intermediate != null) {
+				this.reduceTask.reduce(this, this.key, intermediate.iterator());
+			}
 		}
 	}
 
