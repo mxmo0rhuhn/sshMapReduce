@@ -44,5 +44,27 @@ public class ThreadWorkerTest {
 		worker.execute(task);
 		executor.runUntilIdle();
 	}
+	
+	@Test
+	public void shouldExecuteTenTimes() {
+		final Pool p = this.context.mock(Pool.class);
+		final WorkerTask[] tasks = new WorkerTask[10];
+		for (int i = 0; i < 10; i ++) {
+			tasks[i] = this.context.mock(WorkerTask.class, "wt" + i);
+		}
+		final DeterministicExecutor executor = new DeterministicExecutor();
+		final ThreadWorker worker = new ThreadWorker(p, executor);
+
+		this.context.checking(new Expectations() {
+			{
+				exactly(10).of(any(WorkerTask.class)).method("doWork");
+				exactly(10).of(p).workerIsFinished(with(same(worker)));
+			}
+		});
+		for (int i = 0; i < 10; i ++) {
+			worker.execute(tasks[i]);
+		}
+		executor.runUntilIdle();
+	}
 
 }
