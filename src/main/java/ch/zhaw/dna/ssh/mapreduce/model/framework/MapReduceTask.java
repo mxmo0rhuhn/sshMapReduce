@@ -61,6 +61,7 @@ public final class MapReduceTask {
 			mapRunner.runMapTask(inputs.next());
 		}
 
+		//TODO reduce runner müssen schon früher ausgegeben werden
 		Map<String, ReduceRunner> reduceRunners = new HashMap<String, ReduceRunner>();
 		while (!allWorkerTasksCompleted(mapRunners)) {
 			for (MapRunner mapRunner : mapRunners) {
