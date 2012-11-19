@@ -98,7 +98,6 @@ public class PooledMapRunnerTest {
 	}
 	
 	@Test
-	@Ignore
 	public void shouldInvokeMapTask() throws InterruptedException {
 		final PooledMapRunner mapRunner = new PooledMapRunner();
 		final MapTask mapTask = this.context.mock(MapTask.class);
