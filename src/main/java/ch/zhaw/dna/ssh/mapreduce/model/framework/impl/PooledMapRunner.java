@@ -1,9 +1,11 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
@@ -18,10 +20,10 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 public class PooledMapRunner implements MapRunner {
 
 	// Der Zustand in dem sich der Worker befindet
-	private volatile State currentState = State.IDLE;
+	private State currentState = State.IDLE;
 
 	// Ergebnisse von auf dem Worker ausgeführten MAP Tasks
-	private ConcurrentMap<String, List<String>> results = new ConcurrentHashMap<String, List<String>>();
+	private Map<String, List<String>> results = new HashMap<String, List<String>>();
 
 	// Aufgabe, die der Task derzeit ausführt
 	private MapTask mapTask;
@@ -40,29 +42,21 @@ public class PooledMapRunner implements MapRunner {
 
 	/** {@inheritDoc} */
 	@Override
-	public void emitIntermediateMapResult(String key, String value) {
-		synchronized (this) {
+	public synchronized void emitIntermediateMapResult(String key, String value) {
+		if (this.results.containsKey(key)) {
+			this.results.put(key, new LinkedList<String>());
+		}
+		List<String> results = this.results.get(key);
+		results.add(value);
 
-			if (this.results.containsKey(key)) {
-				List<String> curList = this.results.get(key);
-				curList.add(value);
-				results.put(key, curList);
+		this.newResults++;
 
-			} else {
-				ArrayList<String> resultList = new ArrayList<String>();
-				resultList.add(value);
-				this.results.put(key, resultList);
-			}
-
-			this.newResults++;
-
-			if (this.combinerTask != null) {
-				if (this.newResults >= this.maxWaitResults) {
-					for (String currentKey : results.keySet()) {
-						ArrayList<String> resultList = new ArrayList<String>();
-						resultList.add(this.combinerTask.combine(results.get(currentKey).iterator()));
-						this.results.put(currentKey, resultList);
-					}
+		if (this.combinerTask != null) {
+			if (this.newResults >= this.maxWaitResults) {
+				for (Entry<String, List<String>> entry : this.results.entrySet()) {
+					ArrayList<String> resultList = new ArrayList<String>();
+					resultList.add(this.combinerTask.combine(entry.getValue().iterator()));
+					this.results.put(entry.getKey(), resultList);
 				}
 			}
 		}
@@ -70,14 +64,10 @@ public class PooledMapRunner implements MapRunner {
 
 	/** {@inheritDoc} */
 	@Override
-	public List<String> getIntermediate(String key) {
-
-		if (results.size() > 0) {
-			List<String> returnResults;
-			synchronized (this) {
-				returnResults = this.results.get(key);
-				this.results.remove(key);
-			}
+	public synchronized List<String> getIntermediate(String key) {
+		if (!results.isEmpty()) {
+			List<String> returnResults = this.results.get(key);
+			this.results.remove(key);
 			return returnResults;
 		}
 		return null;
@@ -85,7 +75,7 @@ public class PooledMapRunner implements MapRunner {
 
 	/** {@inheritDoc} */
 	@Override
-	public void runMapTask(String input) {
+	public synchronized void runMapTask(String input) {
 		this.currentState = State.INPROGRESS;
 		this.toDo = input;
 		PoolHelper.getPool().enqueueWork(this);
@@ -93,44 +83,44 @@ public class PooledMapRunner implements MapRunner {
 
 	/** {@inheritDoc} */
 	@Override
-	public int getMaxWaitResults() {
+	public synchronized int getMaxWaitResults() {
 		return this.maxWaitResults;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void setMaxWaitResults(int maxWaitResults) {
+	public synchronized void setMaxWaitResults(int maxWaitResults) {
 		this.maxWaitResults = maxWaitResults;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public State getCurrentState() {
+	public synchronized State getCurrentState() {
 		return this.currentState;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void doWork() {
+	public synchronized void doWork() {
 		this.mapTask.map(this, toDo);
 		this.currentState = State.COMPLETED;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public List<String> getKeysSnapshot() {
+	public synchronized List<String> getKeysSnapshot() {
 		return new ArrayList<String>(results.keySet());
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void setMapTask(MapTask task) {
+	public synchronized void setMapTask(MapTask task) {
 		this.mapTask = task;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void setCombineTask(CombinerTask task) {
+	public synchronized void setCombineTask(CombinerTask task) {
 		this.combinerTask = task;
 
 	}
