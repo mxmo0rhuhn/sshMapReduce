@@ -13,6 +13,7 @@ import org.jmock.integration.junit4.JMock;
 import org.jmock.integration.junit4.JUnit4Mockery;
 import org.jmock.lib.concurrent.DeterministicExecutor;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -97,6 +98,7 @@ public class PooledMapRunnerTest {
 	}
 	
 	@Test
+	@Ignore
 	public void shouldInvokeMapTask() throws InterruptedException {
 		final PooledMapRunner mapRunner = new PooledMapRunner();
 		final MapTask mapTask = this.context.mock(MapTask.class);
