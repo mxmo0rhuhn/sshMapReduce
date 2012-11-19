@@ -144,6 +144,15 @@ public class PooledMapRunnerTest {
 	}
 	
 	@Test
+	public void shouldUpdateMaxWaitResultsOnTheFly() {
+		PooledMapRunner mapRunner = new PooledMapRunner();
+		mapRunner.setMaxWaitResults(3);
+		assertEquals(3, mapRunner.getMaxWaitResults());
+		mapRunner.setMaxWaitResults(4);
+		assertEquals(4, mapRunner.getMaxWaitResults());
+	}
+	
+	@Test
 	public void shouldWorkWithoutCombinerTask() {
 		PooledMapRunner mapRunner = new PooledMapRunner();
 		mapRunner.setMaxWaitResults(1);
@@ -151,16 +160,19 @@ public class PooledMapRunnerTest {
 		mapRunner.emitIntermediateMapResult("hell0", "1");
 	}
 	
+	
 	@Test
 	public void shouldBeIdleAtStart() {
 		PooledMapRunner mapRunner = new PooledMapRunner();
 		assertEquals(State.IDLE, mapRunner.getCurrentState());
 	}
 	
-//	@Test
-//	shouldBeRunning
-//	
-//	@Test
-//	shouldBeCompleted
-
+	@Test
+	public void shouldBeRunningAfterSubmit() {
+		final PooledMapRunner mapRunner = new PooledMapRunner();
+		MapTask mapTask = this.context.mock(MapTask.class);
+		mapRunner.setMapTask(mapTask);
+		mapRunner.runMapTask("hello");
+		assertEquals(State.INPROGRESS, mapRunner.getCurrentState());
+	}
 }
