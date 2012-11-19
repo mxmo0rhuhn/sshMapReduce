@@ -1,11 +1,13 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentMap;
@@ -61,7 +63,7 @@ public final class MapReduceTask {
 			mapRunner.runMapTask(inputs.next());
 		}
 
-		//TODO reduce runner müssen schon früher ausgegeben werden
+		// TODO reduce runner müssen schon früher ausgegeben werden
 		Map<String, ReduceRunner> reduceRunners = new HashMap<String, ReduceRunner>();
 		while (!allWorkerTasksCompleted(mapRunners)) {
 			for (MapRunner mapRunner : mapRunners) {
@@ -87,6 +89,31 @@ public final class MapReduceTask {
 	}
 
 	/**
+	 * Fuegt das resultat fuer den Key dem globalen Resultat hinzu (thread-safe).
+	 * 
+	 * @param key
+	 *            Key fuer das Resultat. Es kann mehere Resultate fuer einen Key geben
+	 * @param result
+	 *            das Resultate fuer den Key
+	 */
+	public void globalResultStructureAppend(String key, String result) {
+		if (!this.globalResultStructure.containsKey(key)) {
+			this.globalResultStructure.putIfAbsent(key, new ConcurrentLinkedQueue<String>());
+		}
+		Collection<String> res = this.globalResultStructure.get(key);
+		res.add(result);
+	}
+
+	/**
+	 * Retourniert die globale Resultat-Struktur, wo alle Resultate gespeichert werden.
+	 * 
+	 * @return Map mit allen Resultaten
+	 */
+	public Map<String, Collection<String>> getGlobalResultStructure() {
+		return Collections.unmodifiableMap(this.globalResultStructure);
+	}
+
+	/**
 	 * Iteriert ueber alle worker und prueft, ob sie fertig sind.
 	 * 
 	 * @param workers
@@ -99,18 +126,5 @@ public final class MapReduceTask {
 			}
 		}
 		return true;
-	}
-
-	/**
-	 * Fuegt das resultat fuer den Key dem globalen Resultat hinzu (thread-safe).
-	 * @param key Key fuer das Resultat. Es kann mehere Resultate fuer einen Key geben
-	 * @param result das Resultate fuer den Key
-	 */
-	public void globalResultStructureAppend(String key, String result) {
-		if (!this.globalResultStructure.containsKey(key)) {
-			this.globalResultStructure.putIfAbsent(key, new ConcurrentLinkedQueue<String>());
-		}
-		Collection<String> res = this.globalResultStructure.get(key);
-		res.add(result);
 	}
 }
