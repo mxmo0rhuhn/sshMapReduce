@@ -1,4 +1,4 @@
-package ch.zhaw.dna.ssh.mapreduce.model.framework;
+package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
