@@ -74,6 +74,7 @@ public final class MapReduceTask {
 				}
 			}
 		}
+		System.out.println("startet all");
 		while (!allWorkerTasksCompleted(reduceRunners.values())) {
 			try {
 				Thread.sleep(100);

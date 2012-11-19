@@ -17,8 +17,6 @@ public class WordFrequencyReduceTask implements ReduceTask {
 	@Override
 	public void reduce(ReduceRunner reduceRunner, String key, Iterator<String> values) {
 
-		System.out.println("I am a ReduceTask and I ran for " + key);
-
 		Long value = 0L;
 
 		while (values.hasNext()) {

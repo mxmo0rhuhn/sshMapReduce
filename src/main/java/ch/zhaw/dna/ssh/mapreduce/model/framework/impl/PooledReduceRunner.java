@@ -43,6 +43,7 @@ public class PooledReduceRunner implements ReduceRunner {
 				this.reduceTask.reduce(this, this.key, intermediate.iterator());
 			}
 		}
+		this.curState = State.COMPLETED;
 	}
 
 	/** {@inheritDoc} */

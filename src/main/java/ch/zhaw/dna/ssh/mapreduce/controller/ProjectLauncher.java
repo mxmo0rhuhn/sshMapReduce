@@ -33,6 +33,7 @@ public class ProjectLauncher {
 		MapReduceTask myTask = new MapReduceTask(new WordFrequencyMapTask(), new WordFrequencyReduceTask());
 		Map<String, Collection<String>> mapReduceResult = myTask.compute(new HundredWordsInputSplitter(test));
 
+		System.out.println("done");
 		for (String currentKey : mapReduceResult.keySet()) {
 			int sum = 0;
 			for (String currentItem : mapReduceResult.get(currentKey)) {
