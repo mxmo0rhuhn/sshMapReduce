@@ -1,4 +1,4 @@
-package ch.zhaw.dna.ssh.mapreduce.model.framework;
+package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -10,7 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.ThreadWorker;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
 
 @RunWith(JMock.class)
 public class ThreadWorkerTest {

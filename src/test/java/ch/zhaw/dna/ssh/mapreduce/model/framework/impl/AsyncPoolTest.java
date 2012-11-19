@@ -1,4 +1,4 @@
-package ch.zhaw.dna.ssh.mapreduce.model.framework;
+package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,8 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.AsyncPool;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.ThreadWorker;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
 
 @RunWith(JMock.class)
 public class AsyncPoolTest {
