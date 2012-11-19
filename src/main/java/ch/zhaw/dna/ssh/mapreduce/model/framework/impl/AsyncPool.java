@@ -26,7 +26,7 @@ public final class AsyncPool implements Runnable, Pool {
 	private final BlockingQueue<Worker> workerBlockingQueue = new LinkedBlockingQueue<Worker>();
 
 	// Liste mit aller Arbeit, die von Workern übernommen werden kann.
-	private final Queue<WorkerTask> taskQueue = new ConcurrentLinkedQueue<WorkerTask>();
+	private volatile Queue<WorkerTask> taskQueue = new ConcurrentLinkedQueue<WorkerTask>();
 
 	/**
 	 * Erstellt einen neuen Pool der Aufgaben und Worker entgegen nimmt.
