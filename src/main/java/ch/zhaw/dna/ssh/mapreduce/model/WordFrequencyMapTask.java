@@ -15,34 +15,9 @@ public class WordFrequencyMapTask implements MapTask {
 	@Override
 	public void map(MapRunner mapRunner, String input) {
 		System.out.println("I am a Map Task and I ran for " + input);
-		String text = input;
-
-		// Trim whitespaces
-		text = text.trim();
-		if (text.contains(" ")) {
-			// white space index = wsi
-			int endIndex = text.indexOf(" ");
-			int beginIndex = 0;
-			int textLength;
-
-			// Solange Whitespaces vorhanden, wird gesplittet
-			while (text.contains(" ")) {
-				textLength = text.length();
-				String splitted = text.substring(beginIndex, endIndex);
-				text = text.substring(endIndex, textLength);
-				beginIndex = endIndex;
-				endIndex = text.indexOf(" ");
-				text = text.trim();
-				mapRunner.emitIntermediateMapResult(splitted, "1");
-			}
-			// nach letztem Split noch letztes Wort hinzufuegen
-			mapRunner.emitIntermediateMapResult(text, "1");
-
-		} else {
-			// es hatte keine whitespaces, deswegen nur emiten
-			mapRunner.emitIntermediateMapResult(text, "1");
+		for (String s : input.trim().split(" ")) {
+			mapRunner.emitIntermediateMapResult(s, "1");
 		}
-
 	}
 
 }
