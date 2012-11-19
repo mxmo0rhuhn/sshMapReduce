@@ -1,6 +1,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class PooledMapRunner implements MapRunner {
 	/** {@inheritDoc} */
 	@Override
 	public synchronized void emitIntermediateMapResult(String key, String value) {
-		if (this.results.containsKey(key)) {
+		if (!this.results.containsKey(key)) {
 			this.results.put(key, new LinkedList<String>());
 		}
 		List<String> results = this.results.get(key);
@@ -109,7 +110,7 @@ public class PooledMapRunner implements MapRunner {
 	/** {@inheritDoc} */
 	@Override
 	public synchronized List<String> getKeysSnapshot() {
-		return new ArrayList<String>(results.keySet());
+		return Collections.unmodifiableList(new ArrayList<String>(this.results.keySet()));
 	}
 
 	/** {@inheritDoc} */
