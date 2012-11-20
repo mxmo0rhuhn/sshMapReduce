@@ -17,8 +17,6 @@ public class WordFrequencyMapTaskTest {
 	/** jmock context */
 	Mockery context;
 
-	/** instance under test */
-
 	@Before
 	public void setUp() {
 		context = new JUnit4Mockery();
