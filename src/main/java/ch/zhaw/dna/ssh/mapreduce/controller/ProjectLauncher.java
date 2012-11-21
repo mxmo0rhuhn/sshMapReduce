@@ -12,6 +12,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.MapReduceTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.HundredWordsInputSplitter;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.ThreadWorker;
+import ch.zhaw.dna.ssh.mapreduce.view.MainFrame;
 
 /**
  * * Diese Klasse startet die Applikation * @author Max
@@ -24,6 +25,7 @@ public class ProjectLauncher {
 
 
 	public static void main(String[] args) {
+		new MainFrame(new OutputController());
 		PoolHelper.getPool().donateWorker(new ThreadWorker());
 		PoolHelper.getPool().donateWorker(new ThreadWorker());
 		PoolHelper.getPool().donateWorker(new ThreadWorker());
@@ -43,7 +45,7 @@ public class ProjectLauncher {
 			System.out.println("Wort: " + currentKey + " Vorkommen: " + sum);
 		}
 		//TODO
-		System.exit(-1);
+//		System.exit(-1);
 	}
 
 }

@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -24,9 +25,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+
+import ch.zhaw.dna.ssh.mapreduce.controller.OutputController;
+import ch.zhaw.dna.ssh.mapreduce.controller.OutputController.OUTPUT_STRATEGY;
 
 /**
  * Dieses ist das Hauptfenster der Applikation
@@ -37,6 +42,9 @@ import javax.swing.UIManager.LookAndFeelInfo;
 // Das GUI soll nicht serialisiert werden!
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements Observer {
+
+	// Der Controller wie Logfiles aufbereitet werden sollen
+	private OutputController curOutputController;
 
 	// Der letzte Pfad in dem eine Datei geöffnet wurde
 	private String lastPath;
@@ -49,16 +57,16 @@ public class MainFrame extends JFrame implements Observer {
 
 	// Ausgabe für die derzeitige Schachtlungstiefe
 	private JPanel currentTiefePanel;
-	
+
 	// Ausgabe für die bereits durchsuchten Websites
 	private JPanel currentPagesPanel;
-	
+
 	// Ausgabe für die bereits verstrichene Zeit
 	private JPanel currentZeitPanel;
-	
+
 	// Ausgabe für die bereits erfolgten Treffer
 	private JPanel currentVorkommenPanel;
-	
+
 	// Checkboxen für spezielle HTML-Elemente
 	private JCheckBox h1CheckBox;
 	private JCheckBox h2CheckBox;
@@ -72,8 +80,9 @@ public class MainFrame extends JFrame implements Observer {
 	/**
 	 * Erstellt das Frame und stellt das look and feel
 	 */
-	public MainFrame() {
+	public MainFrame(OutputController curOutputController) {
 
+		this.curOutputController = curOutputController;
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -97,28 +106,28 @@ public class MainFrame extends JFrame implements Observer {
 	}
 
 	/**
-	 * Erstellt das Menü der Applikation mit allen Unterpunkten.
+	 * Erstellt die Menüleiste der Applikation mit allen Unterpunkten.
 	 * 
-	 * @return das Menü der Applikation
+	 * @return die Menüleiste der Applikation
 	 */
 	private JMenuBar createMenu() {
 
 		JMenuBar menuBar = new JMenuBar();
-		JMenu optionen = new JMenu("Datei");
 
-		optionen.add(buildLoadMenueItem());
-
-		menuBar.add(optionen);
+		menuBar.add(buildDateiMenu());
 
 		return menuBar;
 	}
 
 	/**
-	 * Erstellt ein JMenuItem um eine Datei zu laden.
+	 * Erstellt eine Menüleiste mit der input und Output der Applikation festgelegt werden kann
 	 * 
-	 * @return ein Menü-item mit dem man Dateien laden kann
+	 * @return eine Menü Leiste zum Festlegen von Input und Output
 	 */
-	private JMenuItem buildLoadMenueItem() {
+	private JMenuItem buildDateiMenu() {
+
+		JMenu file = new JMenu("Datei");
+
 		JMenuItem load = new JMenuItem("Laden");
 		load.addActionListener(new ActionListener() {
 
@@ -142,7 +151,34 @@ public class MainFrame extends JFrame implements Observer {
 				}
 			}
 		});
-		return load;
+
+		file.add(load);
+		file.addSeparator();
+
+		ButtonGroup outOptions = new ButtonGroup();
+		JRadioButtonMenuItem consoleMenuItem = new JRadioButtonMenuItem("Konsole");
+		consoleMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				curOutputController.setOutput(OUTPUT_STRATEGY.CONSOLE);
+			}
+		});
+		consoleMenuItem.setSelected(true);
+		outOptions.add(consoleMenuItem);
+
+		file.add(consoleMenuItem);
+
+		JRadioButtonMenuItem fileMenuItem = new JRadioButtonMenuItem("Textdatei");
+		fileMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				curOutputController.setOutput(OUTPUT_STRATEGY.TEXTFILE);
+			}
+		});
+		outOptions.add(fileMenuItem);
+		file.add(fileMenuItem);
+
+		return file;
 	}
 
 	/**
@@ -252,34 +288,30 @@ public class MainFrame extends JFrame implements Observer {
 
 		// Zeile 1 Vorkommen und Tiefe
 		statusPanel.add(new JLabel("Vorkommen:"));
-		
+
 		currentVorkommenPanel = new JPanel();
 		statusPanel.add(currentVorkommenPanel);
-		
+
 		statusPanel.add(new JLabel("Tiefe:"));
-		
+
 		currentTiefePanel = new JPanel();
 		statusPanel.add(currentTiefePanel);
 
 		// Zeile 2 : Seiten Durchsucht und Zeit
 		statusPanel.add(new JLabel("Seiten durchsucht:"));
-		
+
 		currentPagesPanel = new JPanel();
 		statusPanel.add(currentPagesPanel);
-		
+
 		statusPanel.add(new JLabel("Zeit"));
-		
+
 		currentZeitPanel = new JPanel();
 		statusPanel.add(currentZeitPanel);
 
 		return statusPanel;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Hier müssen dann die Felder ses StatusPanels aktualisiert werden.
