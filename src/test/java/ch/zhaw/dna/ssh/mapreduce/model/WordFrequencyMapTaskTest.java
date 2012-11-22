@@ -1,43 +1,53 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
-
-import static org.junit.Assert.assertEquals;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.*;
-
-
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.integration.junit4.JMock;
+import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
+
+@RunWith(JMock.class)
 public class WordFrequencyMapTaskTest {
-	
-    /** jmock context */
 
-    /** instance under test */
+	/** jmock context */
+	Mockery context;
 
-    
-    @Before
-    public void setUp() {
+	@Before
+	public void setUp() {
+		context = new JUnit4Mockery();
+	}
 
-    	String testString = "hallo welt ich teste dich hallo";
-    	
-    	
-    	
-    }
-	
 	@Test
-	public void shouldMapInput(){
+	public void shouldMapInput() {
 
-		
-		/*	
-		MapRunner runner = new MapRunner();
-		*/
-		 
+		String testString = "hallo welt ich teste dich hallo";
+
+		final MapRunner runner = context.mock(MapRunner.class);
+		final Sequence seq = context.sequence("runnerSqnc");
+		context.checking(new Expectations() {
+			{
+				one(runner).emitIntermediateMapResult("hallo", "1");
+				inSequence(seq);
+				one(runner).emitIntermediateMapResult("welt", "1");
+				inSequence(seq);
+				one(runner).emitIntermediateMapResult("ich", "1");
+				inSequence(seq);
+				one(runner).emitIntermediateMapResult("teste", "1");
+				inSequence(seq);
+				one(runner).emitIntermediateMapResult("dich", "1");
+				inSequence(seq);
+				one(runner).emitIntermediateMapResult("hallo", "1");
+				inSequence(seq);
+			}
+		});
+
 		WordFrequencyMapTask test = new WordFrequencyMapTask();
-		//test.map(runner, testString); 
-		
-		//erwartet Strings (keys) und "1" zurück für jedes Wort
-		//assertEquals("Ergibt Ausgabe", 'hallo, "1"', );
-
+		test.map(runner, testString);
 	}
 
 }
