@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
@@ -87,7 +88,7 @@ public class MainFrame extends JFrame implements Observer {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showConfirmDialog(null, "Konnte Interface nicht richtig aufbauen. Wechsle auf default interface.\n" + e.getMessage(), "Fehler", JOptionPane.OK_CANCEL_OPTION);
 		}
 
 		this.setTitle("SSH MapReduce");

@@ -29,7 +29,7 @@ public class FileOutput implements OutputInterface {
 
 		JFileChooser chooser = new JFileChooser("Logfile");
 		int returnVal = chooser.showOpenDialog(null);
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
+		if (returnVal == JFileChooser.SAVE_DIALOG) {
 
 			selectedFile = chooser.getSelectedFile();
 		} else {
@@ -44,9 +44,9 @@ public class FileOutput implements OutputInterface {
 		BufferedWriter curFW = null;
 		try {
 			try {
-				curFW = new BufferedWriter(new FileWriter(selectedFile.getAbsolutePath() + curFileEnding));
-				curFW.newLine();
+				curFW = new BufferedWriter(new FileWriter(selectedFile.getAbsolutePath() + curFileEnding, true));
 				curFW.write(line);
+				curFW.newLine();
 			} finally {
 				if (curFW != null) {
 					curFW.close();

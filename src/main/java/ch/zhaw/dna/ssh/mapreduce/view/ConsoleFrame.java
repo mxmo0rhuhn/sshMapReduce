@@ -18,10 +18,10 @@ import ch.zhaw.dna.ssh.mapreduce.view.util.OutputInterface;
  * 
  * @author Max Schrimpf
  */
-@SuppressWarnings("serial") // Wird nicht Serialisiert
+@SuppressWarnings("serial")
+// Wird nicht Serialisiert
 public class ConsoleFrame extends JFrame implements OutputInterface {
 	private final JTextArea textArea;
-	private final JScrollPane scrollPane;
 	private final JPanel panel;
 
 	/**
@@ -31,10 +31,8 @@ public class ConsoleFrame extends JFrame implements OutputInterface {
 		this.textArea = new JTextArea();
 		this.textArea.setEditable(false);
 
-		this.scrollPane = new JScrollPane(this.textArea);
-
 		this.panel = new JPanel(new BorderLayout());
-		this.panel.add(this.scrollPane, BorderLayout.CENTER);
+		this.panel.add(new JScrollPane(this.textArea), BorderLayout.CENTER);
 
 		add(this.panel);
 
@@ -55,6 +53,9 @@ public class ConsoleFrame extends JFrame implements OutputInterface {
 	@Override
 	public void println(final String text) {
 		SwingUtilities.invokeLater(new Runnable() {
+
+			/** {@inheritDoc} */
+			@Override
 			public void run() {
 				ConsoleFrame.this.textArea.append(text + "\n");
 			}

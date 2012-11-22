@@ -29,6 +29,13 @@ public class ProjectLauncher {
 	 *            die nicht beachteten Übergabeparameter
 	 */
 	public static void main(String[] args) {
+		new ProjectLauncher();
+	}
+	
+	/**
+	 * Testinput
+	 */
+	public ProjectLauncher() {
 		OutputController out = new OutputController();
 		new MainFrame(out);
 		PoolHelper.getPool().donateWorker(new ThreadWorker());
