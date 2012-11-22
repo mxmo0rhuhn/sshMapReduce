@@ -151,6 +151,7 @@ public class MainFrame extends JFrame implements Observer {
 
 		file.add(load);
 		file.addSeparator();
+		file.add(new JLabel("Log: "));
 
 		ButtonGroup outOptions = new ButtonGroup();
 		JRadioButtonMenuItem consoleMenuItem = new JRadioButtonMenuItem("Konsole");
@@ -265,7 +266,9 @@ public class MainFrame extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Sth. has to happen here!
-
+				for(int i = 0; i< 200 ; i++) {
+					MainFrame.this.curOutputController.println("Test");
+				}
 			}
 		});
 		inputPanel.add(runButton);
