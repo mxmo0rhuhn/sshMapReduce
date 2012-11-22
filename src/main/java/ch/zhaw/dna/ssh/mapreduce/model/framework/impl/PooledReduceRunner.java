@@ -70,4 +70,10 @@ public class PooledReduceRunner implements ReduceRunner {
 		this.master = master;
 	}
 
+	/** {@inheritDoc} */
+	@Override
+	public String getKey() {
+		return this.key;
+	}
+
 }
