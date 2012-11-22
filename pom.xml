@@ -23,6 +23,7 @@
      <configuration>
       <instrumentation>
        <excludes>
+        <exclude>ch/zhaw/dna/ssh/mapreduce/controller/**</exclude>
         <exclude>ch/zhaw/dna/ssh/mapreduce/view/**</exclude>
        </excludes>
       </instrumentation>
