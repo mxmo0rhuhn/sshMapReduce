@@ -76,4 +76,10 @@ public class PooledReduceRunner implements ReduceRunner {
 		return this.key;
 	}
 
+	/** {@inheritDoc} */
+	@Override
+	public ReduceTask getReduceTask() {
+		return this.reduceTask;
+	}
+
 }
