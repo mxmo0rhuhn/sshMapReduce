@@ -111,6 +111,15 @@ public final class MapReduceTask {
 	public Map<String, Collection<String>> getGlobalResultStructure() {
 		return Collections.unmodifiableMap(this.globalResultStructure);
 	}
+	
+	/**
+	 * Fügt dem Map Reduce eine Combiner Task hinzu mit der man die Effizienz massiv steigern kann
+	 * 
+	 * @param task eine Combiner Task die die Ergebnisse bereits periodisch nach dem MAP aggregiert.
+	 */
+	public void addCombinerTask(CombinerTask task) {
+		mapRunnerFactory.assignCombineTask(task);
+	}
 
 	/**
 	 * Iteriert ueber alle worker und prueft, ob sie fertig sind.
