@@ -30,5 +30,5 @@ public interface MapRunnerFactory {
 	 * Gibt einen neuen MapRunner zurück der bereit für Arbeit ist.
 	 * @return ein MapRunner mit den der Factory zugewiesenen Tasks
 	 */
-	MapRunner getMapRunner();
+	MapRunner create();
 }

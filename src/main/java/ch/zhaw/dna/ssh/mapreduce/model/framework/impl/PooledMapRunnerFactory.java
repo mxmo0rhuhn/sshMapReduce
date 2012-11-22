@@ -24,7 +24,7 @@ public class PooledMapRunnerFactory implements MapRunnerFactory {
 
 	/** {@inheritDoc} */
 	@Override
-	public MapRunner getMapRunner() {
+	public MapRunner create() {
 		MapRunner newMapRunner = new PooledMapRunner();
 		newMapRunner.setMapTask(mapTask);
 		if (combinerTask != null) {

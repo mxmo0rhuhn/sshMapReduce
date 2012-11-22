@@ -27,13 +27,13 @@ public class PooledMapRunnerFactoryTest {
 	@Test
 	public void shouldCreateNewMapRunner() {
 		PooledMapRunnerFactory factory = new PooledMapRunnerFactory();
-		assertNotNull(factory.getMapRunner());
+		assertNotNull(factory.create());
 	}
 	
 	@Test
 	public void shouldCreateNewMapRunnerEveryTime() {
 		PooledMapRunnerFactory factory = new PooledMapRunnerFactory();
-		assertNotSame(factory.getMapRunner(), factory.getMapRunner());
+		assertNotSame(factory.create(), factory.create());
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public class PooledMapRunnerFactoryTest {
 		final CombinerTask combiner = this.context.mock(CombinerTask.class);
 		PooledMapRunnerFactory factory = new PooledMapRunnerFactory();
 		factory.assignCombineTask(combiner);
-		assertSame(combiner, factory.getMapRunner().getCombinerTask());
+		assertSame(combiner, factory.create().getCombinerTask());
 	}
 	
 	@Test
@@ -49,7 +49,7 @@ public class PooledMapRunnerFactoryTest {
 		final MapTask mapTask = this.context.mock(MapTask.class);
 		PooledMapRunnerFactory factory = new PooledMapRunnerFactory();
 		factory.assignMapTask(mapTask);
-		assertSame(mapTask, factory.getMapRunner().getMapTask());
+		assertSame(mapTask, factory.create().getMapTask());
 	}
 
 }
