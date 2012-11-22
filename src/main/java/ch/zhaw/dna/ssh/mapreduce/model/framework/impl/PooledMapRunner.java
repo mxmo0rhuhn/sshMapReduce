@@ -128,13 +128,13 @@ public class PooledMapRunner implements MapRunner {
 
 	/** {@inheritDoc} */
 	@Override
-	public CombinerTask getCombinerTask() {
+	public synchronized CombinerTask getCombinerTask() {
 		return this.combinerTask;
 	}
 	
 	/** {@inheritDoc} */
 	@Override
-	public MapTask getMapTask() {
+	public synchronized MapTask getMapTask() {
 		return this.mapTask;
 	}
 }
