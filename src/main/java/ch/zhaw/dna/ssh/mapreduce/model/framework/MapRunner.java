@@ -76,4 +76,16 @@ public interface MapRunner extends WorkerTask {
 	 * @return die Liste mit keys.
 	 */
 	List<String> getKeysSnapshot();
+	
+	/**
+	 * Gibt den verwendeten Combiner Task zurueck.
+	 * @return den verwendeten CombinerTask, wenn keiner verwendet wurde null
+	 */
+	CombinerTask getCombinerTask();
+
+	/**
+	 * Gibt den verwendeten Map Task zurueck.
+	 * @return den verwendeten MapTask, wenn keiner verwendet wurde null
+	 */
+	MapTask getMapTask();
 }

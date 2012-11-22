@@ -125,4 +125,16 @@ public class PooledMapRunner implements MapRunner {
 		this.combinerTask = task;
 
 	}
+
+	/** {@inheritDoc} */
+	@Override
+	public CombinerTask getCombinerTask() {
+		return this.combinerTask;
+	}
+	
+	/** {@inheritDoc} */
+	@Override
+	public MapTask getMapTask() {
+		return this.mapTask;
+	}
 }
