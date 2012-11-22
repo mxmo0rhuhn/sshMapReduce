@@ -1,5 +1,12 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+/**
+ * Ein Pool verwaltet Worker für Aufgaben die ausgeführt werden müssen. Dazu ist es möglich dem Pool Aufgaben und Worker
+ * zu übergeben.
+ * 
+ * @author Reto
+ *
+ */
 public interface Pool {
 	
 	/**

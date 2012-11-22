@@ -5,6 +5,11 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunnerFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 
+/**
+ * Erstellt eine Factory für PooledReduceRunner.
+ * @author Reto
+ *
+ */
 public class PooledReduceRunnerFactory implements ReduceRunnerFactory {
 
 	private ReduceTask reduceTask;

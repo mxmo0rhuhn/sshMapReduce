@@ -5,6 +5,12 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunnerFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
 
+/**
+ * Erstellt eine Factory für PooledMapRunner.
+ * 
+ * @author Max
+ * 
+ */
 public class PooledMapRunnerFactory implements MapRunnerFactory {
 
 	private CombinerTask combinerTask;

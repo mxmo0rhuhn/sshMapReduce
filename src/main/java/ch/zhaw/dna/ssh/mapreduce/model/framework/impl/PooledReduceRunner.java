@@ -8,6 +8,12 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 
+/**
+ * Eine Implementation des ReduceRunner mit einem WorkerPool.
+ * 
+ * @author Reto
+ *
+ */
 public class PooledReduceRunner implements ReduceRunner {
 
 	private String key;

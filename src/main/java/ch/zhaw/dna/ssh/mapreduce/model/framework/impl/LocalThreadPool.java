@@ -11,13 +11,12 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
 
 /**
- * Ein Pool verwaltet Worker für Aufgaben die ausgeführt werden müssen. Dazu ist es möglich dem Pool Aufgaben und Worker
- * zu übergeben.
+ * Implementation des Pools mit lokalen Threads auf dem jeweiligen PC
  * 
  * @author Max, Desiree Sacher
  * 
  */
-public final class AsyncPool implements Runnable, Pool {
+public final class LocalThreadPool implements Runnable, Pool {
 
 	// Liste mit allen Workern
 	private final Queue<Worker> workingWorker = new ConcurrentLinkedQueue<Worker>();
@@ -31,7 +30,7 @@ public final class AsyncPool implements Runnable, Pool {
 	/**
 	 * Erstellt einen neuen Pool der Aufgaben und Worker entgegen nimmt.
 	 */
-	public AsyncPool() {
+	public LocalThreadPool() {
 	}
 
 	/**
