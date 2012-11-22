@@ -22,9 +22,9 @@
      <version>2.5.2</version>
      <configuration>
       <instrumentation>
-       <ignores>
-        <ignore>ch.zhaw.dna.ssh.mapreduce.view</ignore>
-       </ignores>
+       <excludes>
+        <exclude>ch/zhaw/dna/ssh/mapreduce/view/**</exclude>
+       </excludes>
       </instrumentation>
      </configuration>
    </plugin>
