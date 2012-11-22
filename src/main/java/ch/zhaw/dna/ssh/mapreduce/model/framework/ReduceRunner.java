@@ -3,7 +3,8 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework;
 import java.util.List;
 
 /**
- * Die Middleware für einen REDUCE Task auf einem Worker. Ein ReduceTask muss Ergebnisse für seine derzeitige Aufgabe ausgeben können.
+ * Die Middleware für einen REDUCE Task auf einem Worker. Ein ReduceTask muss Ergebnisse für seine derzeitige Aufgabe
+ * ausgeben können.
  * 
  * @author Reto
  * 
@@ -17,17 +18,20 @@ public interface ReduceRunner extends WorkerTask {
 	 *            die Aufgabe die zugewiesen werden soll
 	 */
 	void setReduceTask(ReduceTask task);
-	
+
 	/**
 	 * Weisst dem ReduceRunner einen Key für den er ausgeführt wird zu.
 	 * 
-	 * @param key der Key für den der Reduce Task ausgeführt wird.
+	 * @param key
+	 *            der Key für den der Reduce Task ausgeführt wird.
 	 */
 	void setKey(String key);
-	
+
 	/**
 	 * Weisst dem ReduceRunner einen Master zu der die Ergebnisstruktur verwaltet.
-	 * @param master der master für den der ReduceRunner arbeitet.
+	 * 
+	 * @param master
+	 *            der master für den der ReduceRunner arbeitet.
 	 */
 	void setMaster(MapReduceTask master);
 
@@ -46,4 +50,18 @@ public interface ReduceRunner extends WorkerTask {
 	 *            das Ergebnis das übergeben werden soll
 	 */
 	void emit(String result);
+
+	/**
+	 * Jeder Reduce Task reduziert ein Wort. Diese Wort wird hier zurueckgegeben.
+	 * 
+	 * @return das verwendetete Wort. Null, wenns keins gesetzt ist.
+	 */
+	String getKey();
+
+	/**
+	 * Gibt den ReduceTask fuer diesen Runner zurueck.
+	 * 
+	 * @return Gibt den ReduceTask fuer diesen Runner zurueck. null wenn keiner gesetzt ist.
+	 */
+	ReduceTask getReduceTask();
 }
