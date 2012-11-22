@@ -26,7 +26,7 @@ public class AsyncPoolTest {
 
 	@Test
 	public void shouldHaveZeroInitialWorker() {
-		AsyncPool p = new AsyncPool();
+		LocalThreadPool p = new LocalThreadPool();
 		p.init();
 		assertEquals(0, p.getCurrentPoolSize());
 		assertEquals(0, p.getFreeWorkers());
@@ -35,7 +35,7 @@ public class AsyncPoolTest {
 	@Test
 	public void shouldHaveOneWorker() {
 		Worker w = this.context.mock(Worker.class);
-		AsyncPool p = new AsyncPool();
+		LocalThreadPool p = new LocalThreadPool();
 		p.init();
 		p.donateWorker(w);
 		assertEquals(1, p.getCurrentPoolSize());
@@ -46,7 +46,7 @@ public class AsyncPoolTest {
 	public void shouldHaveTwoWorker() {
 		Worker w1 = this.context.mock(Worker.class, "w1");
 		Worker w2 = this.context.mock(Worker.class, "w2");
-		AsyncPool p = new AsyncPool();
+		LocalThreadPool p = new LocalThreadPool();
 		p.init();
 		p.donateWorker(w1);
 		p.donateWorker(w2);
@@ -58,7 +58,7 @@ public class AsyncPoolTest {
 	public void shouldExecuteWork() throws InterruptedException {
 		final WorkerTask task = this.context.mock(WorkerTask.class);
 		DeterministicExecutor exec = new DeterministicExecutor();
-		AsyncPool p = new AsyncPool();
+		LocalThreadPool p = new LocalThreadPool();
 		p.init();
 		final ThreadWorker worker = new ThreadWorker(p, exec);
 		p.donateWorker(worker);

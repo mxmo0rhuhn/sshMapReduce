@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ch.zhaw.dna.ssh.mapreduce.view;
 
 import java.awt.BorderLayout;
@@ -39,8 +36,7 @@ import ch.zhaw.dna.ssh.mapreduce.controller.OutputController.OUTPUT_STRATEGY;
  * @author Max
  * 
  */
-// Das GUI soll nicht serialisiert werden!
-@SuppressWarnings("serial")
+@SuppressWarnings("serial") // Das GUI soll nicht serialisiert werden!
 public class MainFrame extends JFrame implements Observer {
 
 	// Der Controller wie Logfiles aufbereitet werden sollen
@@ -131,6 +127,7 @@ public class MainFrame extends JFrame implements Observer {
 		JMenuItem load = new JMenuItem("Laden");
 		load.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = null;
 				if (lastPath != null) {
