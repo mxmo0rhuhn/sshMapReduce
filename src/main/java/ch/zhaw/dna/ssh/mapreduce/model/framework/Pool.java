@@ -37,8 +37,9 @@ public interface Pool {
 	/**
 	 * Reiht eien neuen WorkerTask in die Aufgabenliste des Pools ein
 	 * @param mapRunner eine Aufgabe für den Worker
+	 * @return true, wenn der task angenommen wurde, sonst false
 	 */
-	void enqueueWork(WorkerTask task);
+	boolean enqueueWork(WorkerTask task);
 
 	/**
 	 * Stellt dem Pool einen Worker zur Verfügung

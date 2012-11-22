@@ -91,8 +91,8 @@ public final class LocalThreadPool implements Runnable, Pool {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void enqueueWork(WorkerTask task) {
-		taskQueue.offer(task);
+	public boolean enqueueWork(WorkerTask task) {
+		return taskQueue.offer(task);
 	}
 
 	/**
