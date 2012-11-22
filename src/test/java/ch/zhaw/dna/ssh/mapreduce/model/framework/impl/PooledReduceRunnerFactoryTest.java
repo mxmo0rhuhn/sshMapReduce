@@ -11,9 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapReduceTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.TestConfig;
+
+import com.google.inject.Guice;
 
 @RunWith(JMock.class)
 public class PooledReduceRunnerFactoryTest {
@@ -54,7 +56,7 @@ public class PooledReduceRunnerFactoryTest {
 	@Test
 	public void shouldSetMaster() {
 		PooledReduceRunnerFactory factory = new PooledReduceRunnerFactory();
-		MapReduceTask master = new MapReduceTask(this.context.mock(MapTask.class), this.context.mock(ReduceTask.class));
+		Master master = Guice.createInjector(new TestConfig()).getInstance(Master.class);
 		factory.setMaster(master);
 	}
 

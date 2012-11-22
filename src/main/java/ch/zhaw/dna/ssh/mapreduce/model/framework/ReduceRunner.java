@@ -33,7 +33,7 @@ public interface ReduceRunner extends WorkerTask {
 	 * @param master
 	 *            der master für den der ReduceRunner arbeitet.
 	 */
-	void setMaster(MapReduceTask master);
+	void setMaster(Master master);
 
 	/**
 	 * Führt die derzeit zugewiesene Reduce Aufgabe für den Output der gegebenen MapTasks aus.

@@ -2,8 +2,8 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import java.util.List;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapReduceTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
@@ -20,7 +20,7 @@ public class PooledReduceRunner implements ReduceRunner {
 
 	private ReduceTask reduceTask;
 
-	private MapReduceTask master;
+	private Master master;
 
 	private List<MapRunner> mapRunners;
 
@@ -72,7 +72,7 @@ public class PooledReduceRunner implements ReduceRunner {
 
 	/** {@inheritDoc} */
 	@Override
-	public void setMaster(MapReduceTask master) {
+	public void setMaster(Master master) {
 		this.master = master;
 	}
 
