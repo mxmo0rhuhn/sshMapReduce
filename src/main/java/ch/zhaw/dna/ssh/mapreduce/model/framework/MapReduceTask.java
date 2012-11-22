@@ -57,7 +57,7 @@ public final class MapReduceTask {
 	public Map<String, Collection<String>> compute(Iterator<String> inputs) {
 		List<MapRunner> mapRunners = new LinkedList<MapRunner>();
 		while (inputs.hasNext()) {
-			MapRunner mapRunner = mapRunnerFactory.getMapRunner();
+			MapRunner mapRunner = mapRunnerFactory.create();
 			mapRunners.add(mapRunner);
 			mapRunner.runMapTask(inputs.next());
 		}
