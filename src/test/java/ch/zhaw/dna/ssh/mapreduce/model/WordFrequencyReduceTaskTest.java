@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceEmitter;
 
 @RunWith(JMock.class)
 public class WordFrequencyReduceTaskTest {
@@ -28,7 +28,7 @@ public class WordFrequencyReduceTaskTest {
 	@Test
 	public void shouldReduceInput() {
 		
-		final ReduceRunner runner = context.mock(ReduceRunner.class);
+		final ReduceEmitter runner = context.mock(ReduceEmitter.class);
 		
 		context.checking(new Expectations() {
 			{

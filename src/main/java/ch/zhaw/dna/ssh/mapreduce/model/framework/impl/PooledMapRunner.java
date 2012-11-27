@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapEmitter;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
@@ -18,7 +19,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
  * 
  * @author Max
  */
-public class PooledMapRunner implements MapRunner {
+public class PooledMapRunner implements MapRunner, MapEmitter {
 
 	// Der Zustand in dem sich der Worker befindet
 	private State currentState = State.IDLE;

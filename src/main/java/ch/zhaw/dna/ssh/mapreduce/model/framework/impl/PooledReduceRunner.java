@@ -5,6 +5,7 @@ import java.util.List;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceEmitter;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 
@@ -14,7 +15,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
  * @author Reto
  *
  */
-public class PooledReduceRunner implements ReduceRunner {
+public class PooledReduceRunner implements ReduceRunner, ReduceEmitter {
 
 	private String key;
 

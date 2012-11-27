@@ -45,9 +45,6 @@ public class MainFrame extends JFrame implements Observer {
 	// Der Controller wie Logfiles aufbereitet werden sollen
 	private OutputController curOutputController;
 
-	// Der letzte Pfad in dem eine Datei geöffnet wurde
-	private String lastPath;
-
 	// Eingabe für die URL, die durchsucht werden soll
 	private JTextField pathTextField;
 
@@ -129,19 +126,6 @@ public class MainFrame extends JFrame implements Observer {
 
 		JMenu file = new JMenu("Log");
 
-		JMenuItem loadURL = new JMenuItem("Webseite laden");
-		loadURL.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		file.add(loadURL);
-
-		file.addSeparator();
-		file.add(new JLabel("Log: "));
-
 		ButtonGroup outOptions = new ButtonGroup();
 		JRadioButtonMenuItem consoleMenuItem = new JRadioButtonMenuItem("Konsole");
 		consoleMenuItem.addActionListener(new ActionListener() {
@@ -198,7 +182,7 @@ public class MainFrame extends JFrame implements Observer {
 		// Zeile 1 : URL
 		JPanel urlPanel = new JPanel();
 		urlPanel.setLayout(new GridLayout(1, 2));
-		urlPanel.add(new JLabel("Adresse:"));
+		urlPanel.add(new JLabel("URL:"));
 		pathTextField = new JTextField();
 		urlPanel.add(pathTextField);
 		inputPanel.add(urlPanel);
@@ -254,13 +238,13 @@ public class MainFrame extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Sth. has to happen here!
 				
-				String url = JOptionPane.showInputDialog(MainFrame.this, "Bitte geben Sie eine URL an");
+				String url = pathTextField.getText();
 				String[] schemes = { "http", "https" };
 				UrlValidator urlValidator = new UrlValidator(schemes);
 				if (urlValidator.isValid(url)) {
 					
+					// TODO Sth. has to happen here!
 				} else {
 					JOptionPane.showMessageDialog(MainFrame.this, "Dies ist keine valide URL", "Fehler", JOptionPane.ERROR_MESSAGE);
 				}

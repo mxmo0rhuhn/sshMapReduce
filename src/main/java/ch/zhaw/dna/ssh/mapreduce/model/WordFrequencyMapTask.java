@@ -1,6 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapEmitter;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
 
 /**
@@ -13,9 +13,9 @@ public class WordFrequencyMapTask implements MapTask {
 
 	/** {@inheritDoc} */
 	@Override
-	public void map(MapRunner mapRunner, String input) {
+	public void map(MapEmitter emitter, String input) {
 		for (String s : input.trim().split(" ")) {
-			mapRunner.emitIntermediateMapResult(s, "1");
+			emitter.emitIntermediateMapResult(s, "1");
 		}
 	}
 

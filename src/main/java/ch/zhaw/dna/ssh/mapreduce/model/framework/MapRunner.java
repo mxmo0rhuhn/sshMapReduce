@@ -31,16 +31,6 @@ public interface MapRunner extends WorkerTask {
 	void setCombineTask(CombinerTask task);
 
 	/**
-	 * Möglichkeit Ein Zwischenergebnis aus der Ausführung eines MAP tasks heraus zu schreiben.
-	 * 
-	 * @param key
-	 *            Key des Zwischenergebnisses.
-	 * @param value
-	 *            Value des Zwischenergebnisses.
-	 */
-	void emitIntermediateMapResult(String key, String value);
-
-	/**
 	 * Gibt einem die derzeitigen Zwischenergebnisse für MAP Tasks mit einem bestimmten Key zurück und löscht sie.
 	 * 
 	 * @return Die Bisherigen Zwischenergebnisse für den key oder null wenn derzeit keine Zwischenergebnisse vorliegen.

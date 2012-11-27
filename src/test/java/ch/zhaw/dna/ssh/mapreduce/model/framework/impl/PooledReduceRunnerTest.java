@@ -59,7 +59,7 @@ public class PooledReduceRunnerTest {
 		reduceRunner.setReduceTask(reduceTask);
 		reduceRunner.setKey(input);
 		
-		MapRunner mapRunner = new PooledMapRunner();
+		PooledMapRunner mapRunner = new PooledMapRunner();
 		mapRunner.emitIntermediateMapResult(input, "1");
 
 		this.context.checking(new Expectations() {
