@@ -29,5 +29,5 @@ public interface ReduceRunnerFactory {
 	 * 
 	 * @param master
 	 */
-	void setMaster(MapReduceTask master);
+	void setMaster(Master master);
 }

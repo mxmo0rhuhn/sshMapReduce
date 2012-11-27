@@ -1,6 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapReduceTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunnerFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
@@ -14,7 +14,7 @@ public class PooledReduceRunnerFactory implements ReduceRunnerFactory {
 
 	private ReduceTask reduceTask;
 
-	private MapReduceTask master;
+	private Master master;
 
 	/** {@inheritDoc} */
 	@Override
@@ -35,7 +35,7 @@ public class PooledReduceRunnerFactory implements ReduceRunnerFactory {
 
 	/** {@inheritDoc} */
 	@Override
-	public void setMaster(MapReduceTask master) {
+	public void setMaster(Master master) {
 		this.master = master;
 	}
 
