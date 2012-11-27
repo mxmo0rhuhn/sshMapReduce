@@ -4,8 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.google.inject.Guice;
-import com.google.inject.Module;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
 
 /**
  * Dies ist ein neuer MapReduce Task. Er ist für seine Worker der Master.
@@ -14,8 +13,6 @@ import com.google.inject.Module;
  */
 public final class MapReduceTask {
 	
-	private static final Module LOCAL_CONFIG = new LocalConfig();
-
 	private final MapTask mapTask;
 
 	private final ReduceTask reduceTask;
@@ -37,7 +34,7 @@ public final class MapReduceTask {
 		this.reduceTask = reduceTask;
 		this.combinerTask = combinerTask;
 		
-		this.master = createMaster();
+		this.master = Registry.getComponent(Master.class);
 	}
 	
 	public MapReduceTask(MapTask mapTask, ReduceTask reduceTask) {
@@ -56,9 +53,5 @@ public final class MapReduceTask {
 	 */
 	public Map<String, Collection<String>> compute(Iterator<String> input) {
 		return this.master.runComputation(this.mapTask, this.combinerTask, this.reduceTask, input);
-	}
-	
-	private Master createMaster() {
-		return Guice.createInjector(LOCAL_CONFIG).getInstance(Master.class);
 	}
 }
