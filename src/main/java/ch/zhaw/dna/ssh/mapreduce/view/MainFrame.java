@@ -31,6 +31,7 @@ import ch.zhaw.dna.ssh.mapreduce.controller.OutputController;
 import ch.zhaw.dna.ssh.mapreduce.controller.OutputController.OUTPUT_STRATEGY;
 
 import org.apache.commons.validator.routines.UrlValidator;
+
 /**
  * Dieses ist das Hauptfenster der Applikation
  * 
