@@ -18,4 +18,9 @@ public interface OutputInterface {
 	 *            der Text für die Zeile
 	 */
 	void println(String line);
+	
+	/**
+	 * Bietet die Möglichkeit das User Interface zu beenden
+	 */
+	void stop();
 }

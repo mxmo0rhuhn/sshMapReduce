@@ -75,6 +75,10 @@ public final class MapReduceTask {
 				}
 			}
 		}
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 7523bdcb1bed978572963f211fbd5b7d746bcb75
 		while (!allWorkerTasksCompleted(reduceRunners.values())) {
 			try {
 				Thread.sleep(100);

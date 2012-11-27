@@ -29,7 +29,15 @@ public class ProjectLauncher {
 	 *            die nicht beachteten Übergabeparameter
 	 */
 	public static void main(String[] args) {
-		new MainFrame(new OutputController());
+		new ProjectLauncher();
+	}
+	
+	/**
+	 * Testinput
+	 */
+	public ProjectLauncher() {
+		OutputController out = new OutputController();
+		new MainFrame(out);
 		PoolHelper.getPool().donateWorker(new ThreadWorker());
 		PoolHelper.getPool().donateWorker(new ThreadWorker());
 		PoolHelper.getPool().donateWorker(new ThreadWorker());
@@ -46,7 +54,7 @@ public class ProjectLauncher {
 			for (String currentItem : entry.getValue()) {
 				sum += Long.parseLong(currentItem);
 			}
-			System.out.println("Wort: " + entry.getKey() + " Vorkommen: " + sum);
+			out.println("Wort: " + entry.getKey() + " Vorkommen: " + sum);
 		}
 		// TODO
 		// System.exit(-1);

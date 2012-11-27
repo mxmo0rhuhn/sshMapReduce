@@ -47,8 +47,8 @@ public class PooledMapRunner implements MapRunner {
 		if (!this.results.containsKey(key)) {
 			this.results.put(key, new LinkedList<String>());
 		}
-		List<String> results = this.results.get(key);
-		results.add(value);
+		List<String> curValues = this.results.get(key);
+		curValues.add(value);
 
 		this.newResults++;
 
