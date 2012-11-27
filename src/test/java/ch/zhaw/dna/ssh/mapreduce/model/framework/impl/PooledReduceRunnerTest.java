@@ -15,11 +15,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapReduceTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
 
 @RunWith(JMock.class)
 public class PooledReduceRunnerTest {
@@ -34,7 +35,7 @@ public class PooledReduceRunnerTest {
 	@Test
 	public void shouldSaveResultsInGlobalStructure() {
 		PooledReduceRunner reduceRunner = new PooledReduceRunner();
-		MapReduceTask master = new MapReduceTask(null, null);
+		Master master = Registry.getComponent(Master.class);
 		reduceRunner.setKey("hello");
 		reduceRunner.setMaster(master);
 		reduceRunner.emit("3");
