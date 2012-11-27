@@ -19,10 +19,8 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.TestConfig;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
-
-import com.google.inject.Guice;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
 
 @RunWith(JMock.class)
 public class PooledReduceRunnerTest {
@@ -37,7 +35,7 @@ public class PooledReduceRunnerTest {
 	@Test
 	public void shouldSaveResultsInGlobalStructure() {
 		PooledReduceRunner reduceRunner = new PooledReduceRunner();
-		Master master = Guice.createInjector(new TestConfig()).getInstance(Master.class);
+		Master master = Registry.getComponent(Master.class);
 		reduceRunner.setKey("hello");
 		reduceRunner.setMaster(master);
 		reduceRunner.emit("3");
