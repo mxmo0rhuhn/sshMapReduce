@@ -9,6 +9,8 @@ import java.util.Iterator;
 
 import org.junit.Test;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.HundredWordsInputSplitter;
+
 
 public class HundredWordsInputSplitterTest {
 	
