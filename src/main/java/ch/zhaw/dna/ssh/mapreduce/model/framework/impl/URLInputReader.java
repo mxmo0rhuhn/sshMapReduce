@@ -8,6 +8,11 @@ import java.net.URL;
 /**
  * URL einlesen: Mit Angabe der URL müssen ganze Webseiten eingelesen werden können
  * Nach Tags soll automatisch gesucht und unterteilt werden können
+ * DOM Struktur soll beachtet werden
+ * 
+ * Quelleninfos:
+ * http://www.java2s.com/Code/Java/XML/Searchupthetreeforagivennode.htm
+ * 
  * 
  * @author des
  *
