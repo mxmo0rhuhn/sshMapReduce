@@ -23,20 +23,19 @@ public class PooledReduceRunner implements ReduceRunner, ReduceEmitter {
 
 	private final Pool pool;
 
-	private final ReduceTask reduceTask;
-	
 	private final Master master;
 
 	private String key;
 
 	private List<MapRunner> mapRunners;
 
+	private ReduceTask reduceTask;
+
 	private volatile State curState = State.INITIATED;
 
 	@Inject
-	public PooledReduceRunner(Pool pool, Master master, @Assisted ReduceTask reduceTask) {
+	public PooledReduceRunner(Pool pool, Master master) {
 		this.pool = pool;
-		this.reduceTask = reduceTask;
 		this.master = master;
 	}
 
@@ -74,9 +73,9 @@ public class PooledReduceRunner implements ReduceRunner, ReduceEmitter {
 
 	/** {@inheritDoc} */
 	@Override
-	public void setReduceTask(ReduceTask task) {
-		// this.reduceTask = task;
-		throw new UnsupportedOperationException();
+	@Inject
+	public void setReduceTask(@Assisted ReduceTask task) {
+		this.reduceTask = task;
 	}
 
 	/** {@inheritDoc} */

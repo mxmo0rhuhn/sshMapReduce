@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;
@@ -24,6 +23,10 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.RunnerFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.LocalThreadPool;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.matcher.Matchers;
 
 @RunWith(JMock.class)
 public class RegistryTest {
@@ -74,10 +77,18 @@ public class RegistryTest {
 
 	@Test
 	public void shouldInvokeInitOnLocalThreadPool() {
-		Pool p = Registry.getComponent(Pool.class);
-		if (!(p instanceof LocalThreadPool)) {
-			fail("Dieser Test macht nur fuer LocalThreadPool Sinn!");
-		}
+		// hier wird explizit ein neuer injector kreiert, da der pool im kontext von guice ein singleton ist und wir
+		// sonst nicht sicherstellen koennen, dass hier das erste mal eine instanz vom pool angefordert wird. dies ist
+		// aber notwendig, da die init method nur beim ersten mal aufgerufen wird.
+		Pool p = Guice.createInjector(new AbstractModule() {
+
+			@Override
+			protected void configure() {
+				bind(Pool.class).to(LocalThreadPool.class);
+				bindListener(Matchers.any(), new PostConstructFeature());
+			}
+
+		}).getInstance(Pool.class);
 		assertTrue(p.isRunning());
 		p.shutdownNow();
 		assertFalse(p.isRunning());

@@ -52,7 +52,6 @@ public final class LocalThreadPool implements Pool {
 	public void init() {
 		// nur starten, wenn er noch nicht gestartet wurde
 		if (this.isRunning.compareAndSet(false, true)) {
-			System.out.println("starting pool");
 			this.workTaskAdministrator.execute(new WorkerTaskAdministrator());
 		} else {
 			throw new RuntimeException("Cannot start Pool twice");
@@ -97,7 +96,6 @@ public final class LocalThreadPool implements Pool {
 	public void workerIsFinished(Worker finishedWorker) {
 		// TODO atomicity
 		// TODO return values
-		System.out.println("worker is finished");
 		workingWorker.remove(finishedWorker);
 		availableWorkerBlockingQueue.add(finishedWorker);
 	}
@@ -107,7 +105,6 @@ public final class LocalThreadPool implements Pool {
 	 */
 	@Override
 	public boolean enqueueWork(WorkerTask task) {
-		System.out.println("Enqueued work");
 		return taskQueue.offer(task);
 	}
 
@@ -117,7 +114,6 @@ public final class LocalThreadPool implements Pool {
 	@Override
 	public void donateWorker(Worker newWorker) {
 		// TODO add vs offer
-		System.out.println("Donated worker");
 		availableWorkerBlockingQueue.add(newWorker);
 	}
 
@@ -130,18 +126,12 @@ public final class LocalThreadPool implements Pool {
 		public void run() {
 			try {
 				while (true) {
-					System.out.println("before taskQueue.take");
 					WorkerTask task = taskQueue.take(); // blockiert bis ein Task da ist
-					System.out.println("after taskQueue.take");
 					Worker worker = availableWorkerBlockingQueue.take(); // blockiert, bis ein Worker frei ist
-					System.out.println("after availbleWorker.take");
 					workingWorker.add(worker);
-					System.out.println("added working worker to that list");
 					worker.execute(task);
-					System.out.println("scheduled task for execution");
 				}
 			} catch (InterruptedException e) {
-				System.out.println("Interrupted");
 				Thread.currentThread().interrupt();
 			}
 		}

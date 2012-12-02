@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
 
@@ -20,24 +19,21 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
 public class PooledReduceRunnerTest {
 
 	private Mockery context;
-	
+
 	private Pool p;
-	
-	private ReduceTask reduceTask;
-	
+
 	private Master master;
-	
+
 	@Before
 	public void initMockery() {
 		this.context = new JUnit4Mockery();
 		this.p = this.context.mock(Pool.class);
-		this.reduceTask = this.context.mock(ReduceTask.class);
 		this.master = Registry.getComponent(Master.class);
 	}
 
 	@Test
 	public void shouldSaveResultsInGlobalStructure() {
-		PooledReduceRunner reduceRunner = new PooledReduceRunner(p, master, reduceTask);
+		PooledReduceRunner reduceRunner = new PooledReduceRunner(p, master);
 		reduceRunner.setKey("hello");
 		reduceRunner.emit("3");
 		assertTrue(master.getGlobalResultStructure().get("hello").contains("3"));
@@ -45,7 +41,7 @@ public class PooledReduceRunnerTest {
 
 	@Test
 	public void shouldBeIdleAtStart() {
-		PooledReduceRunner reduceRunner = new PooledReduceRunner(p, master, reduceTask);
+		PooledReduceRunner reduceRunner = new PooledReduceRunner(p, master);
 		assertEquals(State.INITIATED, reduceRunner.getCurrentState());
 	}
 

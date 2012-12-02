@@ -23,16 +23,16 @@ import com.google.inject.assistedinject.Assisted;
  * 
  * @author Max
  */
-	
+
 public class PooledMapRunner implements MapRunner, MapEmitter {
-	
+
 	private final Pool pool;
 
 	// Der Zustand in dem sich der Worker befindet
 	private volatile State currentState = State.INITIATED;
 
 	// Aufgabe, die der Task derzeit ausführt
-	private final MapTask mapTask;
+	private MapTask mapTask;
 
 	// Das Limit für die Anzahl an neuen Zwischenergebnissen die gewartet werden soll, bis der Combiner ausgeführt wird.
 	private volatile int maxWaitResults;
@@ -41,19 +41,17 @@ public class PooledMapRunner implements MapRunner, MapEmitter {
 	private volatile int newResults;
 
 	// Falls vorhanden ein Combiner für die Zwischenergebnisse
-	private final CombinerTask combinerTask;
+	private CombinerTask combinerTask;
 
 	// Die derzeit zu bearbeitenden Daten
 	private volatile String toDo;
 
 	// Ergebnisse von auf dem Worker ausgeführten MAP Tasks
 	private final ConcurrentMap<String, List<String>> results = new ConcurrentHashMap<String, List<String>>();
-	
+
 	@Inject
-	public PooledMapRunner(Pool pool, @Assisted MapTask mapTask, @Assisted CombinerTask combinerTask) {
+	public PooledMapRunner(Pool pool) {
 		this.pool = pool;
-		this.mapTask = mapTask;
-		this.combinerTask = combinerTask;
 	}
 
 	/** {@inheritDoc} */
@@ -66,7 +64,6 @@ public class PooledMapRunner implements MapRunner, MapEmitter {
 		curValues.add(value);
 
 		this.newResults++;
-		
 
 		if (this.combinerTask != null) {
 			if (this.newResults >= this.maxWaitResults) {
@@ -106,8 +103,7 @@ public class PooledMapRunner implements MapRunner, MapEmitter {
 	}
 
 	/**
-	 *  {@inheritDoc} 
-	 *  Diese Angabe ist optimistisch. Sie kann veraltet sein.
+	 * {@inheritDoc} Diese Angabe ist optimistisch. Sie kann veraltet sein.
 	 */
 	@Override
 	public State getCurrentState() {
@@ -133,16 +129,16 @@ public class PooledMapRunner implements MapRunner, MapEmitter {
 
 	/** {@inheritDoc} */
 	@Override
-	public void setMapTask(MapTask task) {
-		//this.mapTask = task;
-		throw new UnsupportedOperationException();
+	@Inject
+	public void setMapTask(@Assisted MapTask task) {
+		this.mapTask = task;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void setCombineTask(CombinerTask task) {
-		//this.combinerTask = task;
-		throw new UnsupportedOperationException();
+	@Inject
+	public void setCombineTask(@Assisted CombinerTask task) {
+		this.combinerTask = task;
 	}
 
 	/** {@inheritDoc} */
