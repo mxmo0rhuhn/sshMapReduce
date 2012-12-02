@@ -11,6 +11,7 @@ import java.util.concurrent.ConcurrentMap;
 import javax.inject.Inject;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapEmitter;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
@@ -22,7 +23,8 @@ import com.google.inject.assistedinject.Assisted;
  * 
  * @author Max
  */
-public class PooledMapRunner implements MapRunner {
+	
+public class PooledMapRunner implements MapRunner, MapEmitter {
 	
 	private final Pool pool;
 

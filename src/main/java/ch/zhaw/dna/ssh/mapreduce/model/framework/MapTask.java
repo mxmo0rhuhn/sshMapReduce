@@ -21,5 +21,5 @@ public interface MapTask extends Task {
 	 * @param toDo
 	 *            ein Input als String dieser muss in irgendeiner Art in Key Value Pairs umgewandelt werden.
 	 */
-	void map(MapRunner mapRunner, String toDo);
+	void map(MapEmitter emitter, String toDo);
 }

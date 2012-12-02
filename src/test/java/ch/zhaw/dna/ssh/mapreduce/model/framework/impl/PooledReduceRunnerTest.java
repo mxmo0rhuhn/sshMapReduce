@@ -48,4 +48,5 @@ public class PooledReduceRunnerTest {
 		PooledReduceRunner reduceRunner = new PooledReduceRunner(p, master, reduceTask);
 		assertEquals(State.INITIATED, reduceRunner.getCurrentState());
 	}
+
 }

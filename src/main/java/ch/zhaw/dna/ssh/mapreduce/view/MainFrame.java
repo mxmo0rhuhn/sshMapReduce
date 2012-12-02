@@ -15,7 +15,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -31,23 +30,23 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import ch.zhaw.dna.ssh.mapreduce.controller.OutputController;
 import ch.zhaw.dna.ssh.mapreduce.controller.OutputController.OUTPUT_STRATEGY;
 
+import org.apache.commons.validator.routines.UrlValidator;
+
 /**
  * Dieses ist das Hauptfenster der Applikation
  * 
  * @author Max
  * 
  */
-@SuppressWarnings("serial") // Das GUI soll nicht serialisiert werden!
+@SuppressWarnings("serial")
+// Das GUI soll nicht serialisiert werden!
 public class MainFrame extends JFrame implements Observer {
 
 	// Der Controller wie Logfiles aufbereitet werden sollen
 	private OutputController curOutputController;
 
-	// Der letzte Pfad in dem eine Datei geöffnet wurde
-	private String lastPath;
-
 	// Eingabe für die URL, die durchsucht werden soll
-	private JTextField urlJTextField;
+	private JTextField pathTextField;
 
 	// Eingabe für das Wort nachdem gesucht werden soll
 	private JTextField specialWorfField;
@@ -88,7 +87,9 @@ public class MainFrame extends JFrame implements Observer {
 				}
 			}
 		} catch (Exception e) {
-			JOptionPane.showConfirmDialog(null, "Konnte Interface nicht richtig aufbauen. Wechsle auf default interface.\n" + e.getMessage(), "Fehler", JOptionPane.OK_CANCEL_OPTION);
+			JOptionPane.showConfirmDialog(null,
+					"Konnte Interface nicht richtig aufbauen. Wechsle auf default interface.\n" + e.getMessage(), "Fehler",
+					JOptionPane.OK_CANCEL_OPTION);
 		}
 
 		this.setTitle("SSH MapReduce");
@@ -123,36 +124,7 @@ public class MainFrame extends JFrame implements Observer {
 	 */
 	private JMenuItem buildDateiMenu() {
 
-		JMenu file = new JMenu("Datei");
-
-		JMenuItem load = new JMenuItem("Laden");
-		load.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = null;
-				if (lastPath != null) {
-					chooser = new JFileChooser(lastPath);
-				} else {
-					chooser = new JFileChooser();
-				}
-				int returnVal = chooser.showOpenDialog(MainFrame.this);
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					// try {
-					lastPath = chooser.getSelectedFile().getAbsolutePath();
-					// TODO Hier muss ein MapReduce Task gestartet werden
-
-					// } catch (IOException e1) {
-					// JOptionPane.showMessageDialog(null, "Datei " + chooser.getSelectedFile().getName()
-					// + " konnte nicht geöffnet werden", "Fehler", JOptionPane.ERROR_MESSAGE);
-					// }
-				}
-			}
-		});
-
-		file.add(load);
-		file.addSeparator();
-		file.add(new JLabel("Log: "));
+		JMenu file = new JMenu("Log");
 
 		ButtonGroup outOptions = new ButtonGroup();
 		JRadioButtonMenuItem consoleMenuItem = new JRadioButtonMenuItem("Konsole");
@@ -210,9 +182,9 @@ public class MainFrame extends JFrame implements Observer {
 		// Zeile 1 : URL
 		JPanel urlPanel = new JPanel();
 		urlPanel.setLayout(new GridLayout(1, 2));
-		urlPanel.add(new JLabel("URL"));
-		urlJTextField = new JTextField();
-		urlPanel.add(urlJTextField);
+		urlPanel.add(new JLabel("URL:"));
+		pathTextField = new JTextField();
+		urlPanel.add(pathTextField);
 		inputPanel.add(urlPanel);
 
 		// Zeile 2 : Spezielles Wort
@@ -266,9 +238,15 @@ public class MainFrame extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Sth. has to happen here!
-				for(int i = 0; i< 200 ; i++) {
-					MainFrame.this.curOutputController.println("Test");
+				
+				String url = pathTextField.getText();
+				String[] schemes = { "http", "https" };
+				UrlValidator urlValidator = new UrlValidator(schemes);
+				if (urlValidator.isValid(url)) {
+					
+					// TODO Sth. has to happen here!
+				} else {
+					JOptionPane.showMessageDialog(MainFrame.this, "Dies ist keine valide URL", "Fehler", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
