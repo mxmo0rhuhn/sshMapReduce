@@ -1,12 +1,13 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+
+import javax.inject.Inject;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.SingleThreaded;
 
 /**
  * Implementation von einem Thread-basierten Worker. Der Task wird ueber einen Executor ausgefuehrt.
@@ -24,7 +25,7 @@ public class ThreadWorker implements Worker {
 	/**
 	 * Der Executor ist fuer asynchrone ausfuehren.
 	 */
-	private final Executor executor;
+	private final ExecutorService executor;
 
 	/**
 	 * Erstellt einen neunen ThreadWorker mit dem gegebenen Pool und Executor.
@@ -32,16 +33,10 @@ public class ThreadWorker implements Worker {
 	 * @param pool
 	 * @param executor
 	 */
-	public ThreadWorker(Pool pool, Executor executor) {
+	@Inject
+	public ThreadWorker(Pool pool, @SingleThreaded ExecutorService executor) {
 		this.pool = pool;
 		this.executor = executor;
-	}
-	
-	/**
-	 * Erstellt einen neuen ThreadWorker mit dem Standard-Pool und einem neuen Executor Single-Threaded Executor
-	 */
-	public ThreadWorker() {
-		this(PoolHelper.getPool(), Executors.newSingleThreadExecutor());
 	}
 
 	/**

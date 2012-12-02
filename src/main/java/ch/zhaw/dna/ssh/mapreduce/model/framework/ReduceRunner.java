@@ -28,14 +28,6 @@ public interface ReduceRunner extends WorkerTask {
 	void setKey(String key);
 
 	/**
-	 * Weisst dem ReduceRunner einen Master zu der die Ergebnisstruktur verwaltet.
-	 * 
-	 * @param master
-	 *            der master für den der ReduceRunner arbeitet.
-	 */
-	void setMaster(Master master);
-
-	/**
 	 * Führt die derzeit zugewiesene Reduce Aufgabe für den Output der gegebenen MapTasks aus.
 	 * 
 	 * @param toDo

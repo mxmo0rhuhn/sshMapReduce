@@ -2,11 +2,13 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;
 import org.jmock.integration.junit4.JUnit4Mockery;
-import org.jmock.lib.concurrent.DeterministicExecutor;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +17,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
 
 @RunWith(JMock.class)
-public class AsyncPoolTest {
+public class LocalThreadPoolTest {
 	
 	private Mockery context;
 
@@ -57,7 +59,7 @@ public class AsyncPoolTest {
 	@Test
 	public void shouldExecuteWork() throws InterruptedException {
 		final WorkerTask task = this.context.mock(WorkerTask.class);
-		DeterministicExecutor exec = new DeterministicExecutor();
+		ExecutorService exec = Executors.newSingleThreadExecutor();
 		LocalThreadPool p = new LocalThreadPool();
 		p.init();
 		final ThreadWorker worker = new ThreadWorker(p, exec);
@@ -71,7 +73,6 @@ public class AsyncPoolTest {
 
 		p.enqueueWork(task);
 		Thread.sleep(200);
-		exec.runUntilIdle();
 	}
 
 }

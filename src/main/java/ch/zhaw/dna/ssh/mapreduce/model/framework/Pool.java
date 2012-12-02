@@ -1,5 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+
 /**
  * Ein Pool verwaltet Worker für Aufgaben die ausgeführt werden müssen. Dazu ist es möglich dem Pool Aufgaben und Worker
  * zu übergeben.
@@ -9,11 +10,6 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework;
  */
 public interface Pool {
 	
-	/**
-	 * Initialisiert den Pool. Wenn eine konkrete Implementation Logik zu initialisierung hat, muss diese hier ausgfuert werden.
-	 */
-	void init();
-
 	/**
 	 * Gibt die Anzahle der Worker zurück die für diesen Pool arbeiten (können)
 	 * 
@@ -46,5 +42,15 @@ public interface Pool {
 	 * @param newWorker der Worker der zur Verfügung gestellt werden soll.
 	 */
 	void donateWorker(Worker newWorker);
+	
+	/**
+	 * Beendet alle gestarteten Tasks und faehrt den Pool herunter.
+	 */
+	void shutdownNow();
+	
+	/**
+	 * Check, ob der Pool gestartet ist.
+	 */
+	boolean isRunning();
 
 }

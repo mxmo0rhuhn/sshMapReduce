@@ -10,7 +10,11 @@ public interface WorkerTask {
 
 	// Alle möglichen Zustände in denen sich Worker befinden kann
 	public enum State {
-		IDLE, INPROGRESS, COMPLETED
+		INITIATED, // erstellt
+		ENQUEUED, // dem pool zur ausfuehrung ueberreicht
+		INPROGRESS, // pool hat task akzeptiert
+		COMPLETED, // completed
+		FAILED // failed
 	}
 
 	/**

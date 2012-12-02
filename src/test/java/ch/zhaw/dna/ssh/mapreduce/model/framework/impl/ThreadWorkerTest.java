@@ -1,11 +1,13 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
 import org.jmock.integration.junit4.JMock;
 import org.jmock.integration.junit4.JUnit4Mockery;
-import org.jmock.lib.concurrent.DeterministicExecutor;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,8 +32,8 @@ public class ThreadWorkerTest {
 	public void shouldGoBackToPool() {
 		final Pool p = this.context.mock(Pool.class);
 		final WorkerTask task = this.context.mock(WorkerTask.class);
-		final DeterministicExecutor executor = new DeterministicExecutor();
-		final ThreadWorker worker = new ThreadWorker(p, executor);
+		final ExecutorService exec = Executors.newSingleThreadExecutor();
+		final ThreadWorker worker = new ThreadWorker(p, exec);
 		final Sequence seq = context.sequence("poolseq");
 
 		this.context.checking(new Expectations() {
@@ -42,7 +44,6 @@ public class ThreadWorkerTest {
 			}
 		});
 		worker.execute(task);
-		executor.runUntilIdle();
 	}
 	
 	@Test
@@ -52,8 +53,8 @@ public class ThreadWorkerTest {
 		for (int i = 0; i < 10; i ++) {
 			tasks[i] = this.context.mock(WorkerTask.class, "wt" + i);
 		}
-		final DeterministicExecutor executor = new DeterministicExecutor();
-		final ThreadWorker worker = new ThreadWorker(p, executor);
+		final ExecutorService exec = Executors.newSingleThreadExecutor();
+		final ThreadWorker worker = new ThreadWorker(p, exec);
 
 		this.context.checking(new Expectations() {
 			{
@@ -64,7 +65,6 @@ public class ThreadWorkerTest {
 		for (int i = 0; i < 10; i ++) {
 			worker.execute(tasks[i]);
 		}
-		executor.runUntilIdle();
 	}
 
 }

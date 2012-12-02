@@ -11,29 +11,27 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentMap;
 
+import javax.inject.Inject;
+
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
 
 public final class Master {
-	
+
 	private final ConcurrentMap<String, Collection<String>> globalResultStructure = new ConcurrentHashMap<String, Collection<String>>();
-	
-	private final MapRunnerFactory mapRunnerFactory;
-	
-	private final ReduceRunnerFactory reduceRunnerFactory;
-	
-	public Master(MapRunnerFactory mapRunnerFactory, ReduceRunnerFactory reduceRunnerFactory) {
-		this.mapRunnerFactory = mapRunnerFactory;
-		this.reduceRunnerFactory = reduceRunnerFactory;
+
+	private final RunnerFactory runnerFactory;
+
+	@Inject
+	public Master(RunnerFactory runnerFactory) {
+		this.runnerFactory = runnerFactory;
 	}
-	
-	public Map<String, Collection<String>> runComputation(MapTask mapTask, CombinerTask combinerTask, ReduceTask reduceTask, Iterator<String> input) {
-		this.mapRunnerFactory.assignMapTask(mapTask);
-		this.reduceRunnerFactory.assignReduceTask(reduceTask);
-		this.mapRunnerFactory.assignCombineTask(combinerTask);
-		
+
+	public Map<String, Collection<String>> runComputation(final MapTask mapTask, final CombinerTask combinerTask,
+			final ReduceTask reduceTask, Iterator<String> input) {
+
 		List<MapRunner> mapRunners = new LinkedList<MapRunner>();
 		while (input.hasNext()) {
-			MapRunner mapRunner = mapRunnerFactory.create();
+			MapRunner mapRunner = runnerFactory.createMapRunner(mapTask, combinerTask);
 			mapRunners.add(mapRunner);
 			mapRunner.runMapTask(input.next());
 		}
@@ -44,14 +42,14 @@ public final class Master {
 			for (MapRunner mapRunner : mapRunners) {
 				for (String key : mapRunner.getKeysSnapshot()) {
 					if (!reduceRunners.containsKey(key)) {
-						ReduceRunner reduceRunner = this.reduceRunnerFactory.create(key);
+						ReduceRunner reduceRunner = runnerFactory.createReduceRunner(reduceTask);
 						reduceRunner.runReduceTask(mapRunners);
 						reduceRunners.put(key, reduceRunner);
 					}
 				}
 			}
 		}
-		
+
 		while (!allWorkerTasksCompleted(reduceRunners.values())) {
 			try {
 				Thread.sleep(100);
@@ -62,7 +60,7 @@ public final class Master {
 		}
 		return globalResultStructure;
 	}
-	
+
 	/**
 	 * Fuegt das resultat fuer den Key dem globalen Resultat hinzu (thread-safe).
 	 * 
@@ -86,15 +84,6 @@ public final class Master {
 	 */
 	public Map<String, Collection<String>> getGlobalResultStructure() {
 		return Collections.unmodifiableMap(this.globalResultStructure);
-	}
-	
-	/**
-	 * Fügt dem Map Reduce eine Combiner Task hinzu mit der man die Effizienz massiv steigern kann
-	 * 
-	 * @param task eine Combiner Task die die Ergebnisse bereits periodisch nach dem MAP aggregiert.
-	 */
-	public void addCombinerTask(CombinerTask task) {
-		mapRunnerFactory.assignCombineTask(task);
 	}
 
 	/**

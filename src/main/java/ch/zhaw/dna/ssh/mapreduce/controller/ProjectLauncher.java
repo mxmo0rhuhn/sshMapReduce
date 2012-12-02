@@ -7,9 +7,10 @@ import java.util.Map.Entry;
 import ch.zhaw.dna.ssh.mapreduce.model.WordFrequencyMapTask;
 import ch.zhaw.dna.ssh.mapreduce.model.WordFrequencyReduceTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapReduceTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.HundredWordsInputSplitter;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.ThreadWorker;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
 import ch.zhaw.dna.ssh.mapreduce.view.MainFrame;
 
 /**
@@ -38,13 +39,14 @@ public class ProjectLauncher {
 	public ProjectLauncher() {
 		OutputController out = new OutputController();
 		new MainFrame(out);
-		PoolHelper.getPool().donateWorker(new ThreadWorker());
-		PoolHelper.getPool().donateWorker(new ThreadWorker());
-		PoolHelper.getPool().donateWorker(new ThreadWorker());
-		PoolHelper.getPool().donateWorker(new ThreadWorker());
-		PoolHelper.getPool().donateWorker(new ThreadWorker());
-		PoolHelper.getPool().donateWorker(new ThreadWorker());
-		PoolHelper.getPool().donateWorker(new ThreadWorker());
+		Pool pool = Registry.getComponent(Pool.class);
+		pool.donateWorker(Registry.getComponent(Worker.class));
+		pool.donateWorker(Registry.getComponent(Worker.class));
+		pool.donateWorker(Registry.getComponent(Worker.class));
+		pool.donateWorker(Registry.getComponent(Worker.class));
+		pool.donateWorker(Registry.getComponent(Worker.class));
+		pool.donateWorker(Registry.getComponent(Worker.class));
+		pool.donateWorker(Registry.getComponent(Worker.class));
 
 		MapReduceTask myTask = new MapReduceTask(new WordFrequencyMapTask(), new WordFrequencyReduceTask());
 		Map<String, Collection<String>> mapReduceResult = myTask.compute(new HundredWordsInputSplitter(test2));

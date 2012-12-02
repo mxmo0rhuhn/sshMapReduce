@@ -2,36 +2,49 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
+
+import com.google.inject.assistedinject.Assisted;
 
 /**
  * Eine Implementation des ReduceRunner mit einem WorkerPool.
  * 
  * @author Reto
- *
+ * 
  */
 public class PooledReduceRunner implements ReduceRunner {
 
+	private final Pool pool;
+
+	private final ReduceTask reduceTask;
+	
+	private final Master master;
+
 	private String key;
-
-	private ReduceTask reduceTask;
-
-	private Master master;
 
 	private List<MapRunner> mapRunners;
 
-	private volatile State curState = State.IDLE;
+	private volatile State curState = State.INITIATED;
+
+	@Inject
+	public PooledReduceRunner(Pool pool, Master master, @Assisted ReduceTask reduceTask) {
+		this.pool = pool;
+		this.reduceTask = reduceTask;
+		this.master = master;
+	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void runReduceTask(List<MapRunner> mapRunners) {
 		this.curState = State.INPROGRESS;
 		this.mapRunners = mapRunners;
-		PoolHelper.getPool().enqueueWork(this);
+		this.pool.enqueueWork(this);
 	}
 
 	/** {@inheritDoc} */
@@ -61,19 +74,14 @@ public class PooledReduceRunner implements ReduceRunner {
 	/** {@inheritDoc} */
 	@Override
 	public void setReduceTask(ReduceTask task) {
-		this.reduceTask = task;
+		// this.reduceTask = task;
+		throw new UnsupportedOperationException();
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void setKey(String key) {
 		this.key = key;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setMaster(Master master) {
-		this.master = master;
 	}
 
 	/** {@inheritDoc} */

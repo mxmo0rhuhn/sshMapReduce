@@ -2,16 +2,20 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+import javax.inject.Inject;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
+
+import com.google.inject.assistedinject.Assisted;
 
 /**
  * Eine Implementation des MapRunners mit einem WorkerPool.
@@ -19,38 +23,48 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.PoolHelper;
  * @author Max
  */
 public class PooledMapRunner implements MapRunner {
+	
+	private final Pool pool;
 
 	// Der Zustand in dem sich der Worker befindet
-	private State currentState = State.IDLE;
-
-	// Ergebnisse von auf dem Worker ausgeführten MAP Tasks
-	private Map<String, List<String>> results = new HashMap<String, List<String>>();
+	private volatile State currentState = State.INITIATED;
 
 	// Aufgabe, die der Task derzeit ausführt
-	private MapTask mapTask;
+	private final MapTask mapTask;
 
 	// Das Limit für die Anzahl an neuen Zwischenergebnissen die gewartet werden soll, bis der Combiner ausgeführt wird.
-	private int maxWaitResults;
+	private volatile int maxWaitResults;
 
 	// Die Anzahl an neuen Zwischenergebnissen seit dem letzten Combiner.
-	private int newResults;
+	private volatile int newResults;
 
 	// Falls vorhanden ein Combiner für die Zwischenergebnisse
-	private CombinerTask combinerTask;
+	private final CombinerTask combinerTask;
 
 	// Die derzeit zu bearbeitenden Daten
-	private String toDo;
+	private volatile String toDo;
+
+	// Ergebnisse von auf dem Worker ausgeführten MAP Tasks
+	private final ConcurrentMap<String, List<String>> results = new ConcurrentHashMap<String, List<String>>();
+	
+	@Inject
+	public PooledMapRunner(Pool pool, @Assisted MapTask mapTask, @Assisted CombinerTask combinerTask) {
+		this.pool = pool;
+		this.mapTask = mapTask;
+		this.combinerTask = combinerTask;
+	}
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized void emitIntermediateMapResult(String key, String value) {
+	public void emitIntermediateMapResult(String key, String value) {
 		if (!this.results.containsKey(key)) {
-			this.results.put(key, new LinkedList<String>());
+			this.results.putIfAbsent(key, new LinkedList<String>());
 		}
 		List<String> curValues = this.results.get(key);
 		curValues.add(value);
 
 		this.newResults++;
+		
 
 		if (this.combinerTask != null) {
 			if (this.newResults >= this.maxWaitResults) {
@@ -65,76 +79,79 @@ public class PooledMapRunner implements MapRunner {
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized List<String> getIntermediate(String key) {
-		if (!results.isEmpty()) {
-			List<String> returnResults = this.results.get(key);
-			this.results.remove(key);
-			return returnResults;
-		}
-		return null;
+	public List<String> getIntermediate(String key) {
+		return this.results.remove(key);
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized void runMapTask(String input) {
-		this.currentState = State.INPROGRESS;
+	public void runMapTask(String input) {
 		this.toDo = input;
-		PoolHelper.getPool().enqueueWork(this);
+		this.currentState = State.ENQUEUED;
+		this.pool.enqueueWork(this);
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized int getMaxWaitResults() {
+	public int getMaxWaitResults() {
 		return this.maxWaitResults;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized void setMaxWaitResults(int maxWaitResults) {
+	public void setMaxWaitResults(int maxWaitResults) {
 		this.maxWaitResults = maxWaitResults;
 	}
 
-	/** {@inheritDoc} */
+	/**
+	 *  {@inheritDoc} 
+	 *  Diese Angabe ist optimistisch. Sie kann veraltet sein.
+	 */
 	@Override
-	public synchronized State getCurrentState() {
+	public State getCurrentState() {
 		return this.currentState;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized void doWork() {
-		this.mapTask.map(this, toDo);
-		this.currentState = State.COMPLETED;
+	public void doWork() {
+		try {
+			this.mapTask.map(this, toDo);
+			this.currentState = State.COMPLETED;
+		} catch (Throwable t) {
+			this.currentState = State.FAILED;
+		}
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized List<String> getKeysSnapshot() {
+	public List<String> getKeysSnapshot() {
 		return Collections.unmodifiableList(new ArrayList<String>(this.results.keySet()));
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized void setMapTask(MapTask task) {
-		this.mapTask = task;
+	public void setMapTask(MapTask task) {
+		//this.mapTask = task;
+		throw new UnsupportedOperationException();
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized void setCombineTask(CombinerTask task) {
-		this.combinerTask = task;
-
+	public void setCombineTask(CombinerTask task) {
+		//this.combinerTask = task;
+		throw new UnsupportedOperationException();
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public synchronized CombinerTask getCombinerTask() {
+	public CombinerTask getCombinerTask() {
 		return this.combinerTask;
 	}
-	
+
 	/** {@inheritDoc} */
 	@Override
-	public synchronized MapTask getMapTask() {
+	public MapTask getMapTask() {
 		return this.mapTask;
 	}
 }
