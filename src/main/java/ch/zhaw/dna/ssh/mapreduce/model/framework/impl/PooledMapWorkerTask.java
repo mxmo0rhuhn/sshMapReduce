@@ -10,10 +10,10 @@ import java.util.concurrent.ConcurrentMap;
 
 import javax.inject.Inject;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerInstruction;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapEmitter;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapInstruction;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 
 import com.google.inject.assistedinject.Assisted;
@@ -24,7 +24,7 @@ import com.google.inject.assistedinject.Assisted;
  * @author Max
  */
 
-public class PooledMapRunner implements MapRunner, MapEmitter {
+public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 
 	private final Pool pool;
 
@@ -32,7 +32,7 @@ public class PooledMapRunner implements MapRunner, MapEmitter {
 	private volatile State currentState = State.INITIATED;
 
 	// Aufgabe, die der Task derzeit ausführt
-	private MapTask mapTask;
+	private MapInstruction mapTask;
 
 	// Das Limit für die Anzahl an neuen Zwischenergebnissen die gewartet werden soll, bis der Combiner ausgeführt wird.
 	private volatile int maxWaitResults;
@@ -41,7 +41,7 @@ public class PooledMapRunner implements MapRunner, MapEmitter {
 	private volatile int newResults;
 
 	// Falls vorhanden ein Combiner für die Zwischenergebnisse
-	private CombinerTask combinerTask;
+	private CombinerInstruction combinerTask;
 
 	// Die derzeit zu bearbeitenden Daten
 	private volatile String toDo;
@@ -50,7 +50,7 @@ public class PooledMapRunner implements MapRunner, MapEmitter {
 	private final ConcurrentMap<String, List<String>> results = new ConcurrentHashMap<String, List<String>>();
 
 	@Inject
-	public PooledMapRunner(Pool pool) {
+	public PooledMapWorkerTask(Pool pool) {
 		this.pool = pool;
 	}
 
@@ -130,26 +130,26 @@ public class PooledMapRunner implements MapRunner, MapEmitter {
 	/** {@inheritDoc} */
 	@Override
 	@Inject
-	public void setMapTask(@Assisted MapTask task) {
+	public void setMapTask(@Assisted MapInstruction task) {
 		this.mapTask = task;
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	@Inject
-	public void setCombineTask(@Assisted CombinerTask task) {
+	public void setCombineTask(@Assisted CombinerInstruction task) {
 		this.combinerTask = task;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public CombinerTask getCombinerTask() {
+	public CombinerInstruction getCombinerTask() {
 		return this.combinerTask;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public MapTask getMapTask() {
+	public MapInstruction getMapTask() {
 		return this.mapTask;
 	}
 }

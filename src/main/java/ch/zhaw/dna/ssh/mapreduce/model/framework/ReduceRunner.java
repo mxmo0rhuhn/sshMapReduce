@@ -17,7 +17,7 @@ public interface ReduceRunner extends WorkerTask {
 	 * @param task
 	 *            die Aufgabe die zugewiesen werden soll
 	 */
-	void setReduceTask(ReduceTask task);
+	void setReduceTask(ReduceInstruction task);
 
 	/**
 	 * Weisst dem ReduceRunner einen Key für den er ausgeführt wird zu.
@@ -33,7 +33,7 @@ public interface ReduceRunner extends WorkerTask {
 	 * @param toDo
 	 *            der Input der bearbeitet werden soll.
 	 */
-	void runReduceTask(List<MapRunner> mapRunners);
+	void runReduceTask(List<MapWorkerTask> mapRunners);
 
 	/**
 	 * Jeder Reduce Task reduziert ein Wort. Diese Wort wird hier zurueckgegeben.
@@ -47,5 +47,5 @@ public interface ReduceRunner extends WorkerTask {
 	 * 
 	 * @return Gibt den ReduceTask fuer diesen Runner zurueck. null wenn keiner gesetzt ist.
 	 */
-	ReduceTask getReduceTask();
+	ReduceInstruction getReduceTask();
 }

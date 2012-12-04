@@ -3,15 +3,15 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework.registry;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.RunnerFactory;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTaskFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.LocalThreadPool;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledMapRunner;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledReduceRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledMapWorkerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledReduceWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.ThreadWorker;
 
 import com.google.inject.AbstractModule;
@@ -36,8 +36,8 @@ class MapReduceConfig extends AbstractModule {
 
 		// AssistedInject Magic: Mit diesem FactoryModuleBuilder wird ein Binding für die RunnerFactory erstellt ohne,
 		// dass wir eine tatsächliche Implementation bereitstellen.
-		install(new FactoryModuleBuilder().implement(MapRunner.class, PooledMapRunner.class)
-				.implement(ReduceRunner.class, PooledReduceRunner.class).build(RunnerFactory.class));
+		install(new FactoryModuleBuilder().implement(MapWorkerTask.class, PooledMapWorkerTask.class)
+				.implement(ReduceRunner.class, PooledReduceWorkerTask.class).build(WorkerTaskFactory.class));
 
 		bind(Worker.class).to(ThreadWorker.class);
 		bind(Pool.class).to(LocalThreadPool.class);

@@ -13,14 +13,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerInstruction;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapInstruction;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.RunnerFactory;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceInstruction;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTaskFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.LocalThreadPool;
 
@@ -103,34 +103,34 @@ public class RegistryTest {
 
 	@Test
 	public void shouldSetMapAndCombinerTaskToMapRunner() {
-		RunnerFactory factory = Registry.getComponent(RunnerFactory.class);
-		MapTask mapTask = this.context.mock(MapTask.class);
-		CombinerTask combinerTask = this.context.mock(CombinerTask.class);
-		MapRunner mapRunner = factory.createMapRunner(mapTask, combinerTask);
+		WorkerTaskFactory factory = Registry.getComponent(WorkerTaskFactory.class);
+		MapInstruction mapTask = this.context.mock(MapInstruction.class);
+		CombinerInstruction combinerTask = this.context.mock(CombinerInstruction.class);
+		MapWorkerTask mapRunner = factory.createMapRunner(mapTask, combinerTask);
 		assertSame(mapTask, mapRunner.getMapTask());
 		assertSame(combinerTask, mapRunner.getCombinerTask());
 	}
 
 	@Test
 	public void shouldCreatePrototypesForMapRunners() {
-		RunnerFactory factory = Registry.getComponent(RunnerFactory.class);
-		MapTask mapTask = this.context.mock(MapTask.class);
-		CombinerTask combinerTask = this.context.mock(CombinerTask.class);
+		WorkerTaskFactory factory = Registry.getComponent(WorkerTaskFactory.class);
+		MapInstruction mapTask = this.context.mock(MapInstruction.class);
+		CombinerInstruction combinerTask = this.context.mock(CombinerInstruction.class);
 		assertNotSame(factory.createMapRunner(mapTask, combinerTask), factory.createMapRunner(mapTask, combinerTask));
 	}
 
 	@Test
 	public void shouldSetReduceTaskToReduceRunner() {
-		RunnerFactory factory = Registry.getComponent(RunnerFactory.class);
-		ReduceTask reduceTask = this.context.mock(ReduceTask.class);
+		WorkerTaskFactory factory = Registry.getComponent(WorkerTaskFactory.class);
+		ReduceInstruction reduceTask = this.context.mock(ReduceInstruction.class);
 		ReduceRunner reduceRunner = factory.createReduceRunner(reduceTask);
 		assertSame(reduceTask, reduceRunner.getReduceTask());
 	}
 
 	@Test
 	public void shouldCreatePrototypesForReduceRunners() {
-		RunnerFactory factory = Registry.getComponent(RunnerFactory.class);
-		ReduceTask reduceTask = this.context.mock(ReduceTask.class);
+		WorkerTaskFactory factory = Registry.getComponent(WorkerTaskFactory.class);
+		ReduceInstruction reduceTask = this.context.mock(ReduceInstruction.class);
 		assertNotSame(factory.createReduceRunner(reduceTask), factory.createReduceRunner(reduceTask));
 	}
 }

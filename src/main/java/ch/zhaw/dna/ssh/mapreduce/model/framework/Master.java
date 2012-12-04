@@ -19,19 +19,19 @@ public final class Master {
 
 	private final ConcurrentMap<String, Collection<String>> globalResultStructure = new ConcurrentHashMap<String, Collection<String>>();
 
-	private final RunnerFactory runnerFactory;
+	private final WorkerTaskFactory runnerFactory;
 
 	@Inject
-	public Master(RunnerFactory runnerFactory) {
+	public Master(WorkerTaskFactory runnerFactory) {
 		this.runnerFactory = runnerFactory;
 	}
 
-	public Map<String, Collection<String>> runComputation(final MapTask mapTask, final CombinerTask combinerTask,
-			final ReduceTask reduceTask, Iterator<String> input) {
+	public Map<String, Collection<String>> runComputation(final MapInstruction mapTask, final CombinerInstruction combinerTask,
+			final ReduceInstruction reduceTask, Iterator<String> input) {
 
-		List<MapRunner> mapRunners = new LinkedList<MapRunner>();
+		List<MapWorkerTask> mapRunners = new LinkedList<MapWorkerTask>();
 		while (input.hasNext()) {
-			MapRunner mapRunner = runnerFactory.createMapRunner(mapTask, combinerTask);
+			MapWorkerTask mapRunner = runnerFactory.createMapRunner(mapTask, combinerTask);
 			mapRunners.add(mapRunner);
 			mapRunner.runMapTask(input.next());
 		}
@@ -39,7 +39,7 @@ public final class Master {
 		// TODO reduce runner müssen schon früher ausgegeben werden
 		Map<String, ReduceRunner> reduceRunners = new HashMap<String, ReduceRunner>();
 		while (!allWorkerTasksCompleted(mapRunners)) {
-			for (MapRunner mapRunner : mapRunners) {
+			for (MapWorkerTask mapRunner : mapRunners) {
 				for (String key : mapRunner.getKeysSnapshot()) {
 					if (!reduceRunners.containsKey(key)) {
 						ReduceRunner reduceRunner = runnerFactory.createReduceRunner(reduceTask);

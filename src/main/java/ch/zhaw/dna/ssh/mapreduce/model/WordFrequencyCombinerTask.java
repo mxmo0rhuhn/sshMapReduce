@@ -2,7 +2,7 @@ package ch.zhaw.dna.ssh.mapreduce.model;
 
 import java.util.Iterator;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerInstruction;
 
 /**
  * Dieser Task summiert die Values zu einem Key bereits nach dem Map Task. Dies reduziert den Aufwand für die Reduce Tasks erheblich.
@@ -10,7 +10,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
  * @author Max
  * 
  */
-public class WordFrequencyCombinerTask implements CombinerTask {
+public class WordFrequencyCombinerTask implements CombinerInstruction {
 
 	/** {@inheritDoc} */
 	@Override

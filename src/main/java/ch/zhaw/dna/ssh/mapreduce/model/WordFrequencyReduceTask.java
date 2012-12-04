@@ -3,7 +3,7 @@ package ch.zhaw.dna.ssh.mapreduce.model;
 import java.util.Iterator;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceEmitter;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceInstruction;
 
 /**
  * Reduced den Input und zaehlt ihn zusammen, emit'ed Summe
@@ -11,7 +11,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
  * @author des
  * 
  */
-public class WordFrequencyReduceTask implements ReduceTask {
+public class WordFrequencyReduceTask implements ReduceInstruction {
 
 	/** {@inheritDoc} */
 	@Override

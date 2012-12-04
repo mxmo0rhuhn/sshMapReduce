@@ -1,7 +1,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapEmitter;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapInstruction;
 
 /**
  * Splittet jedes Wort und Emit'ed es an MapRunner
@@ -9,7 +9,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
  * @author des
  * 
  */
-public class WordFrequencyMapTask implements MapTask {
+public class WordFrequencyMapTask implements MapInstruction {
 
 	/** {@inheritDoc} */
 	@Override

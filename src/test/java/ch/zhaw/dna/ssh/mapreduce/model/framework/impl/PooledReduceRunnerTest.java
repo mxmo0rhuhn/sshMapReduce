@@ -33,7 +33,7 @@ public class PooledReduceRunnerTest {
 
 	@Test
 	public void shouldSaveResultsInGlobalStructure() {
-		PooledReduceRunner reduceRunner = new PooledReduceRunner(p, master);
+		PooledReduceWorkerTask reduceRunner = new PooledReduceWorkerTask(p, master);
 		reduceRunner.setKey("hello");
 		reduceRunner.emit("3");
 		assertTrue(master.getGlobalResultStructure().get("hello").contains("3"));
@@ -41,7 +41,7 @@ public class PooledReduceRunnerTest {
 
 	@Test
 	public void shouldBeIdleAtStart() {
-		PooledReduceRunner reduceRunner = new PooledReduceRunner(p, master);
+		PooledReduceWorkerTask reduceRunner = new PooledReduceWorkerTask(p, master);
 		assertEquals(State.INITIATED, reduceRunner.getCurrentState());
 	}
 

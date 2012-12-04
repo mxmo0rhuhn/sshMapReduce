@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceEmitter;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceInstruction;
 
 import com.google.inject.assistedinject.Assisted;
 
@@ -19,7 +19,7 @@ import com.google.inject.assistedinject.Assisted;
  * @author Reto
  * 
  */
-public class PooledReduceRunner implements ReduceRunner, ReduceEmitter {
+public class PooledReduceWorkerTask implements ReduceRunner, ReduceEmitter {
 
 	private final Pool pool;
 
@@ -27,21 +27,21 @@ public class PooledReduceRunner implements ReduceRunner, ReduceEmitter {
 
 	private String key;
 
-	private List<MapRunner> mapRunners;
+	private List<MapWorkerTask> mapRunners;
 
-	private ReduceTask reduceTask;
+	private ReduceInstruction reduceTask;
 
 	private volatile State curState = State.INITIATED;
 
 	@Inject
-	public PooledReduceRunner(Pool pool, Master master) {
+	public PooledReduceWorkerTask(Pool pool, Master master) {
 		this.pool = pool;
 		this.master = master;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void runReduceTask(List<MapRunner> mapRunners) {
+	public void runReduceTask(List<MapWorkerTask> mapRunners) {
 		this.curState = State.INPROGRESS;
 		this.mapRunners = mapRunners;
 		this.pool.enqueueWork(this);
@@ -56,7 +56,7 @@ public class PooledReduceRunner implements ReduceRunner, ReduceEmitter {
 	/** {@inheritDoc} */
 	@Override
 	public void doWork() {
-		for (MapRunner mapRunner : this.mapRunners) {
+		for (MapWorkerTask mapRunner : this.mapRunners) {
 			List<String> intermediate = mapRunner.getIntermediate(this.key);
 			if (intermediate != null) {
 				this.reduceTask.reduce(this, this.key, intermediate.iterator());
@@ -74,7 +74,7 @@ public class PooledReduceRunner implements ReduceRunner, ReduceEmitter {
 	/** {@inheritDoc} */
 	@Override
 	@Inject
-	public void setReduceTask(@Assisted ReduceTask task) {
+	public void setReduceTask(@Assisted ReduceInstruction task) {
 		this.reduceTask = task;
 	}
 
@@ -92,7 +92,7 @@ public class PooledReduceRunner implements ReduceRunner, ReduceEmitter {
 
 	/** {@inheritDoc} */
 	@Override
-	public ReduceTask getReduceTask() {
+	public ReduceInstruction getReduceTask() {
 		return this.reduceTask;
 	}
 

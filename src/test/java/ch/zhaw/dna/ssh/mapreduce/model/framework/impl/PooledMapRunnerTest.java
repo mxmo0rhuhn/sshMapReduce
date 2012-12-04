@@ -17,8 +17,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerInstruction;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.MapInstruction;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
@@ -44,14 +44,14 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldReturnPreviouslyEmittedResult() {
-		PooledMapRunner r = new PooledMapRunner(p);
+		PooledMapWorkerTask r = new PooledMapWorkerTask(p);
 		r.emitIntermediateMapResult("hello", "1");
 		assertEquals("1", r.getIntermediate("hello").get(0));
 	}
 
 	@Test
 	public void shouldAccumulateResults() {
-		PooledMapRunner r = new PooledMapRunner(p);
+		PooledMapWorkerTask r = new PooledMapWorkerTask(p);
 		r.emitIntermediateMapResult("hello", "1");
 		r.emitIntermediateMapResult("hello", "2");
 		List<String> intermed = r.getIntermediate("hello");
@@ -62,7 +62,7 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldNotAccumulateDifferentKeys() {
-		PooledMapRunner r = new PooledMapRunner(p);
+		PooledMapWorkerTask r = new PooledMapWorkerTask(p);
 		r.emitIntermediateMapResult("hello", "1");
 		r.emitIntermediateMapResult("help", "2");
 		String one = r.getIntermediate("hello").get(0);
@@ -73,7 +73,7 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldRemoveIntermediate() {
-		PooledMapRunner r = new PooledMapRunner(p);
+		PooledMapWorkerTask r = new PooledMapWorkerTask(p);
 		r.emitIntermediateMapResult("hello", "1");
 		String one = r.getIntermediate("hello").get(0);
 		assertEquals("1", one);
@@ -82,7 +82,7 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldReturnAllKeys() {
-		PooledMapRunner r = new PooledMapRunner(p);
+		PooledMapWorkerTask r = new PooledMapWorkerTask(p);
 		r.emitIntermediateMapResult("hello", "1");
 		r.emitIntermediateMapResult("help", "1");
 		r.emitIntermediateMapResult("hell", "1");
@@ -97,7 +97,7 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldReturnUniqueKeys() {
-		PooledMapRunner r = new PooledMapRunner(p);
+		PooledMapWorkerTask r = new PooledMapWorkerTask(p);
 		r.emitIntermediateMapResult("hello", "1");
 		r.emitIntermediateMapResult("hello", "2");
 		r.emitIntermediateMapResult("hello", "3");
@@ -109,8 +109,8 @@ public class PooledMapRunnerTest {
 	@Test
 	public void shouldInvokeMapTask() throws InterruptedException {
 		final Pool pool = Registry.getComponent(Pool.class);
-		final PooledMapRunner mapRunner = new PooledMapRunner(pool);
-		final MapTask mapTask = this.context.mock(MapTask.class);
+		final PooledMapWorkerTask mapRunner = new PooledMapWorkerTask(pool);
+		final MapInstruction mapTask = this.context.mock(MapInstruction.class);
 		final String input = "hello world";
 		final ExecutorService exec = Executors.newSingleThreadExecutor();
 		final ThreadWorker tw = new ThreadWorker(pool, exec);
@@ -131,9 +131,9 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldRunCombineAfterSpecifiedNumberOfResults() {
-		final PooledMapRunner mapRunner = new PooledMapRunner(p);
+		final PooledMapWorkerTask mapRunner = new PooledMapWorkerTask(p);
 		mapRunner.setMaxWaitResults(1);
-		final CombinerTask combineTask = this.context.mock(CombinerTask.class);
+		final CombinerInstruction combineTask = this.context.mock(CombinerInstruction.class);
 		mapRunner.setCombineTask(combineTask);
 
 		this.context.checking(new Expectations() {
@@ -147,9 +147,9 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldRunCombineAfterSpecifiedNumberOfResults2() {
-		final PooledMapRunner mapRunner = new PooledMapRunner(p);
+		final PooledMapWorkerTask mapRunner = new PooledMapWorkerTask(p);
 		mapRunner.setMaxWaitResults(2);
-		final CombinerTask combineTask = this.context.mock(CombinerTask.class);
+		final CombinerInstruction combineTask = this.context.mock(CombinerInstruction.class);
 		mapRunner.setCombineTask(combineTask);
 
 		this.context.checking(new Expectations() {
@@ -164,7 +164,7 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldUpdateMaxWaitResultsOnTheFly() {
-		final PooledMapRunner mapRunner = new PooledMapRunner(p);
+		final PooledMapWorkerTask mapRunner = new PooledMapWorkerTask(p);
 		mapRunner.setMaxWaitResults(3);
 		assertEquals(3, mapRunner.getMaxWaitResults());
 		mapRunner.setMaxWaitResults(4);
@@ -173,7 +173,7 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldWorkWithoutCombinerTask() {
-		final PooledMapRunner mapRunner = new PooledMapRunner(p);
+		final PooledMapWorkerTask mapRunner = new PooledMapWorkerTask(p);
 		mapRunner.setMaxWaitResults(1);
 		mapRunner.emitIntermediateMapResult("hell", "1");
 		mapRunner.emitIntermediateMapResult("hell0", "1");
@@ -181,14 +181,14 @@ public class PooledMapRunnerTest {
 
 	@Test
 	public void shouldBeIdleAtStart() {
-		final PooledMapRunner mapRunner = new PooledMapRunner(p);
+		final PooledMapWorkerTask mapRunner = new PooledMapWorkerTask(p);
 		assertEquals(State.INITIATED, mapRunner.getCurrentState());
 	}
 
 	@Test
 	public void shouldBeRunningAfterSubmit() {
-		final PooledMapRunner mapRunner = new PooledMapRunner(p);
-		MapTask mapTask = this.context.mock(MapTask.class);
+		final PooledMapWorkerTask mapRunner = new PooledMapWorkerTask(p);
+		MapInstruction mapTask = this.context.mock(MapInstruction.class);
 		mapRunner.setMapTask(mapTask);
 		mapRunner.runMapTask("hello");
 		assertEquals(State.INPROGRESS, mapRunner.getCurrentState());

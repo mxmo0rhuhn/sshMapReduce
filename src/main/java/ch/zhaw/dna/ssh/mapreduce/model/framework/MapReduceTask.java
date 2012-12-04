@@ -13,11 +13,11 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
  */
 public final class MapReduceTask {
 
-	private final MapTask mapTask;
+	private final MapInstruction mapTask;
 
-	private final ReduceTask reduceTask;
+	private final ReduceInstruction reduceTask;
 
-	private final CombinerTask combinerTask;
+	private final CombinerInstruction combinerTask;
 
 	private final Master master;
 
@@ -29,7 +29,7 @@ public final class MapReduceTask {
 	 * @param reduceTask
 	 *            der Reduce-Task
 	 */
-	public MapReduceTask(MapTask mapTask, ReduceTask reduceTask, CombinerTask combinerTask) {
+	public MapReduceTask(MapInstruction mapTask, ReduceInstruction reduceTask, CombinerInstruction combinerTask) {
 		this.mapTask = mapTask;
 		this.reduceTask = reduceTask;
 		this.combinerTask = combinerTask;
@@ -37,7 +37,7 @@ public final class MapReduceTask {
 		this.master = Registry.getComponent(Master.class);
 	}
 
-	public MapReduceTask(MapTask mapTask, ReduceTask reduceTask) {
+	public MapReduceTask(MapInstruction mapTask, ReduceInstruction reduceTask) {
 		this(mapTask, reduceTask, null);
 	}
 

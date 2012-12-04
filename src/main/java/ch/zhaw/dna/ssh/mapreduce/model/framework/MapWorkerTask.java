@@ -12,7 +12,7 @@ import java.util.List;
  * @author Max
  * 
  */
-public interface MapRunner extends WorkerTask {
+public interface MapWorkerTask extends WorkerTask {
 
 	/**
 	 * Weisst dem MapRunner eine MAP Task zu mit der aus einem gewissen Input KeyValue-Pairs erstellt werden.
@@ -20,7 +20,7 @@ public interface MapRunner extends WorkerTask {
 	 * @param task
 	 *            die Aufgabe die zugewiesen werden soll
 	 */
-	void setMapTask(MapTask task);
+	void setMapTask(MapInstruction task);
 
 	/**
 	 * Weisst dem Map Runner eine COMBINE Task zu die die Zwischenergebnisse aggregiert.
@@ -28,7 +28,7 @@ public interface MapRunner extends WorkerTask {
 	 * @param task
 	 *            die Aufgabe die zugewiesen werden soll
 	 */
-	void setCombineTask(CombinerTask task);
+	void setCombineTask(CombinerInstruction task);
 
 	/**
 	 * Gibt einem die derzeitigen Zwischenergebnisse für MAP Tasks mit einem bestimmten Key zurück und löscht sie.
@@ -71,11 +71,11 @@ public interface MapRunner extends WorkerTask {
 	 * Gibt den verwendeten Combiner Task zurueck.
 	 * @return den verwendeten CombinerTask, wenn keiner verwendet wurde null
 	 */
-	CombinerTask getCombinerTask();
+	CombinerInstruction getCombinerTask();
 
 	/**
 	 * Gibt den verwendeten Map Task zurueck.
 	 * @return den verwendeten MapTask, wenn keiner verwendet wurde null
 	 */
-	MapTask getMapTask();
+	MapInstruction getMapTask();
 }
