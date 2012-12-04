@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTaskFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.LocalThreadPool;
@@ -37,7 +37,7 @@ class MapReduceConfig extends AbstractModule {
 		// AssistedInject Magic: Mit diesem FactoryModuleBuilder wird ein Binding für die RunnerFactory erstellt ohne,
 		// dass wir eine tatsächliche Implementation bereitstellen.
 		install(new FactoryModuleBuilder().implement(MapWorkerTask.class, PooledMapWorkerTask.class)
-				.implement(ReduceRunner.class, PooledReduceWorkerTask.class).build(WorkerTaskFactory.class));
+				.implement(ReduceWorkerTask.class, PooledReduceWorkerTask.class).build(WorkerTaskFactory.class));
 
 		bind(Worker.class).to(ThreadWorker.class);
 		bind(Pool.class).to(LocalThreadPool.class);

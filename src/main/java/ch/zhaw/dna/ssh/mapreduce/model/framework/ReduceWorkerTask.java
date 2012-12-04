@@ -9,7 +9,7 @@ import java.util.List;
  * @author Reto
  * 
  */
-public interface ReduceRunner extends WorkerTask {
+public interface ReduceWorkerTask extends WorkerTask {
 
 	/**
 	 * Weisst dem ReduceRunner eine REDUCE Task zu mit der aus einem Input ein aggregierter Output erstellt wird.

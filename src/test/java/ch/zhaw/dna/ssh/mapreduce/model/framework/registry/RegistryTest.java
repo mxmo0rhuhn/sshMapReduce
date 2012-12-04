@@ -18,7 +18,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapInstruction;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceInstruction;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTaskFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
@@ -123,7 +123,7 @@ public class RegistryTest {
 	public void shouldSetReduceTaskToReduceRunner() {
 		WorkerTaskFactory factory = Registry.getComponent(WorkerTaskFactory.class);
 		ReduceInstruction reduceTask = this.context.mock(ReduceInstruction.class);
-		ReduceRunner reduceRunner = factory.createReduceRunner(reduceTask);
+		ReduceWorkerTask reduceRunner = factory.createReduceRunner(reduceTask);
 		assertSame(reduceTask, reduceRunner.getReduceTask());
 	}
 

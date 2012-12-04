@@ -37,12 +37,12 @@ public final class Master {
 		}
 
 		// TODO reduce runner müssen schon früher ausgegeben werden
-		Map<String, ReduceRunner> reduceRunners = new HashMap<String, ReduceRunner>();
+		Map<String, ReduceWorkerTask> reduceRunners = new HashMap<String, ReduceWorkerTask>();
 		while (!allWorkerTasksCompleted(mapRunners)) {
 			for (MapWorkerTask mapRunner : mapRunners) {
 				for (String key : mapRunner.getKeysSnapshot()) {
 					if (!reduceRunners.containsKey(key)) {
-						ReduceRunner reduceRunner = runnerFactory.createReduceRunner(reduceTask);
+						ReduceWorkerTask reduceRunner = runnerFactory.createReduceRunner(reduceTask);
 						reduceRunner.runReduceTask(mapRunners);
 						reduceRunners.put(key, reduceRunner);
 					}

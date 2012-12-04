@@ -4,6 +4,6 @@ public interface WorkerTaskFactory {
 	
 	MapWorkerTask createMapRunner(MapInstruction mapTask, CombinerInstruction combinerTask);
 	
-	ReduceRunner createReduceRunner(ReduceInstruction reduceTask);
+	ReduceWorkerTask createReduceRunner(ReduceInstruction reduceTask);
 
 }

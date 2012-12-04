@@ -8,7 +8,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceEmitter;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceRunner;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceInstruction;
 
 import com.google.inject.assistedinject.Assisted;
@@ -19,7 +19,7 @@ import com.google.inject.assistedinject.Assisted;
  * @author Reto
  * 
  */
-public class PooledReduceWorkerTask implements ReduceRunner, ReduceEmitter {
+public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 
 	private final Pool pool;
 
