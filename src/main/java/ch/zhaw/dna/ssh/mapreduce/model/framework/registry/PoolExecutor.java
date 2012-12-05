@@ -12,15 +12,17 @@ import com.google.inject.BindingAnnotation;
  * eingeschränkt werden. z.B. Gibt es das Interface ExecutorService und in manchen Fällen ist man sich sicher, dass man
  * einen SingleThreaded ExecutorService will. So kann dann ein ExecutorService speziell gebindet werden, wenn er mit
  * SingleThreaded annotiert ist.
+ *  
+ * Diese Annotation ist spezifisch fuer den Executor im Pool.
  * 
  * @author Reto
  * 
- * @see MapReduceConfig#createSingle()
+ * @see MapReduceConfig#createPoolExecutor()
  * 
  */
 @BindingAnnotation
-@Target({ ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER })
+@Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RUNTIME)
-public @interface SingleThreaded {
+public @interface PoolExecutor {
 
 }

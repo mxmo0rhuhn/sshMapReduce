@@ -7,8 +7,8 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceWorkerTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTaskFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTaskFactory;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.LocalThreadPool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledMapWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.PooledReduceWorkerTask;
@@ -55,8 +55,14 @@ class MapReduceConfig extends AbstractModule {
 	 * 
 	 */
 	@Provides
-	@SingleThreaded
-	public ExecutorService createSingle() {
+	@WorkerExecutor
+	public ExecutorService createWorkerExec() {
+		return Executors.newSingleThreadExecutor();
+	}
+
+	@Provides
+	@PoolExecutor
+	public ExecutorService createPoolExec() {
 		return Executors.newSingleThreadExecutor();
 	}
 }
