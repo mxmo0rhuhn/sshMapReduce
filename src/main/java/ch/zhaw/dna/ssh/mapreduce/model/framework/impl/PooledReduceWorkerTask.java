@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.KeyValuePair;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceEmitter;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceWorkerTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceInstruction;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceWorkerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 
 import com.google.inject.assistedinject.Assisted;
 
@@ -23,45 +23,42 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 
 	private final Pool pool;
 
-	private final Master master;
-
 	private String key;
 
-	private List<MapWorkerTask> mapRunners;
+	private List<KeyValuePair> input;
 
 	private ReduceInstruction reduceTask;
 
 	private volatile State curState = State.INITIATED;
 
+	private Worker processingWorker;
+	
+
 	@Inject
-	public PooledReduceWorkerTask(Pool pool, Master master) {
+	public PooledReduceWorkerTask(Pool pool) {
 		this.pool = pool;
-		this.master = master;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void runReduceTask(List<MapWorkerTask> mapRunners) {
+	public void runReduceTask(List<KeyValuePair> keyValues) {
 		this.curState = State.INPROGRESS;
-		this.mapRunners = mapRunners;
+		this.input = keyValues;
 		this.pool.enqueueWork(this);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void emit(String result) {
-		this.master.globalResultStructureAppend(key, result);
+		this.processingWorker.storeKeyValuePair(key, result, result);
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void doWork() {
-		for (MapWorkerTask mapRunner : this.mapRunners) {
-			List<String> intermediate = mapRunner.getIntermediate(this.key);
-			if (intermediate != null) {
-				this.reduceTask.reduce(this, this.key, intermediate.iterator());
-			}
-		}
+	public void doWork(Worker worker) {
+		this.processingWorker = worker;
+
+		this.reduceTask.reduce(this, key, input.iterator());
 		this.curState = State.COMPLETED;
 	}
 
@@ -94,6 +91,11 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 	@Override
 	public ReduceInstruction getReduceTask() {
 		return this.reduceTask;
+	}
+
+	@Override
+	public Worker getWorker() {
+		return processingWorker;
 	}
 
 }

@@ -4,78 +4,94 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ConcurrentMap;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
-
 public final class Master {
 
-	private final ConcurrentMap<String, Collection<String>> globalResultStructure = new ConcurrentHashMap<String, Collection<String>>();
-
+	private final Map<String, Collection<String>> globalResultStructure = new HashMap<String, Collection<String>>();
+	private final String mapReduceTaskUID;
 	private final WorkerTaskFactory runnerFactory;
+
+	// Die übersetzung welche ID welchen Input hat
+	private Map<String, String> taskIDMapping;
+
+	// Eine Sammelung aus IDs von ausstehenden Tasks und wer sie erledigen will.
+	// TODO das ist noch falsch: später soll dies keine 1-1 Relation sein
+	private Map<String, MapWorkerTask> undoneTasks;
+
+	// Eine Sammelung aus IDs von erledigten Tasks
+	private List<String> doneTasks;
+
+	// Alle Worker, die Ergebnisse besitzen
+	private Set<Worker> mapResults;
 
 	@Inject
 	public Master(WorkerTaskFactory runnerFactory) {
 		this.runnerFactory = runnerFactory;
+		mapReduceTaskUID = UUID.randomUUID().toString();
 	}
 
-	public Map<String, Collection<String>> runComputation(final MapInstruction mapTask, final CombinerInstruction combinerTask,
-			final ReduceInstruction reduceTask, Iterator<String> input) {
+	public Map<String, Collection<String>> runComputation(final MapInstruction mapTask,
+			final CombinerInstruction combinerTask, final ReduceInstruction reduceTask,
+			Iterator<String> input) {
 
-		List<MapWorkerTask> mapRunners = new LinkedList<MapWorkerTask>();
 		while (input.hasNext()) {
 			MapWorkerTask mapRunner = runnerFactory.createMapRunner(mapTask, combinerTask);
-			mapRunners.add(mapRunner);
-			mapRunner.runMapTask(input.next());
+
+			String inputUID = UUID.randomUUID().toString();
+			String todo = input.next();
+
+			undoneTasks.put(inputUID, mapRunner);
+			taskIDMapping.put(inputUID, todo);
+			mapRunner.runMapTask(inputUID, todo);
 		}
 
-		// TODO reduce runner müssen schon früher ausgegeben werden
-		Map<String, ReduceWorkerTask> reduceRunners = new HashMap<String, ReduceWorkerTask>();
-		while (!allWorkerTasksCompleted(mapRunners)) {
-			for (MapWorkerTask mapRunner : mapRunners) {
-				for (String key : mapRunner.getKeysSnapshot()) {
-					if (!reduceRunners.containsKey(key)) {
-						ReduceWorkerTask reduceRunner = runnerFactory.createReduceRunner(reduceTask);
-						reduceRunner.runReduceTask(mapRunners);
-						reduceRunners.put(key, reduceRunner);
-					}
-				}
-			}
-		}
-
-		while (!allWorkerTasksCompleted(reduceRunners.values())) {
+		do {
+			updateDoneMappers();
+			// Wartet eine Sekunde abzüglich der Prozentzahl an bereits erledigten Aufgaben
 			try {
-				Thread.sleep(100);
+				wait(1000 - 1000* (doneTasks.size()/taskIDMapping.size()));
 			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				break;
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
+			
+		} while(undoneTasks.size() > 0);
+		
+		// INSERT SOME SHUFFELING HERE!
+//		}
+//
+//		while (!allWorkerTasksCompleted(reduceRunners.values())) {
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				Thread.currentThread().interrupt();
+//				break;
+//			}
+//		}
 		return globalResultStructure;
 	}
 
-	/**
-	 * Fuegt das resultat fuer den Key dem globalen Resultat hinzu (thread-safe).
-	 * 
-	 * @param key
-	 *            Key fuer das Resultat. Es kann mehere Resultate fuer einen Key geben
-	 * @param result
-	 *            das Resultate fuer den Key
-	 */
-	public void globalResultStructureAppend(String key, String result) {
-		if (!this.globalResultStructure.containsKey(key)) {
-			this.globalResultStructure.putIfAbsent(key, new ConcurrentLinkedQueue<String>());
-		}
-		Collection<String> res = this.globalResultStructure.get(key);
-		res.add(result);
-	}
+	// /**
+	// * Fuegt das resultat fuer den Key dem globalen Resultat hinzu (thread-safe).
+	// *
+	// * @param key
+	// * Key fuer das Resultat. Es kann mehere Resultate fuer einen Key geben
+	// * @param result
+	// * das Resultate fuer den Key
+	// */
+	// public void globalResultStructureAppend(String key, String result) {
+	// if (!this.globalResultStructure.containsKey(key)) {
+	// this.globalResultStructure.putIfAbsent(key, new ConcurrentLinkedQueue<String>());
+	// }
+	// Collection<String> res = this.globalResultStructure.get(key);
+	// res.add(result);
+	// }
 
 	/**
 	 * Retourniert die globale Resultat-Struktur, wo alle Resultate gespeichert werden.
@@ -86,19 +102,37 @@ public final class Master {
 		return Collections.unmodifiableMap(this.globalResultStructure);
 	}
 
-	/**
-	 * Iteriert ueber alle worker und prueft, ob sie fertig sind.
-	 * 
-	 * @param workers
-	 * @return true, wenn alle fertig sind, sonst false.
-	 */
-	private boolean allWorkerTasksCompleted(Collection<? extends WorkerTask> workers) {
-		for (WorkerTask worker : workers) {
-			if (worker.getCurrentState() != State.COMPLETED) {
-				return false;
+//	/**
+//	 * Iteriert ueber alle worker und prueft, ob sie fertig sind.
+//	 * 
+//	 * @param workers
+//	 * @return true, wenn alle fertig sind, sonst false.
+//	 */
+//	private boolean allWorkerTasksCompleted(Collection<? extends WorkerTask> workers) {
+//		for (WorkerTask worker : workers) {
+//			if (worker.getCurrentState() != State.COMPLETED) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
+	
+	private void updateDoneMappers() {
+		// Schauen welche Tasks noch ausstehend sind
+		for (String todoID : taskIDMapping.keySet()) {
+			if(undoneTasks.containsKey(todoID)) {
+				switch (undoneTasks.get(todoID).getCurrentState()) {
+				case COMPLETED :
+					doneTasks.add(todoID);
+					mapResults.add(undoneTasks.get(todoID).getWorker());
+					undoneTasks.remove(todoID);
+					
+				case FAILED :
+					
+			// Falls es diesen Status überhaupt gibt
+					
+				}
 			}
-		}
-		return true;
+		}	
 	}
-
 }

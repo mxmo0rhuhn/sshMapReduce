@@ -4,6 +4,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Die nötigen Befehle um Zwischenergebnisse in einem Map Task zu aggregieren bevor diese vom Reduce abgefragt werden.
@@ -20,5 +21,5 @@ public interface CombinerInstruction extends Instruction {
 	 * @param toCombine Die Liste mit values
 	 * @return der aggregierte Wert.
 	 */
-	String combine(Iterator<String> toCombine);
+	List<KeyValuePair> combine(Iterator<KeyValuePair> toCombine);
 }

@@ -1,9 +1,13 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 import javax.inject.Inject;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.KeyValuePair;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
@@ -16,6 +20,8 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.SingleThreaded;
  * 
  */
 public class ThreadWorker implements Worker {
+
+	Map<String, List<KeyValuePair>> storedKeyValues;
 
 	/**
 	 * Aus dem Pool kommt der Worker her und dahin muss er auch wieder zurueck.
@@ -47,10 +53,49 @@ public class ThreadWorker implements Worker {
 		this.executor.execute(new Runnable() {
 			@Override
 			public void run() {
-				task.doWork();
+				task.doWork(ThreadWorker.this);
 				pool.workerIsFinished(ThreadWorker.this);
 			}
 
 		});
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void storeKeyValuePair(String mapReduceTaskUID, String key, String value) {
+		// TODO: Sollte auch save sein, wenn gerade ein anderer MapReduce Task an seine Daten will
+		List<KeyValuePair> newKeyValues;
+
+		if (storedKeyValues.containsKey(mapReduceTaskUID)) {
+			newKeyValues = storedKeyValues.get(mapReduceTaskUID);
+		} else {
+			newKeyValues = new LinkedList<KeyValuePair>();
+		}
+
+		newKeyValues.add(new KeyValuePair(key, value));
+		storedKeyValues.put(mapReduceTaskUID, newKeyValues);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<KeyValuePair> getStoredKeyValuePairs(String mapReduceTaskUID) {
+
+		return getStoredKeyValuePairs(mapReduceTaskUID);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void replaceStoredKeyValuePairs(String mapReduceTaskUID, List<KeyValuePair> newList) {
+
+		if (storedKeyValues.containsKey(mapReduceTaskUID)) {
+			storedKeyValues.remove(mapReduceTaskUID);
+		}
+		storedKeyValues.put(mapReduceTaskUID, newList);
 	}
 }

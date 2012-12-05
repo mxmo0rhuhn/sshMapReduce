@@ -1,5 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+
 /***
  * Eine WorkerTask ist eine Aufgabe die von einem Worker ausgeführt werden kann.
  * 
@@ -19,8 +20,11 @@ public interface WorkerTask {
 
 	/**
 	 * Führt die Aufgabe, die der Worker erfüllen soll aus.
+	 * 
+	 * @param processingWorker
+	 *            der Worker auf dem die Aufgabe ausgeführt wird.
 	 */
-	void doWork();
+	void doWork(Worker processingWorker);
 
 	/***
 	 * Gibt den Zustand der Aufgabe die erfüllt werden soll zurück.
@@ -28,4 +32,11 @@ public interface WorkerTask {
 	 * @return der Zustand
 	 */
 	State getCurrentState();
+
+	/**
+	 * Gibt den Worker auf dem diese Aufgabe ausgeführt wurde zurück.
+	 * 
+	 * @return Der worker der diese Task ausgeführt hat.
+	 */
+	Worker getWorker();
 }

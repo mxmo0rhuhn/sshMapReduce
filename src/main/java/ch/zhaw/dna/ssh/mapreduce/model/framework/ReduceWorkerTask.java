@@ -10,7 +10,7 @@ import java.util.List;
  * 
  */
 public interface ReduceWorkerTask extends WorkerTask {
-
+	
 	/**
 	 * Weisst dem ReduceRunner eine REDUCE Task zu mit der aus einem Input ein aggregierter Output erstellt wird.
 	 * 
@@ -33,7 +33,7 @@ public interface ReduceWorkerTask extends WorkerTask {
 	 * @param toDo
 	 *            der Input der bearbeitet werden soll.
 	 */
-	void runReduceTask(List<MapWorkerTask> mapRunners);
+	void runReduceTask(List<KeyValuePair> toDo);
 
 	/**
 	 * Jeder Reduce Task reduziert ein Wort. Diese Wort wird hier zurueckgegeben.
