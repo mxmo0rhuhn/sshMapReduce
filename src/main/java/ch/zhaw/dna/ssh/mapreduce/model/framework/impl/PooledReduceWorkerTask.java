@@ -23,20 +23,25 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 
 	private final Pool pool;
 
-	private String key;
+	private final String mapReduceTaskUUID;
+
+	private final String key;
+
+	private final ReduceInstruction reduceInstruction;
 
 	private List<KeyValuePair> input;
 
-	private ReduceInstruction reduceTask;
+	private Worker processingWorker;
 
 	private volatile State curState = State.INITIATED;
 
-	private Worker processingWorker;
-	
-
 	@Inject
-	public PooledReduceWorkerTask(Pool pool) {
+	public PooledReduceWorkerTask(Pool pool, @Assisted("uuid") String mapReduceTaskUUID, @Assisted("key") String key,
+			@Assisted ReduceInstruction reduceInstruction) {
 		this.pool = pool;
+		this.mapReduceTaskUUID = mapReduceTaskUUID;
+		this.key = key;
+		this.reduceInstruction = reduceInstruction;
 	}
 
 	/** {@inheritDoc} */
@@ -58,7 +63,7 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 	public void doWork(Worker worker) {
 		this.processingWorker = worker;
 
-		this.reduceTask.reduce(this, key, input.iterator());
+		this.reduceInstruction.reduce(this, key, input.iterator());
 		this.curState = State.COMPLETED;
 	}
 
@@ -70,19 +75,6 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 
 	/** {@inheritDoc} */
 	@Override
-	@Inject
-	public void setReduceTask(@Assisted ReduceInstruction task) {
-		this.reduceTask = task;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	/** {@inheritDoc} */
-	@Override
 	public String getKey() {
 		return this.key;
 	}
@@ -90,7 +82,7 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 	/** {@inheritDoc} */
 	@Override
 	public ReduceInstruction getReduceTask() {
-		return this.reduceTask;
+		return this.reduceInstruction;
 	}
 
 	@Override
@@ -98,4 +90,11 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 		return processingWorker;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getMapReduceTaskUUID() {
+		return this.mapReduceTaskUUID;
+	}
 }

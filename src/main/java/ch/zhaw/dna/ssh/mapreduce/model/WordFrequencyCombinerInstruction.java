@@ -15,7 +15,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.KeyValuePair;
  * @author Max
  * 
  */
-public class WordFrequencyCombinerTask implements CombinerInstruction {
+public class WordFrequencyCombinerInstruction implements CombinerInstruction {
 
 	/** {@inheritDoc} */
 	@Override

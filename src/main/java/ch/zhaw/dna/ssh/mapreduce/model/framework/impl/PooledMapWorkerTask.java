@@ -1,8 +1,12 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.CombinerInstruction;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.KeyValuePair;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapEmitter;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapInstruction;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
@@ -16,37 +20,39 @@ import com.google.inject.assistedinject.Assisted;
  * 
  * @author Max
  */
-
 public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 
+	/** Der verwendete Pool */
 	private final Pool pool;
 
-	// Der Zustand in dem sich der Worker befindet
-	private volatile State currentState = State.INITIATED;
+	/** Aufgabe, die der Task derzeit ausführt */
+	private final MapInstruction mapInstruction;
 
-	// Aufgabe, die der Task derzeit ausführt
-	private MapInstruction mapTask;
+	/** Falls vorhanden ein Combiner für die Zwischenergebnisse */
+	private final CombinerInstruction combinerInstruction;
 
-	// Falls vorhanden ein Combiner für die Zwischenergebnisse
-	private CombinerInstruction combinerTask;
-
-	// Die derzeit zu bearbeitenden Daten
-	private String toDo;
-
-	// Die eindeutihe ID die jeder input besitzt
-	private String inputUID;
-
-	// Eine eindeutige ID die jeder Map Reduce Task besitzt
+	/** Eine eindeutige ID die jeder Map Reduce Task besitzt */
 	private final String mapReduceTaskUID;
 
-	// Der den Task ausführende Worker
-	private Worker processingWorker;
+	/** Die derzeit zu bearbeitenden Daten */
+	private String toDo;
+
+	/** Die eindeutihe ID die jeder input besitzt */
+	private String inputUID;
+
+	/** Der den Task ausführende Worker */
+	private volatile Worker processingWorker;
+
+	/** Der Zustand in dem sich der Worker befindet */
+	private volatile State currentState = State.INITIATED;
 
 	@Inject
-	public PooledMapWorkerTask(String mapReduceTaskUID, Pool pool) {
+	public PooledMapWorkerTask(Pool pool, @Assisted("uuid") String mapReduceTaskUID,
+			@Assisted MapInstruction mapInstruction, @Assisted @Nullable CombinerInstruction combinerInstruction) {
 		this.pool = pool;
 		this.mapReduceTaskUID = mapReduceTaskUID;
-
+		this.mapInstruction = mapInstruction;
+		this.combinerInstruction = combinerInstruction;
 	}
 
 	/** {@inheritDoc} */
@@ -57,7 +63,7 @@ public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 
 	/** {@inheritDoc} */
 	@Override
-	public void runMapTask(String inputUID, String input) {
+	public void runMapInstruction(String inputUID, String input) {
 		this.toDo = input;
 		this.inputUID = inputUID;
 		this.currentState = State.ENQUEUED;
@@ -75,44 +81,64 @@ public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 	/** {@inheritDoc} */
 	@Override
 	public void doWork(Worker processingWorker) {
+		this.currentState = State.INPROGRESS;
+		this.processingWorker = processingWorker;
 		try {
-			this.processingWorker = processingWorker;
-
 			// Mappen
-			this.mapTask.map(this, toDo);
+			this.mapInstruction.map(this, toDo);
 
-			// Alle Ergebnisse verdichten. Die Ergebnisse aus der derzeitigen Worker sollen
-			// einbezogen werden.
-			this.combinerTask.combine(processingWorker.getStoredKeyValuePairs(mapReduceTaskUID)
-					.iterator());
+			// Alle Ergebnisse verdichten. Die Ergebnisse aus der derzeitigen Worker sollen einbezogen werden.
+			if (this.combinerInstruction != null) {
+				List<KeyValuePair> vals = processingWorker.getStoredKeyValuePairs(mapReduceTaskUID);
+				if (vals != null) {
+					this.combinerInstruction.combine(vals.iterator());
+				}
+			}
 
 			this.currentState = State.COMPLETED;
-		} catch (Throwable t) {
+		} catch (Exception e) {
 			this.currentState = State.FAILED;
+			this.processingWorker = null;
 		}
 	}
 
-	/** {@inheritDoc} */
-	@Override
-	@Inject
-	public void setMapTask(@Assisted MapInstruction task) {
-		this.mapTask = task;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	@Inject
-	public void setCombineTask(@Assisted CombinerInstruction task) {
-		this.combinerTask = task;
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Worker getWorker() {
 		return processingWorker;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getCurrentInputUID() {
 		return inputUID;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MapInstruction getMapInstruction() {
+		return this.mapInstruction;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public CombinerInstruction getCombinerInstruction() {
+		return this.combinerInstruction;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getMapReduceTaskUUID() {
+		return this.mapReduceTaskUID;
 	}
 }

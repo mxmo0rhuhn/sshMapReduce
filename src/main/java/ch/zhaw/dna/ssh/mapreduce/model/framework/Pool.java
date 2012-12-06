@@ -44,11 +44,6 @@ public interface Pool {
 	void donateWorker(Worker newWorker);
 	
 	/**
-	 * Beendet alle gestarteten Tasks und faehrt den Pool herunter.
-	 */
-	void shutdownNow();
-	
-	/**
 	 * Check, ob der Pool gestartet ist.
 	 */
 	boolean isRunning();

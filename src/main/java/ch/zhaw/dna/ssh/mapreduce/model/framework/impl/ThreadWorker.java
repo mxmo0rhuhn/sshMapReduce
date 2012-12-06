@@ -1,9 +1,10 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
@@ -11,7 +12,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.KeyValuePair;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.SingleThreaded;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.WorkerExecutor;
 
 /**
  * Implementation von einem Thread-basierten Worker. Der Task wird ueber einen Executor ausgefuehrt.
@@ -21,7 +22,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.SingleThreaded;
  */
 public class ThreadWorker implements Worker {
 
-	Map<String, List<KeyValuePair>> storedKeyValues;
+	private final Map<String, List<KeyValuePair>> storedKeyValues = new HashMap<String, List<KeyValuePair>>();
 
 	/**
 	 * Aus dem Pool kommt der Worker her und dahin muss er auch wieder zurueck.
@@ -31,7 +32,7 @@ public class ThreadWorker implements Worker {
 	/**
 	 * Der Executor ist fuer asynchrone ausfuehren.
 	 */
-	private final ExecutorService executor;
+	private final Executor executor;
 
 	/**
 	 * Erstellt einen neunen ThreadWorker mit dem gegebenen Pool und Executor.
@@ -40,7 +41,7 @@ public class ThreadWorker implements Worker {
 	 * @param executor
 	 */
 	@Inject
-	public ThreadWorker(Pool pool, @SingleThreaded ExecutorService executor) {
+	public ThreadWorker(Pool pool, @WorkerExecutor Executor executor) {
 		this.pool = pool;
 		this.executor = executor;
 	}
@@ -83,8 +84,7 @@ public class ThreadWorker implements Worker {
 	 */
 	@Override
 	public List<KeyValuePair> getStoredKeyValuePairs(String mapReduceTaskUID) {
-
-		return getStoredKeyValuePairs(mapReduceTaskUID);
+		return this.storedKeyValues.get(mapReduceTaskUID);
 	}
 
 	/**
@@ -92,7 +92,6 @@ public class ThreadWorker implements Worker {
 	 */
 	@Override
 	public void replaceStoredKeyValuePairs(String mapReduceTaskUID, List<KeyValuePair> newList) {
-
 		if (storedKeyValues.containsKey(mapReduceTaskUID)) {
 			storedKeyValues.remove(mapReduceTaskUID);
 		}

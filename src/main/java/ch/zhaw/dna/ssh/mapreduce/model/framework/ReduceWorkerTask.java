@@ -10,22 +10,6 @@ import java.util.List;
  * 
  */
 public interface ReduceWorkerTask extends WorkerTask {
-	
-	/**
-	 * Weisst dem ReduceRunner eine REDUCE Task zu mit der aus einem Input ein aggregierter Output erstellt wird.
-	 * 
-	 * @param task
-	 *            die Aufgabe die zugewiesen werden soll
-	 */
-	void setReduceTask(ReduceInstruction task);
-
-	/**
-	 * Weisst dem ReduceRunner einen Key für den er ausgeführt wird zu.
-	 * 
-	 * @param key
-	 *            der Key für den der Reduce Task ausgeführt wird.
-	 */
-	void setKey(String key);
 
 	/**
 	 * Führt die derzeit zugewiesene Reduce Aufgabe für den Output der gegebenen MapTasks aus.
@@ -48,4 +32,11 @@ public interface ReduceWorkerTask extends WorkerTask {
 	 * @return Gibt den ReduceTask fuer diesen Runner zurueck. null wenn keiner gesetzt ist.
 	 */
 	ReduceInstruction getReduceTask();
+
+	/**
+	 * Liefert die MapReduceTask ID zu der dieser Task gehoert
+	 * 
+	 * @return die MapReduceTask ID zu der dieser Task gehoert
+	 */
+	String getMapReduceTaskUUID();
 }

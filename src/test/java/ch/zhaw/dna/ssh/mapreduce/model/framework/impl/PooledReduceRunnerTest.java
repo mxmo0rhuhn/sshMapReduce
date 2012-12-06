@@ -1,7 +1,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertSame;
 
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;
@@ -10,10 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.Master;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask.State;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceInstruction;
 
 @RunWith(JMock.class)
 public class PooledReduceRunnerTest {
@@ -22,27 +20,31 @@ public class PooledReduceRunnerTest {
 
 	private Pool p;
 
-	private Master master;
+	private ReduceInstruction redInstr;
 
 	@Before
 	public void initMockery() {
 		this.context = new JUnit4Mockery();
 		this.p = this.context.mock(Pool.class);
-		this.master = Registry.getComponent(Master.class);
+		this.redInstr = this.context.mock(ReduceInstruction.class);
 	}
 
 	@Test
-	public void shouldSaveResultsInGlobalStructure() {
-		PooledReduceWorkerTask reduceRunner = new PooledReduceWorkerTask(p, master);
-		reduceRunner.setKey("hello");
-		reduceRunner.emit("3");
-		assertTrue(master.getGlobalResultStructure().get("hello").contains("3"));
+	public void shouldSetKey() {
+		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr);
+		assertEquals("key", task.getKey());
 	}
 
 	@Test
-	public void shouldBeIdleAtStart() {
-		PooledReduceWorkerTask reduceRunner = new PooledReduceWorkerTask(p, master);
-		assertEquals(State.INITIATED, reduceRunner.getCurrentState());
+	public void shouldMrUid() {
+		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr);
+		assertEquals("mruid", task.getMapReduceTaskUUID());
+	}
+
+	@Test
+	public void shouldSetReduceInstruction() {
+		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr);
+		assertSame(redInstr, task.getReduceTask());
 	}
 
 }

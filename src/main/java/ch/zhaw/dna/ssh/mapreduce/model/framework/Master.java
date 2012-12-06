@@ -11,10 +11,14 @@ import java.util.UUID;
 
 import javax.inject.Inject;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.MapReduceTaskUUID;
+
 public final class Master {
 
 	private final Map<String, Collection<String>> globalResultStructure = new HashMap<String, Collection<String>>();
-	private final String mapReduceTaskUID;
+
+	private final String mapReduceTaskUUID;
+
 	private final WorkerTaskFactory runnerFactory;
 
 	// Die übersetzung welche ID welchen Input hat
@@ -31,49 +35,48 @@ public final class Master {
 	private Set<Worker> mapResults;
 
 	@Inject
-	public Master(WorkerTaskFactory runnerFactory) {
+	public Master(WorkerTaskFactory runnerFactory, @MapReduceTaskUUID String mapReduceTaskUUID) {
 		this.runnerFactory = runnerFactory;
-		mapReduceTaskUID = UUID.randomUUID().toString();
+		this.mapReduceTaskUUID = mapReduceTaskUUID;
 	}
 
 	public Map<String, Collection<String>> runComputation(final MapInstruction mapTask,
-			final CombinerInstruction combinerTask, final ReduceInstruction reduceTask,
-			Iterator<String> input) {
+			final CombinerInstruction combinerTask, final ReduceInstruction reduceTask, Iterator<String> input) {
 
 		while (input.hasNext()) {
-			MapWorkerTask mapRunner = runnerFactory.createMapRunner(mapTask, combinerTask);
+			MapWorkerTask mapRunner = runnerFactory.createMapWorkerTask(mapReduceTaskUUID, mapTask, combinerTask);
 
 			String inputUID = UUID.randomUUID().toString();
 			String todo = input.next();
 
 			undoneTasks.put(inputUID, mapRunner);
 			taskIDMapping.put(inputUID, todo);
-			mapRunner.runMapTask(inputUID, todo);
+			mapRunner.runMapInstruction(inputUID, todo);
 		}
 
 		do {
 			updateDoneMappers();
 			// Wartet eine Sekunde abzüglich der Prozentzahl an bereits erledigten Aufgaben
 			try {
-				wait(1000 - 1000* (doneTasks.size()/taskIDMapping.size()));
+				wait(1000 - 1000 * (doneTasks.size() / taskIDMapping.size()));
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-		} while(undoneTasks.size() > 0);
-		
+
+		} while (undoneTasks.size() > 0);
+
 		// INSERT SOME SHUFFELING HERE!
-//		}
-//
-//		while (!allWorkerTasksCompleted(reduceRunners.values())) {
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				Thread.currentThread().interrupt();
-//				break;
-//			}
-//		}
+		// }
+		//
+		// while (!allWorkerTasksCompleted(reduceRunners.values())) {
+		// try {
+		// Thread.sleep(100);
+		// } catch (InterruptedException e) {
+		// Thread.currentThread().interrupt();
+		// break;
+		// }
+		// }
 		return globalResultStructure;
 	}
 
@@ -102,37 +105,41 @@ public final class Master {
 		return Collections.unmodifiableMap(this.globalResultStructure);
 	}
 
-//	/**
-//	 * Iteriert ueber alle worker und prueft, ob sie fertig sind.
-//	 * 
-//	 * @param workers
-//	 * @return true, wenn alle fertig sind, sonst false.
-//	 */
-//	private boolean allWorkerTasksCompleted(Collection<? extends WorkerTask> workers) {
-//		for (WorkerTask worker : workers) {
-//			if (worker.getCurrentState() != State.COMPLETED) {
-//				return false;
-//			}
-//		}
-//		return true;
-//	}
-	
+	// /**
+	// * Iteriert ueber alle worker und prueft, ob sie fertig sind.
+	// *
+	// * @param workers
+	// * @return true, wenn alle fertig sind, sonst false.
+	// */
+	// private boolean allWorkerTasksCompleted(Collection<? extends WorkerTask> workers) {
+	// for (WorkerTask worker : workers) {
+	// if (worker.getCurrentState() != State.COMPLETED) {
+	// return false;
+	// }
+	// }
+	// return true;
+	// }
+
 	private void updateDoneMappers() {
 		// Schauen welche Tasks noch ausstehend sind
 		for (String todoID : taskIDMapping.keySet()) {
-			if(undoneTasks.containsKey(todoID)) {
+			if (undoneTasks.containsKey(todoID)) {
 				switch (undoneTasks.get(todoID).getCurrentState()) {
-				case COMPLETED :
+				case COMPLETED:
 					doneTasks.add(todoID);
 					mapResults.add(undoneTasks.get(todoID).getWorker());
 					undoneTasks.remove(todoID);
-					
-				case FAILED :
-					
-			// Falls es diesen Status überhaupt gibt
-					
+
+				case FAILED:
+
+					// Falls es diesen Status überhaupt gibt
+
 				}
 			}
-		}	
+		}
+	}
+	
+	public String getMapReduceTaskUUID() {
+		return this.mapReduceTaskUUID;
 	}
 }

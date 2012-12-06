@@ -3,17 +3,18 @@ package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.WorkerTask;
+import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.PoolExecutor;
 
 /**
  * Implementation des Pools mit lokalen Threads auf dem jeweiligen PC
@@ -35,13 +36,14 @@ public final class LocalThreadPool implements Pool {
 
 	private final AtomicBoolean isRunning = new AtomicBoolean();
 
-	private final ExecutorService workTaskAdministrator;
+	private final Executor workTaskAdministrator;
 
 	/**
 	 * Erstellt einen neuen Pool der Aufgaben und Worker entgegen nimmt.
 	 */
-	public LocalThreadPool() {
-		this.workTaskAdministrator = Executors.newSingleThreadExecutor();
+	@Inject
+	public LocalThreadPool(@PoolExecutor Executor exec) {
+		this.workTaskAdministrator = exec;
 	}
 
 	/**
@@ -54,17 +56,7 @@ public final class LocalThreadPool implements Pool {
 		if (this.isRunning.compareAndSet(false, true)) {
 			this.workTaskAdministrator.execute(new WorkerTaskAdministrator());
 		} else {
-			throw new RuntimeException("Cannot start Pool twice");
-		}
-	}
-
-	@Override
-	public void shutdownNow() {
-		// forciert einen abrupten shutdown
-		if (this.isRunning.getAndSet(false)) {
-			this.workTaskAdministrator.shutdownNow();
-		} else {
-			throw new IllegalStateException("Wasn't running");
+			throw new IllegalStateException("Cannot start Pool twice");
 		}
 	}
 
@@ -132,6 +124,7 @@ public final class LocalThreadPool implements Pool {
 					worker.execute(task);
 				}
 			} catch (InterruptedException e) {
+				isRunning.set(false);
 				Thread.currentThread().interrupt();
 			}
 		}

@@ -1,7 +1,8 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -11,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import ch.zhaw.dna.ssh.mapreduce.model.framework.KeyValuePair;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceEmitter;
 
 @RunWith(JMock.class)
@@ -42,17 +44,20 @@ public class WordFrequencyReduceTaskTest {
 		});
 		
 		WordFrequencyReduceTask test = new WordFrequencyReduceTask();
-		test.reduce(runner, "hallo", createIterator("1","1"));
-		test.reduce(runner, "welt", createIterator("1"));
-		test.reduce(runner, "ich", createIterator("1"));
-		test.reduce(runner, "teste", createIterator("1"));
-		test.reduce(runner, "dich", createIterator("1"));
+		test.reduce(runner, "hallo", createIterator("hallo", "1","1"));
+		test.reduce(runner, "welt", createIterator("welt", "1"));
+		test.reduce(runner, "ich", createIterator("ich", "1"));
+		test.reduce(runner, "teste", createIterator("test", "1"));
+		test.reduce(runner, "dich", createIterator("dich", "1"));
 		
 	}
 
 	
-	private Iterator<String> createIterator(String...values){
-		return Arrays.asList(values).iterator();
-		
+	private Iterator<KeyValuePair> createIterator(String key, String...values){
+		List<KeyValuePair> pairs = new ArrayList<KeyValuePair>();
+		for (String val : values) {
+			pairs.add(new KeyValuePair(key, val));
+		}
+		return pairs.iterator();
 	}
 }

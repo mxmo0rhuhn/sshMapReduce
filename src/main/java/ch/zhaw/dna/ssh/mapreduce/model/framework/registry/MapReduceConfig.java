@@ -1,6 +1,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework.registry;
 
-import java.util.concurrent.ExecutorService;
+import java.util.UUID;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapWorkerTask;
@@ -26,7 +27,7 @@ import com.google.inject.matcher.Matchers;
  * @author Reto
  * 
  */
-class MapReduceConfig extends AbstractModule {
+public class MapReduceConfig extends AbstractModule {
 
 	/**
 	 * Binded verschiedene Interfaces zu den zugehörigen Implementationen.
@@ -56,13 +57,19 @@ class MapReduceConfig extends AbstractModule {
 	 */
 	@Provides
 	@WorkerExecutor
-	public ExecutorService createWorkerExec() {
+	public Executor createWorkerExec() {
 		return Executors.newSingleThreadExecutor();
 	}
 
 	@Provides
 	@PoolExecutor
-	public ExecutorService createPoolExec() {
+	public Executor createPoolExec() {
 		return Executors.newSingleThreadExecutor();
+	}
+	
+	@Provides
+	@MapReduceTaskUUID
+	public String getMapReduceTaskUUID() {
+		return UUID.randomUUID().toString();
 	}
 }
