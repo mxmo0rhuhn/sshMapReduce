@@ -40,11 +40,13 @@ public final class Master {
 		this.mapReduceTaskUUID = mapReduceTaskUUID;
 	}
 
-	public Map<String, Collection<String>> runComputation(final MapInstruction mapTask,
-			final CombinerInstruction combinerTask, final ReduceInstruction reduceTask, Iterator<String> input) {
+	public Map<String, Collection<String>> runComputation(final MapInstruction mapInstruction,
+			final CombinerInstruction combinerInstruction, final ReduceInstruction reduceInstruction,
+			Iterator<String> input) {
 
 		while (input.hasNext()) {
-			MapWorkerTask mapRunner = runnerFactory.createMapWorkerTask(mapReduceTaskUUID, mapTask, combinerTask);
+			MapWorkerTask mapRunner = runnerFactory.createMapWorkerTask(mapReduceTaskUUID, mapInstruction,
+					combinerInstruction);
 
 			String inputUID = UUID.randomUUID().toString();
 			String todo = input.next();
@@ -138,7 +140,7 @@ public final class Master {
 			}
 		}
 	}
-	
+
 	public String getMapReduceTaskUUID() {
 		return this.mapReduceTaskUUID;
 	}

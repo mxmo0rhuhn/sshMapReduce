@@ -71,4 +71,11 @@ public class KeyValuePairTest {
 		KeyValuePair kvp2 = new KeyValuePair("key", "value");
 		assertTrue(kvp1.hashCode() == kvp2.hashCode());
 	}
+	
+	@Test
+	public void shouldNotBeEqualsToOtherType() {
+		KeyValuePair kvp = new KeyValuePair("key", "value");
+		Object o = new Object();
+		assertFalse(kvp.equals(o));
+	}
 }

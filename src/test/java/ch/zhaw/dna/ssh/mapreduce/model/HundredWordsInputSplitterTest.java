@@ -1,4 +1,4 @@
-package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
+package ch.zhaw.dna.ssh.mapreduce.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -8,8 +8,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.Iterator;
 
 import org.junit.Test;
-
-import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.HundredWordsInputSplitter;
 
 
 public class HundredWordsInputSplitterTest {

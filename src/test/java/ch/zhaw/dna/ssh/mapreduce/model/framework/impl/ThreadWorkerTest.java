@@ -106,5 +106,16 @@ public class ThreadWorkerTest {
 		vals1 = worker.getStoredKeyValuePairs("mrtuid1");
 		assertFalse(vals1.contains(new KeyValuePair("key", "value")));
 	}
+	
+	@Test
+	public void shouldSetValueIfReplaceIsInvokedForAnInexistentKey() {
+		DeterministicExecutor exec = new DeterministicExecutor();
+		ThreadWorker worker = new ThreadWorker(pool, exec);
+		worker.replaceStoredKeyValuePairs("mrtuid1",
+				Arrays.asList(new KeyValuePair[] { new KeyValuePair("key2", "value2") }));
+		List<KeyValuePair> vals1 = worker.getStoredKeyValuePairs("mrtuid1");
+		assertTrue(vals1.contains(new KeyValuePair("key2", "value2")));
+		assertTrue(vals1.size() == 1);
+	}
 
 }

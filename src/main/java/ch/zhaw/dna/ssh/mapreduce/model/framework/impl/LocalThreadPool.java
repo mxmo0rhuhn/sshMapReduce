@@ -86,8 +86,6 @@ public final class LocalThreadPool implements Pool {
 	 */
 	@Override
 	public void workerIsFinished(Worker finishedWorker) {
-		// TODO atomicity
-		// TODO return values
 		workingWorker.remove(finishedWorker);
 		availableWorkerBlockingQueue.add(finishedWorker);
 	}
@@ -104,9 +102,8 @@ public final class LocalThreadPool implements Pool {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void donateWorker(Worker newWorker) {
-		// TODO add vs offer
-		availableWorkerBlockingQueue.add(newWorker);
+	public boolean donateWorker(Worker newWorker) {
+		return availableWorkerBlockingQueue.offer(newWorker);
 	}
 
 	private class WorkerTaskAdministrator implements Runnable {

@@ -16,7 +16,7 @@ public interface MapInstruction extends Instruction {
 	 * der der gegebene Input auf KeyValue Pairs gemapped wird.
 	 * 
 	 * @param emitter
-	 *            das runtime Environment einer jeden MapTask. Aus ihm können verschiedene Informationen bezogen werden
+	 *            das runtime Environment einer jede MapInstruction. Aus ihm können verschiedene Informationen bezogen werden
 	 *            und es können KeyValue-Pairs gespeichert werden.
 	 * @param toDo
 	 *            ein Input als String dieser muss in irgendeiner Art in Key Value Pairs umgewandelt werden.

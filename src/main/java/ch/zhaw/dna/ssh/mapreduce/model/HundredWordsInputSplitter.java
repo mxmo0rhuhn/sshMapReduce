@@ -1,4 +1,4 @@
-package ch.zhaw.dna.ssh.mapreduce.model.framework.impl;
+package ch.zhaw.dna.ssh.mapreduce.model;
 
 import java.util.Iterator;
 

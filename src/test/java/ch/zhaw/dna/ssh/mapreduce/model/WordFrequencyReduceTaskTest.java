@@ -43,7 +43,7 @@ public class WordFrequencyReduceTaskTest {
 			
 		});
 		
-		WordFrequencyReduceTask test = new WordFrequencyReduceTask();
+		WordFrequencyReduceInstruction test = new WordFrequencyReduceInstruction();
 		test.reduce(runner, "hallo", createIterator("hallo", "1","1"));
 		test.reduce(runner, "welt", createIterator("welt", "1"));
 		test.reduce(runner, "ich", createIterator("ich", "1"));

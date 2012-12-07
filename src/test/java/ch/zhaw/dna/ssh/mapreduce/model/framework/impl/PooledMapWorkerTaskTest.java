@@ -191,11 +191,11 @@ public class PooledMapWorkerTaskTest {
 		assertEquals(State.INPROGRESS, task.getCurrentState());
 		try {
 			barrier.await(100, TimeUnit.MILLISECONDS);
-		}catch (TimeoutException te) {
+		} catch (TimeoutException te) {
 			fail("should return immediately");
 		}
 	}
-	
+
 	@Test
 	public void shouldBeAbleToRerunTests() {
 		Executor poolExec = Executors.newSingleThreadExecutor();
@@ -230,5 +230,17 @@ public class PooledMapWorkerTaskTest {
 		assertTrue(threadExec2.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		assertEquals(State.COMPLETED, task.getCurrentState());
 		assertSame(worker2, task.getWorker());
+	}
+
+	@Test
+	public void shouldBeEnqueuedAfterSubmissionToPool() {
+		final PooledMapWorkerTask task = new PooledMapWorkerTask(p, "mrtuid", mapInstr, combInstr);
+		this.context.checking(new Expectations() {
+			{
+				oneOf(p).enqueueWork(task);
+			}
+		});
+		task.runMapInstruction("inputuuid", "hello");
+		assertEquals(State.ENQUEUED, task.getCurrentState());
 	}
 }

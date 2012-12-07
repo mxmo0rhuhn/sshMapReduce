@@ -92,9 +92,6 @@ public class ThreadWorker implements Worker {
 	 */
 	@Override
 	public void replaceStoredKeyValuePairs(String mapReduceTaskUID, List<KeyValuePair> newList) {
-		if (storedKeyValues.containsKey(mapReduceTaskUID)) {
-			storedKeyValues.remove(mapReduceTaskUID);
-		}
 		storedKeyValues.put(mapReduceTaskUID, newList);
 	}
 }

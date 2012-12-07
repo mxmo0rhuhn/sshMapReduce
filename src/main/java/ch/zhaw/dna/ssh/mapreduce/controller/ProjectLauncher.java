@@ -4,12 +4,12 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import ch.zhaw.dna.ssh.mapreduce.model.WordFrequencyMapTask;
-import ch.zhaw.dna.ssh.mapreduce.model.WordFrequencyReduceTask;
+import ch.zhaw.dna.ssh.mapreduce.model.HundredWordsInputSplitter;
+import ch.zhaw.dna.ssh.mapreduce.model.WordFrequencyMapInstruction;
+import ch.zhaw.dna.ssh.mapreduce.model.WordFrequencyReduceInstruction;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapReduceTask;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.impl.HundredWordsInputSplitter;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
 import ch.zhaw.dna.ssh.mapreduce.view.MainFrame;
 
@@ -48,7 +48,7 @@ public class ProjectLauncher {
 		pool.donateWorker(Registry.getComponent(Worker.class));
 		pool.donateWorker(Registry.getComponent(Worker.class));
 
-		MapReduceTask myTask = new MapReduceTask(new WordFrequencyMapTask(), new WordFrequencyReduceTask());
+		MapReduceTask myTask = new MapReduceTask(new WordFrequencyMapInstruction(), new WordFrequencyReduceInstruction());
 		Map<String, Collection<String>> mapReduceResult = myTask.compute(new HundredWordsInputSplitter(test2));
 
 		for (Entry<String, Collection<String>> entry : mapReduceResult.entrySet()) {

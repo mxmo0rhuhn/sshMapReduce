@@ -12,12 +12,12 @@ import java.util.List;
 public interface ReduceWorkerTask extends WorkerTask {
 
 	/**
-	 * Führt die derzeit zugewiesene Reduce Aufgabe für den Output der gegebenen MapTasks aus.
+	 * Führt die derzeit zugewiesene Reduce Aufgabe für den Output der gegebenen MapInstructions aus.
 	 * 
 	 * @param toDo
 	 *            der Input der bearbeitet werden soll.
 	 */
-	void runReduceTask(List<KeyValuePair> toDo);
+	boolean runReduceTask(List<KeyValuePair> toDo);
 
 	/**
 	 * Jeder Reduce Task reduziert ein Wort. Diese Wort wird hier zurueckgegeben.

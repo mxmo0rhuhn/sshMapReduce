@@ -41,7 +41,7 @@ public interface Pool {
 	 * Stellt dem Pool einen Worker zur Verfügung
 	 * @param newWorker der Worker der zur Verfügung gestellt werden soll.
 	 */
-	void donateWorker(Worker newWorker);
+	boolean donateWorker(Worker newWorker);
 	
 	/**
 	 * Check, ob der Pool gestartet ist.

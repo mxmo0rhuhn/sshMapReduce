@@ -13,32 +13,32 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
  */
 public final class MapReduceTask {
 
-	private final MapInstruction mapTask;
+	private final MapInstruction mapInstruction;
 
-	private final ReduceInstruction reduceTask;
+	private final ReduceInstruction reduceInstruction;
 
-	private final CombinerInstruction combinerTask;
+	private final CombinerInstruction combinerInstruction;
 
 	private final Master master;
 
 	/**
 	 * Erstellt einen neuen MapReduceTask mit den übergebenen map und reduce tasks.
 	 * 
-	 * @param mapTask
-	 *            der Map-Task
-	 * @param reduceTask
-	 *            der Reduce-Task
+	 * @param mapInstruction
+	 *            die MapInstruction
+	 * @param reduceInstruction
+	 *            die ReduceInstruction
 	 */
-	public MapReduceTask(MapInstruction mapTask, ReduceInstruction reduceTask, CombinerInstruction combinerTask) {
-		this.mapTask = mapTask;
-		this.reduceTask = reduceTask;
-		this.combinerTask = combinerTask;
+	public MapReduceTask(MapInstruction mapInstruction, ReduceInstruction reduceInstruction, CombinerInstruction combinerInstruction) {
+		this.mapInstruction = mapInstruction;
+		this.reduceInstruction = reduceInstruction;
+		this.combinerInstruction = combinerInstruction;
 
 		this.master = Registry.getComponent(Master.class);
 	}
 
-	public MapReduceTask(MapInstruction mapTask, ReduceInstruction reduceTask) {
-		this(mapTask, reduceTask, null);
+	public MapReduceTask(MapInstruction mapInstruction, ReduceInstruction reduceInstruction) {
+		this(mapInstruction, reduceInstruction, null);
 	}
 
 	/**
@@ -52,6 +52,6 @@ public final class MapReduceTask {
 	 * @return das Resultat von dem ganzen MapReduceTask
 	 */
 	public Map<String, Collection<String>> compute(Iterator<String> input) {
-		return this.master.runComputation(this.mapTask, this.combinerTask, this.reduceTask, input);
+		return this.master.runComputation(this.mapInstruction, this.combinerInstruction, this.reduceInstruction, input);
 	}
 }

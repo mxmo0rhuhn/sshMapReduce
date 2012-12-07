@@ -4,12 +4,12 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.MapEmitter;
 import ch.zhaw.dna.ssh.mapreduce.model.framework.MapInstruction;
 
 /**
- * Splittet jedes Wort und Emit'ed es an MapRunner
+ * Splittet jedes Wort und Emit'ed es an MapWorkerTask
  * 
  * @author des
  * 
  */
-public class WordFrequencyMapTask implements MapInstruction {
+public class WordFrequencyMapInstruction implements MapInstruction {
 
 	/** {@inheritDoc} */
 	@Override

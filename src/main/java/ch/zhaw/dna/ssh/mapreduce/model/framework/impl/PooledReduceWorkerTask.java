@@ -21,18 +21,44 @@ import com.google.inject.assistedinject.Assisted;
  */
 public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 
+	/**
+	 * Der verwendete Pool
+	 */
 	private final Pool pool;
 
+	/**
+	 * Die globale MapReduce-Berechnungs-ID zu der dieser Task gehoert
+	 */
 	private final String mapReduceTaskUUID;
 
+	/**
+	 * Fuer diesen Key wollen wir reduzieren
+	 */
 	private final String key;
 
+	/**
+	 * Diese ReduceInstruction wird angewendet
+	 */
 	private final ReduceInstruction reduceInstruction;
 
+	/**
+	 * Der zu reduzierende Input
+	 */
 	private List<KeyValuePair> input;
 
+	/**
+	 * Dieser Worker arbeitet daran. Wenn null arbeitet gerade keiner dran. Wenn der Task erfolgreich abgschlossen ist,
+	 * steht hier der Worker, der den Task ausgefuert hat. Wenn der Task nicht erfolgreich beendet werden konnte, steht
+	 * hier wieder null.
+	 * 
+	 * Dieses Feld ist nicht volatile, da es entweder vom gleichen Thread gelesen wird um Werte zu speichern, dir die
+	 * Werte speichern will, oder dann nur im Zusammenhang mit {{@link #getCurrentState()}, welches volatile ist.
+	 */
 	private Worker processingWorker;
 
+	/**
+	 * Der momentane Status
+	 */
 	private volatile State curState = State.INITIATED;
 
 	@Inject
@@ -46,25 +72,31 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 
 	/** {@inheritDoc} */
 	@Override
-	public void runReduceTask(List<KeyValuePair> keyValues) {
-		this.curState = State.INPROGRESS;
+	public boolean runReduceTask(List<KeyValuePair> keyValues) {
+		this.curState = State.ENQUEUED;
 		this.input = keyValues;
-		this.pool.enqueueWork(this);
+		return this.pool.enqueueWork(this);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void emit(String result) {
-		this.processingWorker.storeKeyValuePair(key, result, result);
+		this.processingWorker.storeKeyValuePair(this.mapReduceTaskUUID, this.key, result);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void doWork(Worker worker) {
+		this.curState = State.INPROGRESS;
 		this.processingWorker = worker;
 
-		this.reduceInstruction.reduce(this, key, input.iterator());
-		this.curState = State.COMPLETED;
+		try {
+			this.reduceInstruction.reduce(this, key, input.iterator());
+			this.curState = State.COMPLETED;
+		} catch (Exception e) {
+			this.curState = State.FAILED;
+			this.processingWorker = null;
+		}
 	}
 
 	/** {@inheritDoc} */

@@ -46,7 +46,7 @@ public class WordFrequencyMapTaskTest {
 			}
 		});
 
-		WordFrequencyMapTask test = new WordFrequencyMapTask();
+		WordFrequencyMapInstruction test = new WordFrequencyMapInstruction();
 		test.map(emitter, testString);
 	}
 

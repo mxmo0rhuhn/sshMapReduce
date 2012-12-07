@@ -12,7 +12,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceInstruction;
  * @author des
  * 
  */
-public class WordFrequencyReduceTask implements ReduceInstruction {
+public class WordFrequencyReduceInstruction implements ReduceInstruction {
 
 	/** {@inheritDoc} */
 	@Override
