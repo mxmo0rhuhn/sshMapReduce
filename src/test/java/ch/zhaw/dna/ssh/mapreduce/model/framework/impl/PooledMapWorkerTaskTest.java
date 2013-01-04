@@ -42,6 +42,10 @@ public class PooledMapWorkerTaskTest {
 	private MapInstruction mapInstr;
 
 	private CombinerInstruction combInstr;
+	
+	private String inputUUID;
+	
+	private String input;
 
 	@Before
 	public void initMock() {
@@ -49,29 +53,31 @@ public class PooledMapWorkerTaskTest {
 		this.p = this.context.mock(Pool.class);
 		this.mapInstr = this.context.mock(MapInstruction.class);
 		this.combInstr = this.context.mock(CombinerInstruction.class);
+		this.inputUUID = "inputUUID";
+		this.input = "hello";
 	}
 
 	@Test
 	public void shouldSetMapReduceTaskUUID() {
-		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "uuid", mapInstr, combInstr);
+		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "uuid", mapInstr, combInstr, inputUUID, input);
 		assertEquals("uuid", task.getMapReduceTaskUUID());
 	}
 
 	@Test
 	public void shouldSetMapInstruction() {
-		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "uuid", mapInstr, combInstr);
+		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "uuid", mapInstr, combInstr, inputUUID, input);
 		assertSame(mapInstr, task.getMapInstruction());
 	}
 
 	@Test
 	public void shouldSetCombinerInstruction() {
-		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "uuid", mapInstr, combInstr);
+		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "uuid", mapInstr, combInstr, inputUUID, input);
 		assertSame(combInstr, task.getCombinerInstruction());
 	}
 
 	@Test
 	public void shouldCopeWithNullCombiner() {
-		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "uuid", mapInstr, null);
+		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "uuid", mapInstr, null, inputUUID, input);
 		assertNull(task.getCombinerInstruction());
 	}
 
@@ -87,11 +93,11 @@ public class PooledMapWorkerTaskTest {
 					emitter.emitIntermediateMapResult(part, "1");
 				}
 			}
-		}, null);
+		}, null, inputUUID, input);
 		ExactCommandExecutor threadExec = new ExactCommandExecutor(1);
 		ThreadWorker worker = new ThreadWorker(pool, threadExec);
 		pool.donateWorker(worker);
-		task.runMapInstruction("inputUUID", "hello");
+		task.runMapInstruction();
 		assertTrue(threadExec.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		List<KeyValuePair> vals = worker.getStoredKeyValuePairs("mrtUuid");
 		assertTrue(vals.contains(new KeyValuePair("hello", "1")));
@@ -100,13 +106,13 @@ public class PooledMapWorkerTaskTest {
 
 	@Test
 	public void shouldSetInputUUID() {
-		final PooledMapWorkerTask task = new PooledMapWorkerTask(p, "mrtUuid", mapInstr, combInstr);
+		final PooledMapWorkerTask task = new PooledMapWorkerTask(p, "mrtUuid", mapInstr, combInstr, inputUUID, input);
 		this.context.checking(new Expectations() {
 			{
 				oneOf(p).enqueueWork(task);
 			}
 		});
-		task.runMapInstruction("inputUUID", "hello");
+		task.runMapInstruction();
 		assertEquals("inputUUID", task.getCurrentInputUID());
 	}
 
@@ -124,8 +130,8 @@ public class PooledMapWorkerTaskTest {
 			public void map(MapEmitter emitter, String toDo) {
 				throw new NullPointerException();
 			}
-		}, combInstr);
-		task.runMapInstruction("inputUUID", "hello");
+		}, combInstr, inputUUID, input);
+		task.runMapInstruction();
 		assertTrue(taskExec.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		assertEquals(State.FAILED, task.getCurrentState());
 		assertNull(task.getWorker());
@@ -147,13 +153,13 @@ public class PooledMapWorkerTaskTest {
 					emitter.emitIntermediateMapResult(part, "1");
 				}
 			}
-		}, combInstr);
+		}, combInstr, inputUUID, input);
 		this.context.checking(new Expectations() {
 			{
 				oneOf(combInstr).combine(with(aNonNull(Iterator.class)));
 			}
 		});
-		task.runMapInstruction("inputUUID", "hello");
+		task.runMapInstruction();
 		assertTrue(taskExec.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		assertEquals(State.COMPLETED, task.getCurrentState());
 		assertSame(worker, task.getWorker());
@@ -161,7 +167,7 @@ public class PooledMapWorkerTaskTest {
 
 	@Test
 	public void shouldSetStateToInitiatedInitially() {
-		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "mrtUuid", mapInstr, combInstr);
+		PooledMapWorkerTask task = new PooledMapWorkerTask(p, "mrtUuid", mapInstr, combInstr, inputUUID, input);
 		assertEquals(State.INITIATED, task.getCurrentState());
 	}
 
@@ -184,8 +190,8 @@ public class PooledMapWorkerTaskTest {
 					throw new IllegalStateException(e);
 				}
 			}
-		}, combInstr);
-		task.runMapInstruction("inputUUID", "hello");
+		}, combInstr, inputUUID, input);
+		task.runMapInstruction();
 		Thread.yield();
 		Thread.sleep(200);
 		assertEquals(State.INPROGRESS, task.getCurrentState());
@@ -221,12 +227,12 @@ public class PooledMapWorkerTaskTest {
 					throw new NullPointerException();
 				}
 			}
-		}, combInstr);
-		task.runMapInstruction("inputUUID", "hello");
+		}, combInstr, inputUUID, input);
+		task.runMapInstruction();
 		assertTrue(threadExec1.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		assertEquals(State.FAILED, task.getCurrentState());
 		assertNull(task.getWorker());
-		task.runMapInstruction("inputUUID", "hello");
+		task.runMapInstruction();
 		assertTrue(threadExec2.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		assertEquals(State.COMPLETED, task.getCurrentState());
 		assertSame(worker2, task.getWorker());
@@ -234,13 +240,13 @@ public class PooledMapWorkerTaskTest {
 
 	@Test
 	public void shouldBeEnqueuedAfterSubmissionToPool() {
-		final PooledMapWorkerTask task = new PooledMapWorkerTask(p, "mrtuid", mapInstr, combInstr);
+		final PooledMapWorkerTask task = new PooledMapWorkerTask(p, "mrtuid", mapInstr, combInstr, inputUUID, input);
 		this.context.checking(new Expectations() {
 			{
 				oneOf(p).enqueueWork(task);
 			}
 		});
-		task.runMapInstruction("inputuuid", "hello");
+		task.runMapInstruction();
 		assertEquals(State.ENQUEUED, task.getCurrentState());
 	}
 }
