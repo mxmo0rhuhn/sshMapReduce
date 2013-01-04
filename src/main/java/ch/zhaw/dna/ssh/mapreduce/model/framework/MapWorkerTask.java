@@ -21,7 +21,7 @@ public interface MapWorkerTask extends WorkerTask {
 	 *            der Input der bearbeitet werden soll.
 	 * 
 	 */
-	void runMapInstruction(String inputUID, String input);
+	void runMapInstruction();
 
 	/**
 	 * Gibt den eindeutigen Identifyer des derzeitigen Input zurück.

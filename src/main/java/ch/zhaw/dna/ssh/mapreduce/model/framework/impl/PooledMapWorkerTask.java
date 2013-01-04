@@ -35,10 +35,10 @@ public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 	private final String mapReduceTaskUID;
 
 	/** Die derzeit zu bearbeitenden Daten */
-	private String toDo;
+	private final String toDo;
 
 	/** Die eindeutihe ID die jeder input besitzt */
-	private String inputUID;
+	private final String inputUID;
 
 	/** Der den Task ausführende Worker */
 	private volatile Worker processingWorker;
@@ -48,11 +48,15 @@ public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 
 	@Inject
 	public PooledMapWorkerTask(Pool pool, @Assisted("uuid") String mapReduceTaskUID,
-			@Assisted MapInstruction mapInstruction, @Assisted @Nullable CombinerInstruction combinerInstruction) {
+			@Assisted MapInstruction mapInstruction,
+			@Assisted @Nullable CombinerInstruction combinerInstruction,
+			@Assisted("inputUID") String inputUID, @Assisted("input") String input) {
 		this.pool = pool;
 		this.mapReduceTaskUID = mapReduceTaskUID;
 		this.mapInstruction = mapInstruction;
 		this.combinerInstruction = combinerInstruction;
+		this.inputUID = inputUID;
+		this.toDo = input;
 	}
 
 	/** {@inheritDoc} */
@@ -63,9 +67,7 @@ public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 
 	/** {@inheritDoc} */
 	@Override
-	public void runMapInstruction(String inputUID, String input) {
-		this.toDo = input;
-		this.inputUID = inputUID;
+	public void runMapInstruction() {
 		this.currentState = State.ENQUEUED;
 		this.pool.enqueueWork(this);
 	}
@@ -87,7 +89,8 @@ public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 			// Mappen
 			this.mapInstruction.map(this, toDo);
 
-			// Alle Ergebnisse verdichten. Die Ergebnisse aus der derzeitigen Worker sollen einbezogen werden.
+			// Alle Ergebnisse verdichten. Die Ergebnisse aus der derzeitigen Worker sollen
+			// einbezogen werden.
 			if (this.combinerInstruction != null) {
 				List<KeyValuePair> vals = processingWorker.getStoredKeyValuePairs(mapReduceTaskUID);
 				if (vals != null) {

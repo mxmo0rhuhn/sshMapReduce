@@ -1,5 +1,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+import java.util.List;
+
 import com.google.inject.assistedinject.Assisted;
 
 /**
@@ -43,5 +45,5 @@ public interface WorkerTaskFactory {
 	 * @return eine neue Instanz eines ReduceWorkerTask
 	 */
 	ReduceWorkerTask createReduceWorkerTask(@Assisted("uuid") String mapReduceTaskUUID, @Assisted("key") String key,
-			ReduceInstruction reduceInstr);
+			ReduceInstruction reduceInstr, @Assisted List<KeyValuePair> toDo, @Assisted("inputUID") String inputUID, @Assisted("input") String input);
 }
