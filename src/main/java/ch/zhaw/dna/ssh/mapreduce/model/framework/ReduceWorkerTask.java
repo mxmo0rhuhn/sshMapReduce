@@ -1,7 +1,5 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
-import java.util.List;
-
 /**
  * Die Middleware für einen REDUCE Task auf einem Worker. Ein ReduceTask muss Ergebnisse für seine derzeitige Aufgabe
  * ausgeben können.
@@ -12,12 +10,9 @@ import java.util.List;
 public interface ReduceWorkerTask extends WorkerTask {
 
 	/**
-	 * Führt die derzeit zugewiesene Reduce Aufgabe für den Output der gegebenen MapInstructions aus.
-	 * 
-	 * @param toDo
-	 *            der Input der bearbeitet werden soll.
+	 * Führt die derzeit zugewiesene Reduce Aufgabe für den Output der gegebenen ReduceInstruction aus.
 	 */
-	boolean runReduceTask(List<KeyValuePair> toDo);
+	boolean runReduceTask();
 
 	/**
 	 * Jeder Reduce Task reduziert ein Wort. Diese Wort wird hier zurueckgegeben.

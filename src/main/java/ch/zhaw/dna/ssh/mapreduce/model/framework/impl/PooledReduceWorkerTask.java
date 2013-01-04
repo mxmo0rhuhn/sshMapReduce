@@ -44,7 +44,7 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 	/**
 	 * Der zu reduzierende Input
 	 */
-	private List<KeyValuePair> input;
+	private final List<KeyValuePair> input;
 
 	/**
 	 * Dieser Worker arbeitet daran. Wenn null arbeitet gerade keiner dran. Wenn der Task erfolgreich abgschlossen ist,
@@ -63,18 +63,18 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 
 	@Inject
 	public PooledReduceWorkerTask(Pool pool, @Assisted("uuid") String mapReduceTaskUUID, @Assisted("key") String key,
-			@Assisted ReduceInstruction reduceInstruction) {
+			@Assisted ReduceInstruction reduceInstruction, @Assisted List<KeyValuePair> toDo) {
 		this.pool = pool;
 		this.mapReduceTaskUUID = mapReduceTaskUUID;
 		this.key = key;
 		this.reduceInstruction = reduceInstruction;
+		this.input = toDo;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public boolean runReduceTask(List<KeyValuePair> keyValues) {
+	public boolean runReduceTask() {
 		this.curState = State.ENQUEUED;
-		this.input = keyValues;
 		return this.pool.enqueueWork(this);
 	}
 

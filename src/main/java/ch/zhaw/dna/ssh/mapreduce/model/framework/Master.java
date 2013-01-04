@@ -1,8 +1,10 @@
 package ch.zhaw.dna.ssh.mapreduce.model.framework;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -21,19 +23,6 @@ public final class Master {
 
 	private final WorkerTaskFactory runnerFactory;
 
-	// Die übersetzung welche ID welchen Input hat
-	private Map<String, String> taskIDMapping;
-
-	// Eine Sammelung aus IDs von ausstehenden Tasks und wer sie erledigen will.
-	// TODO das ist noch falsch: später soll dies keine 1-1 Relation sein
-	private Map<String, MapWorkerTask> undoneTasks;
-
-	// Eine Sammelung aus IDs von erledigten Tasks
-	private List<String> doneTasks;
-
-	// Alle Worker, die Ergebnisse besitzen
-	private Set<Worker> mapResults;
-
 	@Inject
 	public Master(WorkerTaskFactory runnerFactory, @MapReduceTaskUUID String mapReduceTaskUUID) {
 		this.runnerFactory = runnerFactory;
@@ -41,44 +30,59 @@ public final class Master {
 	}
 
 	public Map<String, Collection<String>> runComputation(final MapInstruction mapInstruction,
-			final CombinerInstruction combinerInstruction, final ReduceInstruction reduceInstruction,
-			Iterator<String> input) {
+			final CombinerInstruction combinerInstruction,
+			final ReduceInstruction reduceInstruction, Iterator<String> input) {
 
+		// Die übersetzung welche ID welchen Input hat
+		Map<String, String> taskIDMapping = new HashMap<String, String>();
+
+		// Eine Sammelung aus IDs von ausstehenden Tasks und wer sie erledigen will.
+		// TODO das ist noch falsch: später soll dies keine 1-1 Relation sein
+		Map<String, MapWorkerTask> undoneTasks = new HashMap<String, MapWorkerTask>();
+
+		// Alle Worker, die Ergebnisse besitzen
+		Set<Worker> mapResults = new HashSet<Worker>();
+
+		// reiht für jeden Input - Teil einen MapWorkerTask in den Pool ein
 		while (input.hasNext()) {
-			MapWorkerTask mapRunner = runnerFactory.createMapWorkerTask(mapReduceTaskUUID, mapInstruction,
-					combinerInstruction);
+			MapWorkerTask mapTask = runnerFactory.createMapWorkerTask(mapReduceTaskUUID,
+					mapInstruction, combinerInstruction);
 
 			String inputUID = UUID.randomUUID().toString();
 			String todo = input.next();
 
-			undoneTasks.put(inputUID, mapRunner);
+			undoneTasks.put(inputUID, mapTask);
 			taskIDMapping.put(inputUID, todo);
-			mapRunner.runMapInstruction(inputUID, todo);
+			mapTask.runMapInstruction(inputUID, todo);
 		}
+		// Eine Sammelung aus IDs von erledigten Tasks
+		List<String> doneTasks = new ArrayList<String>(undoneTasks.size());
 
+		// Fragt alle MapWorker Tasks an ob sie bereits erledigt sind - bis sie erledigt sind ...
 		do {
-			updateDoneMappers();
+			updateDoneMappers(doneTasks, mapResults, undoneTasks, taskIDMapping);
 			// Wartet eine Sekunde abzüglich der Prozentzahl an bereits erledigten Aufgaben
 			try {
-				wait(1000 - 1000 * (doneTasks.size() / taskIDMapping.size()));
+				wait(1000 - 1000 * (doneTasks.size() / (taskIDMapping.size() + 1)));
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// ... das war nicht gut irgendwas war
+				System.err.println("Exiting ... interupted");
+				return Collections.emptyMap();
 			}
 
 		} while (undoneTasks.size() > 0);
 
 		// INSERT SOME SHUFFELING HERE!
-		// }
-		//
-		// while (!allWorkerTasksCompleted(reduceRunners.values())) {
-		// try {
-		// Thread.sleep(100);
-		// } catch (InterruptedException e) {
-		// Thread.currentThread().interrupt();
-		// break;
-		// }
-		// }
+		Map<String,List<KeyValuePair>> magicShuffleStructure
+		
+		 for(Worker curMapResult : mapResults) {
+		 }
+		
+		for(Map.Entry<String, List<String>> keyValuePairs : magicShuffleStructure.entrySet()) {
+			 ReduceWorkerTask reduceTask = runnerFactory.createReduceWorkerTask(mapReduceTaskUUID, keyValuePairs.getKey(), reduceInstruction);
+			reduceTask.runReduceTask(keyValuePairs.getValue());
+		}
+
 		return globalResultStructure;
 	}
 
@@ -122,7 +126,8 @@ public final class Master {
 	// return true;
 	// }
 
-	private void updateDoneMappers() {
+	private void updateDoneMappers(List<String> doneTasks, Set<Worker> mapResults,
+			Map<String, MapWorkerTask> undoneTasks, Map<String, String> taskIDMapping) {
 		// Schauen welche Tasks noch ausstehend sind
 		for (String todoID : taskIDMapping.keySet()) {
 			if (undoneTasks.containsKey(todoID)) {
