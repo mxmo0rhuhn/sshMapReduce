@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -54,37 +53,37 @@ public class PooledReduceWorkerTaskTest {
 
 	@Test
 	public void shouldSetKey() {
-		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr);
+		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr, keyVals);
 		assertEquals("key", task.getKey());
 	}
 
 	@Test
 	public void shouldSetMrUuid() {
-		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr);
+		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr, keyVals);
 		assertEquals("mruid", task.getMapReduceTaskUUID());
 	}
 
 	@Test
 	public void shouldSetReduceInstruction() {
-		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr);
+		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr, keyVals);
 		assertSame(redInstr, task.getReduceTask());
 	}
 
 	@Test
 	public void shouldBeInitiatedInitially() {
-		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr);
+		PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr, keyVals);
 		assertEquals(State.INITIATED, task.getCurrentState());
 	}
 
 	@Test
 	public void shouldBeEnqueuedAfterSubmissionToPool() {
-		final PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr);
+		final PooledReduceWorkerTask task = new PooledReduceWorkerTask(p, "mruid", "key", redInstr, keyVals);
 		this.context.checking(new Expectations() {
 			{
 				oneOf(p).enqueueWork(task);
 			}
 		});
-		task.runReduceTask(new ArrayList<KeyValuePair>());
+		task.runReduceTask();
 		assertEquals(State.ENQUEUED, task.getCurrentState());
 	}
 
@@ -95,13 +94,13 @@ public class PooledReduceWorkerTaskTest {
 		ExactCommandExecutor exec = new ExactCommandExecutor(1);
 		ThreadWorker worker = new ThreadWorker(pool, exec);
 		pool.donateWorker(worker);
-		final PooledReduceWorkerTask task = new PooledReduceWorkerTask(pool, "mruid", "key", redInstr);
+		final PooledReduceWorkerTask task = new PooledReduceWorkerTask(pool, "mruid", "key", redInstr, keyVals);
 		this.context.checking(new Expectations() {
 			{
 				oneOf(redInstr).reduce(with(task), with("key"), with(aNonNull(Iterator.class)));
 			}
 		});
-		task.runReduceTask(keyVals);
+		task.runReduceTask();
 		assertTrue(exec.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		assertEquals(State.COMPLETED, task.getCurrentState());
 	}
@@ -124,8 +123,8 @@ public class PooledReduceWorkerTaskTest {
 					throw new RuntimeException();
 				}
 			}
-		});
-		task.runReduceTask(keyVals);
+		}, keyVals);
+		task.runReduceTask();
 		Thread.yield();
 		Thread.sleep(200);
 		assertEquals(State.INPROGRESS, task.getCurrentState());
@@ -144,8 +143,8 @@ public class PooledReduceWorkerTaskTest {
 			public void reduce(ReduceEmitter emitter, String key, Iterator<KeyValuePair> values) {
 				throw new NullPointerException();
 			}
-		});
-		task.runReduceTask(keyVals);
+		}, keyVals);
+		task.runReduceTask();
 		Thread.yield();
 		Thread.sleep(200);
 		assertEquals(State.FAILED, task.getCurrentState());
@@ -175,13 +174,13 @@ public class PooledReduceWorkerTaskTest {
 					throw new IllegalStateException("unexpected");
 				}
 			}
-		});
-		task.runReduceTask(keyVals);
+		}, keyVals);
+		task.runReduceTask();
 		assertTrue(exec1.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		assertEquals(State.FAILED, task.getCurrentState());
 		assertNull(task.getWorker());
 		
-		task.runReduceTask(keyVals);
+		task.runReduceTask();
 		assertTrue(exec2.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		assertEquals(State.COMPLETED, task.getCurrentState());
 		assertSame(worker2, task.getWorker());
@@ -200,8 +199,8 @@ public class PooledReduceWorkerTaskTest {
 			public void reduce(ReduceEmitter emitter, String key, Iterator<KeyValuePair> values) {
 				emitter.emit("value");
 			}
-		});
-		assertTrue(task.runReduceTask(keyVals));
+		}, keyVals);
+		assertTrue(task.runReduceTask());
 		assertTrue(exec.waitForExpectedTasks(100, TimeUnit.MILLISECONDS));
 		List<KeyValuePair> results = worker.getStoredKeyValuePairs("mruid");
 		assertEquals(1, results.size());
