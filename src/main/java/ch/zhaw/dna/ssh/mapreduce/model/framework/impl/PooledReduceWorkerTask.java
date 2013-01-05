@@ -107,7 +107,7 @@ public class PooledReduceWorkerTask implements ReduceWorkerTask, ReduceEmitter {
 
 	/** {@inheritDoc} */
 	@Override
-	public String getKey() {
+	public String getUUID() {
 		return this.key;
 	}
 

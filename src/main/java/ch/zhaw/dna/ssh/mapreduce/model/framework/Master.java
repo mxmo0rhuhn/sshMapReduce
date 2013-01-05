@@ -18,10 +18,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.MapReduceTaskUUID;
 
 public final class Master {
 
-	private final Map<String, Collection<String>> globalResultStructure = new HashMap<String, Collection<String>>();
-
 	private final String mapReduceTaskUUID;
-
 	private final WorkerTaskFactory runnerFactory;
 
 	@Inject
@@ -34,109 +31,132 @@ public final class Master {
 			final CombinerInstruction combinerInstruction,
 			final ReduceInstruction reduceInstruction, Iterator<String> input) {
 
-		// Die übersetzung welche ID welchen Input hat
-		Map<String, String> taskIDMapping = new HashMap<String, String>();
+		// Alle derzeitigen aufgaben die ausgeführt werden
+		Set<WorkerTask> activeWorkerTasks = new HashSet<WorkerTask>();
+		// Eine Sammelung aus IDs von ausstehenden Tasks
+		Set<String> undoneTasks = new HashSet<String>();
 
-		// Eine Sammelung aus IDs von ausstehenden Tasks und wer sie erledigen will.
-		// TODO das ist noch falsch: später soll dies keine 1-1 Relation sein
-		Map<String, MapWorkerTask> undoneTasks = new HashMap<String, MapWorkerTask>();
+		// Die übersetzung welche Map ID welchen Input hat
+		Map<String, String> mapTaskIDMapping = new HashMap<String, String>();
 
 		// Alle Worker, die Ergebnisse besitzen
 		Set<Worker> mapResults = new HashSet<Worker>();
+
 		// MAP
 		// reiht für jeden Input - Teil einen MapWorkerTask in den Pool ein
 		while (input.hasNext()) {
-			MapWorkerTask mapTask = runnerFactory.createMapWorkerTask(mapReduceTaskUUID,
-					mapInstruction, combinerInstruction);
 
-			String inputUID = UUID.randomUUID().toString();
+			String inputUUID = UUID.randomUUID().toString();
 			String todo = input.next();
 
-			undoneTasks.put(inputUID, mapTask);
-			taskIDMapping.put(inputUID, todo);
-			mapTask.runMapInstruction();
+			MapWorkerTask mapTask = runnerFactory.createMapWorkerTask(mapReduceTaskUUID,
+					mapInstruction, combinerInstruction, inputUUID, todo);
+
+			activeWorkerTasks.add(mapTask);
+			undoneTasks.add(inputUUID);
+			mapTaskIDMapping.put(inputUUID, todo);
+			mapTask.runMapTask();
 		}
-		List<String> doneTasks = new ArrayList<String>(undoneTasks.size());
 
 		try {
-			waitForWorkers(doneTasks, mapResults, undoneTasks, taskIDMapping);
+			waitForWorkers(mapResults, undoneTasks, activeWorkerTasks);
 		} catch (InterruptedException e) {
 			// ... das war nicht gut irgendwas war
 			System.err.println("Exiting ... interupted");
 			return Collections.emptyMap();
 		}
 
-		Map<String, List<KeyValuePair>> magicShuffleStructure = new HashMap<String, List<KeyValuePair>>();
+		Map<String, List<KeyValuePair>> reduceTasks = new HashMap<String, List<KeyValuePair>>();
 
 		// SHUFFLE
 		for (Worker curMapResult : mapResults) {
 			for (KeyValuePair curKeyValuePair : curMapResult
 					.getStoredKeyValuePairs(mapReduceTaskUUID)) {
-				if (magicShuffleStructure.containsKey(curKeyValuePair.getKey())) {
-					magicShuffleStructure.get(curKeyValuePair.getKey()).add(curKeyValuePair);
+				if (reduceTasks.containsKey(curKeyValuePair.getKey())) {
+					reduceTasks.get(curKeyValuePair.getKey()).add(curKeyValuePair);
 				} else {
 					List<KeyValuePair> newKeyValueList = new LinkedList<KeyValuePair>();
 					newKeyValueList.add(curKeyValuePair);
-					magicShuffleStructure.put(curKeyValuePair.getKey(), newKeyValueList);
+					reduceTasks.put(curKeyValuePair.getKey(), newKeyValueList);
 				}
-
-				runnerFactory.createMapWorkerTask(mapReduceTaskUUID, mapInstruction, combinerInstruction);
-				runnerFactory.createReduceWorkerTask(mapReduceTaskUUID, keyValuePairs.getKey(), reduceInstruction, keyValuePairs.getValue());
 			}
 		}
 
+		activeWorkerTasks = new HashSet<WorkerTask>();
+		undoneTasks = new HashSet<String>();
+		
+		// Alle Worker, die Ergebnisse besitzen
+		Set<Worker> reduceResults = new HashSet<Worker>();
+
 		// REDUCE
-		for (Map.Entry<String, List<KeyValuePair>> keyValuePairs : magicShuffleStructure.entrySet()) {
+		// reiht für jeden Input - Teil einen MapWorkerTask in den Pool ein
+		for (Map.Entry<String, List<KeyValuePair>> curKeyValuePairs : reduceTasks.entrySet()) {
+
+			String todo = input.next();
+
 			ReduceWorkerTask reduceTask = runnerFactory.createReduceWorkerTask(mapReduceTaskUUID,
-					keyValuePairs.getKey(), reduceInstruction, keyValuePairs.getValue());
+					curKeyValuePairs.getKey(), reduceInstruction, curKeyValuePairs.getValue());
+
+			activeWorkerTasks.add(reduceTask);
+			undoneTasks.add(curKeyValuePairs.getKey());
 			reduceTask.runReduceTask();
 		}
 
-		return globalResultStructure;
+		try {
+			waitForWorkers(reduceResults, undoneTasks, activeWorkerTasks);
+		} catch (InterruptedException e) {
+			// ... das war nicht gut irgendwas war
+			System.err.println("Exiting ... interupted");
+			return Collections.emptyMap();
+		}
+		Map<String, Collection<String>> resultStructure = new HashMap<String, Collection<String>>();
+		
+		for(Worker curWorker : reduceResults) {
+			resultStructure.put(key, value)
+		}
+
+		return resultStructure;
 	}
 
-	/**
-	 * Retourniert die globale Resultat-Struktur, wo alle Resultate gespeichert werden.
-	 * 
-	 * @return Map mit allen Resultaten
-	 */
-	public Map<String, Collection<String>> getGlobalResultStructure() {
-		return Collections.unmodifiableMap(this.globalResultStructure);
+	//
+	// /**
+	// * Retourniert die globale Resultat-Struktur, wo alle Resultate gespeichert werden.
+	// *
+	// * @return Map mit allen Resultaten
+	// */
+	// public Map<String, Collection<String>> getGlobalResultStructure() {
+	// return Collections.unmodifiableMap(this.globalResultStructure);
+	// }
+	//
+	public String getMapReduceTaskUUID() {
+		return this.mapReduceTaskUUID;
 	}
 
-	private void updateDoneWorkers(List<String> doneTasks, Set<Worker> results,
-			Map<String, MapWorkerTask> undoneTasks, Map<String, String> taskIDMapping) {
-		// Schauen welche Tasks noch ausstehend sind
-		for (String todoID : taskIDMapping.keySet()) {
-			if (undoneTasks.containsKey(todoID)) {
-				switch (undoneTasks.get(todoID).getCurrentState()) {
+	private void waitForWorkers(Set<Worker> results, Set<String> undoneTasks,
+			Set<WorkerTask> activeWorkerTasks) throws InterruptedException {
+		Set<String> doneTasks = new HashSet<String>(undoneTasks.size());
+
+		// Fragt alle MapWorker Tasks an ob sie bereits erledigt sind - bis sie erledigt sind ...
+		do {
+			// Schauen welche Tasks noch ausstehend sind
+			for (WorkerTask curWorkerTask : activeWorkerTasks) {
+				switch (curWorkerTask.getCurrentState()) {
 				case COMPLETED:
-					doneTasks.add(todoID);
-					results.add(undoneTasks.get(todoID).getWorker());
-					undoneTasks.remove(todoID);
-
+					// Aufgabe war noch nicht erledigt
+					if (!doneTasks.contains(curWorkerTask.getUUID())) {
+						doneTasks.add(curWorkerTask.getUUID());
+						results.add(curWorkerTask.getWorker());
+						undoneTasks.remove(curWorkerTask.getUUID());
+					}
 				case FAILED:
 
 					// Falls es diesen Status überhaupt gibt
 
 				}
 			}
-		}
-	}
-
-	public String getMapReduceTaskUUID() {
-		return this.mapReduceTaskUUID;
-	}
-
-	private void waitForWorkers(List<String> doneTasks, Set<Worker> results,
-			Map<String, MapWorkerTask> undoneTasks, Map<String, String> taskIDMapping)
-			throws InterruptedException {
-		// Fragt alle MapWorker Tasks an ob sie bereits erledigt sind - bis sie erledigt sind ...
-		do {
-			updateDoneWorkers(doneTasks, results, undoneTasks, taskIDMapping);
 			// Wartet eine Sekunde abzüglich der Prozentzahl an bereits erledigten Aufgaben
 			// "+1" um die DIV/0 zu verhindern
-			wait(1000 - 1000 * (doneTasks.size() / (taskIDMapping.size() + 1)));
+			wait(1000 - 1000 * (doneTasks.size() / (doneTasks.size() + undoneTasks.size() + 1)));
 
 		} while (undoneTasks.size() > 0);
 	}

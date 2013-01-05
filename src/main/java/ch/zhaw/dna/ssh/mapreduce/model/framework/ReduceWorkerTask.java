@@ -15,23 +15,9 @@ public interface ReduceWorkerTask extends WorkerTask {
 	boolean runReduceTask();
 
 	/**
-	 * Jeder Reduce Task reduziert ein Wort. Diese Wort wird hier zurueckgegeben.
-	 * 
-	 * @return das verwendetete Wort. Null, wenns keins gesetzt ist.
-	 */
-	String getKey();
-
-	/**
 	 * Gibt den ReduceTask fuer diesen Runner zurueck.
 	 * 
 	 * @return Gibt den ReduceTask fuer diesen Runner zurueck. null wenn keiner gesetzt ist.
 	 */
 	ReduceInstruction getReduceTask();
-
-	/**
-	 * Liefert die MapReduceTask ID zu der dieser Task gehoert
-	 * 
-	 * @return die MapReduceTask ID zu der dieser Task gehoert
-	 */
-	String getMapReduceTaskUUID();
 }

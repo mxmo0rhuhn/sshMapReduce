@@ -67,7 +67,7 @@ public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 
 	/** {@inheritDoc} */
 	@Override
-	public void runMapInstruction() {
+	public void runMapTask() {
 		this.currentState = State.ENQUEUED;
 		this.pool.enqueueWork(this);
 	}
@@ -117,7 +117,7 @@ public class PooledMapWorkerTask implements MapWorkerTask, MapEmitter {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getCurrentInputUID() {
+	public String getUUID() {
 		return inputUID;
 	}
 

@@ -39,4 +39,17 @@ public interface WorkerTask {
 	 * @return Der worker der diese Task ausgeführt hat.
 	 */
 	Worker getWorker();
+	
+	/**
+	 * Die ID dieses Worker Tasks.
+	 * @return
+	 */
+	String getUUID();
+
+	/**
+	 * Liefert die MapReduceTask ID zu der dieser Task gehoert
+	 * 
+	 * @return die MapReduceTask ID zu der dieser Task gehoert
+	 */
+	String getMapReduceTaskUUID();
 }
