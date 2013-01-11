@@ -27,10 +27,10 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import org.apache.commons.validator.routines.UrlValidator;
+
 import ch.zhaw.dna.ssh.mapreduce.controller.OutputController;
 import ch.zhaw.dna.ssh.mapreduce.controller.OutputController.OUTPUT_STRATEGY;
-
-import org.apache.commons.validator.routines.UrlValidator;
 
 /**
  * Dieses ist das Hauptfenster der Applikation

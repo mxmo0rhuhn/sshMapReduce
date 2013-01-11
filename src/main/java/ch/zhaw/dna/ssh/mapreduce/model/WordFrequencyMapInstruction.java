@@ -1,7 +1,7 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapEmitter;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapInstruction;
+import ch.zhaw.mapreduce.MapEmitter;
+import ch.zhaw.mapreduce.MapInstruction;
 
 /**
  * Splittet jedes Wort und Emit'ed es an MapWorkerTask

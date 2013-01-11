@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.KeyValuePair;
+import ch.zhaw.mapreduce.KeyValuePair;
 
 /**
  * Testet den combiner fürs Wörter Zählen

@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapEmitter;
+import ch.zhaw.mapreduce.MapEmitter;
 
 @RunWith(JMock.class)
 public class WordFrequencyMapTaskTest {

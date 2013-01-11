@@ -2,9 +2,9 @@ package ch.zhaw.dna.ssh.mapreduce.model;
 
 import java.util.Iterator;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.KeyValuePair;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceEmitter;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.ReduceInstruction;
+import ch.zhaw.mapreduce.KeyValuePair;
+import ch.zhaw.mapreduce.ReduceEmitter;
+import ch.zhaw.mapreduce.ReduceInstruction;
 
 /**
  * Reduced den Input und zaehlt ihn zusammen, emit'ed Summe

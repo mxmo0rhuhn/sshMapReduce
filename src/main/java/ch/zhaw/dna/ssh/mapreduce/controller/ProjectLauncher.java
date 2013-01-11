@@ -7,11 +7,11 @@ import java.util.Map.Entry;
 import ch.zhaw.dna.ssh.mapreduce.model.HundredWordsInputSplitter;
 import ch.zhaw.dna.ssh.mapreduce.model.WordFrequencyMapInstruction;
 import ch.zhaw.dna.ssh.mapreduce.model.WordFrequencyReduceInstruction;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.MapReduceTask;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.Pool;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.Worker;
-import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.Registry;
 import ch.zhaw.dna.ssh.mapreduce.view.MainFrame;
+import ch.zhaw.mapreduce.MapReduceTask;
+import ch.zhaw.mapreduce.Worker;
+import ch.zhaw.mapreduce.Pool;
+import ch.zhaw.mapreduce.registry.Registry;
 
 /**
  * Diese Klasse startet die Applikation * @author Max

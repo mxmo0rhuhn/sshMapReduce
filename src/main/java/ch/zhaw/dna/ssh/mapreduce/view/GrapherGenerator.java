@@ -6,9 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
 
-import ch.zhaw.dna.ssh.mapreduce.model.framework.registry.MapReduceConfig;
+import ch.zhaw.mapreduce.registry.MapReduceConfig;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
