@@ -112,7 +112,7 @@ public final class Master {
 		Map<String, Collection<String>> resultStructure = new HashMap<String, Collection<String>>();
 		
 		for(Worker curWorker : reduceResults) {
-			resultStructure.put(key, value)
+//			resultStructure.put(key, value);
 		}
 
 		return resultStructure;
