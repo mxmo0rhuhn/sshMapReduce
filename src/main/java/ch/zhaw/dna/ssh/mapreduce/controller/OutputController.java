@@ -2,7 +2,7 @@ package ch.zhaw.dna.ssh.mapreduce.controller;
 
 import java.io.IOException;
 
-import ch.zhaw.dna.ssh.mapreduce.view.ConsoleFrame;
+import ch.zhaw.dna.ssh.mapreduce.view.util.ConsoleOutput;
 import ch.zhaw.dna.ssh.mapreduce.view.util.FileOutput;
 import ch.zhaw.dna.ssh.mapreduce.view.util.OutputInterface;
 
@@ -14,7 +14,7 @@ import ch.zhaw.dna.ssh.mapreduce.view.util.OutputInterface;
  */
 public class OutputController {
 
-	private OutputInterface curOutputStrategy = new ConsoleFrame();
+	private OutputInterface curOutputStrategy = new ConsoleOutput();
 
 	public static enum OUTPUT_STRATEGY {
 		TEXTFILE, CONSOLE
@@ -29,7 +29,7 @@ public class OutputController {
 	public void setOutput(OUTPUT_STRATEGY outMethod) {
 		switch (outMethod) {
 		case TEXTFILE:
-			if(curOutputStrategy instanceof ConsoleFrame) {
+			if(curOutputStrategy instanceof ConsoleOutput) {
 				curOutputStrategy.stop();
 			}
 			curOutputStrategy = new FileOutput();
@@ -39,7 +39,7 @@ public class OutputController {
 			if(curOutputStrategy instanceof FileOutput) {
 				curOutputStrategy.stop();
 			}
-			curOutputStrategy = new ConsoleFrame();
+			curOutputStrategy = new ConsoleOutput();
 			break;
 		}
 	}

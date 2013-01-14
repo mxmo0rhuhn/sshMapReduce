@@ -8,6 +8,9 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Timestamp;
+import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -31,6 +34,7 @@ import org.apache.commons.validator.routines.UrlValidator;
 
 import ch.zhaw.dna.ssh.mapreduce.controller.OutputController;
 import ch.zhaw.dna.ssh.mapreduce.controller.OutputController.OUTPUT_STRATEGY;
+import ch.zhaw.dna.ssh.mapreduce.model.WebCrawler;
 
 /**
  * Dieses ist das Hauptfenster der Applikation
@@ -52,16 +56,16 @@ public class MainFrame extends JFrame implements Observer {
 	private JTextField specialWorfField;
 
 	// Ausgabe für die derzeitige Schachtlungstiefe
-	private JPanel currentTiefePanel;
+	private JLabel currentTiefeLabel;
 
 	// Ausgabe für die bereits durchsuchten Websites
-	private JPanel currentPagesPanel;
+	private JLabel currentPagesLabel;
 
 	// Ausgabe für die bereits verstrichene Zeit
-	private JPanel currentZeitPanel;
+	private JLabel currentZeitLabel;
 
 	// Ausgabe für die bereits erfolgten Treffer
-	private JPanel currentVorkommenPanel;
+	private JLabel currentVorkommenLabel;
 
 	// Checkboxen für spezielle HTML-Elemente
 	private JCheckBox h1CheckBox;
@@ -73,11 +77,20 @@ public class MainFrame extends JFrame implements Observer {
 	// Dropdown für eine Schachtlungstiefe
 	private JComboBox schachtlungsComboBox;
 
+	// Knopf um die Applikation zu starten
+	private JButton runButton;
+
+	private final WebCrawler searchCrawler;
+
+	private String elapsedTime;
+	private boolean isFinished;
+
 	/**
 	 * Erstellt das Frame und stellt das look and feel
 	 */
-	public MainFrame(OutputController curOutputController) {
+	public MainFrame(OutputController curOutputController, WebCrawler searchCrawler) {
 
+		this.searchCrawler = searchCrawler;
 		this.curOutputController = curOutputController;
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -87,9 +100,10 @@ public class MainFrame extends JFrame implements Observer {
 				}
 			}
 		} catch (Exception e) {
-			JOptionPane.showConfirmDialog(null,
-					"Konnte Interface nicht richtig aufbauen. Wechsle auf default interface.\n" + e.getMessage(), "Fehler",
-					JOptionPane.OK_CANCEL_OPTION);
+			JOptionPane.showConfirmDialog(
+					null,
+					"Konnte Interface nicht richtig aufbauen. Wechsle auf default interface.\n"
+							+ e.getMessage(), "Fehler", JOptionPane.OK_CANCEL_OPTION);
 		}
 
 		this.setTitle("SSH MapReduce");
@@ -227,26 +241,96 @@ public class MainFrame extends JFrame implements Observer {
 		schachtlungsPanel.setLayout(new GridLayout(1, 2));
 		schachtlungsPanel.add(new JLabel("Schachtlungstiefe"));
 
-		// TODO hier muss noch eine maximale Schachtlungstiefe hin
-		schachtlungsComboBox = new JComboBox(new String[] { "Work needs to be done" });
+		schachtlungsComboBox = new JComboBox(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
 		schachtlungsPanel.add(schachtlungsComboBox);
 		inputPanel.add(schachtlungsPanel);
 
 		// Zeile 6 : Senden Button
-		JButton runButton = new JButton("Los geht's!");
+		runButton = new JButton("Los geht's!");
 		runButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String url = pathTextField.getText();
 				String[] schemes = { "http", "https" };
 				UrlValidator urlValidator = new UrlValidator(schemes);
 				if (urlValidator.isValid(url)) {
-					
-					// TODO Sth. has to happen here!
+
+					MainFrame.this.isFinished = false;
+					MainFrame.this.runButton.setEnabled(false);
+					MainFrame.this.pathTextField.setEnabled(false);
+					MainFrame.this.specialWorfField.setEnabled(false);
+
+					new Thread(new Runnable() {
+
+						@Override
+						public void run() {
+							MainFrame.this.searchCrawler.setConsiderAtags(MainFrame.this.aCheckBox
+									.isSelected());
+							MainFrame.this.searchCrawler.setConsiderPtags(MainFrame.this.pCheckBox
+									.isSelected());
+							MainFrame.this.searchCrawler
+									.setConsiderH1tags(MainFrame.this.h1CheckBox.isSelected());
+							MainFrame.this.searchCrawler
+									.setConsiderH2tags(MainFrame.this.h2CheckBox.isSelected());
+							MainFrame.this.searchCrawler
+									.setConsiderH3tags(MainFrame.this.h3CheckBox.isSelected());
+
+							MainFrame.this.currentVorkommenLabel.setText(""
+									+ MainFrame.this.searchCrawler.searchTheWeb(
+											MainFrame.this.pathTextField.getText(),
+											MainFrame.this.specialWorfField.getText(),
+											MainFrame.this.schachtlungsComboBox.getSelectedIndex() + 1));
+							MainFrame.this.isFinished = true;
+							MainFrame.this.runButton.setEnabled(true);
+							MainFrame.this.pathTextField.setEnabled(true);
+							MainFrame.this.specialWorfField.setEnabled(true);
+						}
+					}).start();
+
+					new Thread(new Runnable() {
+
+						@Override
+						public void run() {
+							MainFrame.this.elapsedTime = "00:00:000";
+							final long secondInMillis = 1000;
+							final long minuteInMillis = secondInMillis * 60;
+
+							final long start = System.currentTimeMillis();
+							long end = System.currentTimeMillis();
+							long diff = (end - start);
+
+							DecimalFormat df = new DecimalFormat(String.valueOf(new char[] { '0',
+									'0' }));
+							DecimalFormat df2 = new DecimalFormat(String.valueOf(new char[] { '0',
+									'0', '0' }));
+
+							while (!MainFrame.this.isFinished) {
+
+								diff = (end - start);
+								long elapsedMinutes = diff / minuteInMillis;
+								diff = diff % minuteInMillis;
+								long elapsedSeconds = diff / secondInMillis;
+
+								diff = diff % secondInMillis;
+								MainFrame.this.elapsedTime = "" + df.format(elapsedMinutes) + ":"
+										+ df.format(elapsedSeconds) + ":" + df2.format(diff);
+								MainFrame.this.currentZeitLabel.setText(MainFrame.this.elapsedTime);
+								try {
+									Thread.sleep(200);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								end = System.currentTimeMillis();
+							}
+						}
+					}).start();
+
 				} else {
-					JOptionPane.showMessageDialog(MainFrame.this, "Dies ist keine valide URL", "Fehler", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(MainFrame.this, "Dies ist keine valide URL",
+							"Fehler", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -268,24 +352,24 @@ public class MainFrame extends JFrame implements Observer {
 		// Zeile 1 Vorkommen und Tiefe
 		statusPanel.add(new JLabel("Vorkommen:"));
 
-		currentVorkommenPanel = new JPanel();
-		statusPanel.add(currentVorkommenPanel);
+		currentVorkommenLabel = new JLabel();
+		statusPanel.add(currentVorkommenLabel);
 
 		statusPanel.add(new JLabel("Tiefe:"));
 
-		currentTiefePanel = new JPanel();
-		statusPanel.add(currentTiefePanel);
+		currentTiefeLabel = new JLabel();
+		statusPanel.add(currentTiefeLabel);
 
 		// Zeile 2 : Seiten Durchsucht und Zeit
 		statusPanel.add(new JLabel("Seiten durchsucht:"));
 
-		currentPagesPanel = new JPanel();
-		statusPanel.add(currentPagesPanel);
+		currentPagesLabel = new JLabel();
+		statusPanel.add(currentPagesLabel);
 
 		statusPanel.add(new JLabel("Zeit"));
 
-		currentZeitPanel = new JPanel();
-		statusPanel.add(currentZeitPanel);
+		currentZeitLabel = new JLabel();
+		statusPanel.add(currentZeitLabel);
 
 		return statusPanel;
 	}
@@ -293,7 +377,12 @@ public class MainFrame extends JFrame implements Observer {
 	/** {@inheritDoc} */
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Hier müssen dann die Felder ses StatusPanels aktualisiert werden.
+		currentTiefeLabel.setText("" + searchCrawler.getDepth());
+		currentPagesLabel.setText("" + searchCrawler.getSearchedSides());
 
+		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Start Url: "
+				+ pathTextField.getText() + " Gesuchtes Wort: " + specialWorfField.getText()
+				+ " Erreichte Schachtlungstiefe: " + searchCrawler.getDepth()
+				+ " Durchsuchte Seiten: " + searchCrawler.getSearchedSides() + " Benötigte Zeit: " + elapsedTime);
 	}
 }

@@ -8,7 +8,9 @@ import java.util.Iterator;
  * @author Reto
  * 
  */
-public class HundredWordsInputSplitter implements Iterator<String> {
+public class WordsInputSplitter implements Iterator<String> {
+	
+	private final int length;
 
 	/**
 	 * Position im input, wo als naechstes gelesen werden kann.
@@ -27,11 +29,12 @@ public class HundredWordsInputSplitter implements Iterator<String> {
 	 * @param input
 	 *            darf nicht null sein
 	 */
-	public HundredWordsInputSplitter(String input) {
+	public WordsInputSplitter(String input, int length) {
 		if (input == null) {
 			throw new IllegalArgumentException("Input darf nicht null sein.");
 		}
 		this.input = input;
+		this.length = length;
 	}
 
 	/**
@@ -53,7 +56,7 @@ public class HundredWordsInputSplitter implements Iterator<String> {
 		}
 		int start = this.pos;
 		int words = 0;
-		while (words < 100 && ++this.pos < this.input.length()) {
+		while (words < length && ++this.pos < this.input.length()) {
 			if (this.input.charAt(this.pos) == ' ') {
 				words++;
 			}

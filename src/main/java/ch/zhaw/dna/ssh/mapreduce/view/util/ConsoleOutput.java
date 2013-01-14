@@ -1,4 +1,4 @@
-package ch.zhaw.dna.ssh.mapreduce.view;
+package ch.zhaw.dna.ssh.mapreduce.view.util;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -10,7 +10,6 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import ch.zhaw.dna.ssh.mapreduce.view.util.OutputInterface;
 
 /**
  * Diese Klasse stellt die Konsolenausgabe in einem eigenen Fenster dar. Anweisungen wie System.out.println() nach dem Instanzieren auf
@@ -20,14 +19,14 @@ import ch.zhaw.dna.ssh.mapreduce.view.util.OutputInterface;
  */
 @SuppressWarnings("serial")
 // Wird nicht Serialisiert
-public class ConsoleFrame extends JFrame implements OutputInterface {
+public class ConsoleOutput extends JFrame implements OutputInterface {
 	private final JTextArea textArea;
 	private final JPanel panel;
 
 	/**
 	 * Erstellt ein neues Konsolen-Fenster, welches ab sofort die Konsolenausgabe darstellt.
 	 */
-	public ConsoleFrame() {
+	public ConsoleOutput() {
 		this.textArea = new JTextArea();
 		this.textArea.setEditable(false);
 
@@ -57,7 +56,7 @@ public class ConsoleFrame extends JFrame implements OutputInterface {
 			/** {@inheritDoc} */
 			@Override
 			public void run() {
-				ConsoleFrame.this.textArea.append(text + "\n");
+				ConsoleOutput.this.textArea.append(text + "\n");
 			}
 		});
 	}
