@@ -14,6 +14,7 @@ public class ConcreteWebMap implements MapInstruction {
 	private boolean pIsSet = false;
 	private boolean aIsSet = false;
 	
+	public static final String URLKEY = "Urls";
 
 
 	public void map(MapEmitter arg0, String url) {
