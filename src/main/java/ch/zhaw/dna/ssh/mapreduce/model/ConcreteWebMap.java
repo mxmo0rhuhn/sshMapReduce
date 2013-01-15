@@ -1,7 +1,10 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
+import java.io.IOException;
+
 import ch.zhaw.mapreduce.MapEmitter;
 import ch.zhaw.mapreduce.MapInstruction;
+
 
 public class ConcreteWebMap implements MapInstruction {
 	
@@ -10,11 +13,30 @@ public class ConcreteWebMap implements MapInstruction {
 	private boolean h3IsSet = false;
 	private boolean pIsSet = false;
 	private boolean aIsSet = false;
+	
 
 
-	@Override
-	public void map(MapEmitter arg0, String arg1) {
-		// TODO Auto-generated method stub
+	public void map(MapEmitter arg0, String url) {
+		
+		//1.get URL
+			try {
+				getURL(url);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    //2. Parse content
+			
+			
+			
+
+		
+	}
+	
+	public String getURL(String url) throws IOException{
+		URLInputReader input = new URLInputReader();
+
+		return input.readURL(url);
 		
 	}
 
