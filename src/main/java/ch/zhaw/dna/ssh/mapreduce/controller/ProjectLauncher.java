@@ -19,22 +19,26 @@ public class ProjectLauncher {
 	 *            die nicht beachteten Übergabeparameter
 	 */
 	public static void main(String[] args) {
-		new ProjectLauncher();
+		int nworker = args.length == 1 ? Integer.parseInt(args[0]) : Runtime.getRuntime().availableProcessors() + 1;
+		ProjectLauncher launcher = new ProjectLauncher();
+		launcher.launch(nworker);
 	}
 	
 	/**
-	 * Startet die Applikation mit 6 Workern.
+	 * default konstruktor
 	 */
-	public ProjectLauncher() {
+	public ProjectLauncher() { }
+	
+	/**
+	 * Startet das GUI und gibt dem Pool eine bestimmte Anzahl Worker
+	 * @param nworkers
+	 */
+	public void launch(int nworkers) {
+		// TODO do not use registry directly
 		Pool pool = Registry.getComponent(Pool.class);
-		pool.donateWorker(Registry.getComponent(Worker.class));
-		pool.donateWorker(Registry.getComponent(Worker.class));
-		pool.donateWorker(Registry.getComponent(Worker.class));
-		pool.donateWorker(Registry.getComponent(Worker.class));
-		pool.donateWorker(Registry.getComponent(Worker.class));
-		pool.donateWorker(Registry.getComponent(Worker.class));
-		pool.donateWorker(Registry.getComponent(Worker.class));
-
+		for (int i = 0; i < nworkers; i++) {
+			pool.donateWorker(Registry.getComponent(Worker.class));
+		}
 		OutputController out = new OutputController();
 		WebCrawler currentWebCrawler = new WebCrawler();
 		new MainFrame(out, currentWebCrawler);
