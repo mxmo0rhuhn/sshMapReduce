@@ -28,7 +28,7 @@ public class URLInputReader {
 	 * 				zusammengebauter Input als String
 	 * 
 	 */
-	public StringBuilder readURL(String inputURL) throws IOException {
+	public String readURL(String inputURL) throws IOException {
 
 		StringBuilder build = new StringBuilder();
 
@@ -43,7 +43,7 @@ public class URLInputReader {
 		} finally {
 			in.close();
 		}
-		return build;
+		return build.toString();
 	}
 
 }

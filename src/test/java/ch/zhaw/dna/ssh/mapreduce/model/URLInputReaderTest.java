@@ -18,6 +18,7 @@ public class URLInputReaderTest {
 
 	}
 
+	@Test
 	public void lookForTestWord() throws IOException {
 		URLInputReader uir = new URLInputReader();
 		assertTrue(uir.readURL(url).toString().contains("Pattern"));
