@@ -64,5 +64,10 @@
       <artifactId>commons-validator</artifactId>
       <version>1.4.0</version>
    </dependency>
+    <dependency>
+      <groupId>org.w3c</groupId>
+      <artifactId>dom</artifactId>
+      <version>2.3.0-jaxb-1.0.6</version>
+   </dependency>
   </dependencies>
 </project>
