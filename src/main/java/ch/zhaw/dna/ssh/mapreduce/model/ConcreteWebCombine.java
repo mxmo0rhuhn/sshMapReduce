@@ -21,19 +21,20 @@ public class ConcreteWebCombine implements CombinerInstruction {
 		while (toCombine.hasNext()) {
 			KeyValuePair currentKeyValuePair = toCombine.next();
 			if (concatenatedStrings.containsKey(currentKeyValuePair.getKey())) {
-				concatenatedStrings.get(currentKeyValuePair.getKey()).append(
-						currentKeyValuePair.getValue());
+				if (concatenatedStrings.get(currentKeyValuePair.getKey()).length() != 0) {
+					concatenatedStrings.get(currentKeyValuePair.getKey()).append(' ');
+				}
+				concatenatedStrings.get(currentKeyValuePair.getKey()).append(currentKeyValuePair.getValue());
 
 			} else {
-				concatenatedStrings.put(currentKeyValuePair.getKey(),
-						new StringBuilder(currentKeyValuePair.getValue()));
+				concatenatedStrings
+						.put(currentKeyValuePair.getKey(), new StringBuilder(currentKeyValuePair.getValue()));
 			}
 
 		}
 		List<KeyValuePair> returnValues = new ArrayList<KeyValuePair>();
 		for (String key : concatenatedStrings.keySet()) {
-			returnValues.add(new KeyValuePair(key, concatenatedStrings.get(key)
-					.toString()));
+			returnValues.add(new KeyValuePair(key, concatenatedStrings.get(key).toString()));
 		}
 		return returnValues;
 	}
