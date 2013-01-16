@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.io.IOException;
 
 import ch.zhaw.mapreduce.MapEmitter;
 import ch.zhaw.mapreduce.MapInstruction;
@@ -12,14 +11,7 @@ import ch.zhaw.mapreduce.MapInstruction;
 
 public class ConcreteWebMap implements MapInstruction {
 
-	
-	private boolean h1IsSet = false;
-	private boolean h2IsSet = false;
-	private boolean h3IsSet = false;
-	private boolean pIsSet = false;
-	private boolean aIsSet = false;
-	
-	public static final String URLKEY = "Urls";
+	public static final String URLKEY = "URLS";
 
 
 	private final Set<String> tags = new HashSet<String>(5);
