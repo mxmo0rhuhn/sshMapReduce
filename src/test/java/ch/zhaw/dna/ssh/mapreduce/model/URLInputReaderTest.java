@@ -13,14 +13,14 @@ public class URLInputReaderTest {
 
 	@Test
 	public void testInputURL() throws IOException {
-		URLInputReader uir = new URLInputReader();
+		URLInputReader uir = new URLInputReaderImpl();
 		assertNotNull(uir.readURL(url));
 
 	}
 
 	@Test
 	public void lookForTestWord() throws IOException {
-		URLInputReader uir = new URLInputReader();
+		URLInputReader uir = new URLInputReaderImpl();
 		assertTrue(uir.readURL(url).toString().contains("Pattern"));
 	}
 

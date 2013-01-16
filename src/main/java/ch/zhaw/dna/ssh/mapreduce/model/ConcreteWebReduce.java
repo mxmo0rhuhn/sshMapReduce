@@ -6,20 +6,18 @@ import ch.zhaw.mapreduce.KeyValuePair;
 import ch.zhaw.mapreduce.ReduceEmitter;
 import ch.zhaw.mapreduce.ReduceInstruction;
 
-public class ConcreteWebReduce  implements ReduceInstruction{
+public class ConcreteWebReduce implements ReduceInstruction {
 
-	private String localString = "";
+	private final StringBuilder concatenatedString = new StringBuilder();
 
 	@Override
 	public void reduce(ReduceEmitter myEmitter, String key,
 			Iterator<KeyValuePair> values) {
-		while(values.hasNext()){
-			//TODO: String Buffer für mehr performance.. 
-			localString = localString + " " + values.next().getValue();
+		while (values.hasNext()) {
+			
+			concatenatedString.append(' ');
+			concatenatedString.append(values.next().getValue());
 		}
-		
+		myEmitter.emit(concatenatedString.toString());
 	}
-	
-	
-
 }

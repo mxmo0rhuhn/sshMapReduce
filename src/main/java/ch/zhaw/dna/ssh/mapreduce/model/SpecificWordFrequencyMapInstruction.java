@@ -11,12 +11,15 @@ import ch.zhaw.mapreduce.MapInstruction;
  */
 public class SpecificWordFrequencyMapInstruction implements MapInstruction {
 
-	private final String searchedWord;
+	private String searchedWord;
 	
-	public SpecificWordFrequencyMapInstruction(String searchedWord) {
-		this.searchedWord = searchedWord.toUpperCase();
+	/**
+	 * @param searchedWord the searchedWord to set
+	 */
+	public void setSearchedWord(String searchedWord) {
+		this.searchedWord = searchedWord;
 	}
-	
+
 	/** {@inheritDoc} */
 	@Override
 	public void map(MapEmitter emitter, String input) {
