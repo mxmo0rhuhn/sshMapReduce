@@ -55,16 +55,14 @@ public class DomParserFacade {
 				addToMap(tag, node.getNodeValue(), returnMap);
 			} else {
 				NodeList nodeList = node.getChildNodes();
-				String returnvalue = "";
 				for (int i = 0; i < nodeList.getLength(); i++) {
-					returnvalue += searchMatch(nodeList.item(i), tags, );
+					searchMatch(nodeList.item(i), tags, returnMap);
 				}
-				return returnvalue;
 
 			}
 		} else {
 			System.out.println(node.getNodeType());
-			return "";			
+				
 		}
 
 	}
