@@ -27,6 +27,7 @@ public class DomParserFacade {
 	 */
 	public Map<String, List<String>> extractText(String content, String[] setTags) {
 
+		// binary search precondition
 		Arrays.sort(setTags);
 
 		try {
@@ -74,7 +75,7 @@ public class DomParserFacade {
 		if(!returnMap.containsKey(tag)){
 			returnMap.put(tag, new LinkedList<String>());
 		}
-		addTagsToMap(nodeValue, returnMap);
+		addTagsToMap(nodeValue, returnMap); //Verlustfreies suchen nach <a> Tags um URLs separat auszuweisen
 		nodeValue = stripTagsFromContent(nodeValue);
 		returnMap.get(tag).add(nodeValue);
 		
@@ -89,7 +90,22 @@ public class DomParserFacade {
 	}
 
 	String addTagsToMap(String nodeValue, Map<String, List<String>> returnMap) {
-		// TODO Auto-generated method stub
+		int indexATag = nodeValue.indexOf("<a");
+		while (indexATag >= 0){
+			int closingATag = nodeValue.indexOf(">", indexATag);
+			int hrefPosition = nodeValue.indexOf("href=", indexATag);
+			if(hrefPosition > closingATag)
+			{
+				indexATag = nodeValue.indexOf("<a", closingATag);
+				continue;
+			}
+			else {
+				int closingUrl = nodeValue.indexOf("\"", hrefPosition+6);
+				
+				url
+			}
+
+			}
 		return null;
 	}
 
