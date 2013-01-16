@@ -11,7 +11,7 @@ import ch.zhaw.mapreduce.MapInstruction;
 
 
 public class ConcreteWebMap implements MapInstruction {
-<<<<<<< HEAD
+
 	
 	private boolean h1IsSet = false;
 	private boolean h2IsSet = false;
@@ -20,8 +20,7 @@ public class ConcreteWebMap implements MapInstruction {
 	private boolean aIsSet = false;
 	
 	public static final String URLKEY = "Urls";
-=======
->>>>>>> 82f6eae9b296e28deb4f1a6b36b15c70a3f16e15
+
 
 	private final Set<String> tags = new HashSet<String>(5);
 
