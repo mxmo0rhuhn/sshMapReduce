@@ -23,7 +23,7 @@ public class DomParserFacadeTest {
 	}
 	
 	@Test
-	public void getContentOfTag(){
+	public void shouldReadContentFromTag(){
 		String[] testTags = new String[]{"H1","H2","A"};
 		DomParserFacade facade = new DomParserFacade();
 		Map<String, List<String>> vals = facade.extractText("<html><a>foo</a></html>", testTags);
@@ -42,7 +42,7 @@ public class DomParserFacadeTest {
 	}
 	
 	@Test
-	public void getMultpleContentSameTag(){
+	public void shouldReadAllContentFromSameTags(){
 		String testString = "<html><a>foo</a><a href=\"index.html\">bar</a><html>";
 		String[] testTags = new String[]{"H1","H2","A"};
 		
@@ -57,7 +57,7 @@ public class DomParserFacadeTest {
 	}
 	
 	@Test
-	public void getNestedContentDifferentTag(){
+	public void shouldOnlyReadTopLevelTextIfChildAlsoMatches(){
 		String testString = "<html><a><h1>Link zur ZHAW</h1></a></html>";
 		String[] testTags = new String[]{"H1","H2","A"};
 		
@@ -70,7 +70,7 @@ public class DomParserFacadeTest {
 	}
 	
 	@Test
-	public void getNestedContentDifferentTagSplit(){
+	public void shouldReadOnlyTextFromFirstMatch(){
 		String testString = "<html><a>Link zur <h1>ZHAW</h1></a></html>";
 		String[] testTags = new String[]{"H1","H2","A"};
 		
@@ -90,7 +90,7 @@ public class DomParserFacadeTest {
 		DomParserFacade localFacade = new DomParserFacade();
 		Map<String, List<String>> vals = localFacade.extractText(testString, testTags);
 		assertEquals(1, vals.size());
-		assertEquals(1, vals.get("A").size());
+		assertEquals(1, vals.get("A").size()); 
 		assertEquals("Link zur ZHAW", vals.get("A").get(0));
 	}
 	
@@ -115,5 +115,4 @@ public class DomParserFacadeTest {
 		assertEquals(1, vals.get("H1").size());
 		assertEquals("bar", vals.get("H1").get(0));
 	}
-	
 }
