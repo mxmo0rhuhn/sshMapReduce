@@ -17,14 +17,14 @@ public class SpecificWordFrequencyMapInstruction implements MapInstruction {
 	 * @param searchedWord the searchedWord to set
 	 */
 	public void setSearchedWord(String searchedWord) {
-		this.searchedWord = searchedWord;
+		this.searchedWord = searchedWord.toUpperCase();
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void map(MapEmitter emitter, String input) {
 		for (String s : input.trim().split(" ")) {
-			if(s.toUpperCase().equals(searchedWord)) {
+			if(s.trim().toUpperCase().equals(searchedWord)) {
 				emitter.emitIntermediateMapResult(searchedWord, "1");
 			}
 		}

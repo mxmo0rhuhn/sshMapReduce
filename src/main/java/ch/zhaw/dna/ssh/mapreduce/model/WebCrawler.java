@@ -10,9 +10,8 @@ import java.util.Set;
 import ch.zhaw.mapreduce.MapReduceTask;
 
 /**
- * Diese Klasse durchsucht die Tags einer gegebenen Website nach einem
- * bestimmten Wort. Dabei werden die einzelnen Schritte in MapReduceTasks
- * ausgeführt.
+ * Diese Klasse durchsucht die Tags einer gegebenen Website nach einem bestimmten Wort. Dabei werden die einzelnen
+ * Schritte in MapReduceTasks ausgeführt.
  * 
  * @author Max
  * 
@@ -38,10 +37,8 @@ public class WebCrawler extends Observable {
 
 	WebCrawler(SpecificWordFrequencyMapInstruction countMapInstruction,
 			WordFrequencyCombinerInstruction countCombinerInstruction,
-			WordFrequencyReduceInstruction countReduceInstruction,
-			ConcreteWebMap webSearchMapInstruction,
-			ConcreteWebCombine webSearchCombineInstruction,
-			ConcreteWebReduce webSearchReduceInstruction) {
+			WordFrequencyReduceInstruction countReduceInstruction, ConcreteWebMap webSearchMapInstruction,
+			ConcreteWebCombine webSearchCombineInstruction, ConcreteWebReduce webSearchReduceInstruction) {
 
 		this.countMapInstruction = countMapInstruction;
 		this.countCombinerInstruction = countCombinerInstruction;
@@ -54,15 +51,13 @@ public class WebCrawler extends Observable {
 
 	public WebCrawler() {
 
-		this(new SpecificWordFrequencyMapInstruction(),
-				new WordFrequencyCombinerInstruction(),
-				new WordFrequencyReduceInstruction(), new ConcreteWebMap(),
-				new ConcreteWebCombine(), new ConcreteWebReduce());
+		this(new SpecificWordFrequencyMapInstruction(), null, new WordFrequencyReduceInstruction(),
+				new ConcreteWebMap(), null, new ConcreteWebReduce());
 	}
 
 	/**
-	 * Durchsucht von der Website ausgehend in einer gewissen Tiefe weitere
-	 * Seiten auf das Vorkommen eines bestimmten Wortes
+	 * Durchsucht von der Website ausgehend in einer gewissen Tiefe weitere Seiten auf das Vorkommen eines bestimmten
+	 * Wortes
 	 * 
 	 * @param URL
 	 *            Eine valide URL von der aus gesucht werden soll
@@ -92,12 +87,10 @@ public class WebCrawler extends Observable {
 
 		countMapInstruction.setSearchedWord(word);
 
-		MapReduceTask counter = new MapReduceTask(countMapInstruction,
-				countReduceInstruction, countCombinerInstruction);
+		MapReduceTask counter = new MapReduceTask(countMapInstruction, countReduceInstruction, countCombinerInstruction);
 
 		try {
-			Map<String, String> results = counter
-					.compute(new WordsInputSplitter(toCount, 50000));
+			Map<String, String> results = counter.compute(new WordsInputSplitter(toCount, 50000));
 			if (results.get(word) != null) {
 				return Integer.parseInt(results.get(word));
 			}
@@ -110,8 +103,7 @@ public class WebCrawler extends Observable {
 	}
 
 	/**
-	 * Gibt den Inhalt bestimmter Tags aller Websites in einer gewissen Tiefe
-	 * zurück
+	 * Gibt den Inhalt bestimmter Tags aller Websites in einer gewissen Tiefe zurück
 	 * 
 	 * @param url
 	 *            die Url von der aus gesucht werden soll
@@ -134,14 +126,13 @@ public class WebCrawler extends Observable {
 
 		toSearchURLS.add(url);
 
-		MapReduceTask searchTask = new MapReduceTask(webSearchMapInstruction,
-				webSearchReduceInstruction, webSearchCombineInstruction);
+		MapReduceTask searchTask = new MapReduceTask(webSearchMapInstruction, webSearchReduceInstruction,
+				webSearchCombineInstruction);
 
 		for (int i = 0; i < depth; i++) {
 
 			try {
-				Map<String, String> results = searchTask.compute(toSearchURLS
-						.iterator());
+				Map<String, String> results = searchTask.compute(toSearchURLS.iterator());
 				String links = results.get(ConcreteWebMap.URLKey);
 
 				alreadySearchedURLS.addAll(toSearchURLS);
