@@ -16,13 +16,15 @@ public class ConcreteWebMap implements MapInstruction {
 
 	private final Set<String> tags = new HashSet<String>(5);
 
-	private final DomParserFacade domParser = new DomParserFacade();
+//	private final DomParserFacade domParser = new DomParserFacade();
 	
 	private final URLInputReader reader;
 	
 	ConcreteWebMap(URLInputReader reader) {
 		this.reader = reader;
 	}
+	
+	public static final String URLKey = "URLS";
 	
 	public ConcreteWebMap() {
 		this(new URLInputReaderImpl());
@@ -41,13 +43,13 @@ public class ConcreteWebMap implements MapInstruction {
 		// als Keys sämtliche Tags, für die wir uns interessieren. Und als Values jeweils eine Liste mit den Texten zu
 		// den jeweiligen Tags. Es muss eine Liste sein, weil ein Tag auf einer Website mehrmals vorkommen kann.
 		// Sämtliche URLs, die auf einer Website gefunden werden, werden unter dem speziellen Key 'URLS' abgelegt.
-		Map<String, List<String>> tagsWithContent = domParser.extractText(contents,
-				tags.toArray(new String[tags.size()]));
-		for (Map.Entry<String, List<String>> entry : tagsWithContent.entrySet()) {
-			for (String text : entry.getValue()) {
-				emitter.emitIntermediateMapResult(entry.getKey(), text);
-			}
-		}
+//		Map<String, List<String>> tagsWithContent = domParser.extractText(contents,
+//				tags.toArray(new String[tags.size()]));
+//		for (Map.Entry<String, List<String>> entry : tagsWithContent.entrySet()) {
+//			for (String text : entry.getValue()) {
+//				emitter.emitIntermediateMapResult(entry.getKey(), text);
+//			}
+//		}
 	}
 
 	public boolean isH1IsSet() {
