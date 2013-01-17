@@ -56,7 +56,7 @@ public class WebCrawlerTest {
 				firstIteration.put(ConcreteWebMap.URLKey, wikipediaURL + " " + facebookURL);
 				
 				oneOf(mapTask).compute(with(aNonNull(Iterator.class))); will(returnValue(firstIteration));
-				oneOf(webMapInstruction).map(with(aNonNull(MapEmitter.class)), with(googleURL));
+//				oneOf(webMapInstruction).map(with(aNonNull(MapEmitter.class)), with(googleURL));
 			}
 		});
 		crawlyCrawl.searchTheWeb(googleURL, "test", 1);
