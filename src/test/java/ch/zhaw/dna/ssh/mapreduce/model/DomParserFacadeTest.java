@@ -100,9 +100,20 @@ public class DomParserFacadeTest {
 		String[] testTags = new String[]{"H2"};
 		DomParserFacade localFacade = new DomParserFacade();
 		Map<String, List<String>> vals = localFacade.extractText(testString, testTags);
-		assertEquals("http://www.google.com", vals.get(URLKEY).get(0));
 		assertEquals(1, vals.size());
 		assertEquals(1, vals.get(URLKEY).size());
+		assertEquals("http://www.google.com", vals.get(URLKEY).get(0));
+	}
+	
+	@Test
+	public void shouldCopeWithXmlDefinition() {
+		String testString = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><html><h1>bar</h1></html>";
+		String[] testTags = new String[]{"H1"};
+		DomParserFacade localFacade = new DomParserFacade();
+		Map<String, List<String>> vals = localFacade.extractText(testString, testTags);
+		assertEquals(1, vals.size());
+		assertEquals(1, vals.get("H1").size());
+		assertEquals("bar", vals.get("H1").get(0));
 	}
 	
 }

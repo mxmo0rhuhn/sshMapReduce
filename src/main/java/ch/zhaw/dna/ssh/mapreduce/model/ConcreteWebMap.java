@@ -51,43 +51,43 @@ public class ConcreteWebMap implements MapInstruction {
 	}
 
 	public boolean isH1IsSet() {
-		return hasTag("h1");
+		return hasTag("H1");
 	}
 
 	public void setH1IsSet(boolean h1IsSet) {
-		setTag("h1", h1IsSet);
+		setTag("H1", h1IsSet);
 	}
 
 	public boolean isH2IsSet() {
-		return hasTag("h2");
+		return hasTag("H2");
 	}
 
 	public void setH2IsSet(boolean h2IsSet) {
-		setTag("h1", h2IsSet);
+		setTag("H1", h2IsSet);
 	}
 
 	public boolean isH3IsSet() {
-		return hasTag("h3");
+		return hasTag("H3");
 	}
 
 	public void setH3IsSet(boolean h3IsSet) {
-		setTag("h3", h3IsSet);
+		setTag("H3", h3IsSet);
 	}
 
 	public boolean ispIsSet() {
-		return hasTag("p");
+		return hasTag("P");
 	}
 
 	public void setpIsSet(boolean pIsSet) {
-		setTag("p", pIsSet);
+		setTag("P", pIsSet);
 	}
 
 	public boolean isaIsSet() {
-		return hasTag("a");
+		return hasTag("A");
 	}
 
 	public void setaIsSet(boolean aIsSet) {
-		setTag("a", aIsSet);
+		setTag("A", aIsSet);
 	}
 
 	private boolean setTag(String tagName, boolean set) {
