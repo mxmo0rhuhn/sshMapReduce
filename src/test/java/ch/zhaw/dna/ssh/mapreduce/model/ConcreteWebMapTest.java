@@ -37,12 +37,14 @@ public class ConcreteWebMapTest {
 			}
 		};
 		ConcreteWebMap webMap = new ConcreteWebMap(localReader);
+		webMap.setaIsSet(true);
+		webMap.setpIsSet(true);
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		this.context.checking(new Expectations() {
 			{
 //				oneOf(localReader).readURL("foo");
-				oneOf(emitter).emitIntermediateMapResult("p", "hello, world");
-				oneOf(emitter).emitIntermediateMapResult("a", "reto website");
+				oneOf(emitter).emitIntermediateMapResult("P", "hello, world");
+				oneOf(emitter).emitIntermediateMapResult("A", "reto website");
 				oneOf(emitter).emitIntermediateMapResult("URLS", "www.rethab.ch");
 			}
 		});
