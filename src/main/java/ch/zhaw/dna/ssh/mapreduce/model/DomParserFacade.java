@@ -1,22 +1,34 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
 import static ch.zhaw.dna.ssh.mapreduce.model.ConcreteWebMap.URLKEY;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
-import java.io.StringReader;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+import org.htmlparser.Node;
+import org.htmlparser.NodeFilter;
+import org.htmlparser.Parser;
+import org.htmlparser.Tag;
+import org.htmlparser.filters.AndFilter;
+import org.htmlparser.filters.HasAttributeFilter;
+import org.htmlparser.filters.NodeClassFilter;
+import org.htmlparser.filters.TagNameFilter;
+import org.htmlparser.nodes.TextNode;
+import org.htmlparser.tags.LinkTag;
+import org.htmlparser.util.NodeList;
+import org.htmlparser.util.ParserException;
+import org.htmlparser.util.SimpleNodeIterator;
+import org.htmlparser.visitors.NodeVisitor;
 
 public class DomParserFacade {
+
+	private static final NodeFilter LINK_FILTER = new AndFilter(new TagNameFilter("A"), new HasAttributeFilter("HREF"));
 
 	/***
 	 * Map gibt Content der gesuchten Tags, inkl. Tag Typ zurück, so dass bekannt ist, welche Information aus welchem
@@ -34,88 +46,107 @@ public class DomParserFacade {
 	 *            übergibt ein StringArray mit den gesetzten Tags (ein Tag pro Eintrag)
 	 * @return Map
 	 */
-	public Map<String, List<String>> extractText(String content, String[] setTags) {
-
-		// binary search precondition
-		Arrays.sort(setTags);
-
-		Map<String, List<String>> collectedTags = new HashMap<String, List<String>>();
+	public Map<String, List<String>> extractText(String content, String[] desiredTags) {
+		Set<String> searched = new HashSet<String>(Arrays.asList(desiredTags));
+		Map<String, List<String>> foundTags = new HashMap<String, List<String>>();
+		Parser parser = Parser.createParser(content, null);
 		try {
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = dbf.newDocumentBuilder();
-			Document doc = builder.parse(new InputSource(new StringReader(content)));
-			searchMatch(doc, setTags, collectedTags);
-			return collectedTags;
-		} catch (Exception e) {
+			searchLinks(parser, foundTags);
+			searchTags(content, searched, foundTags);
+			return foundTags;
+		} catch (ParserException e) {
 			e.printStackTrace();
-			return collectedTags;
+			return Collections.emptyMap();
 		}
-
 	}
 
-	public void searchMatch(Node node, String[] tags, Map<String, List<String>> returnMap) {
-		// DOCUMENT_NODE: prüft ob DOM Objekt = root, ELEMENT_NODE: prüft ob DOM Objekt child tag
-		if (node.getNodeType() == Node.DOCUMENT_NODE || node.getNodeType() == Node.ELEMENT_NODE) {
-			String tag = node.getNodeName();
-			if (Arrays.binarySearch(tags, tag) >= 0) {
-				addToMap(tag, node.getNodeValue(), returnMap);
+	private void searchLinks(Parser parser, Map<String, List<String>> tags) throws ParserException {
+		List<String> urls = new LinkedList<String>();
+		SimpleNodeIterator nodes = parser.extractAllNodesThatMatch(LINK_FILTER).elements();
+		while (nodes.hasMoreNodes()) {
+			Node node = nodes.nextNode();
+			if (!(node instanceof LinkTag)) {
+				System.err.println("Der LINK_FILTER sollte nur LinkTags zulassen");
 			} else {
-				NodeList nodeList = node.getChildNodes();
-				for (int i = 0; i < nodeList.getLength(); i++) {
-					searchMatch(nodeList.item(i), tags, returnMap);
-				}
-
+				LinkTag anker = (LinkTag) node;
+				urls.add(anker.extractLink());
 			}
-		} else {
-			System.out.println(node.getNodeType());
-
 		}
-
-	}
-
-	void addToMap(String tag, String nodeValue, Map<String, List<String>> returnMap) {
-		if (!returnMap.containsKey(tag)) {
-			returnMap.put(tag, new LinkedList<String>());
+		if (!urls.isEmpty()) {
+			tags.put(URLKEY, urls);
 		}
-		addUrlsToMap(nodeValue, returnMap); // Verlustfreies suchen nach <a> Tags um URLs separat auszuweisen
-		nodeValue = stripTagsFromContent(nodeValue);
-		returnMap.get(tag).add(nodeValue);
 	}
 
-	String stripTagsFromContent(String nodeValue) {
-		// TODO: real stripping
-		return nodeValue;
-
+	private void searchTags(String content, Set<String> searched, Map<String, List<String>> foundTags)
+			throws ParserException {
+		Parser parser = Parser.createParser(content, null);
+		FlatTagFindingVisitor tagFinder = new FlatTagFindingVisitor(searched);
+		parser.visitAllNodesWith(tagFinder);
+		for (Tag tag : tagFinder.getTags()) {
+			String tagName = tag.getTagName();
+			if (!foundTags.containsKey(tagName)) {
+				foundTags.put(tagName, new LinkedList<String>());
+			}
+			foundTags.get(tagName).add(rawText(tag));
+		}
+	}
+	
+	private String rawText(Tag tag) {
+		NodeList nodes = new NodeList();
+		tag.collectInto(nodes, new NodeClassFilter(TextNode.class));
+		StringBuilder sb = new StringBuilder();
+		SimpleNodeIterator iter = nodes.elements();
+		while (iter.hasMoreNodes()) {
+			TextNode node = (TextNode) iter.nextNode();
+			if (sb.length() != 0) {
+				sb.append(' ');
+			}
+			sb.append(node.getText().trim());
+		}
+		return sb.toString();
 	}
 
-	void addUrlsToMap(String nodeValue, Map<String, List<String>> tagMap) {
-		int startA = nodeValue.indexOf("<a");
-		while (startA >= 0) {
-			int closeA = nodeValue.indexOf(">", startA);
-			int href = nodeValue.indexOf("href=", startA);
-
-			// no href or closing a found in opening a tag
-			if (href < 0 || closeA < 0) {
+	class FlatTagFindingVisitor extends NodeVisitor {
+		
+		private final List<Tag> tags = new LinkedList<Tag>();
+		
+		private final Set<String> searched;
+		
+		private boolean recurse = true;
+		
+		public FlatTagFindingVisitor(Set<String> searched) {
+			this.searched = searched;
+		}
+		
+		@Override
+		public void visitTag(Tag tag) {
+			if (tag.isEndTag()) {
+			// only evaluate start tags
 				return;
-			} else if (href < closeA) {
-				// href exists
-				int endUrl = nodeValue.indexOf("\"", href + 6);
-				if (endUrl < 0) {
-					return;
-				} else if (endUrl < closeA) {
-					String url = nodeValue.substring(href + 6, endUrl).trim();
-					if (url.charAt(0) != '#') {
-						// ignore local url
-						if (!tagMap.containsKey(URLKEY)) {
-							tagMap.put(URLKEY, new LinkedList<String>());
-						}
-						tagMap.get(URLKEY).add(url.trim());
-					}
-				}
+			} else if (!searched.contains(tag.getTagName())) {
+			// not what we're looking for
+				return;
+			} else {
+				tags.add(tag);
+				recurse = false;
 			}
-			startA = nodeValue.indexOf("<a", closeA);
-
 		}
+		
+		@Override
+		public boolean shouldRecurseChildren() {
+			if (!recurse) {
+				recurse = true;
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		
+		public List<Tag> getTags() {
+			return tags;
+		}
+		
 	}
 
 }
