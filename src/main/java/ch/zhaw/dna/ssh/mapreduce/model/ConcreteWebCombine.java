@@ -11,11 +11,11 @@ import ch.zhaw.mapreduce.KeyValuePair;
 
 public class ConcreteWebCombine implements CombinerInstruction {
 
-	private final Map<String, StringBuilder> concatenatedStrings = new HashMap<String, StringBuilder>();
-
 	@Override
 	public List<KeyValuePair> combine(Iterator<KeyValuePair> toCombine) {
 
+		Map<String, StringBuilder> concatenatedStrings = new HashMap<String, StringBuilder>();
+		
 		// TODO geht bessere Performance?
 
 		while (toCombine.hasNext()) {
