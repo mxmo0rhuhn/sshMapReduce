@@ -17,7 +17,7 @@ public class SpecificWordFrequencyMapInstruction implements MapInstruction {
 	 * @param searchedWord the searchedWord to set
 	 */
 	public void setSearchedWord(String searchedWord) {
-		this.searchedWord = searchedWord.toUpperCase();
+		this.searchedWord = searchedWord;
 	}
 
 	/** {@inheritDoc} */

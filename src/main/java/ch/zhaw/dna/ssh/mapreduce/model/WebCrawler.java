@@ -68,6 +68,7 @@ public class WebCrawler extends Observable {
 	 * @return die anzahl an Vorkommen des Wortes auf den durchsuchten Websites.
 	 */
 	public int searchTheWeb(String URL, String word, int depth) {
+		word = word.toUpperCase();
 
 		String toCount = getWebsiteContent(URL, depth);
 
