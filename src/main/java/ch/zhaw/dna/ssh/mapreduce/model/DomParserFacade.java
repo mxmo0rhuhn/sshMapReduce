@@ -49,9 +49,8 @@ public class DomParserFacade {
 	public Map<String, List<String>> extractText(String content, String[] desiredTags) {
 		Set<String> searched = new HashSet<String>(Arrays.asList(desiredTags));
 		Map<String, List<String>> foundTags = new HashMap<String, List<String>>();
-		Parser parser = Parser.createParser(content, null);
 		try {
-			searchLinks(parser, foundTags);
+			searchLinks(content, foundTags);
 			searchTags(content, searched, foundTags);
 			return foundTags;
 		} catch (ParserException e) {
@@ -60,7 +59,8 @@ public class DomParserFacade {
 		}
 	}
 
-	private void searchLinks(Parser parser, Map<String, List<String>> tags) throws ParserException {
+	private void searchLinks(String content, Map<String, List<String>> tags) throws ParserException {
+		Parser parser = Parser.createParser(content, null);
 		List<String> urls = new LinkedList<String>();
 		SimpleNodeIterator nodes = parser.extractAllNodesThatMatch(LINK_FILTER).elements();
 		while (nodes.hasMoreNodes()) {

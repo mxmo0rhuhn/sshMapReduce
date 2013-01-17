@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
-public class DOMParserFacadeTest {
+public class DomParserFacadeTest {
 	
 	@Test
 	public void shouldCopeWithNonEndingTags() {
