@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr" class="client-nojs">
+<head>
+<title>Slayer – Wikipedia</title>
+<meta charset="UTF-8" />
+<meta name="generator" content="MediaWiki 1.21wmf7" />
+<link rel="alternate" type="application/x-wiki" title="Seite bearbeiten" href="/w/index.php?title=Slayer&amp;action=edit" />
+<link rel="edit" title="Seite bearbeiten" href="/w/index.php?title=Slayer&amp;action=edit" />
+<link rel="apple-touch-icon" href="//de.wikipedia.org/apple-touch-icon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Wikipedia (de)" />
+<link rel="EditURI" type="application/rsd+xml" href="//de.wikipedia.org/w/api.php?action=rsd" />
+<link rel="copyright" href="//creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="Atom-Feed für „Wikipedia“" href="/w/index.php?title=Spezial:Letzte_%C3%84nderungen&amp;feed=atom" />
+<link rel="stylesheet" href="//bits.wikimedia.org/de.wikipedia.org/load.php?debug=false&amp;lang=de&amp;modules=ext.flaggedRevs.basic%7Cext.gadget.CommonsDirekt%2CWikiMiniAtlas%7Cext.wikihiero%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmw.PopUpMediaTransform%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="//bits.wikimedia.org/de.wikipedia.org/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(ckb),a:lang(fa),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: dewiki:resourceloader:filter:minify-css:7:202e0c15afe28e9879bea5c8d4c1f2ee */</style>
+
+<script src="//bits.wikimedia.org/de.wikipedia.org/load.php?debug=false&amp;lang=de&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Slayer","wgTitle":"Slayer","wgCurRevisionId":111668129,"wgArticleId":1028671,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Wikipedia:Lesenswert","Thrash-Metal-Band","US-amerikanische Band","Slayer","Grammy-Preisträger","Wikipedia:Artikel-Feedback/Artikelgrundstock"],"wgBreakFrames":false,"wgPageContentLanguage":"de","wgSeparatorTransformTable":[",	.",".	,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],"wgMonthNamesShort":["","Jan.","Feb.","Mär.","Apr.","Mai","Jun.","Jul.","Aug.","Sep.","Okt.","Nov.","Dez."],"wgRelevantPageName":"Slayer","wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVectorEnabledModules":{"collapsiblenav":true,"collapsibletabs":true,"editwarning":true,"expandablesearch":false,"footercleanup":false,"sectioneditlinks":false,"experiments":true},"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"templateEditor":false,"templates":false,"preview":false,"previewDialog":false,"publish":false,"toc":false},"wgTrackingToken":"fdc27d25f553864b863182797ba60f4f","wgArticleFeedbackv5Permissions":{"aft-reader":true,"aft-member":false,"aft-editor":false,"aft-monitor":false,"aft-administrator":false,"aft-oversighter":false},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":1,"quality":2,"pristine":4}}},"wgStableRevisionId":111668129,"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}","Geo":{"city":"","country":""},"wgNoticeProject":"wikipedia","aftv5Article":{"id":1028671,"title":"Slayer","namespace":0,"categories":["Grammy-Preisträger","Slayer","Thrash-Metal-Band","US-amerikanische Band","Wikipedia:Artikel-Feedback/Artikelgrundstock","Wikipedia:Lesenswert"],"permissionLevel":"aft-reader"}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":0,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":false,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":4,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":0,"watchdeletion":0,"watchlistdays":3
+,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"flaggedrevssimpleui":1,"flaggedrevsstable":0,"flaggedrevseditdiffs":true,"flaggedrevsviewdiffs":false,"vector-simplesearch":1,"useeditwarning":1,"vector-collapsiblenav":1,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"aftv5-last-filter":null,"variant":"de","language":"de","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs100":false,"searchNs101":false,"gadget-WikiMiniAtlas":1,"gadget-old-movepage":1,"gadget-CommonsDirekt":1});;},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});;},{},{});
+/* cache key: dewiki:resourceloader:filter:minify-js:7:63644c94a30babccab36c4bfde7bfa2c */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","ext.centralNotice.bannerController"]);
+}</script>
+<script src="//bits.wikimedia.org/geoiplookup"></script><link rel="dns-prefetch" href="//meta.wikimedia.org" /><!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/skins-1.21wmf7/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr capitalize-all-nouns ns-0 ns-subject page-Slayer skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- sitenotice -->
+			<div id="siteNotice"><!-- CentralNotice --><script>
+	mw.loader.using( 'ext.centralNotice.bannerController', function() { mw.centralNotice.initialize(); } );
+</script>
+</div>
+			<!-- /sitenotice -->
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading" lang="de"><span dir="auto">Slayer</span></h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+								<!-- tagline -->
+				<div id="siteSub">aus Wikipedia, der freien Enzyklopädie</div>
+				<!-- /tagline -->
+								<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav" class="mw-jump">
+					Wechseln zu:					<a href="#mw-head">Navigation</a>, 					<a href="#p-search">Suche</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodycontent -->
+				<div id="mw-content-text" lang="de" dir="ltr" class="mw-content-ltr"><table id="Vorlage_Dieser_Artikel" cellspacing="8" cellpadding="0" class="hintergrundfarbe1 rahmenfarbe1 noprint" style="width: 100%; font-size: 95%; border-bottom-style: solid; border-bottom-width: 1px; margin-bottom: 1em; position: relative; clear: right;">
+<tr>
+<td style="width: 26px; vertical-align: middle" id="bksicon"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Disambig-dark.svg/25px-Disambig-dark.svg.png" width="25" height="19" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Disambig-dark.svg/38px-Disambig-dark.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Disambig-dark.svg/50px-Disambig-dark.svg.png 2x" /></td>
+<td style="vertical-align: middle">Dieser Artikel behandelt die US-amerikanische Band Slayer; das norwegische Fanzine findet sich unter <a href="/wiki/Slayer_(Fanzine)" title="Slayer (Fanzine)">Slayer (Fanzine)</a>.</td>
+</tr>
+</table>
+<div class="infobox float-right" id="VorlageMusikalbum" style="border:1px solid lightsteelblue; padding:5px; width:25em; margin:0 0 0.5em 1em; font-size:85%; background:#F9F9F9;">
+<div style="background:lightsteelblue; margin-bottom:2px; text-align:center; font-size:118%; font-weight:bold;">Slayer</div>
+<table class="toptextcells" style="width:100%; margin:0; text-align:left;">
+<tr>
+<td colspan="2" style="text-align:center; font-size; line-height: 1.4em; vertical-align:top; background-color:#F5F5F5;">
+<div class="center">
+<div class="floatnone"><a href="/w/index.php?title=Datei:Slayer-band-logo.svg&amp;filetimestamp=20110516151949" class="image"><img alt="Slayer-band-logo.svg" src="//upload.wikimedia.org/wikipedia/de/thumb/d/d7/Slayer-band-logo.svg/225px-Slayer-band-logo.svg.png" width="225" height="128" srcset="//upload.wikimedia.org/wikipedia/de/thumb/d/d7/Slayer-band-logo.svg/338px-Slayer-band-logo.svg.png 1.5x, //upload.wikimedia.org/wikipedia/de/thumb/d/d7/Slayer-band-logo.svg/450px-Slayer-band-logo.svg.png 2x" /></a></div>
+</div>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="text-align:center; font-size; line-height: 1.4em; vertical-align:top; background-color:#F5F5F5;">
+<div class="center">
+<div class="floatnone"><a href="/w/index.php?title=Datei:Slayer,_The_Fields_of_Rock,_2007.jpg&amp;filetimestamp=20070923002601" class="image" title="Slayer live im Jahre 2007"><img alt="Slayer live im Jahre 2007" src="//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Slayer%2C_The_Fields_of_Rock%2C_2007.jpg/250px-Slayer%2C_The_Fields_of_Rock%2C_2007.jpg" width="250" height="120" class="thumbborder" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Slayer%2C_The_Fields_of_Rock%2C_2007.jpg/375px-Slayer%2C_The_Fields_of_Rock%2C_2007.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Slayer%2C_The_Fields_of_Rock%2C_2007.jpg/500px-Slayer%2C_The_Fields_of_Rock%2C_2007.jpg 2x" /></a></div>
+</div>
+Slayer live im Jahre 2007</td>
+</tr>
+<tr>
+<td style="background: lightsteelblue; text-align: center;" colspan="3"><b>Allgemeine Informationen</b></td>
+</tr>
+<tr style="vertical-align:top">
+<th><a href="/wiki/Genre#Musik" title="Genre">Genre(s)</a></th>
+<td><a href="/wiki/Thrash_Metal" title="Thrash Metal">Thrash Metal</a></td>
+</tr>
+<tr style="vertical-align:top">
+<th>Gründung</th>
+<td>1981</td>
+</tr>
+<tr style="vertical-align:top">
+<th>Website</th>
+<td><a rel="nofollow" class="external free" href="http://www.slayer.net/">http://www.slayer.net/</a></td>
+</tr>
+<tr>
+<th colspan="2" style="color:#000000; background-color:lightsteelblue">
+<center>Gründungsmitglieder</center>
+</th>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;"><a href="/wiki/Gesang" title="Gesang">Gesang</a>, <a href="/wiki/E-Bass" title="E-Bass">E-Bass</a></div>
+</td>
+<td><a href="/wiki/Tom_Araya" title="Tom Araya">Tom Araya</a></td>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;"><a href="/wiki/E-Gitarre" title="E-Gitarre">E-Gitarre</a></div>
+</td>
+<td><a href="/wiki/Kerry_King" title="Kerry King">Kerry King</a></td>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;">E-Gitarre</div>
+</td>
+<td><a href="/wiki/Jeff_Hanneman" title="Jeff Hanneman">Jeff Hanneman</a></td>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;"><a href="/wiki/Schlagzeug" title="Schlagzeug">Schlagzeug</a></div>
+</td>
+<td><a href="/wiki/Dave_Lombardo" title="Dave Lombardo">Dave Lombardo</a></td>
+</tr>
+<tr>
+<th colspan="2" style="color:#000000; background-color:lightsteelblue">
+<center>Aktuelle Besetzung</center>
+</th>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;">Gesang, E-Bass</div>
+</td>
+<td>Tom Araya</td>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;">E-Gitarre</div>
+</td>
+<td>Kerry King</td>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;">E-Gitarre</div>
+</td>
+<td>Jeff Hanneman</td>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;">Schlagzeug</div>
+</td>
+<td>Dave Lombardo <small>(bis 1992, seit 2001)</small></td>
+</tr>
+<tr>
+<th colspan="2" style="color:#000000; background-color:lightsteelblue">
+<center>Ehemalige Mitglieder</center>
+</th>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;">Schlagzeug</div>
+</td>
+<td>Tony Scaglione <small>(1986)</small></td>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;">Schlagzeug</div>
+</td>
+<td><a href="/wiki/Paul_Bostaph" title="Paul Bostaph">Paul Bostaph</a> <small>(1992–1996, 1997–2001)</small></td>
+</tr>
+<tr>
+<td>
+<div style="background:#DFE0E3;">Schlagzeug</div>
+</td>
+<td><a href="/wiki/Jon_Dette" title="Jon Dette">Jon Dette</a> <small>(1996–1997)</small></td>
+</tr>
+</table>
+<div class="visualClear"></div>
+</div>
+<p><b>Slayer</b> (engl. ‚Mörder‘ oder ‚Schlächter‘) ist eine <a href="/wiki/Thrash_Metal" title="Thrash Metal">Thrash-Metal</a>-Band aus <a href="/wiki/Huntington_Park" title="Huntington Park">Huntington Park</a>, <a href="/wiki/Kalifornien" title="Kalifornien">Kalifornien</a>. Sie zählt zu den einflussreichsten Metal-Bands der Welt und bildet zusammen mit <a href="/wiki/Metallica" title="Metallica">Metallica</a>, <a href="/wiki/Anthrax_(Band)" title="Anthrax (Band)">Anthrax</a> und <a href="/wiki/Megadeth" title="Megadeth">Megadeth</a> die „Großen Vier“ des Thrash Metal. Aufgrund ihrer Texte sorgt die Band für regelmäßige <a href="/wiki/Kontroverse" title="Kontroverse">Kontroversen</a>.</p>
+<p>Vier Slayer-Alben wurden in den USA mit einer <a href="/wiki/Goldene_Schallplatte" title="Goldene Schallplatte">Goldenen Schallplatte</a> ausgezeichnet. 2007 und 2008 erhielt die Band einen <a href="/wiki/Grammy" title="Grammy" class="mw-redirect">Grammy</a> in der Kategorie <i><a href="/wiki/Grammy_Award_for_Best_Metal_Performance" title="Grammy Award for Best Metal Performance">Best Metal Performance</a></i>.</p>
+<table id="toc" class="toc">
+<tr>
+<td>
+<div id="toctitle">
+<h2>Inhaltsverzeichnis</h2>
+</div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Geschichte"><span class="tocnumber">1</span> <span class="toctext">Geschichte</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Die_fr.C3.BChen_Jahre_.281981.E2.80.931985.29"><span class="tocnumber">1.1</span> <span class="toctext">Die frühen Jahre (1981–1985)</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Internationaler_Durchbruch_.281986.E2.80.931991.29"><span class="tocnumber">1.2</span> <span class="toctext">Internationaler Durchbruch (1986–1991)</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Jahre_des_Wandels_.281992.E2.80.932001.29"><span class="tocnumber">1.3</span> <span class="toctext">Jahre des Wandels (1992–2001)</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Wiedervereinigung_.282002.E2.80.93heute.29"><span class="tocnumber">1.4</span> <span class="toctext">Wiedervereinigung (2002–heute)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Stil"><span class="tocnumber">2</span> <span class="toctext">Stil</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Musik"><span class="tocnumber">2.1</span> <span class="toctext">Musik</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Texte"><span class="tocnumber">2.2</span> <span class="toctext">Texte</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Optik"><span class="tocnumber">2.3</span> <span class="toctext">Optik</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Einfluss_und_Rezeption"><span class="tocnumber">3</span> <span class="toctext">Einfluss und Rezeption</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Kontroversen"><span class="tocnumber">4</span> <span class="toctext">Kontroversen</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Diskografie"><span class="tocnumber">5</span> <span class="toctext">Diskografie</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Einzelnachweise"><span class="tocnumber">6</span> <span class="toctext">Einzelnachweise</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Weblinks"><span class="tocnumber">7</span> <span class="toctext">Weblinks</span></a></li>
+</ul>
+</td>
+</tr>
+</table>
+<h2><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=1" title="Abschnitt bearbeiten: Geschichte">Bearbeiten</a>]</span> <span class="mw-headline" id="Geschichte">Geschichte</span></h2>
+<h3><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=2" title="Abschnitt bearbeiten: Die frühen Jahre (1981–1985)">Bearbeiten</a>]</span> <span class="mw-headline" id="Die_fr.C3.BChen_Jahre_.281981.E2.80.931985.29">Die frühen Jahre (1981–1985)</span></h3>
+<div class="thumb tleft">
+<div class="thumbinner" style="width:222px;"><a href="/w/index.php?title=Datei:Slayer_-_Tom_Araya.jpg&amp;filetimestamp=20080728200943" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Slayer_-_Tom_Araya.jpg/220px-Slayer_-_Tom_Araya.jpg" width="220" height="293" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Slayer_-_Tom_Araya.jpg/330px-Slayer_-_Tom_Araya.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Slayer_-_Tom_Araya.jpg/440px-Slayer_-_Tom_Araya.jpg 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/w/index.php?title=Datei:Slayer_-_Tom_Araya.jpg&amp;filetimestamp=20080728200943" class="internal" title="vergrößern und Informationen zum Bild anzeigen"><img src="//bits.wikimedia.org/static-1.21wmf6/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+Tom Araya</div>
+</div>
+</div>
+<p>Slayer wurde im Jahre 1981 von den beiden <a href="/wiki/Gitarre" title="Gitarre">Gitarristen</a> <a href="/wiki/Kerry_King" title="Kerry King">Kerry King</a> und <a href="/wiki/Jeff_Hanneman" title="Jeff Hanneman">Jeff Hanneman</a> gegründet.<sup id="cite_ref-Decibel_1-0" class="reference"><a href="#cite_note-Decibel-1">[1]</a></sup> Vervollständigt wurde die Band durch <a href="/wiki/Schlagzeug" title="Schlagzeug">Schlagzeuger</a> <a href="/wiki/Dave_Lombardo" title="Dave Lombardo">Dave Lombardo</a>, sowie durch <a href="/wiki/Gesang" title="Gesang">Sänger</a> und <a href="/wiki/E-Bass" title="E-Bass">Bassisten</a> <a href="/wiki/Tom_Araya" title="Tom Araya">Tom Araya</a>. Araya und King spielten zuvor bereits zusammen in der Band <i>Quits</i>. Zunächst spielte die Band <a href="/wiki/Coverversion" title="Coverversion">Coverversionen</a> von <a href="/wiki/Iron_Maiden" title="Iron Maiden">Iron Maiden</a> und <a href="/wiki/Judas_Priest" title="Judas Priest">Judas Priest</a>. Schon bei den ersten Konzerten wurde ihr <a href="/wiki/Satanismus" title="Satanismus">satanistisches</a> Image durch die Verwendung von <a href="/wiki/Pentagramm" title="Pentagramm">Pentagrammen</a> und umgedrehten Kreuzen deutlich.</p>
+<p>Bei einem Konzert im Vorprogramm von <a href="/wiki/Bitch_(Band)" title="Bitch (Band)">Bitch</a> in <a href="/wiki/Los_Angeles" title="Los Angeles">Los Angeles</a> befand sich Brian Slagel im Publikum. Slagel war ein ehemaliger Musikjournalist und hatte kurz zuvor die Plattenfirma <a href="/wiki/Metal_Blade_Records" title="Metal Blade Records">Metal Blade Records</a> gegründet. Vom Konzert beeindruckt bot Slagel Slayer einen Platz auf seiner <a href="/wiki/Kompilation_(Medien)" title="Kompilation (Medien)">Kompilation</a> <i><a href="/wiki/Metal_Massacre" title="Metal Massacre">Metal Massacre III</a></i> an. Slayer nahmen hierfür das Lied <i>Aggressive Perfector</i> auf. Aufgrund der guten Reaktionen aus der Szene bot Slagel der Band schließlich einen Vertrag an.<sup id="cite_ref-Slagel_2-0" class="reference"><a href="#cite_note-Slagel-2">[2]</a></sup></p>
+<p>Im November 1983 gingen Slayer ins Studio, um ihr <a href="/wiki/Deb%C3%BCtalbum" title="Debütalbum" class="mw-redirect">Debüt</a> <i><a href="/wiki/Show_No_Mercy" title="Show No Mercy">Show No Mercy</a></i> aufzunehmen. Da der Band kein Aufnahmebudget zur Verfügung gestellt wurde, musste sie die Kosten selbst tragen. Drei Wochen nach Beendigung der Aufnahmen wurde das Album veröffentlicht. Im <a href="/wiki/Underground_(Kunst)" title="Underground (Kunst)" class="mw-redirect">Underground</a> konnten sich Slayer mit dem Debüt einen Namen machen und wurden neben <a href="/wiki/Venom_(Band)" title="Venom (Band)">Venom</a> und <a href="/wiki/Metallica" title="Metallica">Metallica</a> als dritte Superband der neuen extremen Metalszene gefeiert.<sup id="cite_ref-Rock_Hard_3-0" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup> Anfang 1984 ging die Band auf ihre erste US-Tournee. Im August 1984 schoben Slayer die <a href="/wiki/Extended_Play" title="Extended Play">EP</a> <i><a href="/wiki/Haunting_the_Chapel" title="Haunting the Chapel">Haunting the Chapel</a></i> nach. Musikalisch fallen die drei Lieder darauf dunkler und härter als die Lieder auf dem Debütalbum aus, damit legte Slayer den Grundstein für ihre spätere musikalische Ausrichtung.</p>
+<p>Da Metal Blade zur damaligen Zeit noch kein weltweites Vertriebsnetz hatte, waren Slayer in Europa nur im Untergrund bekannt. Unter den Fans kursierten bei Konzerten mitgeschnittene <a href="/wiki/Bootleg" title="Bootleg">Bootlegs</a>. King verließ Slayer, um sich <a href="/wiki/Dave_Mustaine" title="Dave Mustaine">Dave Mustaines</a> neuer Band <a href="/wiki/Megadeth" title="Megadeth">Megadeth</a> anzuschließen, kehrte allerdings bereits nach nur fünf Konzerten mit der Band wieder zurück.<sup id="cite_ref-Decibel_1-1" class="reference"><a href="#cite_note-Decibel-1">[1]</a></sup> Für Slayer folgte die <i>1984 Combat Tour</i> mit Venom und <a href="/wiki/Exodus_(Band)" title="Exodus (Band)">Exodus</a>, bevor im November das Live-Minialbum <i><a href="/wiki/Live_Undead" title="Live Undead">Live Undead</a></i> erschien. Dieses Album wurde in einem Studio vor einer Handvoll Fans aufgenommen und enthält sieben Lieder. Wenige Jahre später veröffentlichte eine Band namens The Undead ein Live-Album unter dem Namen <i>Live Slayer</i>.<sup id="cite_ref-Rock_Hard_3-1" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></p>
+<p>Das Konzert in <a href="/wiki/New_York_City" title="New York City">New York</a> wurde aufgezeichnet und ein Jahr später unter dem Namen <i>Combat Tour: The Ultimate Revenge</i> auf Video veröffentlicht. Im Sommer 1985 spielten Slayer in <a href="/wiki/Belgien" title="Belgien">Belgien</a> ihr erstes Europakonzert. <i>Show No Mercy</i> hatte sich in der Zwischenzeit ca. 40.000 Mal in den USA verkauft<sup id="cite_ref-Slagel_2-1" class="reference"><a href="#cite_note-Slagel-2">[2]</a></sup> und Slayer gingen erneut ins Studio, um ihr zweites Album <i><a href="/wiki/Hell_Awaits" title="Hell Awaits">Hell Awaits</a></i> aufzunehmen. Wegen der guten Verkäufe stellte Metal Blade ein Budget zur Verfügung, so dass sie sich mit Ron Fair einen <a href="/wiki/Musikproduzent" title="Musikproduzent">Produzenten</a> leisten konnten. <i>Hell Awaits</i> erschien im September und setzte die auf <i>Haunting the Chapel</i> eingeschlagene Linie fort. Das Album enthielt längere und komplexere Lieder und gilt deshalb heute als das progressivste Werk der Band.<sup id="cite_ref-Decibel_1-2" class="reference"><a href="#cite_note-Decibel-1">[1]</a></sup></p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=3" title="Abschnitt bearbeiten: Internationaler Durchbruch (1986–1991)">Bearbeiten</a>]</span> <span class="mw-headline" id="Internationaler_Durchbruch_.281986.E2.80.931991.29">Internationaler Durchbruch (1986–1991)</span></h3>
+<p>Durch die guten Verkaufszahlen von <i>Hell Awaits</i> erhielten Slayer ein Angebot von <a href="/wiki/Rick_Rubin" title="Rick Rubin">Rick Rubins</a> neu gegründeter Plattenfirma <a href="/wiki/Def_Jam_Records" title="Def Jam Records" class="mw-redirect">Def Jam Records</a>. Auch wenn Def Jam zu dieser Zeit in erster Linie <a href="/wiki/Rap" title="Rap">Rap</a>- und <a href="/wiki/Hip-Hop" title="Hip-Hop">Hip-Hop</a>-Künstler unter Vertrag hatte, akzeptierte die Band das Angebot. Nach den langen und komplexen Liedern auf dem Vorgängeralbum schrieben Slayer nun kürzere und schnellere Lieder für das kommende Album <i><a href="/wiki/Reign_in_Blood" title="Reign in Blood">Reign in Blood</a></i>.<sup id="cite_ref-Decibel_1-3" class="reference"><a href="#cite_note-Decibel-1">[1]</a></sup></p>
+<blockquote>
+<p class="Zitat">„Vor der Veröffentlichung von <i>Reign in Blood</i> fragten sich die Fans, ob Slayer jetzt auswimpen würden, weil sie ja bei einem Major-Label unterschrieben hatten. Um die Leute vom Gegenteil zu überzeugen, produzierte ich die Platte so extrem und kompromisslos wie möglich. <i>Reign in Blood</i> verkörperte alles, was man von Slayer erwarten konnte, und noch viel, viel mehr.“</p>
+<p class="cite"><cite>– <span class="Person">Rick Rubin, Produzent von Reign in Blood<sup id="cite_ref-Rock_Hard_3-2" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></span></cite></p>
+</blockquote>
+<p>Def Jams Vertriebspartner <a href="/wiki/Columbia_Records" title="Columbia Records">Columbia Records</a> lehnte die Veröffentlichung des Albums ab. Hauptgrund hierfür waren das <a href="/wiki/Schallplattencover" title="Schallplattencover">Coverartwork</a> und insbesondere der Text des Liedes <i><a href="/wiki/Angel_of_Death_(Lied)" title="Angel of Death (Lied)">Angel of Death</a></i>. In diesem Lied geht es um die <a href="/wiki/Menschenversuch" title="Menschenversuch">Menschenversuche</a> des <a href="/wiki/Konzentrationslager" title="Konzentrationslager">KZ</a>-Arztes <a href="/wiki/Josef_Mengele" title="Josef Mengele">Josef Mengele</a>. Schließlich wurde das Album am 7. Oktober 1986 von <a href="/wiki/Geffen_Records" title="Geffen Records">Geffen Records</a>, die Slayer in der Zwischenzeit unter Vertrag genommen hatten, veröffentlicht. Es stieg auf Platz 94 der US-amerikanischen Albumcharts ein<sup id="cite_ref-Billboard_4-0" class="reference"><a href="#cite_note-Billboard-4">[4]</a></sup> und wurde im November 1992 als erstes Slayeralbum mit einer <a href="/wiki/Goldene_Schallplatte" title="Goldene Schallplatte">Goldenen Schallplatte</a> ausgezeichnet.<sup id="cite_ref-RIAA_5-0" class="reference"><a href="#cite_note-RIAA-5">[5]</a></sup></p>
+<p>Im Oktober 1986 begann die <i>Reign-in-Pain</i>-Welttournee mit <a href="/wiki/Overkill_(Band)" title="Overkill (Band)">Overkill</a> in den USA und <a href="/wiki/Malice_(Band)" title="Malice (Band)">Malice</a> in Europa. Nach der Tournee folgte eine weitere Tour im Vorprogramm von <a href="/wiki/W.A.S.P." title="W.A.S.P.">W.A.S.P.</a>. Nach einem Monat stieg Dave Lombardo aus finanziellen Gründen aus der Band aus. Für den Rest der Tour saß Tony Scaglione von <a href="/wiki/Whiplash_(Band)" title="Whiplash (Band)">Whiplash</a> hinter dem Schlagzeug. Slayer steuerten außerdem 1986 den Soundtrack zum Film <i>River’s Edge</i> (im April 1987 in Deutschland unter <i>Das Messer am Ufer</i> erschienen) von Tim Hunter bei, der als bester Film 1988 die <a href="/wiki/Independent_Spirit_Awards_1988" title="Independent Spirit Awards 1988">Independent Spirit Awards 1988</a> gewann.</p>
+<p>1987 kehrte Lombardo jedoch wieder zurück. Slayer nahm eine <a href="/wiki/Coverversion" title="Coverversion">Coverversion</a> des <a href="/wiki/Iron_Butterfly" title="Iron Butterfly">Iron-Butterfly</a>-Liedes <i><a href="/wiki/In-A-Gadda-Da-Vida" title="In-A-Gadda-Da-Vida">In-A-Gadda-Da-Vida</a></i> für den Film <i><a href="/wiki/Unter_Null_(Film)" title="Unter Null (Film)">Less Than Zero</a></i> auf. Auch wenn die Band mit dem Ergebnis nicht zufrieden war, war diese Coverversion das erste Slayer-Lied, welches im <a href="/wiki/Radio" title="Radio">Radio</a> gespielt wurde.<sup id="cite_ref-Decibel_1-4" class="reference"><a href="#cite_note-Decibel-1">[1]</a></sup> Slayer kehrten ins Studio zurück, um ihr viertes Album <i><a href="/wiki/South_of_Heaven" title="South of Heaven">South of Heaven</a></i> aufzunehmen. Um einen Kontrast zu der hohen Geschwindigkeit auf dem Vorgängeralbum zu schaffen, entschied sich die Band, das Tempo zu drosseln und mehr auf melodischen Gesang zu setzen:</p>
+<blockquote>
+<p class="Zitat">„Wir wussten, dass wir <i>Reign in Blood</i> nicht toppen konnten, also entschieden wir uns für ein niedrigeres Tempo. Wir wussten, dass alles, was wir machten, mit diesem Album verglichen werden würde. Ich erinnere mich noch, dass wir wirklich über dieses Thema diskutiert haben. Es war merkwürdig, weil wir nie zuvor und nie danach über das Thema Geschwindigkeit gesprochen haben“</p>
+<p class="cite"><cite>– <span class="Person">Jeff Hannemann<sup id="cite_ref-Decibel_1-5" class="reference"><a href="#cite_note-Decibel-1">[1]</a></sup></span></cite></p>
+</blockquote>
+<p><i>South of Heaven</i> erschien 1988 und belegte Platz 57 in den US-amerikanischen Albumcharts.<sup id="cite_ref-Billboard_4-1" class="reference"><a href="#cite_note-Billboard-4">[4]</a></sup> Es wurde wie sein Vorgänger mit einer Goldenen Schallplatte ausgezeichnet.<sup id="cite_ref-RIAA_5-1" class="reference"><a href="#cite_note-RIAA-5">[5]</a></sup> Von den Fans und der Presse wurde das Album gemischt aufgenommen. Auf diesem Album zollten sie auch ihrem Einfluss von <a href="/wiki/Judas_Priest" title="Judas Priest">Judas Priest</a> Tribut und gaben mit ihrer Version von Dissident Aggressor einen Einblick in ihre Entwicklungsgeschichte.</p>
+<p>1989 begannen die Aufnahmen für das das fünfte Studioalbum. Als Co-Produzent wurde Andy Wallace verpflichtet. <i><a href="/wiki/Seasons_in_the_Abyss" title="Seasons in the Abyss">Seasons in the Abyss</a></i> wurde im Oktober 1990 via Rick Rubins neuer Plattenfirma Def American veröffentlicht. Das Album stieg auf Platz 44 in den US-amerikanischen Charts ein<sup id="cite_ref-Billboard_4-2" class="reference"><a href="#cite_note-Billboard-4">[4]</a></sup> und wurde 1993 mit einer goldenen Schallplatte ausgezeichnet.<sup id="cite_ref-RIAA_5-2" class="reference"><a href="#cite_note-RIAA-5">[5]</a></sup> Für das Titellied nahm die Band ihr erstes <a href="/wiki/Musikvideo" title="Musikvideo">Musikvideo</a> auf. Dafür flog die Band kurz vor dem <a href="/wiki/Zweiter_Golfkrieg" title="Zweiter Golfkrieg">zweiten Golfkrieg</a> nach <a href="/wiki/%C3%84gypten" title="Ägypten">Ägypten</a> zu den <a href="/wiki/Pyramiden_von_Gizeh" title="Pyramiden von Gizeh">Pyramiden von Gizeh</a>. Ein weiteres Video wurde für <i>War Ensemble</i> in <a href="/wiki/London" title="London">London</a> gedreht.</p>
+<p>Bereits einen Monat vor der Albumveröffentlichung begann die <i>Clash-of-the-Titans</i>-Tournee in Europa. Neben Slayer nahmen Megadeth, die <a href="/wiki/Suicidal_Tendencies" title="Suicidal Tendencies">Suicidal Tendencies</a> und <a href="/wiki/Testament_(Band)" title="Testament (Band)">Testament</a> teil. Die Popularität des Thrash Metals befand sich zu dieser Zeit an einem Gipfelpunkt und so wurde die Tour im Mai 1991 in Nordamerika fortgeführt. Statt den Suicidal Tendencies und Testament nahmen dieses Mal <a href="/wiki/Anthrax_(Band)" title="Anthrax (Band)">Anthrax</a> und <a href="/wiki/Alice_in_Chains" title="Alice in Chains">Alice in Chains</a> teil. Auf der Tour schnitten Slayer einige Konzerte mit und veröffentlichten 1991 das Live-Doppelalbum <i><a href="/wiki/Decade_of_Aggression" title="Decade of Aggression">Decade of Aggression</a></i>, um ihr zehnjähriges Jubiläum zu feiern. Das Album stieg auf Platz 55 der US-amerikanischen Albumcharts ein.<sup id="cite_ref-Billboard_4-3" class="reference"><a href="#cite_note-Billboard-4">[4]</a></sup></p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=4" title="Abschnitt bearbeiten: Jahre des Wandels (1992–2001)">Bearbeiten</a>]</span> <span class="mw-headline" id="Jahre_des_Wandels_.281992.E2.80.932001.29">Jahre des Wandels (1992–2001)</span></h3>
+<div class="thumb tright">
+<div class="thumbinner" style="width:222px;"><a href="/w/index.php?title=Datei:Slayer_-_Kerry_King.jpg&amp;filetimestamp=20080728200951" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/3/35/Slayer_-_Kerry_King.jpg/220px-Slayer_-_Kerry_King.jpg" width="220" height="293" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/3/35/Slayer_-_Kerry_King.jpg/330px-Slayer_-_Kerry_King.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/35/Slayer_-_Kerry_King.jpg/440px-Slayer_-_Kerry_King.jpg 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/w/index.php?title=Datei:Slayer_-_Kerry_King.jpg&amp;filetimestamp=20080728200951" class="internal" title="vergrößern und Informationen zum Bild anzeigen"><img src="//bits.wikimedia.org/static-1.21wmf6/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+Kerry King</div>
+</div>
+</div>
+<p>Im Mai 1992 wurde Dave Lombardo wegen diverser Konflikte aus der Band herausgeworfen. Diese gab dafür als Grund an, das Schlagzeugspiel Lombardos würde den Ansprüchen der Band nicht mehr genügen (wörtlich: „Es wäre nicht mehr tight genug.“).<sup id="cite_ref-6" class="reference"><a href="#cite_note-6">[6]</a></sup> Lombardo spielte daraufhin u.&#160;a. auf <a href="/wiki/Phillip_Boa" title="Phillip Boa">Phillip Boas</a> Metalprojekt <a href="/wiki/Voodoocult" title="Voodoocult">Voodoocult</a> und gründete später die Band <a href="/wiki/Grip_Inc." title="Grip Inc.">Grip Inc.</a>. Seine Kollaborationen mit <a href="/wiki/John_Zorn" title="John Zorn">John Zorn</a> und die mit <a href="/wiki/Mike_Patton" title="Mike Patton">Mike Patton</a> gegründeten <a href="/wiki/Fant%C3%B4mas_(Band)" title="Fantômas (Band)">Fantômas</a> fanden auch außerhalb des Metal-Bereichs Beachtung. Lombardos Nachfolger bei Slayer wurde der ehemalige <a href="/wiki/Forbidden" title="Forbidden">Forbidden</a>- und heutige Testament-Schlagzeuger <a href="/wiki/Paul_Bostaph" title="Paul Bostaph">Paul Bostaph</a>. Seinen ersten Auftritt mit Slayer hatte Bostaph beim <a href="/wiki/Monsters_of_Rock" title="Monsters of Rock">Monsters-of-Rock</a>-Festival 1992. Für den <a href="/wiki/Soundtrack" title="Soundtrack">Soundtrack</a> des Films <i><a href="/wiki/Judgment_Night" title="Judgment Night" class="mw-redirect">Judgment Night</a></i> nahmen Slayer mit den Rapper <a href="/wiki/Ice-T" title="Ice-T">Ice-T</a> das Lied <i>Disorder</i> auf. Es handelt sich um ein <a href="/wiki/Medley" title="Medley">Medley</a> aus den <a href="/wiki/The_Exploited" title="The Exploited">The-Exploited</a>-Liedern <i>War</i>, <i>UK ’82</i> und <i>Disorder</i>.<sup id="cite_ref-7" class="reference"><a href="#cite_note-7">[7]</a></sup></p>
+<p>1994 erschien das sechste Studioalbum <i><a href="/wiki/Divine_Intervention" title="Divine Intervention">Divine Intervention</a></i>. Es stieg auf Platz acht der US-amerikanischen Charts ein und wurde somit das erste Top 10-Album der Band.<sup id="cite_ref-Billboard_4-4" class="reference"><a href="#cite_note-Billboard-4">[4]</a></sup> Das Album wurde sowohl von den Medien als auch von den Fans mit gemischten Gefühlen aufgenommen. Ein Jahr später gingen Slayer mit <a href="/wiki/Biohazard_(Band)" title="Biohazard (Band)">Biohazard</a> und <a href="/wiki/Machine_Head" title="Machine Head">Machine Head</a> auf Tournee. Einige Konzerte wurden mitgeschnitten und noch im gleichen Jahr als Livevideo <i>Live Intrusion</i> veröffentlicht. Ebenfalls 1995 traten Slayer erneut auf dem Monsters-of-Rock-Festival auf.</p>
+<p>Um die Zeit zum nächsten Studioalbum zu überbrücken, veröffentlichten Slayer im Jahre 1996 das Album <i>Undisputed Attitude</i>. Das Album enthält <a href="/wiki/Coverversion" title="Coverversion">Coverversionen</a> von <a href="/wiki/Punk_(Musik)" title="Punk (Musik)">Punk</a>- und <a href="/wiki/Hardcore_Punk" title="Hardcore Punk">Hardcore</a>-Liedern von Bands wie <a href="/wiki/Minor_Threat" title="Minor Threat">Minor Threat</a>, <a href="/wiki/Dirty_Rotten_Imbeciles" title="Dirty Rotten Imbeciles">D.R.I.</a> oder den <a href="/wiki/The_Stooges" title="The Stooges">Stooges</a>. Zu den Coverversionen gesellten sich mit <i>Gemini</i> eine Eigenkomposition sowie zwei Lieder, die Hanneman Mitte der <a href="/wiki/1980er_Jahre" title="1980er Jahre" class="mw-redirect">Achtziger Jahre</a> für sein Projekt Pap Smear geschrieben hat. Nach der Veröffentlichung des Albums verließ Bostaph die Band, um sich auf sein eigenes Projekt The Truth About Seafood zu konzentrieren. Sein Nachfolger wurde <a href="/wiki/Jon_Dette" title="Jon Dette">Jon Dette</a>, der zuvor bei Testament aktiv war. Nach nur einem Jahr wurde dieser aber vor die Tür gesetzt, nachdem es zum Streit zwischen ihm und den restlichen Mitgliedern gekommen war. Also kehrte Bostaph zurück.<sup id="cite_ref-8" class="reference"><a href="#cite_note-8">[8]</a></sup></p>
+<p>Ebenfalls 1996 wurde die Band von den Eltern von Elyse Pahler verklagt. Pahler wurde von drei Männern <a href="/wiki/Vergewaltigung" title="Vergewaltigung">vergewaltigt</a> und <a href="/wiki/Mord" title="Mord">ermordet</a>, die Slayer-Fans waren. Die Eltern des Opfers warfen der Band vor, die Täter durch ihre Musik und ihre Texte zu der Tat animiert zu haben.<sup id="cite_ref-9" class="reference"><a href="#cite_note-9">[9]</a></sup> Nach einem längeren Verfahren wurde die Band 2001 von allen Vorwürfen freigesprochen. Der zuständige Richter E. Jeffrey Burke erklärte, dass er die Musik von Slayer nicht für jugendgefährdend halte.<sup id="cite_ref-10" class="reference"><a href="#cite_note-10">[10]</a></sup> Kerry King zeigte sich über den Freispruch erleichtert:</p>
+<blockquote>
+<p class="Zitat">„Wenn irgendwann irgendwo ein Richter eine Band wegen etwas verurteilt, was andere zu verantworten haben, werde ich mich aus dem Musikbusiness zurückziehen. Denn dann wird eine <a href="/wiki/Lawine" title="Lawine">Lawine</a> losgetreten, deren Folgen nicht absehbar sind.“</p>
+<p class="cite"><cite>– <span class="Person">Kerry King<sup id="cite_ref-Rock_Hard_3-3" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></span></cite></p>
+</blockquote>
+<p>Das siebte Studioalbum <i><a href="/wiki/Diabolus_in_Musica_(Album)" title="Diabolus in Musica (Album)">Diabolus in Musica</a></i> erschien 1998 und erreichte Platz 31 der US-amerikanischen Charts.<sup id="cite_ref-Billboard_4-5" class="reference"><a href="#cite_note-Billboard-4">[4]</a></sup> Slayer versuchten, ihren Sound zu modernisieren und nahmen einige Elemente des <a href="/wiki/Nu_Metal" title="Nu Metal">Nu Metal</a> in ihre Lieder auf. Dies führte bei Fans der ersten Stunde zu Entrüstung. Auch das modernisierte Bandlogo auf dem Albumcover wurde kontrovers diskutiert.<sup id="cite_ref-Rock_Hard_3-4" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup> Neben dem Album nahm die Band zusammen mit <a href="/wiki/Atari_Teenage_Riot" title="Atari Teenage Riot">Atari Teenage Riot</a> das Lied <i>No Remorse (I Wanna Die)</i> für den Soundtrack des Filmes <i><a href="/wiki/Spawn" title="Spawn">Spawn</a></i> auf und spielte eine Coverversion von <i>Hand of Doom</i> für das <a href="/wiki/Black_Sabbath" title="Black Sabbath">Black-Sabbath</a>-Tributalbum <i>Nativity in Black II</i> ein. In Deutschland wurde unterdessen das Album <i>Divine Intervention</i> am 16. Dezember 1998 von der <a href="/wiki/Bundespr%C3%BCfstelle_f%C3%BCr_jugendgef%C3%A4hrdende_Schriften" title="Bundesprüfstelle für jugendgefährdende Schriften" class="mw-redirect">Bundesprüfstelle für jugendgefährdende Schriften</a> <a href="/wiki/Indizierung" title="Indizierung">indiziert</a>.<sup id="cite_ref-bpjm_11-0" class="reference"><a href="#cite_note-bpjm-11">[11]</a></sup> Ein Foto im Beiheft zeigt einen Fan, der sich mit einer <a href="/wiki/Rasierklinge" title="Rasierklinge">Rasierklinge</a> das Bandlogo in den Arm geritzt hat.<sup id="cite_ref-Rock_Hard_3-5" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=5" title="Abschnitt bearbeiten: Wiedervereinigung (2002–heute)">Bearbeiten</a>]</span> <span class="mw-headline" id="Wiedervereinigung_.282002.E2.80.93heute.29">Wiedervereinigung (2002–heute)</span></h3>
+<div class="thumb tright">
+<div class="thumbinner" style="width:222px;"><a href="/w/index.php?title=Datei:DaveLombardo.png&amp;filetimestamp=20070410084403" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/b/b2/DaveLombardo.png/220px-DaveLombardo.png" width="220" height="158" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/b/b2/DaveLombardo.png 1.5x, //upload.wikimedia.org/wikipedia/commons/b/b2/DaveLombardo.png 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/w/index.php?title=Datei:DaveLombardo.png&amp;filetimestamp=20070410084403" class="internal" title="vergrößern und Informationen zum Bild anzeigen"><img src="//bits.wikimedia.org/static-1.21wmf6/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+Lombardo bei einem Konzert 2007</div>
+</div>
+</div>
+<p>Das achte Studioalbum <i><a href="/wiki/God_Hates_Us_All" title="God Hates Us All">God Hates Us All</a></i> wurde nach mehreren Verschiebungen am 11. September 2001, dem Tag der <a href="/wiki/Terroranschl%C3%A4ge_am_11._September_2001" title="Terroranschläge am 11. September 2001">Terroranschläge</a> in den USA, veröffentlicht. Es wurde mit einem Pappschuber ausgeliefert, der das ursprüngliche Artwork – eine <a href="/wiki/Bibel" title="Bibel">Bibel</a>, in der <a href="/wiki/Nagel" title="Nagel">Nägel</a> in Form eines Pentagrammes eingeschlagen wurden – verdeckt.<sup id="cite_ref-12" class="reference"><a href="#cite_note-12">[12]</a></sup> Auf dem Album wurden Einflüsse von Bands wie <a href="/wiki/Slipknot" title="Slipknot">Slipknot</a> deutlich, die sich selbst als Slayerfans bekannten.<sup id="cite_ref-Rock_Hard_3-6" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup> Für das Lied <i>Disciple</i> wurden Slayer für einen <a href="/wiki/Grammy" title="Grammy" class="mw-redirect">Grammy</a> nominiert. Der Preis ging jedoch an die Band <a href="/wiki/Tool_(Band)" title="Tool (Band)">Tool</a>.<sup id="cite_ref-13" class="reference"><a href="#cite_note-13">[13]</a></sup></p>
+<p>Die Terroranschläge am Veröffentlichungstag gefährdeten den Auftakt der <i>Tattoo-the-Planet</i>-Tournee in Europa. Auf dieser Tour sollten neben Slayer noch <a href="/wiki/Pantera" title="Pantera">Pantera</a>, Biohazard, <a href="/wiki/Static-X" title="Static-X">Static-X</a> und <a href="/wiki/Vision_of_Disorder" title="Vision of Disorder">Vision of Disorder</a> auftreten. Schließlich zogen bis auf Slayer, Biohazard und Static-X alle Bands ihre Teilnahme zurück, so dass die Tournee verschoben werden musste.<sup id="cite_ref-14" class="reference"><a href="#cite_note-14">[14]</a></sup> Die britische Band <a href="/wiki/Cradle_of_Filth" title="Cradle of Filth">Cradle of Filth</a> schloss sich der Tour an. Dazu kam je nach Auftrittsort eine weitere Band. Unter anderem waren <a href="/wiki/Amorphis" title="Amorphis">Amorphis</a>, <a href="/wiki/In_Flames" title="In Flames">In Flames</a> und <a href="/wiki/Children_of_Bodom" title="Children of Bodom">Children of Bodom</a> involviert.</p>
+<p>Kurz vor <a href="/wiki/Weihnachten" title="Weihnachten">Weihnachten</a> 2001 stieg Paul Bostaph aus persönlichen Gründen erneut aus der Band aus.<sup id="cite_ref-15" class="reference"><a href="#cite_note-15">[15]</a></sup> Da die Tournee noch nicht beendet war, fragte King Dave Lombardo, ob er für die restlichen Konzerte einspringen wolle. Lombardo sagte zu und wurde wieder zu einem festen Bandmitglied.<sup id="cite_ref-16" class="reference"><a href="#cite_note-16">[16]</a></sup></p>
+<p>Im Herbst 2003 spielten Slayer während einer weiteren Tournee das komplette Album <i>Reign in Blood</i>. Als Showeffekt ließ die Band während des letzten Liedes <i>Raining Blood</i> <a href="/wiki/Kunstblut" title="Kunstblut" class="mw-redirect">Kunstblut</a> von der Hallendecke regnen. Ein Konzert in <a href="/wiki/Augusta_(Maine)" title="Augusta (Maine)">Augusta</a> wurde mitgeschnitten und unter dem Titel <i>Still Reigning</i> als <a href="/wiki/DVD" title="DVD">DVD</a> veröffentlicht. Nebenbei wurde mit <i>War at the Warfield</i> eine weitere DVD sowie mit <i>Soundtrack of the Apocalypse</i> ein Boxset veröffentlicht. 2004 traten Slayer in einer Folge der <a href="/wiki/MTV" title="MTV">MTV</a>-Serie <a href="/wiki/Viva_La_Bam" title="Viva La Bam">Viva La Bam</a> auf. Die Band besuchte den Hauptdarsteller <a href="/wiki/Bam_Margera" title="Bam Margera">Bam Margera</a> und spielte im Garten seines Elternhauses ein Konzert.<sup id="cite_ref-17" class="reference"><a href="#cite_note-17">[17]</a></sup></p>
+<p>Das neunte Studioalbum <i><a href="/wiki/Christ_Illusion" title="Christ Illusion">Christ Illusion</a></i> sollte ursprünglich am 6. Juni 2006 – in Anspielung auf die Zahl <a href="/wiki/Sechshundertsechsundsechzig" title="Sechshundertsechsundsechzig">Sechshundertsechsundsechzig</a> – veröffentlicht werden. Der Termin wurde allerdings verschoben und Slayer veröffentlichten stattdessen die <a href="/wiki/Extended_Play" title="Extended Play">EP</a> <i>Eternal Pyre</i>. Seither feiern die Slayer-Fans dennoch jedes Jahr am 6. Juni weltweit den <i>International Day of Slayer</i>.<sup id="cite_ref-18" class="reference"><a href="#cite_note-18">[18]</a></sup></p>
+<p>Das Album erschien schließlich am 4. August 2006 und debütierte auf Platz fünf der US-amerikanischen Albumcharts. Es war die bisher höchste US-Chartplatzierung für die Band.<sup id="cite_ref-19" class="reference"><a href="#cite_note-19">[19]</a></sup></p>
+<p>Slayer gingen auf die <i>The Unholy Alliance</i> genannte Welttournee. Eigentlich sollte diese am 6. Juni 2006, also zeitgleich mit der Veröffentlichung der EP, beginnen. Da sich Tom Araya einer Operation an der <a href="/wiki/Gallenblase" title="Gallenblase">Gallenblase</a> unterziehen musste, wurde der Beginn der Tour verschoben.<sup id="cite_ref-20" class="reference"><a href="#cite_note-20">[20]</a></sup> Neben Slayer traten In Flames, <a href="/wiki/Mastodon_(Band)" title="Mastodon (Band)">Mastodon</a>, Children of Bodom, <a href="/wiki/Lamb_of_God" title="Lamb of God">Lamb of God</a> und <a href="/wiki/Thine_Eyes_Bleed" title="Thine Eyes Bleed">Thine Eyes Bleed</a>, die Band von Arayas jüngerem Bruder Johnny, auf.</p>
+<p>Am 30. Oktober 2006 wurde das Musikvideo zum Lied <i>Eyes of the Insane</i> veröffentlicht. Das Lied wurde auch für den Soundtrack des Films <i><a href="/wiki/Saw_III" title="Saw III">Saw III</a></i> verwendet und brachte Slayer einen Grammy in der Kategorie „Best Metal Performance“ ein.<sup id="cite_ref-21" class="reference"><a href="#cite_note-21">[21]</a></sup> Da sich die Band auf Tournee befand, konnte sie die Trophäe nicht persönlich in Empfang nehmen. Im Sommer 2007 spielten Slayer auf diversen Festivals in Europa, wie dem Download Festival und <a href="/wiki/Rock_am_Ring" title="Rock am Ring">Rock am Ring</a>/<a href="/wiki/Rock_im_Park" title="Rock im Park">Rock im Park</a>.</p>
+<p>Am 24. Juli 2007 wurde das Album <i>Christ Illusion</i> mit einem neuen Cover und einem <a href="/wiki/Bonustrack" title="Bonustrack">Bonustitel</a> namens <i>Final Six</i> wiederveröffentlicht. Dieses Lied sollte eigentlich bereits im Rahmen der ersten Veröffentlichung erscheinen. Weil sich Araya einer Operation an der Gallenblase unterziehen musste, blieb das Lied jedoch unvollständig. Für die Wiederveröffentlichung wurde das Lied schließlich neu eingespielt. Für <i>Final Six</i> bekam Slayer 2008 den <a href="/wiki/Grammy_Award" title="Grammy Award" class="mw-redirect">Grammy Award</a> in der Kategorie „Best Metal Performance“ verliehen.<sup id="cite_ref-22" class="reference"><a href="#cite_note-22">[22]</a></sup></p>
+<p>Ab Oktober/Anfang November 2008 war die Band in einem Studio, um dort ihr neues Album <i><a href="/wiki/World_Painted_Blood" title="World Painted Blood">World Painted Blood</a></i> einzuspielen, das in Deutschland am 30. Oktober 2009 veröffentlicht wurde. Zwei dieser Titel (<i>Psychopathy Red</i> und <i>Hate Worldwide</i>) erschienen vorab als <a href="/wiki/Streaming_Media" title="Streaming Media">Stream</a> im Internet. Dieses Album brachte ihnen dann ihre vierte (2010 für den Titel <i>Hate Worldwide</i>) und fünfte (2011 für das Titellied <i>World Painted Blood</i>) Grammy-Nominierung ein, jeweils in der Kategorie „Best Metal Performance“. 2010 spielten Slayer auf den <a href="/wiki/Sonisphere_Festival" title="Sonisphere Festival">Sonisphere Festivals</a> erstmals mit <a href="/wiki/Metallica" title="Metallica">Metallica</a>, <a href="/wiki/Megadeth" title="Megadeth">Megadeth</a> und <a href="/wiki/Anthrax_(Band)" title="Anthrax (Band)">Anthrax</a> gemeinsam. Am 29. Oktober 2010 erschien auch die Live-DVD/Blu-Ray <i><a href="/wiki/The_Big_Four_Live_from_Sofia,_Bulgaria" title="The Big Four Live from Sofia, Bulgaria">The Big Four Live from Sofia, Bulgaria</a></i>.</p>
+<h2><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=6" title="Abschnitt bearbeiten: Stil">Bearbeiten</a>]</span> <span class="mw-headline" id="Stil">Stil</span></h2>
+<div class="thumb tleft">
+<div class="thumbinner" style="width:222px;"><a href="/w/index.php?title=Datei:Slayer_-_pentagram_-_live_2006.jpg&amp;filetimestamp=20070907122135" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/09/Slayer_-_pentagram_-_live_2006.jpg/220px-Slayer_-_pentagram_-_live_2006.jpg" width="220" height="165" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/09/Slayer_-_pentagram_-_live_2006.jpg/330px-Slayer_-_pentagram_-_live_2006.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/09/Slayer_-_pentagram_-_live_2006.jpg/440px-Slayer_-_pentagram_-_live_2006.jpg 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/w/index.php?title=Datei:Slayer_-_pentagram_-_live_2006.jpg&amp;filetimestamp=20070907122135" class="internal" title="vergrößern und Informationen zum Bild anzeigen"><img src="//bits.wikimedia.org/static-1.21wmf6/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+Slayer live; <a href="/wiki/Pentagramm" title="Pentagramm">Drudenfuß</a>-Darstellungen im Hintergrund</div>
+</div>
+</div>
+<h3><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=7" title="Abschnitt bearbeiten: Musik">Bearbeiten</a>]</span> <span class="mw-headline" id="Musik">Musik</span></h3>
+<p>Slayer werden zusammen mit <a href="/wiki/Metallica" title="Metallica">Metallica</a> oft als die Gründer des Thrash-Metal-Genres bezeichnet, indem sie den Klang der typischen <a href="/wiki/New_Wave_of_British_Heavy_Metal" title="New Wave of British Heavy Metal">New-Wave-of-British-Heavy-Metal</a>-Bands wie <a href="/wiki/Iron_Maiden" title="Iron Maiden">Iron Maiden</a>, aber auch von Gruppen wie <a href="/wiki/Venom_(Band)" title="Venom (Band)">Venom</a> und <a href="/wiki/Mot%C3%B6rhead" title="Motörhead">Motörhead</a>, aufgriffen und stark beschleunigten. Diesen Einfluss zeigt eine Gegenüberstellung des Iron Maiden-Riffs aus <i>Caught Somewhere in Time</i> mit dem Slayer-Titel <i>Angel of Death</i> (<span style="white-space:nowrap;"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/12px-Loudspeaker.svg.png" width="12" height="12" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/18px-Loudspeaker.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/24px-Loudspeaker.svg.png 2x" /> <a href="//upload.wikimedia.org/wikipedia/de/e/e2/SlayerAngelOfDeathVer2.mid" class="internal" title="SlayerAngelOfDeathVer2.mid">Hörbeispiel</a><sup><a href="/wiki/Hilfe:Audio" title="Hilfe:Audio"><span title="Hilfe – Audio">?</span></a>/<a href="/wiki/Datei:SlayerAngelOfDeathVer2.mid" title="Datei:SlayerAngelOfDeathVer2.mid"><span title="Tondateibeschreibungsseite mit Lizenzangabe für „SlayerAngelOfDeathVer2.mid“" style="font-family:monospace;">i</span></a></sup></span>). Ein weiteres Beispiel ist <i>Piece by Piece</i> mit seiner, für viele Slayer-Titel typischen <a href="/wiki/Chromatik" title="Chromatik">Chromatik</a>, und dem - auch bei Metallica beliebten - Metrumwechsel vom 12/8 zum 4/4-Takt in Takt 5.</p>
+<p>Die Musik der Band zeichnet sich außerdem durch die Konzentration auf wiedererkennbare Riffs und <a href="/wiki/Hookline" title="Hookline">Hooklines</a> aus:</p>
+<blockquote>
+<p class="Zitat">„Jedes Lied hat eine erkennbare Hookline und Melodie, was vieler, besonders europäischer, langweiliger Musik fehlt.<sup id="cite_ref-23" class="reference"><a href="#cite_note-23">[23]</a></sup>“</p>
+</blockquote>
+<p>Prägend für den Stil der Band war aber auch Hannemans Vorliebe für Punk-Musik, welche sich besonders auf der <a href="/wiki/Cover-Version" title="Cover-Version" class="mw-redirect">Cover</a>-CD <i><a href="/wiki/Undisputed_Attitude" title="Undisputed Attitude">Undisputed Attitude</a></i> niederschlug. Die genrebildende Musik Slayers wurde geprägt durch das abwechslungsreiche Schlagzeugspiel (<span style="white-space:nowrap;"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/12px-Loudspeaker.svg.png" width="12" height="12" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/18px-Loudspeaker.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/24px-Loudspeaker.svg.png 2x" /> <a href="//upload.wikimedia.org/wikipedia/de/1/1e/SlayerMandatorySuicideVer2.mid" class="internal" title="SlayerMandatorySuicideVer2.mid">Hörbeispiel aus <i>Mandatory Suicide</i> (ohne E-Gitarren)</a><sup><a href="/wiki/Hilfe:Audio" title="Hilfe:Audio"><span title="Hilfe – Audio">?</span></a>/<a href="/wiki/Datei:SlayerMandatorySuicideVer2.mid" title="Datei:SlayerMandatorySuicideVer2.mid"><span title="Tondateibeschreibungsseite mit Lizenzangabe für „SlayerMandatorySuicideVer2.mid“" style="font-family:monospace;">i</span></a></sup></span>) des kubanischstämmigen Drummers Dave Lombardo und die, bei den ersten Veröffentlichungen auf getrennten Kanälen abgemischten, Rhythmus-<a href="/wiki/Gitarrenriff" title="Gitarrenriff" class="mw-redirect">Gitarrenriffs</a> von Hanneman und King.</p>
+<div class="thumb tright">
+<div class="thumbinner" style="width:512px;"><a href="/w/index.php?title=Datei:SlayerPieceByPieceVer4.png&amp;filetimestamp=20071103073431" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/de/thumb/d/d1/SlayerPieceByPieceVer4.png/510px-SlayerPieceByPieceVer4.png" width="510" height="118" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/de/thumb/d/d1/SlayerPieceByPieceVer4.png/765px-SlayerPieceByPieceVer4.png 1.5x, //upload.wikimedia.org/wikipedia/de/d/d1/SlayerPieceByPieceVer4.png 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/w/index.php?title=Datei:SlayerPieceByPieceVer4.png&amp;filetimestamp=20071103073431" class="internal" title="vergrößern und Informationen zum Bild anzeigen"><img src="//bits.wikimedia.org/static-1.21wmf6/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+E-Gitarren aus <i>Piece by Piece</i> (<span style="white-space:nowrap;"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/12px-Loudspeaker.svg.png" width="12" height="12" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/18px-Loudspeaker.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/24px-Loudspeaker.svg.png 2x" /> <a href="//upload.wikimedia.org/wikipedia/de/1/1e/SlayerPieceByPieceVer3.mid" class="internal" title="SlayerPieceByPieceVer3.mid">Hörbeispiel</a><sup><a href="/wiki/Hilfe:Audio" title="Hilfe:Audio"><span title="Hilfe – Audio">?</span></a>/<a href="/wiki/Datei:SlayerPieceByPieceVer3.mid" title="Datei:SlayerPieceByPieceVer3.mid"><span title="Tondateibeschreibungsseite mit Lizenzangabe für „SlayerPieceByPieceVer3.mid“" style="font-family:monospace;">i</span></a></sup></span>)</div>
+</div>
+</div>
+<p>Die frühen Werke der Band wurden für ihre „halsbrecherische Geschwindigkeit“ und die „kraftvolle Instrumentierung“ gelobt.<sup id="cite_ref-Allmusic_24-0" class="reference"><a href="#cite_note-Allmusic-24">[24]</a></sup> Dabei vermischte die Band die Struktur des <a href="/wiki/Hardcore_Punk" title="Hardcore Punk">Hardcore</a> mit der Geschwindigkeit des <a href="/wiki/Speed_Metal" title="Speed Metal">Speed Metals</a>.<sup id="cite_ref-Decibel_1-6" class="reference"><a href="#cite_note-Decibel-1">[1]</a></sup> Das Album <i><a href="/wiki/Reign_in_Blood" title="Reign in Blood">Reign in Blood</a></i> ist mit teilweise fast bis zu 250 <a href="/wiki/Beats_per_minute" title="Beats per minute">Beats pro Minute</a> das schnellste Werk der Slayerhistorie.<sup id="cite_ref-25" class="reference"><a href="#cite_note-25">[25]</a></sup></p>
+<div class="thumb tright">
+<div class="thumbinner" style="width:512px;"><a href="/w/index.php?title=Datei:SouthOfHeavenDrums2.PNG&amp;filetimestamp=20071103112537" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/de/thumb/f/f4/SouthOfHeavenDrums2.PNG/510px-SouthOfHeavenDrums2.PNG" width="510" height="127" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/de/thumb/f/f4/SouthOfHeavenDrums2.PNG/765px-SouthOfHeavenDrums2.PNG 1.5x, //upload.wikimedia.org/wikipedia/de/f/f4/SouthOfHeavenDrums2.PNG 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/w/index.php?title=Datei:SouthOfHeavenDrums2.PNG&amp;filetimestamp=20071103112537" class="internal" title="vergrößern und Informationen zum Bild anzeigen"><img src="//bits.wikimedia.org/static-1.21wmf6/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+Ausschnitt aus <i>South of Heaven</i> (<span style="white-space:nowrap;"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/12px-Loudspeaker.svg.png" width="12" height="12" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/18px-Loudspeaker.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/24px-Loudspeaker.svg.png 2x" /> <a href="//upload.wikimedia.org/wikipedia/de/9/97/SlayerSouthOfHeavenRiff2.mid" class="internal" title="SlayerSouthOfHeavenRiff2.mid">Hörbeispiel</a><sup><a href="/wiki/Hilfe:Audio" title="Hilfe:Audio"><span title="Hilfe – Audio">?</span></a>/<a href="/wiki/Datei:SlayerSouthOfHeavenRiff2.mid" title="Datei:SlayerSouthOfHeavenRiff2.mid"><span title="Tondateibeschreibungsseite mit Lizenzangabe für „SlayerSouthOfHeavenRiff2.mid“" style="font-family:monospace;">i</span></a></sup></span>)</div>
+</div>
+</div>
+<p>Slayer-Soli sind häufig relativ kurz, dafür gibt es in vielen Liedern mehrere davon, die sich oft schnell abwechseln. Ob King oder Hanneman ein bestimmtes Solo spielt, wird in vielen Alben im Booklet zwischen den Texten angegeben. Die Soli selbst weisen in aller Regel sehr hohe Geschwindigkeiten sowie starke Dissonanzen wie <a href="/wiki/Chromatik" title="Chromatik">Chromatik</a> auf. Auch machen King und Hanneman vergleichsweise häufigen und extremen Gebrauch von <a href="/wiki/Flageolettton" title="Flageolettton">Harmonics</a> im Kontext mit extremen <a href="/wiki/Tremolo_(Gitarre)" title="Tremolo (Gitarre)">Vibratobewegungen</a>.</p>
+<p>Auf dem Album <i><a href="/wiki/South_of_Heaven" title="South of Heaven">South of Heaven</a></i> nimmt die Band das Tempo deutlich zurück. In schleppenden Titeln wie <i>Spill the Blood</i> oder dem Titellied <i>South of Heaven</i> bleibt somit Raum für abwechslungsreiche Schlagzeugfiguren. Auf den Alben <i><a href="/wiki/Diabolus_in_Musica_(Album)" title="Diabolus in Musica (Album)">Diabolus in Musica</a></i><sup id="cite_ref-26" class="reference"><a href="#cite_note-26">[26]</a></sup> und <i><a href="/wiki/God_Hates_Us_All" title="God Hates Us All">God Hates Us All</a></i> experimentierten Slayer mit moderneren Klängen. Insbesondere <a href="/wiki/Korn_(Band)" title="Korn (Band)">Korn</a> stellten mit tiefergestimmten Gitarren einen gewissen Einfluss dar.<sup id="cite_ref-27" class="reference"><a href="#cite_note-27">[27]</a></sup></p>
+<p>Mit dem Album <i><a href="/wiki/Christ_Illusion" title="Christ Illusion">Christ Illusion</a></i> kehrten Slayer zu ihrem klassischen Stil zurück:</p>
+<blockquote>
+<p class="Zitat">„Es geht nicht tobsüchtiger und rasanter als auf ihrem 1986er Album ‚Reign in Blood‘. Zwar haben sie es 20 Jahre lang versucht, verstiegen sich aber nur in den Höhen düsteren Kunstgewerbes, um mit ‚Christ Illusion‘ heute dankbar an den alten, niederen Grenzen anzustoßen.“</p>
+<p class="cite"><cite>– <span class="Person">Michael Pilz<sup id="cite_ref-DieWelt_28-0" class="reference"><a href="#cite_note-DieWelt-28">[28]</a></sup></span></cite></p>
+</blockquote>
+<h3><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=8" title="Abschnitt bearbeiten: Texte">Bearbeiten</a>]</span> <span class="mw-headline" id="Texte">Texte</span></h3>
+<p>Der Großteil der Texte werden von Kerry King und Jeff Hanneman geschrieben. Seit dem Album <i>South of Heaven</i> beteiligt sich Tom Araya ebenfalls beim Schreiben der Texte. Seine Texte haben in der Regel einen Bezug zur realen Welt. Inspirationen holt sich Araya durch <a href="/wiki/Zeitung" title="Zeitung">Zeitungen</a> und die <a href="/wiki/Nachrichten" title="Nachrichten">Nachrichten</a> im <a href="/wiki/Fernsehen" title="Fernsehen">Fernsehen</a>. Insbesondere die Taten von <a href="/wiki/Serienm%C3%B6rder" title="Serienmörder" class="mw-redirect">Serienmördern</a> üben eine große Faszination auf ihn aus.<sup id="cite_ref-Rock_Hard_3-7" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></p>
+<p>Die Texte von Kerry King sind rein <a href="/wiki/Fiktion" title="Fiktion">fiktiver</a> Natur und in der Regel antichristlich geprägt. Er beteuert allerdings, dass er nichts und niemanden hasse. King selbst bezeichnet sich als <a href="/wiki/Agnostiker" title="Agnostiker" class="mw-redirect">Agnostiker</a> und <a href="/wiki/Atheismus" title="Atheismus">Atheist</a>.<sup id="cite_ref-29" class="reference"><a href="#cite_note-29">[29]</a></sup> Jeff Hanneman schreibt ebenfalls überwiegend antichristliche Lieder. Ferner verfasste er einige kontrovers diskutierte Lieder wie z.B. <i>Angel of Death</i>.</p>
+<p>Sänger Araya stellte sich kurz nach der Jahrtausendwende als gläubiger <a href="/wiki/Katholik" title="Katholik">Katholik</a> dar. Sein Bekenntnis löste eine Diskussion unter den Fans aus, inwieweit Araya glaubwürdig Texte singen kann, die im krassen Gegensatz zu seinem Glauben stehen. Gegenüber dem Rock Hard-Magazin erklärt Araya:</p>
+<blockquote>
+<p class="Zitat">„Mein Glaube verbietet mir nicht, ein Teil von Slayer zu sein. Und umgekehrt hindert mich meine Mitgliedschaft bei Slayer nicht daran, so zu sein, wie ich bin. […] Mit vielen Texten von King gehe ich nicht konform, aber mein Glaube ist sehr stark, und Worte können ihm nichts anhaben. […] Es sind Worte, die eine andere Person verfasst hat. Ich kann sie dennoch mit echter Leidenschaft rüberbringen. Genau wie ein Schauspieler. […] Aber ich muß mich zu dieser Leidenschaft nicht zwingen, denn ich liebe unsere Musik.“</p>
+<p class="cite"><cite>– <span class="Person">Tom Araya<sup id="cite_ref-Rock_Hard_3-8" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></span></cite></p>
+</blockquote>
+<p><a href="/wiki/Die_Welt" title="Die Welt">Die Welt</a> interpretiert die Texte der Band als radikale moralische Herausforderung jeglicher Religion und ihrer Auswirkungen:</p>
+<blockquote>
+<p class="Zitat">„Denn wenn Motörhead die Politik in Trümmer legen, um sie neu zu zementieren, leisten Slayer gleiches für die Religion. […] Vier Lieder zuvor stellt das Lied <i><a href="/wiki/Jihad" title="Jihad" class="mw-redirect">Jihad</a></i> als ratternde Vertonung des Statuts der 9-11-Terroristen die Geduld der Islamisten auf die Probe.“</p>
+<p class="cite"><cite>– <span class="Person">Michael Pilz<sup id="cite_ref-DieWelt_28-1" class="reference"><a href="#cite_note-DieWelt-28">[28]</a></sup></span></cite></p>
+</blockquote>
+<h3><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=9" title="Abschnitt bearbeiten: Optik">Bearbeiten</a>]</span> <span class="mw-headline" id="Optik">Optik</span></h3>
+<div class="thumb tright">
+<div class="thumbinner" style="width:222px;"><a href="/w/index.php?title=Datei:Slayer_wordmark.svg&amp;filetimestamp=20080522140309" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Slayer_wordmark.svg/220px-Slayer_wordmark.svg.png" width="220" height="114" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Slayer_wordmark.svg/330px-Slayer_wordmark.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Slayer_wordmark.svg/440px-Slayer_wordmark.svg.png 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/w/index.php?title=Datei:Slayer_wordmark.svg&amp;filetimestamp=20080522140309" class="internal" title="vergrößern und Informationen zum Bild anzeigen"><img src="//bits.wikimedia.org/static-1.21wmf6/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+Bandschriftzug</div>
+</div>
+</div>
+<div class="thumb tright">
+<div class="thumbinner" style="width:222px;"><a href="/w/index.php?title=Datei:Slayer-logo.svg&amp;filetimestamp=20110516151852" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/de/thumb/4/46/Slayer-logo.svg/220px-Slayer-logo.svg.png" width="220" height="42" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/de/thumb/4/46/Slayer-logo.svg/330px-Slayer-logo.svg.png 1.5x, //upload.wikimedia.org/wikipedia/de/thumb/4/46/Slayer-logo.svg/440px-Slayer-logo.svg.png 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/w/index.php?title=Datei:Slayer-logo.svg&amp;filetimestamp=20110516151852" class="internal" title="vergrößern und Informationen zum Bild anzeigen"><img src="//bits.wikimedia.org/static-1.21wmf6/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+Bandschriftzug auf <i>Diabolus in Musica</i></div>
+</div>
+</div>
+<p>Auch optisch setzte die Band und vor allem Kerry King Maßstäbe. Kings Bühnenkleidung, bestehend aus mit Nieten besetzten Stiefeln, Nietenarmbändern und Leder, wurde unzählige Male kopiert. Später fing King damit an, seine Armbänder mit langen Nägeln zu besetzen. Damit schuf er das klassische <a href="/wiki/Black_Metal" title="Black Metal">Black-Metal</a>-Image, welches auch heute noch von vielen Bands dieses Genres aufrechterhalten wird, obwohl Slayer nie Black Metal spielten.<sup id="cite_ref-Rock_Hard_3-9" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></p>
+<p>Für Irritationen sorgte die von der Band durch Logos benutzte <a href="/wiki/Ikonografie" title="Ikonografie">Ikonografie</a>. So enthält der auf den meisten Veröffentlichungen verwendete Bandschriftzug ein S, das der durch verschiedene Organisationen des <a href="/wiki/Nationalsozialismus" title="Nationalsozialismus">Nationalsozialismus</a> (<a href="/wiki/Schutzstaffel" title="Schutzstaffel">Schutzstaffel</a>, <a href="/wiki/Deutsches_Jungvolk" title="Deutsches Jungvolk">Deutsches Jungvolk</a>) verwendeten <a href="/wiki/Siegrune" title="Siegrune">Siegrune</a> ähnelt. Grundsätzlich wird die Verwendung dieses Symbols aber als unpolitisch eingestuft.<sup id="cite_ref-30" class="reference"><a href="#cite_note-30">[30]</a></sup> Ebenso ergab eine Anfrage von den baden-württembergischen Landtagsabgeordneten <a href="/wiki/Thomas_Oelmayer" title="Thomas Oelmayer">Thomas Oelmayer</a> und <a href="/wiki/Hans-Ulrich_Sckerl" title="Hans-Ulrich Sckerl" class="mw-redirect">Hans-Ulrich Sckerl</a> an das <a href="/wiki/Justizministerium_Baden-W%C3%BCrttemberg" title="Justizministerium Baden-Württemberg">Justizministerium</a>, dass aufgrund der Verwendung der Rune im Bandlogo noch keine Anzeigen aufgrund des <a href="/wiki/Verwenden_von_Kennzeichen_verfassungswidriger_Organisationen" title="Verwenden von Kennzeichen verfassungswidriger Organisationen">Verwendens von Kennzeichen verfassungswidriger Organisationen</a> gestellt wurden.<sup id="cite_ref-31" class="reference"><a href="#cite_note-31">[31]</a></sup> Neben dem ursprünglichen Bandschriftzug wurden auch ein dem <a href="/wiki/Reichsadler#Der_Reichsadler_im_Nationalsozialismus" title="Reichsadler">nationalsozialistischen Reichsadler</a> ähnliches Bandlogo und der Name sowie das Emblem des Fanclubs Slaytanic Wehrmacht zum Objekt von Kontroversen.</p>
+<p>Alleine auf <i><a href="/wiki/Diabolus_in_Musica_(Album)" title="Diabolus in Musica (Album)">Diabolus in Musica</a></i> und einzelnen Ausgaben von <i><a href="/wiki/God_Hates_Us_All" title="God Hates Us All">God Hates Us All</a></i> wurden andere Bandlogos verwendet.</p>
+<h2><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=10" title="Abschnitt bearbeiten: Einfluss und Rezeption">Bearbeiten</a>]</span> <span class="mw-headline" id="Einfluss_und_Rezeption">Einfluss und Rezeption</span></h2>
+<div class="thumb tright">
+<div class="thumbinner" style="width:222px;"><a href="/w/index.php?title=Datei:Slayer_-_tom_araya_2_-_live_2006.jpg&amp;filetimestamp=20070201203138" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Slayer_-_tom_araya_2_-_live_2006.jpg/220px-Slayer_-_tom_araya_2_-_live_2006.jpg" width="220" height="147" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Slayer_-_tom_araya_2_-_live_2006.jpg/330px-Slayer_-_tom_araya_2_-_live_2006.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Slayer_-_tom_araya_2_-_live_2006.jpg/440px-Slayer_-_tom_araya_2_-_live_2006.jpg 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/w/index.php?title=Datei:Slayer_-_tom_araya_2_-_live_2006.jpg&amp;filetimestamp=20070201203138" class="internal" title="vergrößern und Informationen zum Bild anzeigen"><img src="//bits.wikimedia.org/static-1.21wmf6/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+Tom Araya an seinem Bass</div>
+</div>
+</div>
+<p>Slayer zählen neben <a href="/wiki/Metallica" title="Metallica">Metallica</a>, <a href="/wiki/Anthrax_(Band)" title="Anthrax (Band)">Anthrax</a> und <a href="/wiki/Megadeth" title="Megadeth">Megadeth</a> zu den „Großen Vier“ des <a href="/wiki/Thrash_Metal" title="Thrash Metal">Thrash Metal</a>. Alle vier Bands wurden Anfang der <a href="/wiki/1980er_Jahre" title="1980er Jahre" class="mw-redirect">Achtziger Jahre</a> bekannt und haben einen großen Einfluss auf das Genre.<sup id="cite_ref-Decibel_1-7" class="reference"><a href="#cite_note-Decibel-1">[1]</a></sup> Slayer stellten sich dabei als extremste Band des Quartetts heraus und blieben ihrem Stil weitestgehend treu.</p>
+<p>Neben dem Thrash Metal übt Slayer einen großen Einfluss auf die <a href="/wiki/Death_Metal" title="Death Metal">Death</a>- und <a href="/wiki/Black_Metal" title="Black Metal">Black-Metal</a>-Szene aus. Viele Bands aus diesen Genres zählen Slayer zu ihren Haupteinflüssen. Beispiele hierfür sind Bands wie <a href="/wiki/Sepultura" title="Sepultura">Sepultura</a>, <a href="/wiki/Kreator" title="Kreator">Kreator</a>, <a href="/wiki/Machine_Head" title="Machine Head">Machine Head</a>, aber auch modernere Bands wie <a href="/wiki/Slipknot" title="Slipknot">Slipknot</a>.<sup id="cite_ref-Rock_Hard_3-10" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup> Neben <a href="/wiki/Tribute-Album" title="Tribute-Album">Tribute-Alben</a> haben verschiedene Bands zahlreiche Coverversionen von Slayer-Liedern aufgenommen. Auch außerhalb der Metalszene haben verschiedene Bands Slayerlieder gecovert. Beispielsweise coverte die Sängerin <a href="/wiki/Tori_Amos" title="Tori Amos">Tori Amos</a> im Jahre 2001 auf ihrem Album <i><a href="/wiki/Strange_Little_Girls" title="Strange Little Girls">Strange Little Girls</a></i> das Lied <i>Raining Blood</i>.<sup id="cite_ref-32" class="reference"><a href="#cite_note-32">[32]</a></sup></p>
+<p>Dass Slayer bis heute einen Kultstatus in der Metalszene genießen, äußert sich auch durch den sogenannten „<a href="/wiki/Helga_(Ruf)" title="Helga (Ruf)">Slayer-Ruf</a>“. Dabei handelt es sich um einen <a href="/wiki/Running_Gag" title="Running Gag">Running Gag</a>, der sich durch das ständige Rufen des Bandnamens auf Festivals, auszeichnet. Dieses Ritual kann sich über die volle Länge der Veranstaltung hinziehen und ist mittlerweile fester Bestandteil des Slayer-Kults.</p>
+<p><a href="/wiki/MTV" title="MTV">MTV</a> platzierte Slayer auf ihrer Liste der „Größten Metalbands aller Zeiten“ auf Platz sechs.<sup id="cite_ref-33" class="reference"><a href="#cite_note-33">[33]</a></sup> Der TV-Sender <a href="/wiki/VH-1" title="VH-1" class="mw-redirect">VH-1</a> setzte sie auf Platz 50 ihrer Liste der „100 größten Hard Rock-Bands“.<sup id="cite_ref-34" class="reference"><a href="#cite_note-34">[34]</a></sup></p>
+<p>Das Album <i>Reign in Blood</i> wurde vom britischen Magazin <i><a href="/wiki/Kerrang" title="Kerrang">Kerrang!</a></i> als das härteste Album aller Zeiten bezeichnet. Für das Stylus Magazin ist das Album ein „Genredefinierer“.<sup id="cite_ref-35" class="reference"><a href="#cite_note-35">[35]</a></sup> Für den britischen <i><a href="/wiki/Metal_Hammer" title="Metal Hammer">Metal Hammer</a></i> ist <i>Reign in Blood</i> das beste Metal-Album der letzten 20 Jahre.<sup id="cite_ref-36" class="reference"><a href="#cite_note-36">[36]</a></sup></p>
+<p>In dem Buch „Best of Rock &amp; Metal“ des deutschen <i>Rock-Hard</i>-Magazins, in dem die nach Meinung der <i>Rock-Hard</i>-Redaktion 500 stärksten Metal- und Hard-Rock-Alben aller Zeiten aufgeführt werden, sind Slayer mit vier Alben vertreten: <i>Reign in Blood</i> belegt Platz sechs, <i>Hell Awaits</i> Platz 40, <i>South of Heaven</i> Platz 43 und <i>Seasons in the Abyss</i> Platz 53.<sup id="cite_ref-37" class="reference"><a href="#cite_note-37">[37]</a></sup> Die Wochenzeitung <i><a href="/wiki/Die_Zeit" title="Die Zeit">Die Zeit</a></i> berichtete in ihrer Ausgabe vom 27. September 2007 über <i>Reign in Blood</i> im Rahmen der Serie „100 Klassiker der modernen Musik“.</p>
+<h2><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=11" title="Abschnitt bearbeiten: Kontroversen">Bearbeiten</a>]</span> <span class="mw-headline" id="Kontroversen">Kontroversen</span></h2>
+<p>Während ihrer Karriere sorgten Slayer viele Male für kontroverse Diskussionen, insbesondere in Deutschland. Ursache hierfür waren hauptsächlich Anspielungen auf den <a href="/wiki/Nationalsozialismus" title="Nationalsozialismus">Nationalsozialismus</a>, die sich in diversen Texten sowie durch <a href="/wiki/Schutzstaffel" title="Schutzstaffel">Schutzstaffel</a>-Aufkleber an den Instrumenten äußerten. Dazu kommt, dass der offizielle <a href="/wiki/Fanclub" title="Fanclub" class="mw-redirect">Fanclub</a> den Namen "Slaytanic <a href="/wiki/Wehrmacht" title="Wehrmacht">Wehrmacht</a>" trägt.<sup id="cite_ref-Rock_Hard_3-11" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></p>
+<p>Die wohl bekannteste Kontroverse dreht sich um das Lied <i>Angel of Death</i> vom Album <i>Reign in Blood</i>. Das von Jeff Hanneman geschriebene Lied befasst sich mit dem Arzt <a href="/wiki/Josef_Mengele" title="Josef Mengele">Josef Mengele</a>, der im <a href="/wiki/KZ_Auschwitz-Birkenau" title="KZ Auschwitz-Birkenau">Konzentrationslager Auschwitz</a> mit Gefangenen <a href="/wiki/Menschenversuch" title="Menschenversuch">Menschenversuche</a> durchführte. Die Taten Mengeles werden im Text weder verurteilt, noch distanziert sich Hanneman durch das Lied von ihnen.<sup id="cite_ref-Rock_Hard_3-12" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup> Daher wurden immer wieder Vorwürfe laut, dass die Band mit dem Nationalsozialismus sympathisiere.<sup id="cite_ref-Decibel_1-8" class="reference"><a href="#cite_note-Decibel-1">[1]</a></sup> Weitere Lieder, die sich mit dem Thema Nationalsozialismus befassen sind <i>The Final Command</i> (vom Album <i>Show No Mercy</i>), <i>Behind the Crooked Cross</i> (<a href="/wiki/Englische_Sprache" title="Englische Sprache">engl.:</a> ‚Hinter dem <a href="/wiki/Hakenkreuz" title="Hakenkreuz" class="mw-redirect">Hakenkreuz</a>‘, vom Album <i>South of Heaven</i>) sowie <i>SS-3</i> (vom Album <i>Divine Intervention</i>). Letzteres Lied handelt von <a href="/wiki/Reinhard_Heydrich" title="Reinhard Heydrich">Reinhard Heydrich</a>, dem Organisator des <a href="/wiki/Holocaust" title="Holocaust">Holocaust</a>. Der Titel <i>SS-3</i> bezieht sich auf das <a href="/wiki/Kfz-Kennzeichen" title="Kfz-Kennzeichen" class="mw-redirect">Kfz-Kennzeichen</a> des Wagens, in dem <a href="/wiki/Reinhard_Heydrich" title="Reinhard Heydrich">Reinhard Heydrich</a> von tschechischen Widerstandskämpfern durch eine Handgranate bei einem Anschlag tödlich verletzt wurde. Das Lied war neben dem Cover-Artwork und einigen weiteren Texten Hauptgrund für die Indizierung des Albums. Auf dem Live-Video <i>Live Intrusion</i> sind Videoaufnahmen aus dem <a href="/wiki/KZ_Dachau" title="KZ Dachau">KZ Dachau</a> zu sehen, die mit dem <a href="/wiki/Monty_Python" title="Monty Python">Monty-Python</a>-Lied <i>Always Look on the Bright Side of Life</i> unterlegt sind.<sup id="cite_ref-Rock_Hard_3-13" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></p>
+<p>Das Lied <i><a href="/wiki/Guilty_of_Being_White" title="Guilty of Being White">Guilty of Being White</a></i>, eine <a href="/wiki/Coverversion" title="Coverversion">Coverversion</a> des gleichnamigen <a href="/wiki/Minor_Threat" title="Minor Threat">Minor-Threat</a>-Liedes, sorgte für weitere Diskussionen. Araya änderte die letzte Zeile von <i>„guilty of being white“</i> (engl.: ‚schuldig, weiß zu sein‘) in <i>„guilty of being right“</i> (‚schuldig, Recht zu haben‘). Araya erklärte in einem Interview, dass keine Botschaft hinter dieser Textänderung stecke:</p>
+<blockquote>
+<p class="Zitat">„Ich weiß, was es heißt, als Nichtweißer von den Bullen diskriminiert zu werden.“</p>
+<p class="cite"><cite>– <span class="Person">Tom Araya<sup id="cite_ref-Rock_Hard_3-14" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></span></cite></p>
+</blockquote>
+<p>Die Band weist derartige Vorwürfe regelmäßig zurück. Dabei beteuern sie, dass ihre Lieder wie <a href="/wiki/Dokumentarfilm" title="Dokumentarfilm">Dokumentarfilme</a> verstanden werden sollen, die keinen ideologischen Hintergrund haben. Der Grund dafür, dass die Band Texte über dieses Thema verfasse, liege an deren Interesse am <a href="/wiki/Drittes_Reich" title="Drittes Reich">Dritten Reich</a>.<sup id="cite_ref-38" class="reference"><a href="#cite_note-38">[38]</a></sup> Jeff Hanneman, von dem die meisten Texte stammen, die sich auf den Nationalsozialismus beziehen, bezeichnete sich selbst in einem Interview als „kalifornischen <a href="/wiki/Punk" title="Punk">Punk</a>, der keinerlei politische Ambitionen habe“.<sup id="cite_ref-Rock_Hard_3-15" class="reference"><a href="#cite_note-Rock_Hard-3">[3]</a></sup></p>
+<p>Des Weiteren verweisen Mitglieder der Band auf die Tatsachen, dass Tom Araya gebürtiger <a href="/wiki/Chile" title="Chile">Chilene</a> ist und Dave Lombardo in <a href="/wiki/Kuba" title="Kuba">Kuba</a> geboren wurde. Arayas Ehefrau und der Produzent <a href="/wiki/Rick_Rubin" title="Rick Rubin">Rick Rubin</a> stammen aus jüdischen Familien. Kerry King steuerte 1986 ein Gitarrensolo zum Lied <i>No Sleep Til Brooklyn</i> der Rapband <a href="/wiki/Beastie_Boys" title="Beastie Boys">Beastie Boys</a> bei, deren Mitglieder ebenfalls Juden sind. Schließlich nahm die Band 1993 ein Lied mit dem <a href="/wiki/Afroamerikaner" title="Afroamerikaner">afroamerikanischen</a> Rapper <a href="/wiki/Ice-T" title="Ice-T">Ice-T</a> auf und kollaborierte 1997 mit der eindeutig linksgerichteten Band <a href="/wiki/Atari_Teenage_Riot" title="Atari Teenage Riot">Atari Teenage Riot</a>.</p>
+<p>Texte über <a href="/wiki/Serienm%C3%B6rder" title="Serienmörder" class="mw-redirect">Serienmörder</a> sorgten ebenfalls für Kontroversen. Beispiele hierfür sind <i>Dead Skin Mask</i> und <i>213</i>, die sich auf <a href="/wiki/Ed_Gein" title="Ed Gein">Ed Gein</a> bzw. <a href="/wiki/Jeffrey_Dahmer" title="Jeffrey Dahmer">Jeffrey Dahmer</a> beziehen. Das Lied <i>Jihad</i> vom Album <i>Christ Illusion</i> thematisiert die Terroranschläge des 11. September 2001. Der Text ist aus Sicht eines der <a href="/wiki/Terrorist" title="Terrorist" class="mw-redirect">Terroristen</a> geschrieben und verzichtet auf jegliche Wertung.<sup id="cite_ref-39" class="reference"><a href="#cite_note-39">[39]</a></sup></p>
+<p>Das Cover von <i>Christ Illusion</i>, welches einen verstümmelten <a href="/wiki/Jesus_Christus" title="Jesus Christus">Jesus Christus</a> zeigt, sorgte in <a href="/wiki/Indien" title="Indien">Indien</a> für Aufruhr unter christlichen und <a href="/wiki/Muslim" title="Muslim">muslimischen</a> Gruppen. Nach Protesten rief die Plattenfirma <a href="/wiki/EMI_Group" title="EMI Group">EMI</a> die komplette Auflage zurück.<sup id="cite_ref-40" class="reference"><a href="#cite_note-40">[40]</a></sup></p>
+<h2><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=12" title="Abschnitt bearbeiten: Diskografie">Bearbeiten</a>]</span> <span class="mw-headline" id="Diskografie">Diskografie</span></h2>
+<p><i>Diese Auflistung enthält nur die Studioalben. Für eine ausführliche Diskografie siehe</i>: <a href="/wiki/Slayer/Diskografie" title="Slayer/Diskografie">Slayer/Diskografie</a></p>
+<table style="width: 100%;">
+<tr>
+<td style="width: 33%; vertical-align: top;">
+<ul>
+<li>1983: <a href="/wiki/Show_No_Mercy" title="Show No Mercy">Show No Mercy</a></li>
+<li>1985: <a href="/wiki/Hell_Awaits" title="Hell Awaits">Hell Awaits</a></li>
+<li>1986: <a href="/wiki/Reign_in_Blood" title="Reign in Blood">Reign in Blood</a></li>
+<li>1988: <a href="/wiki/South_of_Heaven" title="South of Heaven">South of Heaven</a></li>
+<li>1990: <a href="/wiki/Seasons_in_the_Abyss" title="Seasons in the Abyss">Seasons in the Abyss</a></li>
+<li>1994: <a href="/wiki/Divine_Intervention" title="Divine Intervention">Divine Intervention</a> (in Deutschland indiziert<sup id="cite_ref-bpjm_11-1" class="reference"><a href="#cite_note-bpjm-11">[11]</a></sup>)</li>
+</ul>
+</td>
+<td style="width: 33%; vertical-align: top;">
+<ul>
+<li>1996: <a href="/wiki/Undisputed_Attitude" title="Undisputed Attitude">Undisputed Attitude</a></li>
+<li>1998: <a href="/wiki/Diabolus_in_Musica_(Album)" title="Diabolus in Musica (Album)">Diabolus in Musica</a></li>
+<li>2001: <a href="/wiki/God_Hates_Us_All" title="God Hates Us All">God Hates Us All</a></li>
+<li>2006: <a href="/wiki/Christ_Illusion" title="Christ Illusion">Christ Illusion</a></li>
+<li>2009: <a href="/wiki/World_Painted_Blood" title="World Painted Blood">World Painted Blood</a></li>
+</ul>
+</td>
+</tr>
+</table>
+<h2><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=13" title="Abschnitt bearbeiten: Einzelnachweise">Bearbeiten</a>]</span> <span class="mw-headline" id="Einzelnachweise">Einzelnachweise</span></h2>
+<ol class="references">
+<li id="cite_note-Decibel-1"><span class="mw-cite-backlink">↑ <sup><a href="#cite_ref-Decibel_1-0">a</a></sup> <sup><a href="#cite_ref-Decibel_1-1">b</a></sup> <sup><a href="#cite_ref-Decibel_1-2">c</a></sup> <sup><a href="#cite_ref-Decibel_1-3">d</a></sup> <sup><a href="#cite_ref-Decibel_1-4">e</a></sup> <sup><a href="#cite_ref-Decibel_1-5">f</a></sup> <sup><a href="#cite_ref-Decibel_1-6">g</a></sup> <sup><a href="#cite_ref-Decibel_1-7">h</a></sup> <sup><a href="#cite_ref-Decibel_1-8">i</a></sup></span> <span class="reference-text"><span class="cite">J. Bennett: <a rel="nofollow" class="external text" href="http://web.archive.org/web/20070318044743/http://www.decibelmagazine.com/features_detail.aspx?id=4566"><i>An exclusive oral history of Slayer</i>.</a> decibelmagazine, <span style="white-space:nowrap;">August 2006</span>, abgerufen am <span style="white-space:nowrap;">2. September 2008</span> (englisch).</span><span style="display: none;" class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Fde.wikipedia.org%3ASlayer&amp;rft.title=An+exclusive+oral+history+of+Slayer&amp;rft.description=An+exclusive+oral+history+of+Slayer&amp;rft.identifier=http%3A%2F%2Fweb.archive.org%2Fweb%2F20070318044743%2Fhttp%3A%2F%2Fwww.decibelmagazine.com%2Ffeatures_detail.aspx%3Fid%3D4566&amp;rft.creator=J.+Bennett&amp;rft.publisher=decibelmagazine&amp;rft.language=englisch">&#160;</span></span></li>
+<li id="cite_note-Slagel-2"><span class="mw-cite-backlink">↑ <sup><a href="#cite_ref-Slagel_2-0">a</a></sup> <sup><a href="#cite_ref-Slagel_2-1">b</a></sup></span> <span class="reference-text">metalupdate.com: <a rel="nofollow" class="external text" href="http://www.metalupdate.com/interviewmetalblade.html">Interview with Brian Slagel</a></span></li>
+<li id="cite_note-Rock_Hard-3"><span class="mw-cite-backlink">↑ <sup><a href="#cite_ref-Rock_Hard_3-0">a</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-1">b</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-2">c</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-3">d</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-4">e</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-5">f</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-6">g</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-7">h</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-8">i</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-9">j</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-10">k</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-11">l</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-12">m</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-13">n</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-14">o</a></sup> <sup><a href="#cite_ref-Rock_Hard_3-15">p</a></sup></span> <span class="reference-text">Rock Hard Special: Die Titanen des Thrash</span></li>
+<li id="cite_note-Billboard-4"><span class="mw-cite-backlink">↑ <sup><a href="#cite_ref-Billboard_4-0">a</a></sup> <sup><a href="#cite_ref-Billboard_4-1">b</a></sup> <sup><a href="#cite_ref-Billboard_4-2">c</a></sup> <sup><a href="#cite_ref-Billboard_4-3">d</a></sup> <sup><a href="#cite_ref-Billboard_4-4">e</a></sup> <sup><a href="#cite_ref-Billboard_4-5">f</a></sup></span> <span class="reference-text">billboard.com: <a rel="nofollow" class="external text" href="http://www.billboard.com/bbcom/retrieve_chart_history.do?model.chartFormatGroupName=Albums&amp;model.vnuArtistId=5692&amp;model.vnuAlbumId=789249">Artist Chart History: Slayer</a></span></li>
+<li id="cite_note-RIAA-5"><span class="mw-cite-backlink">↑ <sup><a href="#cite_ref-RIAA_5-0">a</a></sup> <sup><a href="#cite_ref-RIAA_5-1">b</a></sup> <sup><a href="#cite_ref-RIAA_5-2">c</a></sup></span> <span class="reference-text">riaa.com: <a rel="nofollow" class="external text" href="http://www.riaa.com/goldandplatinumdata.php?table=SEARCH">RIAA Gold &amp; Platinum Searchable Database</a></span></li>
+<li id="cite_note-6"><span class="mw-cite-backlink"><a href="#cite_ref-6">↑</a></span> <span class="reference-text">ign.com: <a rel="nofollow" class="external text" href="http://au.music.ign.com/articles/725/725459p1.html">Meet the new Slayer, same as the old Slayer</a></span></li>
+<li id="cite_note-7"><span class="mw-cite-backlink"><a href="#cite_ref-7">↑</a></span> <span class="reference-text">decibelmagazine.com: <a rel="nofollow" class="external text" href="http://www.decibelmagazine.com/features_detail.aspx?id=4908">Legendary rapper and longtime metal advocate moves on with the Body Count</a></span></li>
+<li id="cite_note-8"><span class="mw-cite-backlink"><a href="#cite_ref-8">↑</a></span> <span class="reference-text">slaytanic.com: <a rel="nofollow" class="external text" href="http://www.slaytanic.com/news.html">Jon Dette has left Slayer and is beeing replaced by Paul Bostaph!</a></span></li>
+<li id="cite_note-9"><span class="mw-cite-backlink"><a href="#cite_ref-9">↑</a></span> <span class="reference-text">elysemarie.org: <a rel="nofollow" class="external text" href="http://www.elysemarie.org/">The Elyse Marie Pahler foundation</a></span></li>
+<li id="cite_note-10"><span class="mw-cite-backlink"><a href="#cite_ref-10">↑</a></span> <span class="reference-text">metalhammer.co.uk: <a rel="nofollow" class="external text" href="http://www.metalhammer.co.uk/news/article/?id=39564">Slayer out of the dock</a></span></li>
+<li id="cite_note-bpjm-11"><span class="mw-cite-backlink">↑ <sup><a href="#cite_ref-bpjm_11-0">a</a></sup> <sup><a href="#cite_ref-bpjm_11-1">b</a></sup></span> <span class="reference-text"><a rel="nofollow" class="external text" href="http://replay.web.archive.org/20050725234402/http://www.bpjm.com/icdmc_gruppen_04.htm"><i>Indizierte Tonträger</i></a>.</span></li>
+<li id="cite_note-12"><span class="mw-cite-backlink"><a href="#cite_ref-12">↑</a></span> <span class="reference-text">Ein Bild des ursprünglichen Artworks ist <a rel="nofollow" class="external text" href="http://www.alu.ua.es/j/jga2/imagenes/Slayer_-_God_Hates_Us_All_Uncensored-front.jpg">hier</a> zu sehen.</span></li>
+<li id="cite_note-13"><span class="mw-cite-backlink"><a href="#cite_ref-13">↑</a></span> <span class="reference-text">rockonthenet.com: <a rel="nofollow" class="external text" href="http://www.rockonthenet.com/archive/2002/grammys.htm">44th Grammy Awards - 2002</a></span></li>
+<li id="cite_note-14"><span class="mw-cite-backlink"><a href="#cite_ref-14">↑</a></span> <span class="reference-text">kerrang.com: <a rel="nofollow" class="external text" href="http://www.kerrang.com/nav?page=kerrang.reviews.artist.news&amp;fixture_news=111046&amp;resource=111046&amp;fixture_artist=149178">Tattoo The Planet officially postponed</a></span></li>
+<li id="cite_note-15"><span class="mw-cite-backlink"><a href="#cite_ref-15">↑</a></span> <span class="reference-text">metal-rules.com: <a rel="nofollow" class="external text" href="http://www.metal-rules.com/zine/index.php?option=content&amp;task=view&amp;id=797&amp;Itemid=60">PAUL BOSTAPH of Exodus, ex-Slayer (auf englisch)</a></span></li>
+<li id="cite_note-16"><span class="mw-cite-backlink"><a href="#cite_ref-16">↑</a></span> <span class="reference-text">kerrang.com: <a rel="nofollow" class="external text" href="http://www.kerrang.com/nav?page=kerrang.reviews.artist.news&amp;fixture_news=111297&amp;resource=111297&amp;fixture_artist=149178">Slayer: Lombardo′s back!</a></span></li>
+<li id="cite_note-17"><span class="mw-cite-backlink"><a href="#cite_ref-17">↑</a></span> <span class="reference-text">blabbermouth.net: <a rel="nofollow" class="external text" href="http://www.roadrunnerrecords.com/blabbermouth.net/news.aspx?mode=Article&amp;newsitemID=21364">Slayer To Perform On MTV′s "Viva La Bam"</a></span></li>
+<li id="cite_note-18"><span class="mw-cite-backlink"><a href="#cite_ref-18">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external text" href="http://www.nationaldayofslayer.org/">International Day of Slayer</a></span></li>
+<li id="cite_note-19"><span class="mw-cite-backlink"><a href="#cite_ref-19">↑</a></span> <span class="reference-text">yahoo.com: <a rel="nofollow" class="external text" href="http://biz.yahoo.com/iw/060816/0154755.html">Slayer’s Christ Illusion Is Band’s Highest Ever Billboard Chart Debut Entering At #5</a></span></li>
+<li id="cite_note-20"><span class="mw-cite-backlink"><a href="#cite_ref-20">↑</a></span> <span class="reference-text">blabbermouth.net: <a rel="nofollow" class="external text" href="http://www.roadrunnerrecords.com/blabbermouth.net/news.aspx?mode=Article&amp;newsitemID=52111">SLAYER Frontman Undergoes Gallbladder Surgery, Band Reschedule Early “Unholy Alliance” Dates</a></span></li>
+<li id="cite_note-21"><span class="mw-cite-backlink"><a href="#cite_ref-21">↑</a></span> <span class="reference-text">blabbermouth.net: <a rel="nofollow" class="external text" href="http://www.roadrunnerrecords.com/blabbermouth.net/news.aspx?mode=Article&amp;newsitemID=66845">Slayer wins Grammy in Best Metal Performance category</a></span></li>
+<li id="cite_note-22"><span class="mw-cite-backlink"><a href="#cite_ref-22">↑</a></span> <span class="reference-text">blabbermouth.net: <a rel="nofollow" class="external text" href="http://www.roadrunnerrecords.com/blabbermouth.net/news.aspx?mode=Article&amp;newsitemID=90427">„SLAYER Wins 'Best Metal' GRAMMY AWARD“ - Feb. 10, 2008</a> (Zugriff am 9. November 2008)</span></li>
+<li id="cite_note-23"><span class="mw-cite-backlink"><a href="#cite_ref-23">↑</a></span> <span class="reference-text"><i>"Every song has a discernable hook and melody line, something that was lacking from many, particularly Euro bores."</i> auf <a rel="nofollow" class="external autonumber" href="http://www.kickedintheface.com/reviews/Slayer-Reign_In_Blood.htm">[1]</a></span></li>
+<li id="cite_note-Allmusic-24"><span class="mw-cite-backlink"><a href="#cite_ref-Allmusic_24-0">↑</a></span> <span class="reference-text">allmusic.com: <a rel="nofollow" class="external text" href="http://wc01.allmusic.com/cg/amg.dll?p=amg&amp;sql=11:97yvad5kv8w3~T1">Slayer Biography</a></span></li>
+<li id="cite_note-25"><span class="mw-cite-backlink"><a href="#cite_ref-25">↑</a></span> <span class="reference-text">abc.net.au: <a rel="nofollow" class="external text" href="http://www.abc.net.au/triplej/racket/listen/audio_alpha_S.htm">Andrew Haug speaks with Dave Lombardo from Slayer</a></span></li>
+<li id="cite_note-26"><span class="mw-cite-backlink"><a href="#cite_ref-26">↑</a></span> <span class="reference-text">Anm.: Dies ist der lateinische Ausdruck für das lange als diabolisch eingestufte, und vermiedene, aus drei Ganztönen bestehenden Intervall (<a href="/wiki/Tritonus" title="Tritonus">Tritonus</a>) der übermäßigen Quarte.</span></li>
+<li id="cite_note-27"><span class="mw-cite-backlink"><a href="#cite_ref-27">↑</a></span> <span class="reference-text"><i>"King and Hanneman toyed with new guitar tunings on the album, taking the plunge down to Drop B a couple times and hauling out a seven-string axe for the first time in Slayer history."</i>; auf <a rel="nofollow" class="external autonumber" href="http://www.hardcoresounds.net/modules.php?name=Band_List&amp;file=viewer&amp;func=356">[2]</a></span></li>
+<li id="cite_note-DieWelt-28"><span class="mw-cite-backlink">↑ <sup><a href="#cite_ref-DieWelt_28-0">a</a></sup> <sup><a href="#cite_ref-DieWelt_28-1">b</a></sup></span> <span class="reference-text">Es wird härter - Die Altmetaller Motörhead und Slayer zwingen zum grundsätzlichen Überdenken der Zivilisation; Die Welt vom 19. September 2006, <a rel="nofollow" class="external text" href="http://www.uni-konstanz.de/historikertag/download/pressespiegel-dw19092006.pdf">PDF</a></span></li>
+<li id="cite_note-29"><span class="mw-cite-backlink"><a href="#cite_ref-29">↑</a></span> <span class="reference-text">Rock Hard, Ausgabe 09/06</span></li>
+<li id="cite_note-30"><span class="mw-cite-backlink"><a href="#cite_ref-30">↑</a></span> <span class="reference-text">Johannes Radke auf netz-gegen-nazis.de: <a rel="nofollow" class="external text" href="http://www.netz-gegen-nazis.de/artikel/gaskammern-auf-dem-cd-cover">Gaskammern auf dem CD-Cover</a>, Interview mit Jason Hellert</span></li>
+<li id="cite_note-31"><span class="mw-cite-backlink"><a href="#cite_ref-31">↑</a></span> <span class="reference-text">Landtag Baden-Württemberg: <a rel="nofollow" class="external text" href="http://www.landtag-bw.de/WP14/Drucksachen/2000/14_2938_D.PDF">Strafbarkeit der Verwendung der Sig-Rune</a>, Kleine Anfrage der Abg. Thomas Oelmayer und Hans-Ulrich Sckerl GRÜNE und Antwort des Justizministeriums</span></li>
+<li id="cite_note-32"><span class="mw-cite-backlink"><a href="#cite_ref-32">↑</a></span> <span class="reference-text">rockzone.com: <a rel="nofollow" class="external text" href="http://www.rockzone.com/interviews/slayer.shtml">A Conversation With Kerry King</a></span></li>
+<li id="cite_note-33"><span class="mw-cite-backlink"><a href="#cite_ref-33">↑</a></span> <span class="reference-text">mtv.com: <a rel="nofollow" class="external text" href="http://www.mtv.com/bands/m/metal/greatest_metal_bands/071406/index7.jhtml">Why They Rule - # 6 Slayer</a></span></li>
+<li id="cite_note-34"><span class="mw-cite-backlink"><a href="#cite_ref-34">↑</a></span> <span class="reference-text">vh1.com: <a rel="nofollow" class="external text" href="http://www.rockonthenet.com/archive/2000/vh1hardrock.htm">The Greatest: 100 Greatest Artists of Hard Rock</a></span></li>
+<li id="cite_note-35"><span class="mw-cite-backlink"><a href="#cite_ref-35">↑</a></span> <span class="reference-text">stylusmagazine.com: <a rel="nofollow" class="external text" href="http://stylusmagazine.com/reviews/slayer/reign-in-blood.htm">Kritik zu Reign in Blood</a></span></li>
+<li id="cite_note-36"><span class="mw-cite-backlink"><a href="#cite_ref-36">↑</a></span> <span class="reference-text">metalhammer.co.uk: <a rel="nofollow" class="external text" href="http://www.metalhammer.co.uk/news/article/?id=44410">Golden Gods Award Winners</a></span></li>
+<li id="cite_note-37"><span class="mw-cite-backlink"><a href="#cite_ref-37">↑</a></span> <span class="reference-text">Rock Hard: Best of Rock &amp; Metal</span></li>
+<li id="cite_note-38"><span class="mw-cite-backlink"><a href="#cite_ref-38">↑</a></span> <span class="reference-text">montrealmirror:com: <a rel="nofollow" class="external text" href="http://www.montrealmirror.com/ARCHIVES/2002/012402/music1.html">Slayer's Tom Araya on Satanism, serial killers and his lovable kids</a></span></li>
+<li id="cite_note-39"><span class="mw-cite-backlink"><a href="#cite_ref-39">↑</a></span> <span class="reference-text">contactmusic.com: <a rel="nofollow" class="external autonumber" href="http://www.contactmusic.com/new/xmlfeed.nsf/mndwebpages/slayer%20spark%20911%20controversy_26_05_2006">[3]</a></span></li>
+<li id="cite_note-40"><span class="mw-cite-backlink"><a href="#cite_ref-40">↑</a></span> <span class="reference-text">bbc.co.uk: <a rel="nofollow" class="external text" href="http://news.bbc.co.uk/2/hi/entertainment/6039976.stm">India "bans" offensive rock album</a></span></li>
+</ol>
+<h2><span class="editsection">[<a href="/w/index.php?title=Slayer&amp;action=edit&amp;section=14" title="Abschnitt bearbeiten: Weblinks">Bearbeiten</a>]</span> <span class="mw-headline" id="Weblinks">Weblinks</span></h2>
+<div class="sisterproject" style="margin:0.1em 0 0 0;"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Commons-logo.svg/12px-Commons-logo.svg.png" width="12" height="16" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Commons-logo.svg/18px-Commons-logo.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Commons-logo.svg/24px-Commons-logo.svg.png 2x" />&#160;<b><span class="plainlinks"><a class="external text" href="//commons.wikimedia.org/wiki/Category:Slayer?uselang=de">Commons: Slayer</a></span></b>&#160;– Sammlung von Bildern, Videos und Audiodateien</div>
+<ul>
+<li><a rel="nofollow" class="external text" href="http://www.slayer.net/">Offizielle Website</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.slayerized.com/">Sehr umfangreiche Fansite (englisch)</a></li>
+</ul>
+<div style="font-size:100%">
+<div class="NavFrame">
+<div class="NavHead" style="background:lightsteelblue;font-size:100%;"><span style="float:left;width:5em"><span style="visibility:hidden;">0</span></span><strong class="selflink">Slayer</strong></div>
+<div class="NavContent">
+<p style="margin:.1em 0;border-top:1px solid #FFF;padding-top:.2em;padding-bottom:.15em;background: #EEE;text-align:center;font-size:95%"><b><a href="/wiki/Tom_Araya" title="Tom Araya">Tom Araya</a> • <a href="/wiki/Jeff_Hanneman" title="Jeff Hanneman">Jeff Hanneman</a> • <a href="/wiki/Kerry_King" title="Kerry King">Kerry King</a> • <a href="/wiki/Dave_Lombardo" title="Dave Lombardo">Dave Lombardo</a></b></p>
+<p style="margin:.1em 0;border-top:1px solid #FFF;padding:.2em;background: #EEE;text-align:center;font-size:95%"><a href="/wiki/Paul_Bostaph" title="Paul Bostaph">Paul Bostaph</a> • <a href="/wiki/Jon_Dette" title="Jon Dette">Jon Dette</a> • Tony Scaglione</p>
+<table class="wikitable zebra" style="width:100%;margin:0;text-align:left;border-collapse:collapse;font-size:95%;margin-top:.1em;margin-bottom:.0em;">
+<tr style="display:none">
+<td></td>
+</tr>
+<tr>
+<td style="white-space: nowrap;text-align: right;background: #DDE5EE;border: 1px solid transparent;border-top: 1px solid #FFF;border-bottom: 2px solid #FFF;padding: 0 1em;"><b>Studioalben</b></td>
+<td class="hlist" style="text-align: left;border-left: 2px solid #fdfdfd;width: 100%;margin: .4em 0;border-color: #fdfdfd;padding: 0 .25em;"><i><a href="/wiki/Show_No_Mercy" title="Show No Mercy">Show No Mercy</a></i> • <i><a href="/wiki/Hell_Awaits" title="Hell Awaits">Hell Awaits</a></i> • <i><a href="/wiki/Reign_in_Blood" title="Reign in Blood">Reign in Blood</a></i> • <i><a href="/wiki/South_of_Heaven" title="South of Heaven">South of Heaven</a></i> • <i><a href="/wiki/Seasons_in_the_Abyss" title="Seasons in the Abyss">Seasons in the Abyss</a></i> • <i><a href="/wiki/Divine_Intervention" title="Divine Intervention">Divine Intervention</a></i> • <i><a href="/wiki/Undisputed_Attitude" title="Undisputed Attitude">Undisputed Attitude</a></i> • <i><a href="/wiki/Diabolus_in_Musica_(Album)" title="Diabolus in Musica (Album)">Diabolus in Musica</a></i> • <i><a href="/wiki/God_Hates_Us_All" title="God Hates Us All">God Hates Us All</a></i> • <i><a href="/wiki/Christ_Illusion" title="Christ Illusion">Christ Illusion</a></i> • <i><a href="/wiki/World_Painted_Blood" title="World Painted Blood">World Painted Blood</a></i></td>
+</tr>
+<tr>
+<td style="white-space: nowrap;text-align: right;background: #DDE5EE;border: 1px solid transparent;border-top: 1px solid #FFF;border-bottom: 2px solid #FFF;padding: 0 1em;"><b>Extended Plays</b></td>
+<td class="hlist" style="text-align: left;border-left: 2px solid #fdfdfd;width: 100%;margin: .4em 0;border-color: #fdfdfd;padding: 0 .25em;"><i><a href="/wiki/Haunting_the_Chapel" title="Haunting the Chapel">Haunting the Chapel</a></i> • <i><a href="/w/index.php?title=Eternal_Pyre&amp;action=edit&amp;redlink=1" class="new" title="Eternal Pyre (Seite nicht vorhanden)">Eternal Pyre</a></i></td>
+</tr>
+<tr>
+<td style="white-space: nowrap;text-align: right;background: #DDE5EE;border: 1px solid transparent;border-top: 1px solid #FFF;border-bottom: 2px solid #FFF;padding: 0 1em;"><b>Livealben</b></td>
+<td class="hlist" style="text-align: left;border-left: 2px solid #fdfdfd;width: 100%;margin: .4em 0;border-color: #fdfdfd;padding: 0 .25em;"><i><a href="/wiki/Live_Undead" title="Live Undead">Live Undead</a></i> • <i><a href="/wiki/Decade_of_Aggression" title="Decade of Aggression">Decade of Aggression</a></i> • <i><a href="/wiki/The_Big_Four_Live_from_Sofia,_Bulgaria" title="The Big Four Live from Sofia, Bulgaria">The Big Four Live from Sofia, Bulgaria</a></i></td>
+</tr>
+</table>
+<p style="margin:.1em 0;padding:.1em;background: #EEE;text-align:center;font-size:95%;"><b><a href="/wiki/Slayer/Diskografie" title="Slayer/Diskografie">Diskografie</a></b></p>
+</div>
+</div>
+</div>
+<div class="topicon"><a href="#Vorlage_Lesenswert" title="Dies ist ein als lesenswert ausgezeichneter Artikel."><img alt="Dies ist ein als lesenswert ausgezeichneter Artikel." src="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/Qsicon_lesenswert.svg/15px-Qsicon_lesenswert.svg.png" width="15" height="15" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/Qsicon_lesenswert.svg/23px-Qsicon_lesenswert.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/43/Qsicon_lesenswert.svg/30px-Qsicon_lesenswert.svg.png 2x" /></a></div>
+<table id="Vorlage_Lesenswert" cellspacing="8" cellpadding="0" class="hintergrundfarbe1 rahmenfarbe1" style="width: 100%; font-size: 95%; border-top-style: solid; margin-top: 1em; clear: both; position:relative;">
+<tr>
+<td style="width: 24px;"><a href="/w/index.php?title=Datei:Qsicon_lesenswert.svg&amp;filetimestamp=20070907152341" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/Qsicon_lesenswert.svg/24px-Qsicon_lesenswert.svg.png" width="24" height="24" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/Qsicon_lesenswert.svg/36px-Qsicon_lesenswert.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/43/Qsicon_lesenswert.svg/48px-Qsicon_lesenswert.svg.png 2x" /></a></td>
+<td>Dieser Artikel wurde am 28. Oktober 2007 in <a class="external text" href="//de.wikipedia.org/w/index.php?title=Slayer&amp;oldid=38331084">dieser Version</a> in die Liste der <a href="/wiki/Wikipedia:Lesenswerte_Artikel" title="Wikipedia:Lesenswerte Artikel">lesenswerten Artikel</a> aufgenommen.</td>
+</tr>
+</table>
+<div id="interwiki-en-fa" class="FA" style="display: none;"></div>
+<div id="interwiki-es-fa" class="FA" style="display: none;"></div>
+<div id="interwiki-it-fa" class="FA" style="display: none;"></div>
+<div id="interwiki-ru-fa" class="FA" style="display: none;"></div>
+<div id="interwiki-da-ga" class="GA" style="display: none;"></div>
+<div id="interwiki-uk-ga" class="GA" style="display: none;"></div>
+
+
+<!-- 
+NewPP limit report
+Preprocessor visited node count: 3406/1000000
+Preprocessor generated node count: 27140/1500000
+Post-expand include size: 30627/2048000 bytes
+Template argument size: 13316/2048000 bytes
+Highest expansion depth: 24/40
+Expensive parser function count: 2/500
+-->
+
+<!-- Saved in parser cache with key dewiki:stable-pcache:idhash:1028671-0!*!0!!de!4!* and timestamp 20130110205328 -->
+</div>				<!-- /bodycontent -->
+								<!-- printfooter -->
+				<div class="printfooter">
+				Von „<a href="http://de.wikipedia.org/w/index.php?title=Slayer&amp;oldid=111668129">http://de.wikipedia.org/w/index.php?title=Slayer&amp;oldid=111668129</a>“				</div>
+				<!-- /printfooter -->
+												<!-- catlinks -->
+				<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Wikipedia:Kategorien" title="Wikipedia:Kategorien">Kategorien</a>: <ul><li><a href="/wiki/Kategorie:Wikipedia:Lesenswert" title="Kategorie:Wikipedia:Lesenswert">Wikipedia:Lesenswert</a></li><li><a href="/wiki/Kategorie:Thrash-Metal-Band" title="Kategorie:Thrash-Metal-Band">Thrash-Metal-Band</a></li><li><a href="/wiki/Kategorie:US-amerikanische_Band" title="Kategorie:US-amerikanische Band">US-amerikanische Band</a></li><li><a href="/wiki/Kategorie:Slayer" title="Kategorie:Slayer">Slayer</a></li><li><a href="/wiki/Kategorie:Grammy-Preistr%C3%A4ger" title="Kategorie:Grammy-Preisträger">Grammy-Preisträger</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">Wartungskategorie: <ul><li><a href="/wiki/Kategorie:Wikipedia:Artikel-Feedback/Artikelgrundstock" title="Kategorie:Wikipedia:Artikel-Feedback/Artikelgrundstock">Wikipedia:Artikel-Feedback/Artikelgrundstock</a></li></ul></div></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+				<!-- debughtml -->
+								<!-- /debughtml -->
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<div id="mw-navigation">
+			<h2>Navigationsmenü</h2>
+			<!-- header -->
+			<div id="mw-head" class="noprint">
+				
+<!-- 0 -->
+<div id="p-personal" role="navigation" class="">
+	<h3>Meine Werkzeuge</h3>
+	<ul>
+<li id="pt-createaccount"><a href="/w/index.php?title=Spezial:Anmelden&amp;returnto=Slayer&amp;type=signup">Benutzerkonto anlegen</a></li><li id="pt-login"><a href="/w/index.php?title=Spezial:Anmelden&amp;returnto=Slayer" title="Anmelden ist zwar keine Pflicht, wird aber gerne gesehen. [o]" accesskey="o">Anmelden</a></li>	</ul>
+</div>
+
+<!-- /0 -->
+				<div id="left-navigation">
+					
+<!-- 0 -->
+<div id="p-namespaces" role="navigation" class="vectorTabs">
+	<h3>Namensräume</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/wiki/Slayer"  title="Seiteninhalt anzeigen [c]" accesskey="c">Artikel</a></span></li>
+					<li  id="ca-talk"><span><a href="/wiki/Diskussion:Slayer"  title="Diskussion zum Seiteninhalt [t]" accesskey="t">Diskussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3><span>Varianten</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+				</div>
+				<div id="right-navigation">
+					
+<!-- 0 -->
+<div id="p-views" role="navigation" class="vectorTabs">
+	<h3>Ansichten</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/wiki/Slayer" >Lesen</a></span></li>
+					<li id="ca-edit"><span><a href="/w/index.php?title=Slayer&amp;action=edit"  title="Seite bearbeiten. Bitte vor dem Speichern die Vorschaufunktion benutzen. [e]" accesskey="e">Bearbeiten</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/w/index.php?title=Slayer&amp;action=history"  title="Frühere Versionen dieser Seite [h]" accesskey="h">Versionsgeschichte</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet">
+	<h3><span>Aktionen</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Suche</label></h3>
+	<form action="/w/index.php" id="searchform">
+				<div id="simpleSearch">
+						<input name="search" title="Durchsuche die Wikipedia [f]" accesskey="f" id="searchInput" />						<button type="submit" name="button" title="Suche nach Seiten, die diesen Text enthalten" id="searchButton"><img src="//bits.wikimedia.org/static-1.21wmf7/skins/vector/images/search-ltr.png?303-4" alt="Volltext" width="12" height="13" /></button>								<input type='hidden' name="title" value="Spezial:Suche"/>
+		</div>
+	</form>
+</div>
+
+<!-- /2 -->
+				</div>
+			</div>
+			<!-- /header -->
+			<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo" role="banner"><a style="background-image: url(//upload.wikimedia.org/wikipedia/commons/e/ec/Wikipedia-logo-v2-de.png);" href="/wiki/Wikipedia:Hauptseite"  title="Hauptseite"></a></div>
+				<!-- /logo -->
+				
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- navigation -->
+<div class="portal" role="navigation" id='p-navigation'>
+	<h3>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-mainpage-description"><a href="/wiki/Wikipedia:Hauptseite" title="Hauptseite besuchen [z]" accesskey="z">Hauptseite</a></li>
+			<li id="n-topics"><a href="/wiki/Portal:Wikipedia_nach_Themen">Themenportale</a></li>
+			<li id="n-alphindex"><a href="/wiki/Spezial:Alle_Seiten">Von A bis Z</a></li>
+			<li id="n-randompage"><a href="/wiki/Spezial:Zuf%C3%A4llige_Seite" title="Zufällige Seite aufrufen [x]" accesskey="x">Zufälliger Artikel</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- Mitmachen -->
+<div class="portal" role="navigation" id='p-Mitmachen'>
+	<h3>Mitmachen</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Artikel-verbessern"><a href="/wiki/Wikipedia:Beteiligen">Artikel verbessern</a></li>
+			<li id="n-Neuerartikel"><a href="/wiki/Wikipedia:Neuen_Artikel_anlegen">Neuen Artikel anlegen</a></li>
+			<li id="n-portal"><a href="/wiki/Wikipedia:Autorenportal" title="Info-Zentrum über Beteiligungsmöglichkeiten">Autorenportal</a></li>
+			<li id="n-help"><a href="/wiki/Hilfe:%C3%9Cbersicht" title="Hilfeseite anzeigen">Hilfe</a></li>
+			<li id="n-recentchanges"><a href="/wiki/Spezial:Letzte_%C3%84nderungen" title="Liste der letzten Änderungen in Wikipedia [r]" accesskey="r">Letzte Änderungen</a></li>
+			<li id="n-contact"><a href="/wiki/Wikipedia:Kontakt">Kontakt</a></li>
+			<li id="n-sitesupport"><a href="//donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C12_de.wikipedia.org&amp;uselang=de" title="Unterstütze uns">Spenden</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- /Mitmachen -->
+
+<!-- coll-print_export -->
+<div class="portal" role="navigation" id='p-coll-print_export'>
+	<h3>Drucken/exportieren</h3>
+	<div class="body">
+		<ul id="collectionPortletList"><li id="coll-create_a_book"><a href="/w/index.php?title=Spezial:Buch&amp;bookcmd=book_creator&amp;referer=Slayer" title="Ein Buch oder eine Artikelsammlung erstellen" rel="nofollow">Buch erstellen</a></li><li id="coll-download-as-rl"><a href="/w/index.php?title=Spezial:Buch&amp;bookcmd=render_article&amp;arttitle=Slayer&amp;oldid=111668129&amp;writer=rl" title="Eine PDF-Version dieser Seite herunterladen" rel="nofollow">Als PDF herunterladen</a></li><li id="t-print"><a href="/w/index.php?title=Slayer&amp;printable=yes" title="Druckansicht dieser Seite [p]" accesskey="p">Druckversion</a></li></ul>	</div>
+</div>
+
+<!-- /coll-print_export -->
+
+<!-- TOOLBOX -->
+<div class="portal" role="navigation" id='p-tb'>
+	<h3>Werkzeuge</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/wiki/Spezial:Linkliste/Slayer" title="Liste aller Seiten, die hierher verlinken [j]" accesskey="j">Links auf diese Seite</a></li>
+			<li id="t-recentchangeslinked"><a href="/wiki/Spezial:%C3%84nderungen_an_verlinkten_Seiten/Slayer" title="Letzte Änderungen an Seiten, die von hier verlinkt sind [k]" accesskey="k">Änderungen an verlinkten Seiten</a></li>
+			<li id="t-specialpages"><a href="/wiki/Spezial:Spezialseiten" title="Liste aller Spezialseiten [q]" accesskey="q">Spezialseiten</a></li>
+			<li id="t-permalink"><a href="/w/index.php?title=Slayer&amp;oldid=111668129" title="Dauerhafter Link zu dieser Seitenversion">Permanenter Link</a></li>
+			<li id="t-info"><a href="/w/index.php?title=Slayer&amp;action=info">Seiteninformationen</a></li>
+<li id="t-cite"><a href="/w/index.php?title=Spezial:Zitierhilfe&amp;page=Slayer&amp;id=111668129" title="Hinweis, wie diese Seite zitiert werden kann">Seite zitieren</a></li>		</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+<div class="portal" role="navigation" id='p-lang'>
+	<h3>In anderen Sprachen</h3>
+	<div class="body">
+		<ul>
+			<li class="interwiki-ang"><a href="//ang.wikipedia.org/wiki/Slayer" title="Slayer" lang="ang" hreflang="ang">Ænglisc</a></li>
+			<li class="interwiki-ar"><a href="//ar.wikipedia.org/wiki/%D8%B3%D9%84%D8%A7%D9%8A%D8%B1" title="سلاير" lang="ar" hreflang="ar">العربية</a></li>
+			<li class="interwiki-az"><a href="//az.wikipedia.org/wiki/Slayer" title="Slayer" lang="az" hreflang="az">Azərbaycanca</a></li>
+			<li class="interwiki-bar"><a href="//bar.wikipedia.org/wiki/Slayer" title="Slayer" lang="bar" hreflang="bar">Boarisch</a></li>
+			<li class="interwiki-be"><a href="//be.wikipedia.org/wiki/Slayer" title="Slayer" lang="be" hreflang="be">Беларуская</a></li>
+			<li class="interwiki-bg"><a href="//bg.wikipedia.org/wiki/%D0%A1%D0%BB%D0%B5%D0%B9%D1%8A%D1%80" title="Слейър" lang="bg" hreflang="bg">Български</a></li>
+			<li class="interwiki-bn"><a href="//bn.wikipedia.org/wiki/%E0%A6%B8%E0%A7%8D%E0%A6%B2%E0%A7%87%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%B0" title="স্লেয়ার" lang="bn" hreflang="bn">বাংলা</a></li>
+			<li class="interwiki-br"><a href="//br.wikipedia.org/wiki/Slayer" title="Slayer" lang="br" hreflang="br">Brezhoneg</a></li>
+			<li class="interwiki-bs"><a href="//bs.wikipedia.org/wiki/Slayer" title="Slayer" lang="bs" hreflang="bs">Bosanski</a></li>
+			<li class="interwiki-ca"><a href="//ca.wikipedia.org/wiki/Slayer" title="Slayer" lang="ca" hreflang="ca">Català</a></li>
+			<li class="interwiki-cs"><a href="//cs.wikipedia.org/wiki/Slayer" title="Slayer" lang="cs" hreflang="cs">Česky</a></li>
+			<li class="interwiki-csb"><a href="//csb.wikipedia.org/wiki/Slayer" title="Slayer" lang="csb" hreflang="csb">Kaszëbsczi</a></li>
+			<li class="interwiki-da"><a href="//da.wikipedia.org/wiki/Slayer" title="Slayer" lang="da" hreflang="da">Dansk</a></li>
+			<li class="interwiki-el"><a href="//el.wikipedia.org/wiki/Slayer" title="Slayer" lang="el" hreflang="el">Ελληνικά</a></li>
+			<li class="interwiki-en"><a href="//en.wikipedia.org/wiki/Slayer" title="Slayer" lang="en" hreflang="en">English</a></li>
+			<li class="interwiki-eo"><a href="//eo.wikipedia.org/wiki/Slayer" title="Slayer" lang="eo" hreflang="eo">Esperanto</a></li>
+			<li class="interwiki-es"><a href="//es.wikipedia.org/wiki/Slayer" title="Slayer" lang="es" hreflang="es">Español</a></li>
+			<li class="interwiki-et"><a href="//et.wikipedia.org/wiki/Slayer" title="Slayer" lang="et" hreflang="et">Eesti</a></li>
+			<li class="interwiki-fa"><a href="//fa.wikipedia.org/wiki/%D8%A7%D8%B3%D9%84%DB%8C%D8%B1" title="اسلیر" lang="fa" hreflang="fa">فارسی</a></li>
+			<li class="interwiki-fi"><a href="//fi.wikipedia.org/wiki/Slayer" title="Slayer" lang="fi" hreflang="fi">Suomi</a></li>
+			<li class="interwiki-fr"><a href="//fr.wikipedia.org/wiki/Slayer" title="Slayer" lang="fr" hreflang="fr">Français</a></li>
+			<li class="interwiki-gl"><a href="//gl.wikipedia.org/wiki/Slayer" title="Slayer" lang="gl" hreflang="gl">Galego</a></li>
+			<li class="interwiki-he"><a href="//he.wikipedia.org/wiki/%D7%A1%D7%9C%D7%99%D7%99%D7%A8" title="סלייר" lang="he" hreflang="he">עברית</a></li>
+			<li class="interwiki-hr"><a href="//hr.wikipedia.org/wiki/Slayer" title="Slayer" lang="hr" hreflang="hr">Hrvatski</a></li>
+			<li class="interwiki-hu"><a href="//hu.wikipedia.org/wiki/Slayer" title="Slayer" lang="hu" hreflang="hu">Magyar</a></li>
+			<li class="interwiki-id"><a href="//id.wikipedia.org/wiki/Slayer" title="Slayer" lang="id" hreflang="id">Bahasa Indonesia</a></li>
+			<li class="interwiki-is"><a href="//is.wikipedia.org/wiki/Slayer" title="Slayer" lang="is" hreflang="is">Íslenska</a></li>
+			<li class="interwiki-it"><a href="//it.wikipedia.org/wiki/Slayer" title="Slayer" lang="it" hreflang="it">Italiano</a></li>
+			<li class="interwiki-ja"><a href="//ja.wikipedia.org/wiki/%E3%82%B9%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC" title="スレイヤー" lang="ja" hreflang="ja">日本語</a></li>
+			<li class="interwiki-ka"><a href="//ka.wikipedia.org/wiki/%E1%83%A1%E1%83%9A%E1%83%94%E1%83%98%E1%83%94%E1%83%A0%E1%83%98" title="სლეიერი" lang="ka" hreflang="ka">ქართული</a></li>
+			<li class="interwiki-ko"><a href="//ko.wikipedia.org/wiki/%EC%8A%AC%EB%A0%88%EC%9D%B4%EC%96%B4_(%EB%B0%B4%EB%93%9C)" title="슬레이어 (밴드)" lang="ko" hreflang="ko">한국어</a></li>
+			<li class="interwiki-la"><a href="//la.wikipedia.org/wiki/Slayer" title="Slayer" lang="la" hreflang="la">Latina</a></li>
+			<li class="interwiki-lez"><a href="//lez.wikipedia.org/wiki/Slayer" title="Slayer" lang="lez" hreflang="lez">Лезги</a></li>
+			<li class="interwiki-lv"><a href="//lv.wikipedia.org/wiki/Slayer" title="Slayer" lang="lv" hreflang="lv">Latviešu</a></li>
+			<li class="interwiki-nl"><a href="//nl.wikipedia.org/wiki/Slayer" title="Slayer" lang="nl" hreflang="nl">Nederlands</a></li>
+			<li class="interwiki-nn"><a href="//nn.wikipedia.org/wiki/Slayer" title="Slayer" lang="nn" hreflang="nn">Norsk (nynorsk)‎</a></li>
+			<li class="interwiki-no"><a href="//no.wikipedia.org/wiki/Slayer" title="Slayer" lang="no" hreflang="no">Norsk (bokmål)‎</a></li>
+			<li class="interwiki-pl"><a href="//pl.wikipedia.org/wiki/Slayer" title="Slayer" lang="pl" hreflang="pl">Polski</a></li>
+			<li class="interwiki-pt"><a href="//pt.wikipedia.org/wiki/Slayer" title="Slayer" lang="pt" hreflang="pt">Português</a></li>
+			<li class="interwiki-ro"><a href="//ro.wikipedia.org/wiki/Slayer" title="Slayer" lang="ro" hreflang="ro">Română</a></li>
+			<li class="interwiki-ru"><a href="//ru.wikipedia.org/wiki/Slayer" title="Slayer" lang="ru" hreflang="ru">Русский</a></li>
+			<li class="interwiki-sh"><a href="//sh.wikipedia.org/wiki/Slayer" title="Slayer" lang="sh" hreflang="sh">Srpskohrvatski / српскохрватски</a></li>
+			<li class="interwiki-simple"><a href="//simple.wikipedia.org/wiki/Slayer" title="Slayer" lang="simple" hreflang="simple">Simple English</a></li>
+			<li class="interwiki-sk"><a href="//sk.wikipedia.org/wiki/Slayer" title="Slayer" lang="sk" hreflang="sk">Slovenčina</a></li>
+			<li class="interwiki-sl"><a href="//sl.wikipedia.org/wiki/Slayer" title="Slayer" lang="sl" hreflang="sl">Slovenščina</a></li>
+			<li class="interwiki-sq"><a href="//sq.wikipedia.org/wiki/Slayer" title="Slayer" lang="sq" hreflang="sq">Shqip</a></li>
+			<li class="interwiki-sr"><a href="//sr.wikipedia.org/wiki/Slejer" title="Slejer" lang="sr" hreflang="sr">Српски / srpski</a></li>
+			<li class="interwiki-sv"><a href="//sv.wikipedia.org/wiki/Slayer" title="Slayer" lang="sv" hreflang="sv">Svenska</a></li>
+			<li class="interwiki-szl"><a href="//szl.wikipedia.org/wiki/Slayer" title="Slayer" lang="szl" hreflang="szl">Ślůnski</a></li>
+			<li class="interwiki-th"><a href="//th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%80%E0%B8%A5%E0%B9%80%E0%B8%A2%E0%B8%AD%E0%B8%A3%E0%B9%8C" title="สเลเยอร์" lang="th" hreflang="th">ไทย</a></li>
+			<li class="interwiki-tr"><a href="//tr.wikipedia.org/wiki/Slayer" title="Slayer" lang="tr" hreflang="tr">Türkçe</a></li>
+			<li class="interwiki-uk"><a href="//uk.wikipedia.org/wiki/Slayer" title="Slayer" lang="uk" hreflang="uk">Українська</a></li>
+			<li class="interwiki-vls"><a href="//vls.wikipedia.org/wiki/Slayer" title="Slayer" lang="vls" hreflang="vls">West-Vlams</a></li>
+			<li class="interwiki-zh"><a href="//zh.wikipedia.org/wiki/%E8%B6%85%E7%B4%9A%E6%AE%BA%E6%89%8B%E5%90%88%E5%94%B1%E5%9C%98" title="超級殺手合唱團" lang="zh" hreflang="zh">中文</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- /LANGUAGES -->
+			</div>
+			<!-- /panel -->
+		</div>
+		<!-- footer -->
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Diese Seite wurde zuletzt am 14. Dezember 2012 um 19:20 Uhr geändert.</li>
+											<li id="footer-info-copyright"><div id="footer-info-copyright-stats"><a class="external" href="http://stats.grok.se/de/latest30/Slayer" rel="nofollow">Abrufstatistik</a></div><div id="footer-info-copyright-info"><br /><br />
+
+Der Text ist unter der Lizenz <a class="internal" href="//de.wikipedia.org/wiki/Wikipedia:Lizenzbestimmungen_Commons_Attribution-ShareAlike_3.0_Unported">„Creative Commons Attribution/Share Alike“</a> verfügbar; zusätzliche Bedingungen können anwendbar sein.
+Einzelheiten sind in den <a class="internal" href="//wikimediafoundation.org/wiki/Nutzungsbedingungen">Nutzungsbedingungen</a> beschrieben.<br />
+Wikipedia® ist eine eingetragene Marke der Wikimedia Foundation Inc.</div></li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/wiki/Wikipedia:Datenschutz" title="Wikipedia:Datenschutz">Datenschutz</a></li>
+											<li id="footer-places-about"><a href="/wiki/Wikipedia:%C3%9Cber_Wikipedia" title="Wikipedia:Über Wikipedia">Über Wikipedia</a></li>
+											<li id="footer-places-disclaimer"><a href="/wiki/Wikipedia:Impressum" title="Wikipedia:Impressum">Impressum</a></li>
+											<li id="footer-places-mobileview"><a href="http://de.m.wikipedia.org/wiki/Slayer" class="noprint stopMobileRedirectToggle">Mobile Ansicht</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="//wikimediafoundation.org/"><img src="//bits.wikimedia.org/images/wikimedia-button.png" width="88" height="31" alt="Wikimedia Foundation"/></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="//bits.wikimedia.org/static-1.21wmf7/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		<script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script src="//bits.wikimedia.org/de.wikipedia.org/load.php?debug=false&amp;lang=de&amp;modules=skins.vector&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.loader.load(["mobile.desktop","mediawiki.user","mediawiki.page.ready","mediawiki.searchSuggest","mediawiki.hidpi","ext.gadget.WikiMiniAtlas","ext.gadget.CommonsDirekt","mw.MwEmbedSupport.style","ext.vector.collapsibleNav","ext.vector.collapsibleTabs","ext.vector.editWarning","ext.UserBuckets","ext.articleFeedbackv5.startup","mw.PopUpMediaTransform","ext.flaggedRevs.advanced"], null, true);
+}</script>
+<script src="//bits.wikimedia.org/de.wikipedia.org/load.php?debug=false&amp;lang=de&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<!-- Served by mw17 in 0.154 secs. -->
+	</body>
+</html>
