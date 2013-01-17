@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class URLInputReaderTest {
 
-	static String url = "http://edu.panter.ch/MdpUebungDecorator";
+	static String url = "http://de.wikipedia.org/wiki/Pattern";
 
 	@Test
 	public void testInputURL() throws IOException {
