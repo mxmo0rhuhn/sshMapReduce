@@ -41,7 +41,8 @@ public class ProjectLauncher {
 		}
 		OutputController out = new OutputController();
 		WebCrawler currentWebCrawler = new WebCrawler();
-		new MainFrame(out, currentWebCrawler);
+		MainFrame main = new MainFrame(out, currentWebCrawler);
+		currentWebCrawler.addObserver(main);
 	}
 
 }

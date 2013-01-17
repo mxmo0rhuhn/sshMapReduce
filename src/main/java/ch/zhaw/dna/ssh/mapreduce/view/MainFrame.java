@@ -380,9 +380,16 @@ public class MainFrame extends JFrame implements Observer {
 		currentTiefeLabel.setText("" + searchCrawler.getDepth());
 		currentPagesLabel.setText("" + searchCrawler.getSearchedSides());
 
+		curOutputController.println("--------------------------------------------");
 		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Start Url: "
-				+ pathTextField.getText() + " Gesuchtes Wort: " + specialWorfField.getText()
-				+ " Erreichte Schachtlungstiefe: " + searchCrawler.getDepth()
-				+ " Durchsuchte Seiten: " + searchCrawler.getSearchedSides() + " Benötigte Zeit: " + elapsedTime);
+				+ pathTextField.getText());
+		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Gesuchtes Wort: "
+				+ specialWorfField.getText());
+		curOutputController.println("" + new Timestamp(new Date().getTime())
+				+ " Erreichte Schachtlungstiefe: " + searchCrawler.getDepth());
+		curOutputController.println("" + new Timestamp(new Date().getTime())
+				+ " Durchsuchte Seiten: " + searchCrawler.getSearchedSides());
+		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Benötigte Zeit: "
+				+ elapsedTime);
 	}
 }
