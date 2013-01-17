@@ -36,7 +36,7 @@ public class ProjectLauncher {
 	public void launch(int nworkers) {
 		// TODO do not use registry directly
 		Pool pool = Registry.getComponent(Pool.class);
-		for (int i = 0; i < nworkers; i++) {
+	for (int i = 1; i < nworkers; i++) {
 			pool.donateWorker(Registry.getComponent(Worker.class));
 		}
 		OutputController out = new OutputController();
