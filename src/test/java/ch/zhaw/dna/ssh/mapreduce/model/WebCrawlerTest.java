@@ -1,9 +1,9 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
-import java.util.HashMap;
-import java.util.Iterator;
+import static org.junit.Assert.assertEquals;
 
-import org.jmock.Expectations;
+import java.util.concurrent.Executors;
+
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;
 import org.jmock.integration.junit4.JUnit4Mockery;
@@ -11,9 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ch.zhaw.mapreduce.MapEmitter;
-import ch.zhaw.mapreduce.MapInstruction;
-import ch.zhaw.mapreduce.MapReduceTask;
+import ch.zhaw.mapreduce.Pool;
+import ch.zhaw.mapreduce.impl.ThreadWorker;
+import ch.zhaw.mapreduce.registry.Registry;
 
 @RunWith(JMock.class)
 public class WebCrawlerTest {
@@ -46,20 +46,12 @@ public class WebCrawlerTest {
 	@Test
 	public void shouldEmitContents() throws Exception {
 		
+		Pool pool = Registry.getComponent(Pool.class);
+		pool.donateWorker(new ThreadWorker(pool, Executors.newSingleThreadExecutor()));
 		WebCrawler crawlyCrawl = new WebCrawler();
-		
-		final MapReduceTask mapTask = this.context.mock(MapReduceTask.class);
-		this.context.checking(new Expectations() {
-			{
-				HashMap<String, String> firstIteration = new HashMap<String, String>();
-				firstIteration.put("p", oneBIGTest);
-				firstIteration.put(ConcreteWebMap.URLKey, wikipediaURL + " " + facebookURL);
-				
-				oneOf(mapTask).compute(with(aNonNull(Iterator.class))); will(returnValue(firstIteration));
-//				oneOf(webMapInstruction).map(with(aNonNull(MapEmitter.class)), with(googleURL));
-			}
-		});
-		crawlyCrawl.searchTheWeb(googleURL, "test", 1);
+		crawlyCrawl.setConsiderH2tags(true);
+		int number = crawlyCrawl.searchTheWeb("http://de.wikipedia.org/wiki/Slayer", "Diskografie", 1);
+		assertEquals(1, number);
 	}
 
 }
