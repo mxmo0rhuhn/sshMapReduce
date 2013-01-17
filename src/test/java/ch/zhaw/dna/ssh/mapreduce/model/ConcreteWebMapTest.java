@@ -40,7 +40,7 @@ public class ConcreteWebMapTest {
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		this.context.checking(new Expectations() {
 			{
-				oneOf(localReader).readURL("foo");
+//				oneOf(localReader).readURL("foo");
 				oneOf(emitter).emitIntermediateMapResult("p", "hello, world");
 				oneOf(emitter).emitIntermediateMapResult("a", "reto website");
 				oneOf(emitter).emitIntermediateMapResult("URLS", "www.rethab.ch");
