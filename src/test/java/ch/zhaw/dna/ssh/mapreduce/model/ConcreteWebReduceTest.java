@@ -55,6 +55,7 @@ public class ConcreteWebReduceTest {
 				.iterator();
 		reducer.reduce(emitter, "key1", input1);
 		reducer.reduce(emitter, "key2", input2);
+
 	}
 
 }
