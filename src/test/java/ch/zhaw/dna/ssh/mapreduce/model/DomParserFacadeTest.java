@@ -144,5 +144,7 @@ public class DomParserFacadeTest {
 		List<String> h1Tags = vals.get("H2");
 		assertEquals(expectedH1Tags.size(), h1Tags.size());
 		assertTrue(h1Tags.containsAll(h1Tags));
+		
+		// TODO Max: add assertions for links
 	}
 }
