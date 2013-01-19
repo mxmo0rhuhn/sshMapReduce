@@ -32,7 +32,7 @@ public class WebCrawler extends Observable {
 	private final ConcreteWebReduce webSearchReduceInstruction;
 	private final ConcreteWebCombine webSearchCombineInstruction;
 
-	private int depth;
+	private int fDepth;
 	private int searchedSides;
 
 	WebCrawler(SpecificWordFrequencyMapInstruction countMapInstruction,
@@ -130,7 +130,7 @@ public class WebCrawler extends Observable {
 		MapReduceTask searchTask = new MapReduceTask(webSearchMapInstruction, webSearchReduceInstruction,
 				webSearchCombineInstruction);
 
-		for (int i = 0; i < depth; i++) {
+		for (int i = 1; i <= depth; i++) {
 
 			try {
 				Map<String, String> results = searchTask.compute(toSearchURLS.iterator());
@@ -162,7 +162,7 @@ public class WebCrawler extends Observable {
 
 				e.printStackTrace();
 			}
-			depth = i;
+			fDepth = i;
 			searchedSides = alreadySearchedURLS.size();
 
 			setChanged();
@@ -227,7 +227,7 @@ public class WebCrawler extends Observable {
 	 * @return derzeitiger Wert des Feldes depth
 	 */
 	public int getDepth() {
-		return depth;
+		return fDepth;
 	}
 
 	/**
