@@ -33,7 +33,7 @@ public class ConcreteWebMapTest {
 		final URLInputReader localReader = new URLInputReader() {
 			@Override
 			public String readURL(String url) throws IOException {
-				return "<html><p>hello, world</p><a href=\"www.rethab.ch\">reto website</a></html>";
+				return "<html><p>hello, world</p><a href=\"www.de.wikipedia.org/wiki/Slayer\">reto website</a></html>";
 			}
 		};
 		ConcreteWebMap webMap = new ConcreteWebMap(localReader);
@@ -44,10 +44,10 @@ public class ConcreteWebMapTest {
 			{
 				oneOf(emitter).emitIntermediateMapResult("P", "hello, world");
 				oneOf(emitter).emitIntermediateMapResult("A", "reto website");
-				oneOf(emitter).emitIntermediateMapResult("URLS", "http://www.rethab.ch");
+				oneOf(emitter).emitIntermediateMapResult("URLS", "http://www.de.wikipedia.org/wiki/Slayer");
 			}
 		});
-		webMap.map(emitter, "http://foo.ch");
+		webMap.map(emitter, "http://de.wikipedia.org/wiki/Metallica");
 	}
 
 	@Test

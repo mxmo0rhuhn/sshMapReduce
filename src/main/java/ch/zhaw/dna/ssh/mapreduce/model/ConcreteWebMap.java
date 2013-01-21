@@ -34,7 +34,6 @@ public class ConcreteWebMap implements MapInstruction {
 		String contents;
 		try {
 			contents = reader.readURL(baseUrl);
-			System.out.println("Downloaded: " + baseUrl);
 		} catch (Exception e) {
 			System.err.println(Thread.currentThread().getId() + ": Failed to download: " + baseUrl + " (" + e.getMessage() + ")");
 			return;

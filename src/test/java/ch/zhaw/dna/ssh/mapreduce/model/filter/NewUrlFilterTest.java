@@ -15,15 +15,14 @@ public class NewUrlFilterTest {
 	private NewUrlFilter filter = new NewUrlFilter();
 
 	private List<String> accpected = Arrays.asList(new String[] { "index.html", "index.php?site=foo",
-			"/interesting.html", "foo", "../index.php?site=foo&pic=.png", "../sub/hellp?site=ch.google",
-			"../../subsub/about" });
+			"/wiki/interesting.html", "foo", "/wiki/index.php?site=foo&pic=.png", "/wiki/sub/hellp?site=ch.google" });
 
 	private List<String> notAcceped = Arrays.asList(new String[] { "index.php/pic.gif", "pic.gif", "pic.GIF",
 			"pic.jpeg", "pic.SVG", "style.css", "/stylees/style.css", "../images/foo.PNG", "#local", "#foo-bar" });
 
 	@Test
 	public void absoluteUrlWithoutParam() {
-		String baseUrl = "http://www.google.com/search";
+		String baseUrl = "http://de.wikipedia.org/wiki/search";
 
 		List<String> all = new ArrayList<String>(accpected);
 		all.addAll(notAcceped);
@@ -32,13 +31,12 @@ public class NewUrlFilterTest {
 			private static final long serialVersionUID = 1L;
 
 			{
-				add("http://www.google.com/index.html");
-				add("http://www.google.com/index.php?site=foo");
-				add("http://www.google.com/interesting.html");
-				add("http://www.google.com/foo");
-				add("http://www.google.com/../index.php?site=foo&pic=.png");
-				add("http://www.google.com/../sub/hellp?site=ch.google");
-				add("http://www.google.com/../../subsub/about");
+				add("http://de.wikipedia.org/wiki/index.php?site=foo");
+				add("http://de.wikipedia.org/wiki/interesting.html");
+				add("http://de.wikipedia.org/wiki/foo");
+				add("http://de.wikipedia.org/wiki/index.php?site=foo&pic=.png");
+				add("http://de.wikipedia.org/wiki/index.html");
+				add("http://de.wikipedia.org/wiki/sub/hellp?site=ch.google");
 			}
 		};
 
@@ -50,7 +48,7 @@ public class NewUrlFilterTest {
 
 	@Test
 	public void absoluteUrlWithParam() {
-		String baseUrl = "http://www.google.com/search?q=ch.google&asdf";
+		String baseUrl = "http://de.wikipedia.org/wiki/search?q=ch.google&asdf";
 
 		List<String> all = new ArrayList<String>(accpected);
 		all.addAll(notAcceped);
@@ -59,13 +57,12 @@ public class NewUrlFilterTest {
 			private static final long serialVersionUID = 1L;
 
 			{
-				add("http://www.google.com/index.html");
-				add("http://www.google.com/index.php?site=foo");
-				add("http://www.google.com/interesting.html");
-				add("http://www.google.com/foo");
-				add("http://www.google.com/../index.php?site=foo&pic=.png");
-				add("http://www.google.com/../sub/hellp?site=ch.google");
-				add("http://www.google.com/../../subsub/about");
+				add("http://de.wikipedia.org/wiki/index.php?site=foo");
+				add("http://de.wikipedia.org/wiki/interesting.html");
+				add("http://de.wikipedia.org/wiki/foo");
+				add("http://de.wikipedia.org/wiki/index.php?site=foo&pic=.png");
+				add("http://de.wikipedia.org/wiki/sub/hellp?site=ch.google");
+				add("http://de.wikipedia.org/wiki/index.html");
 			}
 		};
 
@@ -75,69 +72,35 @@ public class NewUrlFilterTest {
 		assertEquals(expected.size(), filtered.size());
 	}
 
-	@Test
-	public void absoluteUrlWithSubdomain() {
-		String baseUrl = "http://www.de.google.com/search?q=ch.google&asdf";
-
-		List<String> all = new ArrayList<String>(accpected);
-		all.addAll(notAcceped);
-
-		List<String> expected = new ArrayList<String>() {
-			private static final long serialVersionUID = 1L;
-
-			{
-				add("http://www.de.google.com/index.html");
-				add("http://www.de.google.com/index.php?site=foo");
-				add("http://www.de.google.com/interesting.html");
-				add("http://www.de.google.com/foo");
-				add("http://www.de.google.com/../index.php?site=foo&pic=.png");
-				add("http://www.de.google.com/../sub/hellp?site=ch.google");
-				add("http://www.de.google.com/../../subsub/about");
-			}
-		};
-
-		Set<String> filtered = filter.filterUrls(baseUrl, all);
-
-		assertTrue(filtered.containsAll(expected));
-		assertEquals(expected.size(), filtered.size());
-	}
-	
 	@Test
 	public void shouldAcceptAbsoluteUrls() {
-		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"http://www.yahoo.com/"}));
+		Set<String> filtered = filter.filterUrls("http://de.wikipedia.org/wiki", Arrays.asList(new String[] {"http://www.de.wikipedia.org/wiki/Slayer"}));
 		assertEquals(1, filtered.size());
-		assertTrue(filtered.contains("http://www.yahoo.com/"));
+		assertTrue(filtered.contains("http://www.de.wikipedia.org/wiki/Slayer"));
 	}
 
 	@Test
 	public void shouldOnlyAcceptHttpOrHttps() {
-		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"https://www.yahoo.com/index.php", "ftp://ftp.yahoo.com"}));
+		Set<String> filtered = filter.filterUrls("http://de.wikipedia.org/wiki", Arrays.asList(new String[] {"https://www.de.wikipedia.org/wiki/Slayer", "ftp://ftp.yahoo.com"}));
 		assertEquals(1, filtered.size());
-		assertTrue(filtered.contains("https://www.yahoo.com/index.php"));
-	}
-
-	@Test
-	public void shouldAcceptAbsoluteUrlsWithoutProtocol() {
-		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"www.yahoo.com/index.php"}));
-		assertEquals(1, filtered.size());
-		assertTrue(filtered.contains("http://www.yahoo.com/index.php"));
+		assertTrue(filtered.contains("https://www.de.wikipedia.org/wiki/Slayer"));
 	}
 
 	@Test
 	public void shouldNotAcceptRedlinks() {
-		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"index.php?redlink=1"}));
+		Set<String> filtered = filter.filterUrls("http://de.wikipedia.org/wiki", Arrays.asList(new String[] {"index.php?redlink=1"}));
 		assertTrue(filtered.isEmpty());
 	}
 	
 	@Test
 	public void shouldNotAcceptJavaScript() {
-		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"javascript:open_window('subscribe.html')"}));
+		Set<String> filtered = filter.filterUrls("http://de.wikipedia.org/wiki", Arrays.asList(new String[] {"javascript:open_window('subscribe.html')"}));
 		assertTrue(filtered.isEmpty());
 	}
 	
 	@Test
 	public void shouldNotAcceptDuplicates() {
-		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"index.html", "index.html"}));
+		Set<String> filtered = filter.filterUrls("http://de.wikipedia.org/wiki/", Arrays.asList(new String[] {"index.html", "index.html"}));
 		assertEquals(1, filtered.size());
 	}
 }
