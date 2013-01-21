@@ -30,25 +30,29 @@ public class ConcreteWebMap implements MapInstruction {
 	}
 
 	@Override
-	public void map(MapEmitter emitter, String url) {
+	public void map(MapEmitter emitter, String baseUrl) {
 		String contents;
 		try {
-			contents = reader.readURL(url);
+			contents = reader.readURL(baseUrl);
+			System.out.println("Downloaded: " + baseUrl);
 		} catch (Exception e) {
-			System.err.println(Thread.currentThread().getId() + ": Failed to download: " + url + " (" + e.getMessage() + ")");
+			System.err.println(Thread.currentThread().getId() + ": Failed to download: " + baseUrl + " (" + e.getMessage() + ")");
 			return;
 		}
 		// Der DOM-Parser liefert für den Inhalt einer Website (contents) und einem Array von Tags eine Map. Die Map hat
 		// als Keys sämtliche Tags, für die wir uns interessieren. Und als Values jeweils eine Liste mit den Texten zu
 		// den jeweiligen Tags. Es muss eine Liste sein, weil ein Tag auf einer Website mehrmals vorkommen kann.
 		// Sämtliche URLs, die auf einer Website gefunden werden, werden unter dem speziellen Key 'URLS' abgelegt.
-		Map<String, List<String>> tagsWithContent = domParser.extractText(contents,
-				tags.toArray(new String[tags.size()]));
-		tagsWithContent.put(URLKEY, filter.filterUrls(url, tagsWithContent.get(URLKEY)));
+		Map<String, List<String>> tagsWithContent = domParser.extractText(contents, tags.toArray(new String[tags.size()]));
+		Set<String> urls = filter.filterUrls(baseUrl, tagsWithContent.remove(URLKEY));
+		
 		for (Map.Entry<String, List<String>> entry : tagsWithContent.entrySet()) {
 			for (String text : entry.getValue()) {
 				emitter.emitIntermediateMapResult(entry.getKey(), text);
 			}
+		}
+		for(String url : urls) {
+			emitter.emitIntermediateMapResult(URLKEY, url);
 		}
 	}
 

@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -21,71 +20,98 @@ import java.util.Set;
 public class NewUrlFilter {
 
 	private static final Set<String> ENDINGS = new HashSet<String>();
-	
+
 	private static final Set<String> PROTOCOLS = new HashSet<String>();
-	
+
 	private static final List<String> PREFIX = new ArrayList<String>();
-	
+
+	private static final List<String> SUBSTRING = new ArrayList<String>();
+
 	private static final String DEFAULT_PROTOCOL = "http://";
 
 	static {
-		
+
 		// FILE ENDINGS
-		{Properties f = new Properties();
-		try {
-			String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/') + "/endings-blacklist.properties";
-			f.load(NewUrlFilter.class.getResourceAsStream(filename));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
+		{
+			Properties f = new Properties();
+			try {
+				String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/')
+						+ "/endings-blacklist.properties";
+				f.load(NewUrlFilter.class.getResourceAsStream(filename));
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			for (Object key : f.keySet()) {
+				ENDINGS.add((String) key);
+				ENDINGS.add(((String) key).toUpperCase());
+			}
 		}
-		for (Object key : f.keySet()) {
-			ENDINGS.add((String) key);
-			ENDINGS.add(((String) key).toUpperCase());
-		}
-		}
-		
+
 		// PROTOCOLS
-		{Properties p = new Properties();
-		try {
-			String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/') + "/protocols-whitelist.properties";
-			p.load(NewUrlFilter.class.getResourceAsStream(filename));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
+		{
+			Properties p = new Properties();
+			try {
+				String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/')
+						+ "/protocols-whitelist.properties";
+				p.load(NewUrlFilter.class.getResourceAsStream(filename));
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			for (Object key : p.keySet()) {
+				PROTOCOLS.add((String) key);
+				PROTOCOLS.add(((String) key).toUpperCase());
+			}
 		}
-		for (Object key : p.keySet()) {
-			PROTOCOLS.add((String) key);
-			PROTOCOLS.add(((String) key).toUpperCase());
-		}
-		}
-		
+
 		// PREFIX
-		{Properties p = new Properties();
-		try {
-			String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/') + "/prefix-blacklist.properties";
-			p.load(NewUrlFilter.class.getResourceAsStream(filename));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
+		{
+			Properties p = new Properties();
+			try {
+				String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/')
+						+ "/prefix-blacklist.properties";
+				p.load(NewUrlFilter.class.getResourceAsStream(filename));
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			for (Object key : p.keySet()) {
+				PREFIX.add((String) key);
+				PREFIX.add(((String) key).toUpperCase());
+			}
 		}
-		for (Object key : p.keySet()) {
-			PREFIX.add((String) key);
-			PREFIX.add(((String) key).toUpperCase());
-		}
+
+		// SUBSTRING
+		{
+			Properties p = new Properties();
+			try {
+				String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/')
+						+ "/substring-blacklist.properties";
+				p.load(NewUrlFilter.class.getResourceAsStream(filename));
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			for (Object key : p.keySet()) {
+				SUBSTRING.add((String) key);
+				SUBSTRING.add(((String) key).toUpperCase());
+			}
 		}
 	}
 
-	public List<String> filterUrls(String base, List<String> urls) {
+	public Set<String> filterUrls(String base, List<String> urls) {
 		URL baseUrl;
 		try {
 			baseUrl = new URL(base);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
-			return Collections.emptyList();
+			return Collections.emptySet();
 		}
-		List<String> filtered = new LinkedList<String>();
+		Set<String> filtered = new HashSet<String>(urls.size());
 		for (String url : urls) {
 			try {
+				if (hasBlacklistedPrefix(url) || hasBlacklistedSubstring(url)) {
+					continue;
+				}
 				URL newUrl = new URL(baseUrl, addDefaultProtocol(url));
-				if (!newUrl.sameFile(baseUrl) && !hasBlacklistedPrefix(url) && hasAllowedProtocol(newUrl) && hasAllowedEnding(newUrl)) {
+				if (!newUrl.sameFile(baseUrl) && hasAllowedProtocol(newUrl) && hasAllowedEnding(newUrl)) {
 					filtered.add(newUrl.toExternalForm());
 				}
 			} catch (MalformedURLException e) {
@@ -93,6 +119,15 @@ public class NewUrlFilter {
 			}
 		}
 		return filtered;
+	}
+
+	private boolean hasBlacklistedSubstring(String url) {
+		for (String substr : SUBSTRING) {
+			if (url.contains(substr)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private boolean hasBlacklistedPrefix(String url) {

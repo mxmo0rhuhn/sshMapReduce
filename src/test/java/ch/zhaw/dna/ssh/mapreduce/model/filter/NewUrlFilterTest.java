@@ -1,10 +1,12 @@
 package ch.zhaw.dna.ssh.mapreduce.model.filter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -40,7 +42,7 @@ public class NewUrlFilterTest {
 			}
 		};
 
-		List<String> filtered = filter.filterUrls(baseUrl, all);
+		Set<String> filtered = filter.filterUrls(baseUrl, all);
 
 		assertTrue(filtered.containsAll(expected));
 		assertEquals(expected.size(), filtered.size());
@@ -67,7 +69,7 @@ public class NewUrlFilterTest {
 			}
 		};
 
-		List<String> filtered = filter.filterUrls(baseUrl, all);
+		Set<String> filtered = filter.filterUrls(baseUrl, all);
 
 		assertTrue(filtered.containsAll(expected));
 		assertEquals(expected.size(), filtered.size());
@@ -94,7 +96,7 @@ public class NewUrlFilterTest {
 			}
 		};
 
-		List<String> filtered = filter.filterUrls(baseUrl, all);
+		Set<String> filtered = filter.filterUrls(baseUrl, all);
 
 		assertTrue(filtered.containsAll(expected));
 		assertEquals(expected.size(), filtered.size());
@@ -102,30 +104,40 @@ public class NewUrlFilterTest {
 	
 	@Test
 	public void shouldAcceptAbsoluteUrls() {
-		List<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"http://www.yahoo.com/"}));
+		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"http://www.yahoo.com/"}));
 		assertEquals(1, filtered.size());
 		assertTrue(filtered.contains("http://www.yahoo.com/"));
 	}
 
 	@Test
 	public void shouldOnlyAcceptHttpOrHttps() {
-		List<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"https://www.yahoo.com/index.php", "ftp://ftp.yahoo.com"}));
+		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"https://www.yahoo.com/index.php", "ftp://ftp.yahoo.com"}));
 		assertEquals(1, filtered.size());
 		assertTrue(filtered.contains("https://www.yahoo.com/index.php"));
 	}
 
 	@Test
 	public void shouldAcceptAbsoluteUrlsWithoutProtocol() {
-		List<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"www.yahoo.com/index.php"}));
+		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"www.yahoo.com/index.php"}));
 		assertEquals(1, filtered.size());
 		assertTrue(filtered.contains("http://www.yahoo.com/index.php"));
 	}
 
 	@Test
-	public void shouldNotAcceptJavaScript() {
-		List<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"javascript:open_window('subscribe.html')"}));
+	public void shouldNotAcceptRedlinks() {
+		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"index.php?redlink=1"}));
 		assertTrue(filtered.isEmpty());
 	}
 	
-
+	@Test
+	public void shouldNotAcceptJavaScript() {
+		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"javascript:open_window('subscribe.html')"}));
+		assertTrue(filtered.isEmpty());
+	}
+	
+	@Test
+	public void shouldNotAcceptDuplicates() {
+		Set<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"index.html", "index.html"}));
+		assertEquals(1, filtered.size());
+	}
 }
