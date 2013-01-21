@@ -49,5 +49,13 @@ public class ImageFilterTest {
 		assertFalse(imageFilter.accept("www.google.com/img.png?foo=bar"));
 		assertFalse(imageFilter.accept("img.JPEG?foo=bar&bar=foo"));
 	}
+	
+	@Test
+	public void shouldRejectAnyCss() {
+		assertFalse(imageFilter.accept("www.google.com/style/style.css?foo=bar"));
+		assertFalse(imageFilter.accept("http://www.google.com/style/style.css?foo=bar"));
+		assertFalse(imageFilter.accept("www.google.com/style/style.css"));
+		assertFalse(imageFilter.accept("style/foo.css"));
+	}
 
 }
