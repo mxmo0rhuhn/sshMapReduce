@@ -12,20 +12,12 @@ import java.net.URL;
 public class Absolutifier implements Manipulator {
 
 	@Override
-	public String manipulate(String baseUrl, String url) {
-		URL u;
+	public String manipulate(String baseUrl, String url) throws CannotManipulateException {
 		try {
-			u = new URL(baseUrl);
+			return new URL(new URL(baseUrl), url).toString();
 		} catch (MalformedURLException e) {
-			System.out.println(e.getMessage());
-			return null;
+			throw new CannotManipulateException(e);
 		}
-		System.out.println("File: " + u.getFile());
-		System.out.println("Host: " + u.getHost());
-		System.out.println("Path: " + u.getPath());
-		System.out.println("Ref: " + u.getRef());
-		
-		return url;
 	}
 
 }
