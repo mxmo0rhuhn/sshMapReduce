@@ -44,10 +44,10 @@ public class ConcreteWebMapTest {
 			{
 				oneOf(emitter).emitIntermediateMapResult("P", "hello, world");
 				oneOf(emitter).emitIntermediateMapResult("A", "reto website");
-				oneOf(emitter).emitIntermediateMapResult("URLS", "www.rethab.ch");
+				oneOf(emitter).emitIntermediateMapResult("URLS", "http://www.rethab.ch");
 			}
 		});
-		webMap.map(emitter, "foo");
+		webMap.map(emitter, "http://foo.ch");
 	}
 
 	@Test
@@ -100,5 +100,4 @@ public class ConcreteWebMapTest {
 		webMap.setaIsSet(false);
 		assertFalse(webMap.isaIsSet());
 	}
-
 }

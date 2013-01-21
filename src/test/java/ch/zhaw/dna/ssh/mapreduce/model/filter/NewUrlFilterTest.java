@@ -42,8 +42,6 @@ public class NewUrlFilterTest {
 
 		List<String> filtered = filter.filterUrls(baseUrl, all);
 
-		System.out.println(filtered);
-
 		assertTrue(filtered.containsAll(expected));
 		assertEquals(expected.size(), filtered.size());
 	}
@@ -100,6 +98,27 @@ public class NewUrlFilterTest {
 
 		assertTrue(filtered.containsAll(expected));
 		assertEquals(expected.size(), filtered.size());
+	}
+	
+	@Test
+	public void shouldAcceptAbsoluteUrls() {
+		List<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"http://www.yahoo.com/"}));
+		assertEquals(1, filtered.size());
+		assertTrue(filtered.contains("http://www.yahoo.com/"));
+	}
+
+	@Test
+	public void shouldOnlyAcceptHttpOrHttps() {
+		List<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"https://www.yahoo.com/index.php", "ftp://ftp.yahoo.com"}));
+		assertEquals(1, filtered.size());
+		assertTrue(filtered.contains("https://www.yahoo.com/index.php"));
+	}
+
+	@Test
+	public void shouldAcceptAbsoluteUrlsWithoutProtocol() {
+		List<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"www.yahoo.com/index.php"}));
+		assertEquals(1, filtered.size());
+		assertTrue(filtered.contains("http://www.yahoo.com/index.php"));
 	}
 
 }

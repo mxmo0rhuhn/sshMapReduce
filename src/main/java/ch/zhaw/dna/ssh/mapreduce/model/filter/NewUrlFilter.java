@@ -20,18 +20,37 @@ import java.util.Set;
 public class NewUrlFilter {
 
 	private static final Set<String> ENDINGS = new HashSet<String>();
+	
+	private static final Set<String> PROTOCOLS = new HashSet<String>();
+	
+	private static final String DEFAULT_PROTOCOL = "http://";
 
 	static {
+		
+		// FILE ENDINGS
+		Properties f = new Properties();
+		try {
+			String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/') + "/endings-blacklist.properties";
+			f.load(NewUrlFilter.class.getResourceAsStream(filename));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		for (Object key : f.keySet()) {
+			ENDINGS.add((String) key);
+			ENDINGS.add(((String) key).toUpperCase());
+		}
+		
+		// PROTOCOLS
 		Properties p = new Properties();
 		try {
-			String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/') + "/statics.properties";
+			String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/') + "/protocols-whitelist.properties";
 			p.load(NewUrlFilter.class.getResourceAsStream(filename));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 		for (Object key : p.keySet()) {
-			ENDINGS.add((String) key);
-			ENDINGS.add(((String) key).toUpperCase());
+			PROTOCOLS.add((String) key);
+			PROTOCOLS.add(((String) key).toUpperCase());
 		}
 	}
 
@@ -46,19 +65,22 @@ public class NewUrlFilter {
 		List<String> filtered = new LinkedList<String>();
 		for (String url : urls) {
 			try {
-				URL newUrl = new URL(baseUrl, url);
-				if (!newUrl.sameFile(baseUrl) && !isStatic(newUrl)) {
+				URL newUrl = new URL(baseUrl, addDefaultProtocol(url));
+				if (!newUrl.sameFile(baseUrl) && hasAllowedProtocol(newUrl) && hasAllowedEnding(newUrl)) {
 					filtered.add(newUrl.toExternalForm());
 				}
 			} catch (MalformedURLException e) {
 				System.err.println("Skipping link: " + e.getMessage());
-
 			}
 		}
 		return filtered;
 	}
 
-	private boolean isStatic(URL url) {
+	private String addDefaultProtocol(String url) {
+		return url.length() > 2 && url.substring(0, 3).equals("www") ? DEFAULT_PROTOCOL + url : url;
+	}
+
+	private boolean hasAllowedEnding(URL url) {
 		String filename = url.getFile();
 		int paramPos = filename.indexOf('?');
 		if (paramPos >= 0) {
@@ -66,10 +88,13 @@ public class NewUrlFilter {
 		}
 		int pos = filename.lastIndexOf('.');
 		if (pos < 0) {
-			return false;
+			return true;
 		} else {
-			return ENDINGS.contains(filename.substring(pos + 1));
+			return !ENDINGS.contains(filename.substring(pos + 1));
 		}
 	}
 
+	private boolean hasAllowedProtocol(URL url) {
+		return PROTOCOLS.contains(url.getProtocol());
+	}
 }

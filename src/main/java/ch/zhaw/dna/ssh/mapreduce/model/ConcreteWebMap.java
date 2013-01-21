@@ -5,29 +5,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import ch.zhaw.dna.ssh.mapreduce.model.filter.NewUrlFilter;
 import ch.zhaw.mapreduce.MapEmitter;
 import ch.zhaw.mapreduce.MapInstruction;
-
 
 public class ConcreteWebMap implements MapInstruction {
 
 	public static final String URLKEY = "URLS";
 
-
 	private final Set<String> tags = new HashSet<String>(5);
 
 	private final DomParserFacade domParser = new DomParserFacade();
-	
+
+	private final NewUrlFilter filter = new NewUrlFilter();
+
 	private final URLInputReader reader;
-	
-	ConcreteWebMap(URLInputReader reader) {
-		this.reader = reader;
-	}
-	
-	public static final String URLKey = "URLS";
-	
+
 	public ConcreteWebMap() {
 		this(new URLInputReaderImpl());
+	}
+
+	ConcreteWebMap(URLInputReader reader) {
+		this.reader = reader;
 	}
 
 	@Override
@@ -45,6 +44,7 @@ public class ConcreteWebMap implements MapInstruction {
 		// Sämtliche URLs, die auf einer Website gefunden werden, werden unter dem speziellen Key 'URLS' abgelegt.
 		Map<String, List<String>> tagsWithContent = domParser.extractText(contents,
 				tags.toArray(new String[tags.size()]));
+		tagsWithContent.put(URLKEY, filter.filterUrls(url, tagsWithContent.get(URLKEY)));
 		for (Map.Entry<String, List<String>> entry : tagsWithContent.entrySet()) {
 			for (String text : entry.getValue()) {
 				emitter.emitIntermediateMapResult(entry.getKey(), text);

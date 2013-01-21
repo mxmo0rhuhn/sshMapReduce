@@ -134,7 +134,7 @@ public class WebCrawler extends Observable {
 
 			try {
 				Map<String, String> results = searchTask.compute(toSearchURLS.iterator());
-				String links = results.get(ConcreteWebMap.URLKey);
+				String links = results.get(ConcreteWebMap.URLKEY);
 
 				alreadySearchedURLS.addAll(toSearchURLS);
 				toSearchURLS.clear();
@@ -147,7 +147,7 @@ public class WebCrawler extends Observable {
 
 							toSearchURLS.add(s);
 						}
-						results.remove(ConcreteWebMap.URLKey);
+						results.remove(ConcreteWebMap.URLKEY);
 					}
 				}
 
