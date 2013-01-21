@@ -8,7 +8,7 @@ public class AllFilterTest {
 	
 	@Test
 	public void shouldAcceptNeither() {
-		AllFilter andFilter = new AllFilter(new ImageFilter(), new LocalFilter());
+		AllFilter andFilter = new AllFilter(new ExtensionsFilter(), new LocalFilter());
 		
 		assertFalse(andFilter.accept("image.png"));
 		assertFalse(andFilter.accept("www.google.com/page/sub/favicon.ico"));
