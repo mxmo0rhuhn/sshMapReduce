@@ -43,5 +43,11 @@ public class ImageFilterTest {
 		assertFalse(imageFilter.accept("http://www.google.com/hello.JPEG"));
 		assertFalse(imageFilter.accept("www.google.com/search/find.svg"));
 	}
+	
+	@Test
+	public void shouldRejectWithParams() {
+		assertFalse(imageFilter.accept("www.google.com/img.png?foo=bar"));
+		assertFalse(imageFilter.accept("img.JPEG?foo=bar&bar=foo"));
+	}
 
 }
