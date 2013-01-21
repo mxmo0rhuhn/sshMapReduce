@@ -3,6 +3,7 @@ package ch.zhaw.dna.ssh.mapreduce.model.filter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -23,12 +24,14 @@ public class NewUrlFilter {
 	
 	private static final Set<String> PROTOCOLS = new HashSet<String>();
 	
+	private static final List<String> PREFIX = new ArrayList<String>();
+	
 	private static final String DEFAULT_PROTOCOL = "http://";
 
 	static {
 		
 		// FILE ENDINGS
-		Properties f = new Properties();
+		{Properties f = new Properties();
 		try {
 			String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/') + "/endings-blacklist.properties";
 			f.load(NewUrlFilter.class.getResourceAsStream(filename));
@@ -39,9 +42,10 @@ public class NewUrlFilter {
 			ENDINGS.add((String) key);
 			ENDINGS.add(((String) key).toUpperCase());
 		}
+		}
 		
 		// PROTOCOLS
-		Properties p = new Properties();
+		{Properties p = new Properties();
 		try {
 			String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/') + "/protocols-whitelist.properties";
 			p.load(NewUrlFilter.class.getResourceAsStream(filename));
@@ -51,6 +55,21 @@ public class NewUrlFilter {
 		for (Object key : p.keySet()) {
 			PROTOCOLS.add((String) key);
 			PROTOCOLS.add(((String) key).toUpperCase());
+		}
+		}
+		
+		// PREFIX
+		{Properties p = new Properties();
+		try {
+			String filename = '/' + NewUrlFilter.class.getPackage().getName().replace('.', '/') + "/prefix-blacklist.properties";
+			p.load(NewUrlFilter.class.getResourceAsStream(filename));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		for (Object key : p.keySet()) {
+			PREFIX.add((String) key);
+			PREFIX.add(((String) key).toUpperCase());
+		}
 		}
 	}
 
@@ -66,14 +85,23 @@ public class NewUrlFilter {
 		for (String url : urls) {
 			try {
 				URL newUrl = new URL(baseUrl, addDefaultProtocol(url));
-				if (!newUrl.sameFile(baseUrl) && hasAllowedProtocol(newUrl) && hasAllowedEnding(newUrl)) {
+				if (!newUrl.sameFile(baseUrl) && !hasBlacklistedPrefix(url) && hasAllowedProtocol(newUrl) && hasAllowedEnding(newUrl)) {
 					filtered.add(newUrl.toExternalForm());
 				}
 			} catch (MalformedURLException e) {
-				System.err.println("Skipping link: " + e.getMessage());
+				System.err.println("Skipping link: " + url + " (" + e.getMessage() + ")");
 			}
 		}
 		return filtered;
+	}
+
+	private boolean hasBlacklistedPrefix(String url) {
+		for (String prefix : PREFIX) {
+			if (url.startsWith(prefix)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private String addDefaultProtocol(String url) {

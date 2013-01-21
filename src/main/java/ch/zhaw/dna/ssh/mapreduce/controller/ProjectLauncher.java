@@ -20,6 +20,7 @@ public class ProjectLauncher {
 	 */
 	public static void main(String[] args) {
 		int nworker = args.length == 1 ? Integer.parseInt(args[0]) : Runtime.getRuntime().availableProcessors() + 1;
+		System.out.println("Worker: " + nworker);
 		ProjectLauncher launcher = new ProjectLauncher();
 		launcher.launch(nworker);
 	}

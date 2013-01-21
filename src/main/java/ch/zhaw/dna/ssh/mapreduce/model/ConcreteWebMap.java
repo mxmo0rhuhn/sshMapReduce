@@ -35,7 +35,7 @@ public class ConcreteWebMap implements MapInstruction {
 		try {
 			contents = reader.readURL(url);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println(Thread.currentThread().getId() + ": Failed to download: " + url + " (" + e.getMessage() + ")");
 			return;
 		}
 		// Der DOM-Parser liefert für den Inhalt einer Website (contents) und einem Array von Tags eine Map. Die Map hat

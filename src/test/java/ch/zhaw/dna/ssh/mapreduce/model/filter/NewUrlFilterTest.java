@@ -121,4 +121,11 @@ public class NewUrlFilterTest {
 		assertTrue(filtered.contains("http://www.yahoo.com/index.php"));
 	}
 
+	@Test
+	public void shouldNotAcceptJavaScript() {
+		List<String> filtered = filter.filterUrls("http://www.google.com", Arrays.asList(new String[] {"javascript:open_window('subscribe.html')"}));
+		assertTrue(filtered.isEmpty());
+	}
+	
+
 }
