@@ -21,6 +21,8 @@ public class ExtensionsFilterTest {
 		assertTrue(extFilter.accept("http://www.google.com/index"));
 		assertTrue(extFilter.accept("http://www.google.com/jpeg"));
 		assertTrue(extFilter.accept("http://www.google.com?type=gif"));
+		assertTrue(extFilter.accept("http://www.google.com?type=gif&name=ch.google"));
+		assertTrue(extFilter.accept("http://www.google.com?type=foo.gif&name=ch.google"));
 	}
 
 	@Test
@@ -47,6 +49,7 @@ public class ExtensionsFilterTest {
 	@Test
 	public void shouldRejectWithParams() {
 		assertFalse(extFilter.accept("www.google.com/img.png?foo=bar"));
+		assertFalse(extFilter.accept("http://www.google.com/img.png?img=test.png&foo=bar"));
 		assertFalse(extFilter.accept("img.JPEG?foo=bar&bar=foo"));
 	}
 
@@ -57,5 +60,5 @@ public class ExtensionsFilterTest {
 		assertFalse(extFilter.accept("www.google.com/style/style.css"));
 		assertFalse(extFilter.accept("style/foo.css"));
 	}
-
+	
 }

@@ -3,12 +3,16 @@ package ch.zhaw.dna.ssh.mapreduce.model;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;
 import org.jmock.integration.junit4.JUnit4Mockery;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -99,6 +103,34 @@ public class ConcreteWebMapTest {
 		webMap.setaIsSet(false);
 		webMap.setaIsSet(false);
 		assertFalse(webMap.isaIsSet());
+	}
+	
+	@Test
+	public void shouldFindTheCorrectLinksOnTheSlayerArticle() throws Exception {
+		InputStream is = DomParserFacade.class.getResourceAsStream("/ch/zhaw/dna/ssh/mapreduce/model/Slayer-Wiki.txt");
+		if (is == null) {
+			Assert.fail("Slayer-Wiki not found :(");
+		}
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		final StringBuilder contents = new StringBuilder();
+		String line;
+		while ((line = reader.readLine()) != null) {
+			contents.append(line);
+		}
+		final URLInputReader localReader = new URLInputReader() {
+			@Override
+			public String readURL(String url) throws IOException {
+				return contents.toString();
+			}
+		};
+		ConcreteWebMap webMap = new ConcreteWebMap(localReader);
+		final MapEmitter emitter = this.context.mock(MapEmitter.class);
+		this.context.checking(new Expectations() {
+			{
+				oneOf(emitter).emitIntermediateMapResult("URLS", "www.rethab.ch");
+			}
+		});
+		webMap.map(emitter, "");
 	}
 
 }

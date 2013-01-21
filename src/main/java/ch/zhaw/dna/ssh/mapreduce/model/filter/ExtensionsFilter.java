@@ -1,5 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.model.filter;
 
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,12 +39,12 @@ public class ExtensionsFilter implements Filter {
 	@Override
 	public boolean accept(String url) {
 		int pos = url.lastIndexOf('.');
-		if (pos == -1) {
+		if (pos < 0) {
 			return true;
 		} else {
 			int paramPos = url.indexOf('?');
-			String ending;
-			if (paramPos != -1) {
+			String ending = 
+			if (paramPos >= 0) {
 				ending = url.substring(pos + 1, paramPos);
 			} else {
 				ending = url.substring(pos + 1);

@@ -14,7 +14,8 @@ public interface Manipulator {
 	 * @param baseUrl
 	 * @param url
 	 * @return brauchbare URL
+	 * @throws CannotManipulateException 
 	 */
-	String manipulate(String baseUrl, String url);
+	String manipulate(String baseUrl, String url) throws CannotManipulateException;
 
 }
