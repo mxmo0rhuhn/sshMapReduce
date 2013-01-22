@@ -87,8 +87,9 @@ public class MainFrame extends JFrame implements Observer {
 
 	/**
 	 * Erstellt das Frame und stellt das look and feel
+	 * @param nworkers 
 	 */
-	public MainFrame(OutputController curOutputController, WebCrawler searchCrawler) {
+	public MainFrame(OutputController curOutputController, WebCrawler searchCrawler, int nworkers) {
 
 		this.searchCrawler = searchCrawler;
 		this.curOutputController = curOutputController;
@@ -105,7 +106,7 @@ public class MainFrame extends JFrame implements Observer {
 					"Fehler", JOptionPane.OK_CANCEL_OPTION);
 		}
 
-		this.setTitle("SSH MapReduce");
+		this.setTitle("SSH MapReduce for " + nworkers + " Threads");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.setJMenuBar(createMenu());
@@ -272,11 +273,11 @@ public class MainFrame extends JFrame implements Observer {
 							crawler.setConsiderH2tags(MainFrame.this.h2CheckBox.isSelected());
 							crawler.setConsiderH3tags(MainFrame.this.h3CheckBox.isSelected());
 
-							int vorkommen = crawler.searchTheWeb(MainFrame.this.pathTextField.getText(),
+							long vorkommen = crawler.searchTheWeb(MainFrame.this.pathTextField.getText(),
 									MainFrame.this.specialWorfField.getText(),
 									MainFrame.this.schachtlungsComboBox.getSelectedIndex() + 1);
 
-							MainFrame.this.currentVorkommenLabel.setText(Integer.toString(vorkommen));
+							MainFrame.this.currentVorkommenLabel.setText(Long.toString(vorkommen));
 							MainFrame.this.isFinished = true;
 							MainFrame.this.runButton.setEnabled(true);
 							MainFrame.this.pathTextField.setEnabled(true);

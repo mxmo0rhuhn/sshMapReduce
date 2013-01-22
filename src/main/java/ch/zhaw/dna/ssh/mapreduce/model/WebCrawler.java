@@ -67,7 +67,7 @@ public class WebCrawler extends Observable {
 	 *            Die Tiefe an Links denen gefolgt werden soll.
 	 * @return die anzahl an Vorkommen des Wortes auf den durchsuchten Websites.
 	 */
-	public int searchTheWeb(String URL, String word, int depth) {
+	public long searchTheWeb(String URL, String word, int depth) {
 		word = word.toUpperCase();
 
 		String toCount = getWebsiteContent(URL, depth);
@@ -84,7 +84,7 @@ public class WebCrawler extends Observable {
 	 *            das Wort nach dem gesucht werden soll
 	 * @return die Anzahl an Vorkommen dieses Wortes in dem Text
 	 */
-	private int countTheWord(String toCount, String word) {
+	private long countTheWord(String toCount, String word) {
 
 		countMapInstruction.setSearchedWord(word);
 
@@ -93,7 +93,7 @@ public class WebCrawler extends Observable {
 		try {
 			Map<String, String> results = counter.compute(new WordsInputSplitter(toCount, 50000));
 			if (results.get(word) != null) {
-				return Integer.parseInt(results.get(word));
+				return Long.parseLong(results.get(word));
 			}
 		} catch (InterruptedException e) {
 			// TODO
