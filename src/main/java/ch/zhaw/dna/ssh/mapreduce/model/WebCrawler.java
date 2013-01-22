@@ -150,6 +150,8 @@ public class WebCrawler extends Observable {
 						results.remove(ConcreteWebMap.URLKEY);
 					}
 				}
+				
+				System.out.println("Found " + toSearchURLS.size() + " Links..");
 
 				// alle gefundenen Wörter ins Ergebnis!
 
