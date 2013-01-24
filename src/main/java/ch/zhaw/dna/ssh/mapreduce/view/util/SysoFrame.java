@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,14 +27,14 @@ public class SysoFrame extends JFrame {
     private final JTextArea textArea;
     private final JScrollPane scrollPane;
     private final JPanel panel;
-    private int msgCounter;
+    private AtomicInteger msgCounter;
 
     /**
      * Erstellt ein neues Konsolen-Fenster, welches ab sofort die
      * Konsolenausgabe darstellt.
      */
     public SysoFrame() {
-    	msgCounter = 0;
+    	msgCounter = new AtomicInteger(0);
 
         this.textArea = new JTextArea(); 
         this.textArea.setEditable(false);
@@ -63,10 +64,9 @@ public class SysoFrame extends JFrame {
      *            Der Text der geschrieben werden soll.
      */
     private void updateTextArea(final String text) {
-    	msgCounter++;
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                SysoFrame.this.textArea.append("" + msgCounter + " " + text);
+                SysoFrame.this.textArea.append(text);
             }
         });
     }

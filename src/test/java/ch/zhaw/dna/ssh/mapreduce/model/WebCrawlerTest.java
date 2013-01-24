@@ -19,8 +19,8 @@ public class WebCrawlerTest {
 		pool.donateWorker(new ThreadWorker(pool, Executors.newSingleThreadExecutor()));
 		WebCrawler crawlyCrawl = new WebCrawler();
 		crawlyCrawl.setConsiderH2tags(true);
-		int number = crawlyCrawl.searchTheWeb("http://de.wikipedia.org/wiki/Slayer", "Diskografie", 1);
-		assertThat("foo", number, equalTo(1));
+		long number = crawlyCrawl.searchTheWeb("http://de.wikipedia.org/wiki/Slayer", "Diskografie", 1);
+		assertThat("Long Test", number, equalTo(1L));
 	}
 
 }

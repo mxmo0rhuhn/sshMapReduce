@@ -2,6 +2,7 @@ package ch.zhaw.dna.ssh.mapreduce.view.util;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -30,15 +31,17 @@ public class ConsoleOutput extends JFrame implements OutputInterface {
 		this.textArea = new JTextArea();
 		this.textArea.setEditable(false);
 
+
+        this.textArea.setFont(new Font( Font.MONOSPACED, Font.PLAIN, 18 ));
 		this.panel = new JPanel(new BorderLayout());
 		this.panel.add(new JScrollPane(this.textArea), BorderLayout.CENTER);
 
 		add(this.panel);
 
-		setResizable(false);
+		setResizable(true);
 		setLocationRelativeTo(null);
 		setTitle("Log");
-		setSize(new Dimension(500, 300));
+		setSize(new Dimension(800, 300));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
