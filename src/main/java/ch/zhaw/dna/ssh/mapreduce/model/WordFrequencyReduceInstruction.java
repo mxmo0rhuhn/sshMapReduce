@@ -20,7 +20,7 @@ public class WordFrequencyReduceInstruction implements ReduceInstruction {
 		Long value = 0L;
 
 		while (values.hasNext()) {
-			value += Long.parseLong(values.next().getValue());
+			value += Long.parseLong((String) values.next().getValue());
 		}
 		emitter.emit(value.toString());
 	}
