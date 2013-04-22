@@ -19,7 +19,7 @@ public class ConcreteWebCombine implements CombinerInstruction {
 		// TODO geht bessere Performance?
 
 		while (toCombine.hasNext()) {
-			KeyValuePair currentKeyValuePair = toCombine.next();
+			KeyValuePair<String, String> currentKeyValuePair = (KeyValuePair<String, String>) toCombine.next();
 			if (concatenatedStrings.containsKey(currentKeyValuePair.getKey())) {
 				if (concatenatedStrings.get(currentKeyValuePair.getKey()).length() != 0) {
 					concatenatedStrings.get(currentKeyValuePair.getKey()).append(' ');

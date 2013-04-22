@@ -18,17 +18,17 @@ import ch.zhaw.mapreduce.KeyValuePair;
 public class WordFrequencyCombinerInstruction implements CombinerInstruction {
 
 	/** {@inheritDoc} */
-	@Override
+	@Override 
 	public List<KeyValuePair> combine(Iterator<KeyValuePair> toCombine) {
-		Map<String, KeyValuePair> combinedKeyValuePairs = new HashMap<String, KeyValuePair>(); 
+		Map<String, KeyValuePair<String, String>> combinedKeyValuePairs = new HashMap<String, KeyValuePair<String, String>>(); 
 		
 		while (toCombine.hasNext()) {
-			KeyValuePair currentKeyValuePair = toCombine.next();
+			KeyValuePair<String, String> currentKeyValuePair = (KeyValuePair<String, String>) toCombine.next();
 			if(combinedKeyValuePairs.containsKey(currentKeyValuePair.getKey())) {
-				KeyValuePair formerKeyValuePair = combinedKeyValuePairs.get(currentKeyValuePair.getKey());
+				KeyValuePair<String, String> formerKeyValuePair = (KeyValuePair<String, String>) combinedKeyValuePairs.get(currentKeyValuePair.getKey());
 				combinedKeyValuePairs.remove(currentKeyValuePair.getKey());
 				
-				combinedKeyValuePairs.put(currentKeyValuePair.getKey(), new KeyValuePair(currentKeyValuePair.getKey(), "" + 1 + Long.parseLong(formerKeyValuePair.getValue())));
+				combinedKeyValuePairs.put( currentKeyValuePair.getKey(), new KeyValuePair<String, String>(currentKeyValuePair.getKey(), "" + 1 + Long.parseLong(formerKeyValuePair.getValue())));
 				
 			} else {
 				combinedKeyValuePairs.put(currentKeyValuePair.getKey(), currentKeyValuePair);
