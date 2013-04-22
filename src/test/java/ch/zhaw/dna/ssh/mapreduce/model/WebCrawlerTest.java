@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import org.junit.Test;
 
 import ch.zhaw.mapreduce.Pool;
-import ch.zhaw.mapreduce.impl.ThreadWorker;
+import ch.zhaw.mapreduce.plugins.thread.ThreadWorker;
 import ch.zhaw.mapreduce.registry.Registry;
 
 public class WebCrawlerTest {
@@ -16,7 +16,8 @@ public class WebCrawlerTest {
 	@Test
 	public void shouldEmitContents() throws Exception {
 		Pool pool = Registry.getComponent(Pool.class);
-		pool.donateWorker(new ThreadWorker(pool, Executors.newSingleThreadExecutor()));
+		// TODO null wont work
+		pool.donateWorker(new ThreadWorker(pool, Executors.newSingleThreadExecutor(), null));
 		WebCrawler crawlyCrawl = new WebCrawler();
 		crawlyCrawl.setConsiderH2tags(true);
 		long number = crawlyCrawl.searchTheWeb("http://de.wikipedia.org/wiki/Slayer", "Diskografie", 1);

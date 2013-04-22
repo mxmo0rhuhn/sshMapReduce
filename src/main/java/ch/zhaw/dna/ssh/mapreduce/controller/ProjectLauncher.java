@@ -1,10 +1,13 @@
 package ch.zhaw.dna.ssh.mapreduce.controller;
 
+import java.util.concurrent.Executors;
+
 import ch.zhaw.dna.ssh.mapreduce.model.WebCrawler;
 import ch.zhaw.dna.ssh.mapreduce.view.MainFrame;
 import ch.zhaw.dna.ssh.mapreduce.view.util.SysoFrame;
 import ch.zhaw.mapreduce.Pool;
 import ch.zhaw.mapreduce.Worker;
+import ch.zhaw.mapreduce.plugins.thread.ThreadWorker;
 import ch.zhaw.mapreduce.registry.Registry;
 
 /**
@@ -24,14 +27,16 @@ public class ProjectLauncher {
 		ProjectLauncher launcher = new ProjectLauncher();
 		launcher.launch(nworker);
 	}
-	
+
 	/**
 	 * default konstruktor
 	 */
-	public ProjectLauncher() { }
-	
+	public ProjectLauncher() {
+	}
+
 	/**
 	 * Startet das GUI und gibt dem Pool eine bestimmte Anzahl Worker
+	 * 
 	 * @param nworkers
 	 */
 	public void launch(int nworkers) {
@@ -40,7 +45,7 @@ public class ProjectLauncher {
 		System.out.println("Worker: " + nworkers);
 		Pool pool = Registry.getComponent(Pool.class);
 	for (int i = 1; i < nworkers; i++) {
-			pool.donateWorker(Registry.getComponent(Worker.class));
+			pool.donateWorker(new ThreadWorker(pool, Executors.newSingleThreadExecutor(), new Provider<Persistence>()));
 		}
 		OutputController out = new OutputController();
 		WebCrawler currentWebCrawler = new WebCrawler();
