@@ -7,6 +7,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.WebCrawler;
 import ch.zhaw.dna.ssh.mapreduce.view.MainFrame;
 import ch.zhaw.dna.ssh.mapreduce.view.util.SysoFrame;
 import ch.zhaw.mapreduce.Pool;
+import ch.zhaw.mapreduce.ServerStarter;
 import ch.zhaw.mapreduce.Worker;
 import ch.zhaw.mapreduce.plugins.thread.ThreadWorker;
 import ch.zhaw.mapreduce.registry.MapReduceConfig;
@@ -28,7 +29,7 @@ public class ProjectLauncher {
 	 *            die nicht beachteten Übergabeparameter
 	 */
 	public static void main(String[] args) {
-		int nworker = args.length == 1 ? Integer.parseInt(args[0]) : Runtime.getRuntime().availableProcessors() + 1;
+		int nworker = args.length == 1 ? Integer.parseInt(args[0]) : Runtime.getRuntime().availableProcessors() + 1 ;
 		ProjectLauncher launcher = new ProjectLauncher();
 		launcher.launch(nworker);
 	}
@@ -45,21 +46,12 @@ public class ProjectLauncher {
 	 * @param nworkers
 	 */
 	public void launch(int nworkers) {
-		Injector injector = Guice.createInjector(new MapReduceConfig(), new AbstractModule() {
-			@Override
-			protected void configure() {
-				bind(Worker.class).to(ThreadWorker.class);
-				bind(Executor.class).toInstance(Executors.newCachedThreadPool());
-			}
-		});
-
+		
+		new ServerStarter().start();
 		// TODO do not use registry directly
 		new SysoFrame();
 		System.out.println("Worker: " + nworkers);
-		Pool pool = injector.getInstance(Pool.class);
-		for (int i = 1; i < nworkers; i++) {
-			pool.donateWorker(injector.getInstance(Worker.class));
-		}
+
 		OutputController out = new OutputController();
 		WebCrawler currentWebCrawler = new WebCrawler();
 		MainFrame main = new MainFrame(out, currentWebCrawler, nworkers);
