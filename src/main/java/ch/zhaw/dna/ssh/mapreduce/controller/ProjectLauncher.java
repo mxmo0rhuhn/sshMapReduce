@@ -4,6 +4,7 @@ import ch.zhaw.dna.ssh.mapreduce.model.WebCrawler;
 import ch.zhaw.dna.ssh.mapreduce.view.MainFrame;
 import ch.zhaw.mapreduce.ServerStarter;
 import ch.zhaw.mapreduce.plugins.thread.ThreadConfig;
+import ch.zhaw.mapreduce.registry.Registry;
 
 /**
  * Diese Klasse startet die Applikation * @author Max
@@ -35,7 +36,7 @@ public class ProjectLauncher {
 	 */
 	public void launch(int nworkers) {
 		System.setProperty("mrplugins", "Thread");
-		new ServerStarter().start();
+		new ServerStarter(Registry.getInjector()).start();
 		System.out.println("Worker: " + nworkers);
 
 		OutputController out = new OutputController();
