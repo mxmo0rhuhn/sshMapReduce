@@ -214,12 +214,15 @@ public class MainFrame extends JFrame implements Observer {
 		htmlTags1Panel.setLayout(new GridLayout(1, 3));
 
 		h1CheckBox = new JCheckBox("<h1>");
+		h1CheckBox.setSelected(true);
 		htmlTags1Panel.add(h1CheckBox);
 
 		h2CheckBox = new JCheckBox("<h2>");
+		h2CheckBox.setSelected(true);
 		htmlTags1Panel.add(h2CheckBox);
 
 		h3CheckBox = new JCheckBox("<h3>");
+		h3CheckBox.setSelected(true);
 		htmlTags1Panel.add(h3CheckBox);
 		inputPanel.add(htmlTags1Panel);
 
@@ -228,9 +231,11 @@ public class MainFrame extends JFrame implements Observer {
 		htmlTags2Panel.setLayout(new GridLayout(1, 3));
 
 		pCheckBox = new JCheckBox("<p>");
+		pCheckBox.setSelected(true);
 		htmlTags2Panel.add(pCheckBox);
 
 		aCheckBox = new JCheckBox("<a>");
+		aCheckBox.setSelected(true);
 		htmlTags2Panel.add(aCheckBox);
 
 		htmlTags2Panel.add(new JPanel());
@@ -372,6 +377,7 @@ public class MainFrame extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		currentTiefeLabel.setText("" + searchCrawler.getDepth());
+		currentVorkommenLabel.setText("" + searchCrawler.getResult());
 		currentPagesLabel.setText("" + searchCrawler.getSearchedSides());
 
 		curOutputController.println("--------------------------------------------");
@@ -379,6 +385,8 @@ public class MainFrame extends JFrame implements Observer {
 				.println("" + new Timestamp(new Date().getTime()) + " Start Url: " + pathTextField.getText());
 		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Gesuchtes Wort: "
 				+ specialWorfField.getText());
+		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Bisherige Vorkommen: "
+				+ currentVorkommenLabel.getText());
 		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Erreichte Schachtlungstiefe: "
 				+ searchCrawler.getDepth());
 		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Durchsuchte Seiten: "

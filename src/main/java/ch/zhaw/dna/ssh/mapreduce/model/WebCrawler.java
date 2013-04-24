@@ -17,6 +17,9 @@ import ch.zhaw.mapreduce.MapReduceTask;
  * 
  */
 public class WebCrawler extends Observable {
+	
+	private int result;
+	private String word;
 
 	private boolean considerH1tags = false;
 	private boolean considerH2tags = false;
@@ -34,6 +37,7 @@ public class WebCrawler extends Observable {
 
 	private int fDepth;
 	private int searchedSides;
+
 
 	WebCrawler(SpecificWordFrequencyMapInstruction countMapInstruction,
 			WordFrequencyCombinerInstruction countCombinerInstruction,
@@ -68,11 +72,11 @@ public class WebCrawler extends Observable {
 	 * @return die anzahl an Vorkommen des Wortes auf den durchsuchten Websites.
 	 */
 	public long searchTheWeb(String URL, String word, int depth) {
-		word = word.toUpperCase();
+		result = 0;
+		
+		this.word = word.toUpperCase();
 
-		String toCount = getWebsiteContent(URL, depth);
-
-		return countTheWord(toCount, word);
+		return getWebsiteContent(URL, depth) ;
 	}
 
 	/**
@@ -112,12 +116,11 @@ public class WebCrawler extends Observable {
 	 *            die Tiefe in der gesucht werden soll
 	 * @return aller Text, der auf diesen Websites zu finden ist.
 	 */
-	private String getWebsiteContent(String url, int depth) {
+	private int getWebsiteContent(String url, int depth) {
 
 		Set<String> alreadySearchedURLS = new HashSet<String>();
 		Collection<String> toSearchURLS = new LinkedList<String>();
 
-		StringBuilder allTheWords = new StringBuilder();
 
 		webSearchMapInstruction.setaIsSet(considerAtags);
 		webSearchMapInstruction.setpIsSet(considerPtags);
@@ -132,6 +135,8 @@ public class WebCrawler extends Observable {
 
 		for (int i = 1; i <= depth; i++) {
 
+			StringBuilder allTheWords = new StringBuilder();
+		
 			try {
 				Map<String, String> results = searchTask.compute(toSearchURLS.iterator());
 				String links = results.get(ConcreteWebMap.URLKEY);
@@ -166,11 +171,13 @@ public class WebCrawler extends Observable {
 			}
 			fDepth = i;
 			searchedSides = alreadySearchedURLS.size();
-
+			result +=  countTheWord(allTheWords.toString(), word);
+			
+			
 			setChanged();
 			notifyObservers();
 		}
-		return allTheWords.toString();
+		return result;
 	}
 
 	/**
@@ -230,6 +237,14 @@ public class WebCrawler extends Observable {
 	 */
 	public int getDepth() {
 		return fDepth;
+	}
+
+	/**
+	 * Gibt den Wert des Feldes result zurück.
+	 * @return derzeitiger Wert des Feldes result
+	 */
+	public int getResult() {
+		return result;
 	}
 
 	/**
