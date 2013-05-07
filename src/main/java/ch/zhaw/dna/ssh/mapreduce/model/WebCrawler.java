@@ -1,23 +1,25 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
 
-import ch.zhaw.mapreduce.MapReduceTask;
+import ch.zhaw.mapreduce.MapReduce;
+import ch.zhaw.mapreduce.MapReduceFactory;
 
 /**
- * Diese Klasse durchsucht die Tags einer gegebenen Website nach einem bestimmten Wort. Dabei werden die einzelnen
- * Schritte in MapReduceTasks ausgeführt.
+ * Diese Klasse durchsucht die Tags einer gegebenen Website nach einem bestimmten Wort. Dabei werden
+ * die einzelnen Schritte in MapReduceTasks ausgeführt.
  * 
  * @author Max
  * 
  */
 public class WebCrawler extends Observable {
-	
+
 	private int result;
 	private String word;
 
@@ -38,11 +40,11 @@ public class WebCrawler extends Observable {
 	private int fDepth;
 	private int searchedSides;
 
-
 	WebCrawler(SpecificWordFrequencyMapInstruction countMapInstruction,
 			WordFrequencyCombinerInstruction countCombinerInstruction,
-			WordFrequencyReduceInstruction countReduceInstruction, ConcreteWebMap webSearchMapInstruction,
-			ConcreteWebCombine webSearchCombineInstruction, ConcreteWebReduce webSearchReduceInstruction) {
+			WordFrequencyReduceInstruction countReduceInstruction,
+			ConcreteWebMap webSearchMapInstruction, ConcreteWebCombine webSearchCombineInstruction,
+			ConcreteWebReduce webSearchReduceInstruction) {
 
 		this.countMapInstruction = countMapInstruction;
 		this.countCombinerInstruction = countCombinerInstruction;
@@ -60,8 +62,8 @@ public class WebCrawler extends Observable {
 	}
 
 	/**
-	 * Durchsucht von der Website ausgehend in einer gewissen Tiefe weitere Seiten auf das Vorkommen eines bestimmten
-	 * Wortes
+	 * Durchsucht von der Website ausgehend in einer gewissen Tiefe weitere Seiten auf das Vorkommen
+	 * eines bestimmten Wortes
 	 * 
 	 * @param URL
 	 *            Eine valide URL von der aus gesucht werden soll
@@ -73,10 +75,10 @@ public class WebCrawler extends Observable {
 	 */
 	public long searchTheWeb(String URL, String word, int depth) {
 		result = 0;
-		
+
 		this.word = word.toUpperCase();
 
-		return getWebsiteContent(URL, depth) ;
+		return getWebsiteContent(URL, depth);
 	}
 
 	/**
@@ -92,16 +94,13 @@ public class WebCrawler extends Observable {
 
 		countMapInstruction.setSearchedWord(word);
 
-		MapReduceTask counter = new MapReduceTask(countMapInstruction, countReduceInstruction, countCombinerInstruction);
+		Map<String, String> myConfig = new HashMap<String, String>();
+		MapReduce counter = MapReduceFactory.getMapReduce().newMRTask(countMapInstruction, countReduceInstruction,
+				countCombinerInstruction, myConfig);
 
-		try {
-			Map<String, String> results = counter.compute(new WordsInputSplitter(toCount, 50000));
-			if (results.get(word) != null) {
-				return Long.parseLong(results.get(word));
-			}
-		} catch (InterruptedException e) {
-			// TODO
-			e.printStackTrace();
+		Map<String, String> results = counter.runMapReduceTask(new WordsInputSplitter(toCount, 50000));
+		if (results.get(word) != null) {
+			return Long.parseLong(results.get(word));
 		}
 
 		return 0;
@@ -130,44 +129,38 @@ public class WebCrawler extends Observable {
 
 		toSearchURLS.add(url);
 
-		MapReduceTask searchTask = new MapReduceTask(webSearchMapInstruction, webSearchReduceInstruction,
-				webSearchCombineInstruction);
+		Map<String, String> myConfig = new HashMap<String, String>();
+		MapReduce searchTask = MapReduceFactory.getMapReduce().newMRTask(webSearchMapInstruction, webSearchReduceInstruction,
+				webSearchCombineInstruction, myConfig);
 
 		for (int i = 1; i <= depth; i++) {
 
 			StringBuilder allTheWords = new StringBuilder();
 		
-			try {
-				Map<String, String> results = searchTask.compute(toSearchURLS.iterator());
-				String links = results.get(ConcreteWebMap.URLKEY);
+			Map<String, String> results = searchTask.runMapReduceTask(toSearchURLS.iterator());
+			String links = results.get(ConcreteWebMap.URLKEY);
 
-				alreadySearchedURLS.addAll(toSearchURLS);
-				toSearchURLS.clear();
+			alreadySearchedURLS.addAll(toSearchURLS);
+			toSearchURLS.clear();
 
-				// TODO Sobald wieder eine Collection zurück kommt geht das wohl
-				// einfacher
-				if (links != null) {
-					for (String s : links.trim().split(" ")) {
-						if (!alreadySearchedURLS.contains(s)) {
+			// TODO Sobald wieder eine Collection zurück kommt geht das wohl
+			// einfacher
+			if (links != null) {
+				for (String s : links.trim().split(" ")) {
+					if (!alreadySearchedURLS.contains(s)) {
 
-							toSearchURLS.add(s);
-						}
-						results.remove(ConcreteWebMap.URLKEY);
+						toSearchURLS.add(s);
 					}
+					results.remove(ConcreteWebMap.URLKEY);
 				}
-				
-				System.out.println("Found " + toSearchURLS.size() + " Links..");
+			}
+			
+			System.out.println("Found " + toSearchURLS.size() + " Links..");
 
-				// alle gefundenen Wörter ins Ergebnis!
+			// alle gefundenen Wörter ins Ergebnis!
 
-				for (String key : results.keySet()) {
-					allTheWords.append(results.get(key));
-				}
-
-			} catch (InterruptedException e) {
-				toSearchURLS.clear();
-
-				e.printStackTrace();
+			for (String key : results.keySet()) {
+				allTheWords.append(results.get(key));
 			}
 			fDepth = i;
 			searchedSides = alreadySearchedURLS.size();
@@ -241,6 +234,7 @@ public class WebCrawler extends Observable {
 
 	/**
 	 * Gibt den Wert des Feldes result zurück.
+	 * 
 	 * @return derzeitiger Wert des Feldes result
 	 */
 	public int getResult() {

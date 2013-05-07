@@ -86,10 +86,9 @@ public class MainFrame extends JFrame implements Observer {
 	private boolean isFinished;
 
 	/**
-	 * Erstellt das Frame und stellt das look and feel
-	 * @param nworkers 
+	 * Erstellt das Frame und stellt das look and feel ein
 	 */
-	public MainFrame(OutputController curOutputController, WebCrawler searchCrawler, int nworkers) {
+	public MainFrame(OutputController curOutputController, WebCrawler searchCrawler) {
 
 		this.searchCrawler = searchCrawler;
 		this.curOutputController = curOutputController;
@@ -101,12 +100,13 @@ public class MainFrame extends JFrame implements Observer {
 				}
 			}
 		} catch (Exception e) {
-			JOptionPane.showConfirmDialog(null,
-					"Konnte Interface nicht richtig aufbauen. Wechsle auf default interface.\n" + e.getMessage(),
-					"Fehler", JOptionPane.OK_CANCEL_OPTION);
+			JOptionPane.showConfirmDialog(
+					null,
+					"Konnte Interface nicht richtig aufbauen. Wechsle auf default interface.\n"
+							+ e.getMessage(), "Fehler", JOptionPane.OK_CANCEL_OPTION);
 		}
 
-		this.setTitle("SSH MapReduce for " + nworkers + " Threads");
+		this.setTitle("SSH MapReduce Webcrawler");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.setJMenuBar(createMenu());
@@ -278,7 +278,8 @@ public class MainFrame extends JFrame implements Observer {
 							crawler.setConsiderH2tags(MainFrame.this.h2CheckBox.isSelected());
 							crawler.setConsiderH3tags(MainFrame.this.h3CheckBox.isSelected());
 
-							long vorkommen = crawler.searchTheWeb(MainFrame.this.pathTextField.getText(),
+							long vorkommen = crawler.searchTheWeb(
+									MainFrame.this.pathTextField.getText(),
 									MainFrame.this.specialWorfField.getText(),
 									MainFrame.this.schachtlungsComboBox.getSelectedIndex() + 1);
 
@@ -302,8 +303,10 @@ public class MainFrame extends JFrame implements Observer {
 							long end = System.currentTimeMillis();
 							long diff = (end - start);
 
-							DecimalFormat df = new DecimalFormat(String.valueOf(new char[] { '0', '0' }));
-							DecimalFormat df2 = new DecimalFormat(String.valueOf(new char[] { '0', '0', '0' }));
+							DecimalFormat df = new DecimalFormat(String.valueOf(new char[] { '0',
+									'0' }));
+							DecimalFormat df2 = new DecimalFormat(String.valueOf(new char[] { '0',
+									'0', '0' }));
 
 							while (!MainFrame.this.isFinished) {
 
@@ -328,8 +331,8 @@ public class MainFrame extends JFrame implements Observer {
 					}).start();
 
 				} else {
-					JOptionPane.showMessageDialog(MainFrame.this, "Dies ist keine valide URL", "Fehler",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(MainFrame.this, "Dies ist keine valide URL",
+							"Fehler", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -381,16 +384,17 @@ public class MainFrame extends JFrame implements Observer {
 		currentPagesLabel.setText("" + searchCrawler.getSearchedSides());
 
 		curOutputController.println("--------------------------------------------");
-		curOutputController
-				.println("" + new Timestamp(new Date().getTime()) + " Start Url: " + pathTextField.getText());
+		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Start Url: "
+				+ pathTextField.getText());
 		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Gesuchtes Wort: "
 				+ specialWorfField.getText());
-		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Bisherige Vorkommen: "
-				+ currentVorkommenLabel.getText());
-		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Erreichte Schachtlungstiefe: "
-				+ searchCrawler.getDepth());
-		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Durchsuchte Seiten: "
-				+ searchCrawler.getSearchedSides());
-		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Benötigte Zeit: " + elapsedTime);
+		curOutputController.println("" + new Timestamp(new Date().getTime())
+				+ " Bisherige Vorkommen: " + currentVorkommenLabel.getText());
+		curOutputController.println("" + new Timestamp(new Date().getTime())
+				+ " Erreichte Schachtlungstiefe: " + searchCrawler.getDepth());
+		curOutputController.println("" + new Timestamp(new Date().getTime())
+				+ " Durchsuchte Seiten: " + searchCrawler.getSearchedSides());
+		curOutputController.println("" + new Timestamp(new Date().getTime()) + " Benötigte Zeit: "
+				+ elapsedTime);
 	}
 }
