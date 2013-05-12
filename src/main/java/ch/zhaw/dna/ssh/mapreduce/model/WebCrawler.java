@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
@@ -12,8 +13,8 @@ import ch.zhaw.mapreduce.MapReduce;
 import ch.zhaw.mapreduce.MapReduceFactory;
 
 /**
- * Diese Klasse durchsucht die Tags einer gegebenen Website nach einem bestimmten Wort. Dabei werden
- * die einzelnen Schritte in MapReduceTasks ausgeführt.
+ * Diese Klasse durchsucht die Tags einer gegebenen Website nach einem bestimmten Wort. Dabei werden die einzelnen
+ * Schritte in MapReduceTasks ausgeführt.
  * 
  * @author Max
  * 
@@ -42,9 +43,8 @@ public class WebCrawler extends Observable {
 
 	WebCrawler(SpecificWordFrequencyMapInstruction countMapInstruction,
 			WordFrequencyCombinerInstruction countCombinerInstruction,
-			WordFrequencyReduceInstruction countReduceInstruction,
-			ConcreteWebMap webSearchMapInstruction, ConcreteWebCombine webSearchCombineInstruction,
-			ConcreteWebReduce webSearchReduceInstruction) {
+			WordFrequencyReduceInstruction countReduceInstruction, ConcreteWebMap webSearchMapInstruction,
+			ConcreteWebCombine webSearchCombineInstruction, ConcreteWebReduce webSearchReduceInstruction) {
 
 		this.countMapInstruction = countMapInstruction;
 		this.countCombinerInstruction = countCombinerInstruction;
@@ -62,8 +62,8 @@ public class WebCrawler extends Observable {
 	}
 
 	/**
-	 * Durchsucht von der Website ausgehend in einer gewissen Tiefe weitere Seiten auf das Vorkommen
-	 * eines bestimmten Wortes
+	 * Durchsucht von der Website ausgehend in einer gewissen Tiefe weitere Seiten auf das Vorkommen eines bestimmten
+	 * Wortes
 	 * 
 	 * @param URL
 	 *            Eine valide URL von der aus gesucht werden soll
@@ -96,11 +96,16 @@ public class WebCrawler extends Observable {
 
 		Map<String, String> myConfig = new HashMap<String, String>();
 		MapReduce counter = MapReduceFactory.getMapReduce().newMRTask(countMapInstruction, countReduceInstruction,
-				countCombinerInstruction, myConfig);
+				countCombinerInstruction, null, myConfig);
 
-		Map<String, String> results = counter.runMapReduceTask(new WordsInputSplitter(toCount, 50000));
-		if (results.get(word) != null) {
-			return Long.parseLong(results.get(word));
+		Map<String, List<String>> results = counter.runMapReduceTask(new WordsInputSplitter(toCount, 50000));
+		List<String> counts = results.get(word);
+		if (counts != null) {
+			long sum = 0;
+			for (String count : counts) {
+				sum += Long.parseLong(count);
+			}
+			return sum;
 		}
 
 		return 0;
@@ -120,7 +125,6 @@ public class WebCrawler extends Observable {
 		Set<String> alreadySearchedURLS = new HashSet<String>();
 		Collection<String> toSearchURLS = new LinkedList<String>();
 
-
 		webSearchMapInstruction.setaIsSet(considerAtags);
 		webSearchMapInstruction.setpIsSet(considerPtags);
 		webSearchMapInstruction.setH1IsSet(considerH1tags);
@@ -130,23 +134,21 @@ public class WebCrawler extends Observable {
 		toSearchURLS.add(url);
 
 		Map<String, String> myConfig = new HashMap<String, String>();
-		MapReduce searchTask = MapReduceFactory.getMapReduce().newMRTask(webSearchMapInstruction, webSearchReduceInstruction,
-				webSearchCombineInstruction, myConfig);
+		MapReduce searchTask = MapReduceFactory.getMapReduce().newMRTask(webSearchMapInstruction,
+				webSearchReduceInstruction, webSearchCombineInstruction, null, myConfig);
 
 		for (int i = 1; i <= depth; i++) {
 
 			StringBuilder allTheWords = new StringBuilder();
-		
-			Map<String, String> results = searchTask.runMapReduceTask(toSearchURLS.iterator());
-			String links = results.get(ConcreteWebMap.URLKEY);
+
+			Map<String, List<String>> results = searchTask.runMapReduceTask(toSearchURLS.iterator());
+			List<String> links = results.get(ConcreteWebMap.URLKEY);
 
 			alreadySearchedURLS.addAll(toSearchURLS);
 			toSearchURLS.clear();
 
-			// TODO Sobald wieder eine Collection zurück kommt geht das wohl
-			// einfacher
 			if (links != null) {
-				for (String s : links.trim().split(" ")) {
+				for (String s : links) {
 					if (!alreadySearchedURLS.contains(s)) {
 
 						toSearchURLS.add(s);
@@ -154,7 +156,7 @@ public class WebCrawler extends Observable {
 					results.remove(ConcreteWebMap.URLKEY);
 				}
 			}
-			
+
 			System.out.println("Found " + toSearchURLS.size() + " Links..");
 
 			// alle gefundenen Wörter ins Ergebnis!
@@ -164,9 +166,8 @@ public class WebCrawler extends Observable {
 			}
 			fDepth = i;
 			searchedSides = alreadySearchedURLS.size();
-			result +=  countTheWord(allTheWords.toString(), word);
-			
-			
+			result += countTheWord(allTheWords.toString(), word);
+
 			setChanged();
 			notifyObservers();
 		}

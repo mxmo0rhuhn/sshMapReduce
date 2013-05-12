@@ -1,5 +1,6 @@
 package ch.zhaw.dna.ssh.mapreduce.controller;
 
+import ch.zhaw.dna.ssh.mapreduce.controller.OutputController.OUTPUT_STRATEGY;
 import ch.zhaw.dna.ssh.mapreduce.model.WebCrawler;
 import ch.zhaw.dna.ssh.mapreduce.view.MainFrame;
 import ch.zhaw.mapreduce.MapReduceFactory;
@@ -27,10 +28,11 @@ public class ProjectLauncher {
 		MapReduceFactory.getMapReduce().start();
 
 		OutputController out = new OutputController();
+		out.setOutput(OUTPUT_STRATEGY.TEXTFILE);
 		WebCrawler currentWebCrawler = new WebCrawler();
 		MainFrame main = new MainFrame(out, currentWebCrawler);
 		currentWebCrawler.addObserver(main);
 
-		MapReduceFactory.getMapReduce().stop();
+		//MapReduceFactory.getMapReduce().stop();
 	}
 }
