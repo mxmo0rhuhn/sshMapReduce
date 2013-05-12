@@ -1,11 +1,16 @@
 package ch.zhaw.dna.ssh.mapreduce.model;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ch.zhaw.dna.ssh.mapreduce.model.filter.NewUrlFilter;
 import ch.zhaw.mapreduce.MapEmitter;
 import ch.zhaw.mapreduce.MapInstruction;
 
@@ -15,25 +20,15 @@ public class ConcreteWebMap implements MapInstruction {
 
 	private final Set<String> tags = new HashSet<String>(5);
 
-	private final DomParserFacade domParser = new DomParserFacade();
+	// private final DomParserFacade domParser = new DomParserFacade();
 
-	private final NewUrlFilter filter = new NewUrlFilter();
-
-	private final URLInputReader reader;
-
-	public ConcreteWebMap() {
-		this(new URLInputReaderImpl());
-	}
-
-	ConcreteWebMap(URLInputReader reader) {
-		this.reader = reader;
-	}
+	// private final NewUrlFilter filter = new NewUrlFilter();
 
 	@Override
 	public void map(MapEmitter emitter, String baseUrl) {
 		String contents;
 		try {
-			contents = reader.readURL(baseUrl);
+			contents = readURL(baseUrl);
 			System.out.println("Downloaded: " + baseUrl);
 		} catch (Exception e) {
 			System.err.println(Thread.currentThread().getId() + ": Failed to download: " + baseUrl + " (" + e.getMessage() + ")");
@@ -43,8 +38,11 @@ public class ConcreteWebMap implements MapInstruction {
 		// als Keys sämtliche Tags, für die wir uns interessieren. Und als Values jeweils eine Liste mit den Texten zu
 		// den jeweiligen Tags. Es muss eine Liste sein, weil ein Tag auf einer Website mehrmals vorkommen kann.
 		// Sämtliche URLs, die auf einer Website gefunden werden, werden unter dem speziellen Key 'URLS' abgelegt.
-		Map<String, List<String>> tagsWithContent = domParser.extractText(contents, tags.toArray(new String[tags.size()]));
-		Set<String> urls = filter.filterUrls(baseUrl, tagsWithContent.remove(URLKEY));
+		//Map<String, List<String>> tagsWithContent = domParser.extractText(contents, tags.toArray(new String[tags.size()]));
+		Map<String, List<String>> tagsWithContent = new HashMap<String, List<String>>();
+		
+		// Set<String> urls = filter.filterUrls(baseUrl, tagsWithContent.remove(URLKEY));
+		List<String> urls = Arrays.asList(new String[]{"http://www.google.com", "http://www.wikipedia.org"});
 		
 		for (Map.Entry<String, List<String>> entry : tagsWithContent.entrySet()) {
 			for (String text : entry.getValue()) {
@@ -107,5 +105,22 @@ public class ConcreteWebMap implements MapInstruction {
 	private boolean hasTag(String tagName) {
 		return this.tags.contains(tagName);
 	}
+	
+	private String readURL(String inputURL) throws IOException {
 
+		StringBuilder build = new StringBuilder();
+
+		URL input = new URL(inputURL);
+		BufferedReader in = new BufferedReader(new InputStreamReader(
+				input.openStream()));
+		String inputLine;
+		try {
+			while ((inputLine = in.readLine()) != null) {
+				build.append(inputLine);
+			}
+		} finally {
+			in.close();
+		}
+		return build.toString();
+	}
 }

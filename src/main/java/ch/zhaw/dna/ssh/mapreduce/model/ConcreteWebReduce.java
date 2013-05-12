@@ -2,6 +2,7 @@ package ch.zhaw.dna.ssh.mapreduce.model;
 
 import java.util.Iterator;
 
+
 import ch.zhaw.mapreduce.KeyValuePair;
 import ch.zhaw.mapreduce.ReduceEmitter;
 import ch.zhaw.mapreduce.ReduceInstruction;

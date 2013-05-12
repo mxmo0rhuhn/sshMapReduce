@@ -20,23 +20,14 @@ public class ConcreteWebMapTest {
 
 	private Mockery context;
 
-	private URLInputReader reader;
-
 	@Before
 	public void initMock() {
 		this.context = new JUnit4Mockery();
-		this.reader = this.context.mock(URLInputReader.class);
 	}
 
 	@Test
 	public void shouldEmitContents() throws IOException {
-		final URLInputReader localReader = new URLInputReader() {
-			@Override
-			public String readURL(String url) throws IOException {
-				return "<html><p>hello, world</p><a href=\"www.de.wikipedia.org/wiki/Slayer\">reto website</a></html>";
-			}
-		};
-		ConcreteWebMap webMap = new ConcreteWebMap(localReader);
+		ConcreteWebMap webMap = new ConcreteWebMap();
 		webMap.setaIsSet(true);
 		webMap.setpIsSet(true);
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
@@ -52,7 +43,7 @@ public class ConcreteWebMapTest {
 
 	@Test
 	public void shouldSetATags() {
-		ConcreteWebMap webMap = new ConcreteWebMap(reader);
+		ConcreteWebMap webMap = new ConcreteWebMap();
 		assertFalse(webMap.isaIsSet());
 		webMap.setaIsSet(true);
 		assertTrue(webMap.isaIsSet());
@@ -60,7 +51,7 @@ public class ConcreteWebMapTest {
 
 	@Test
 	public void shouldSetPTags() {
-		ConcreteWebMap webMap = new ConcreteWebMap(reader);
+		ConcreteWebMap webMap = new ConcreteWebMap();
 		assertFalse(webMap.ispIsSet());
 		webMap.setpIsSet(true);
 		assertTrue(webMap.ispIsSet());
@@ -68,7 +59,7 @@ public class ConcreteWebMapTest {
 
 	@Test
 	public void shouldSetH1Tags() {
-		ConcreteWebMap webMap = new ConcreteWebMap(reader);
+		ConcreteWebMap webMap = new ConcreteWebMap();
 		assertFalse(webMap.isH1IsSet());
 		webMap.setH1IsSet(true);
 		assertTrue(webMap.isH1IsSet());
@@ -76,7 +67,7 @@ public class ConcreteWebMapTest {
 
 	@Test
 	public void shouldSetH2Tags() {
-		ConcreteWebMap webMap = new ConcreteWebMap(reader);
+		ConcreteWebMap webMap = new ConcreteWebMap();
 		assertFalse(webMap.isH2IsSet());
 		webMap.setH2IsSet(true);
 		assertTrue(webMap.isH2IsSet());
@@ -84,7 +75,7 @@ public class ConcreteWebMapTest {
 
 	@Test
 	public void shouldSetH3Tags() {
-		ConcreteWebMap webMap = new ConcreteWebMap(reader);
+		ConcreteWebMap webMap = new ConcreteWebMap();
 		assertFalse(webMap.isH3IsSet());
 		webMap.setH3IsSet(true);
 		assertTrue(webMap.isH3IsSet());
@@ -92,7 +83,7 @@ public class ConcreteWebMapTest {
 
 	@Test
 	public void shouldResetTags() {
-		ConcreteWebMap webMap = new ConcreteWebMap(reader);
+		ConcreteWebMap webMap = new ConcreteWebMap();
 		webMap.setaIsSet(true);
 		webMap.setaIsSet(true);
 		assertTrue(webMap.isaIsSet());
