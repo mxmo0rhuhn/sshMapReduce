@@ -94,9 +94,8 @@ public class WebCrawler extends Observable {
 
 		countMapInstruction.setSearchedWord(word);
 
-		Map<String, String> myConfig = new HashMap<String, String>();
 		MapReduce counter = MapReduceFactory.getMapReduce().newMRTask(countMapInstruction, countReduceInstruction,
-				countCombinerInstruction, null, myConfig);
+				countCombinerInstruction, null);
 
 		Map<String, List<String>> results = counter.runMapReduceTask(new WordsInputSplitter(toCount, 50000));
 		List<String> counts = results.get(word);
@@ -133,9 +132,8 @@ public class WebCrawler extends Observable {
 
 		toSearchURLS.add(url);
 
-		Map<String, String> myConfig = new HashMap<String, String>();
 		MapReduce searchTask = MapReduceFactory.getMapReduce().newMRTask(webSearchMapInstruction,
-				webSearchReduceInstruction, webSearchCombineInstruction, null, myConfig);
+				webSearchReduceInstruction, webSearchCombineInstruction, null);
 
 		for (int i = 1; i <= depth; i++) {
 
